@@ -1,0 +1,178 @@
+
+
+
+
+
+---
+import '../../generated/fonts.css';
+import '../site-components/global.css';
+import '../styles/global.css';
+
+const { 
+  pageClass = '',
+  title = 'ZyatrIA Global | AI Agents & Automation Without Borders',
+  description = 'Transform your business with intelligent AI agents and advanced automation. Deploy in 7-15 days. Available in North America, Europe, Africa, and Latin America.',
+  ogImage = '/og-image.svg',
+  canonical
+} = Astro.props;
+
+const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url.pathname);
+---
+
+<html lang="en" class={pageClass}>
+<head>
+<meta charset="utf-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#6366F1" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+<!-- Additional SEO -->
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="author" content="ZyatrIA Global" />
+<meta name="keywords" content="AI agents, automation, business automation, intelligent agents, micro-agents, CRM automation, workflow automation, AI without borders" />
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ZyatrIA Global",
+  "alternateName": "ZyatrIA",
+  "url": "https://zyatria.global",
+  "logo": "https://zyatria.global/logo.png",
+  "description": "International AI agency providing intelligent agents, advanced automation, and specialized micro-agents. Deploy in 7-15 days with multilingual support.",
+  "sameAs": [
+    "https://www.linkedin.com/company/zyatria-global",
+    "https://twitter.com/zyatriaglobal",
+    "https://www.facebook.com/zyatriaglobal"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-555-123-4567",
+    "contactType": "Customer Service",
+    "areaServed": ["US", "CA", "FR", "ES", "PT", "BR"],
+    "availableLanguage": ["English", "French", "Spanish", "Portuguese"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CA",
+    "addressRegion": "QC",
+    "addressLocality": "Montreal"
+  },
+  "founder": {
+    "@type": "Organization",
+    "name": "ZyatrIA Global Team"
+  },
+  "foundingDate": "2024",
+  "slogan": "AI Without Borders",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127",
+    "bestRating": "5"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ZyatrIA Global",
+  "url": "https://zyatria.global",
+  "description": "Transform your business with intelligent AI agents and advanced automation. Deploy in 7-15 days. Available in North America, Europe, Africa, and Latin America.",
+  "inLanguage": ["en", "fr", "es", "pt"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://zyatria.global/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": title,
+  "description": description,
+  "url": canonicalURL,
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://zyatria.global"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Artificial Intelligence Agents"
+  },
+  "audience": {
+    "@type": "BusinessAudience",
+    "audienceType": "Small and Medium Enterprises"
+  }
+}
+</script>
+
+<!-- Preconnect to improve performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="https://formspree.io" />
+<link rel="dns-prefetch" href="https://stripe.com" />
+
+<!-- Alternate language versions -->
+<link rel="alternate" hreflang="en" href={canonicalURL} />
+<link rel="alternate" hreflang="fr" href={canonicalURL.toString().replace('/en/', '/fr/')} />
+<link rel="alternate" hreflang="es" href={canonicalURL.toString().replace('/en/', '/es/')} />
+<link rel="alternate" hreflang="pt" href={canonicalURL.toString().replace('/en/', '/pt/')} />
+<link rel="alternate" hreflang="x-default" href={canonicalURL} />
+</head>
+<!-- Dark mode class injection point - will be replaced with `dark` class based on your site palette -->
+<body class="__DARK_MODE_CLASS__">
+<slot />
+</body>
+</html>
+
+<style is:global>
+/* Page-specific overrides */
+html.splash main { 
+display: flex !important; 
+}
+
+html.splash ol,
+html.splash ul { 
+padding-left: 0 !important; 
+margin: 0 !important; 
+}
+</style>
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C98769;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="secondaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#C98769;stop-opacity:0.5" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Elements -->
+  <circle cx="650" cy="100" r="150" fill="url(#primaryGrad)" opacity="0.1"/>
+  <circle cx="150" cy="500" r="120" fill="url(#primaryGrad)" opacity="0.1"/>
+  
+  <!-- Main Robot/AI Illustration -->
+  <g transform="translate(250, 150)">
+    <!-- Head -->
+    <rect x="80" y="0" width="140" height="140" rx="20" fill="url(#primaryGrad)"/>
+    
+    <!-- Eyes -->
+    <circle cx="120" cy="50" r="12" fill="white"/>
+    <circle cx="180" cy="50" r="12" fill="white"/>
+    <circle cx="122" cy="52" r="6" fill="#373D36"/>
+    <circle cx="182" cy="52" r="6" fill="#373D36"/>
+    
+    <!-- Smile -->
+    <path d="M 120 90 Q 150 110 180 90" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+    
+    <!-- Antennas -->
+    <line x1="110" y1="0" x2="110" y2="-30" stroke="url(#primaryGrad)" stroke-width="4"/>
+    <circle cx="110" cy="-35" r="8" fill="#C98769"/>
+    <line x1="190" y1="0" x2="190" y2="-30" stroke="url(#primaryGrad)" stroke-width="4"/>
+    <circle cx="190" cy="-35" r="8" fill="#C98769"/>
+    
+    <!-- Body -->
+    <rect x="60" y="150" width="180" height="200" rx="20" fill="url(#secondaryGrad)"/>
+    
+    <!-- Control Panel -->
+    <rect x="90" y="180" width="50" height="50" rx="10" fill="white" opacity="0.8"/>
+    <rect x="160" y="180" width="50" height="50" rx="10" fill="white" opacity="0.8"/>
+    <rect x="90" y="250" width="120" height="30" rx="5" fill="white" opacity="0.8"/>
+    
+    <!-- Arms -->
+    <rect x="0" y="160" width="60" height="20" rx="10" fill="url(#primaryGrad)"/>
+    <rect x="240" y="160" width="60" height="20" rx="10" fill="url(#primaryGrad)"/>
+    
+    <!-- Hands -->
+    <circle cx="30" cy="170" r="20" fill="#C98769"/>
+    <circle cx="270" cy="170" r="20" fill="#C98769"/>
+  </g>
+  
+  <!-- Floating Icons Around Robot -->
+  <g opacity="0.6">
+    <!-- Globe -->
+    <circle cx="150" cy="200" r="30" stroke="#C98769" stroke-width="3" fill="none"/>
+    <ellipse cx="150" cy="200" rx="30" ry="15" stroke="#C98769" stroke-width="3" fill="none"/>
+    <line x1="150" y1="170" x2="150" y2="230" stroke="#C98769" stroke-width="3"/>
+    
+    <!-- Lightning -->
+    <path d="M 630 250 L 610 280 L 625 280 L 615 310 L 645 275 L 630 275 Z" fill="#9333EA"/>
+    
+    <!-- Clock -->
+    <circle cx="650" cy="380" r="28" stroke="#60A5FA" stroke-width="3" fill="none"/>
+    <line x1="650" y1="380" x2="650" y2="360" stroke="#60A5FA" stroke-width="3"/>
+    <line x1="650" y1="380" x2="665" y2="380" stroke="#60A5FA" stroke-width="3"/>
+    
+    <!-- Chart -->
+    <rect x="130" y="420" width="10" height="40" fill="#C98769"/>
+    <rect x="145" y="400" width="10" height="60" fill="#C98769"/>
+    <rect x="160" y="380" width="10" height="80" fill="#C98769"/>
+  </g>
+  
+  <!-- Connection Lines -->
+  <line x1="400" y1="250" x2="150" y2="200" stroke="#C98769" stroke-width="2" stroke-dasharray="5,5" opacity="0.3"/>
+  <line x1="400" y1="250" x2="630" y2="250" stroke="#9333EA" stroke-width="2" stroke-dasharray="5,5" opacity="0.3"/>
+  <line x1="400" y1="250" x2="650" y2="380" stroke="#60A5FA" stroke-width="2" stroke-dasharray="5,5" opacity="0.3"/>
+  
+  <!-- Data Particles -->
+  <circle cx="300" cy="150" r="3" fill="#C98769" opacity="0.5">
+    <animate attributeName="cy" values="150;170;150" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="500" cy="180" r="3" fill="#9333EA" opacity="0.5">
+    <animate attributeName="cy" values="180;200;180" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="350" cy="400" r="3" fill="#60A5FA" opacity="0.5">
+    <animate attributeName="cy" values="400;420;400" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>

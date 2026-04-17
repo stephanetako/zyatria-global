@@ -1,0 +1,35 @@
+
+
+
+---
+import MainLayout from '../layouts/main.astro';
+import Navigation from '../components/Navigation';
+import DemoPage from '../components/pages/DemoPage';
+import Footer from '../components/Footer';
+import FormspreeButton from '../components/FormspreeButton';
+
+const seoData = {
+  title: "Demander une Démo Gratuite | Testez nos Agents IA | Contact ZyatrIA Global",
+  description: "Réservez votre démonstration gratuite et découvrez comment nos agents IA peuvent transformer votre entreprise. Réponse en moins de 24h. Support multilingue disponible en français, anglais, espagnol et portugais. Déploiement rapide en 7-15 jours.",
+  ogImage: "/og-image-demo.jpg",
+  keywords: "démo agents IA, demande démo gratuite, contact ZyatrIA, essai gratuit micro-agents, consultation IA, rendez-vous démo"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+<div class="relative">
+<Navigation client:load />
+<DemoPage client:only="react" />
+<Footer client:only="react" />
+<FormspreeButton client:only="react" />
+</div>
+</MainLayout>
+
+
+
+
+

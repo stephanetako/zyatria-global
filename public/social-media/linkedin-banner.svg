@@ -1,0 +1,57 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1584" height="396" fill="#F5F1EB"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C98769;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#C98769;stop-opacity:0.05" />
+    </linearGradient>
+  </defs>
+  <rect width="1584" height="396" fill="url(#grad1)"/>
+  
+  <!-- Left section - Text -->
+  <text x="80" y="140" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#373D36">
+    ZyatrIA Global
+  </text>
+  
+  <text x="80" y="190" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#C98769">
+    IA sans frontières | AI without borders
+  </text>
+  
+  <!-- Services -->
+  <text x="80" y="240" font-family="Arial, sans-serif" font-size="20" fill="#373D36">
+    ✓ Agents IA intelligents    ✓ Automatisation avancée    ✓ Support multilingue
+  </text>
+  
+  <!-- Bottom info -->
+  <text x="80" y="290" font-family="Arial, sans-serif" font-size="18" fill="#C98769" font-weight="600">
+    🇨🇦 Entreprise Canadienne | Québec
+  </text>
+  
+  <text x="80" y="320" font-family="Arial, sans-serif" font-size="18" fill="#666">
+    🌍 Amérique du Nord • Europe • Afrique • Amérique Latine
+  </text>
+  
+  <!-- Right section - Visual elements -->
+  <circle cx="1350" cy="120" r="80" fill="#C98769" opacity="0.2"/>
+  <circle cx="1400" cy="200" r="60" fill="#C98769" opacity="0.15"/>
+  <circle cx="1450" cy="280" r="40" fill="#C98769" opacity="0.1"/>
+  
+  <!-- Icons -->
+  <g transform="translate(1320, 80)">
+    <circle cx="0" cy="0" r="30" fill="#C98769"/>
+    <text x="0" y="10" font-size="30" text-anchor="middle" fill="white">🤖</text>
+  </g>
+  
+  <g transform="translate(1380, 180)">
+    <circle cx="0" cy="0" r="25" fill="#C98769" opacity="0.9"/>
+    <text x="0" y="8" font-size="24" text-anchor="middle" fill="white">⚡</text>
+  </g>
+  
+  <g transform="translate(1430, 260)">
+    <circle cx="0" cy="0" r="20" fill="#C98769" opacity="0.8"/>
+    <text x="0" y="7" font-size="20" text-anchor="middle" fill="white">🌍</text>
+  </g>
+</svg>

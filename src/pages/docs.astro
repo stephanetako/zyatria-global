@@ -1,0 +1,27 @@
+
+---
+import MainLayout from '../layouts/main.astro';
+import Navigation from '../components/Navigation';
+import TechnicalDocsPage from '../components/pages/TechnicalDocsPage';
+import Footer from '../components/Footer';
+
+const seoData = {
+  title: "Documentation Technique | API & Intégrations Agents IA | ZyatrIA Global",
+  description: "Documentation technique complète pour nos agents IA : références API, webhooks, intégrations CRM, exemples de code, guides d'implémentation. Support développeurs pour intégrer nos micro-agents dans vos systèmes existants.",
+  ogImage: "/og-image-docs.jpg",
+  keywords: "documentation IA, API agents IA, intégration technique IA, webhooks IA, référence API, guides développeurs IA, SDK micro-agents"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+  <div class="relative">
+    <Navigation client:load />
+    <TechnicalDocsPage client:only="react" />
+    <Footer client:only="react" />
+  </div>
+</MainLayout>
+

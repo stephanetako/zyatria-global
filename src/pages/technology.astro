@@ -1,0 +1,27 @@
+
+---
+import MainLayout from '../layouts/main.astro';
+import Navigation from '../components/Navigation';
+import TechnologyPage from '../components/pages/TechnologyPage';
+import Footer from '../components/Footer';
+
+const seoData = {
+  title: "Notre Technologie IA | Intégrations HubSpot, Salesforce, OpenAI | ZyatrIA Global",
+  description: "Découvrez notre stack technologique d'agents IA : intégrations avec HubSpot, Salesforce, Notion, Slack, Stripe, OpenAI, Azure AI, Make, Zapier. Solutions compatibles avec vos outils existants. Architecture scalable et sécurisée.",
+  ogImage: "/og-image-technology.jpg",
+  keywords: "technologie IA, intégrations IA, OpenAI, Azure AI, HubSpot IA, Salesforce automation, stack technologique IA, API IA"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+  <div class="relative">
+    <Navigation client:load />
+    <TechnologyPage client:only="react" />
+    <Footer client:only="react" />
+  </div>
+</MainLayout>
+

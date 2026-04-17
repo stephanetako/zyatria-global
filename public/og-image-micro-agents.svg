@@ -1,0 +1,44 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F1EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6DCD4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C98769;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <circle cx="1100" cy="100" r="150" fill="url(#accentGrad)" opacity="0.1"/>
+  <circle cx="100" cy="530" r="120" fill="url(#accentGrad)" opacity="0.1"/>
+  
+  <circle cx="150" cy="150" r="70" fill="url(#accentGrad)"/>
+  <text x="150" y="175" font-family="Arial, sans-serif" font-size="70" font-weight="900" fill="white" text-anchor="middle">μ</text>
+  
+  <text x="260" y="140" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#373D36">Micro-Agents IA</text>
+  <text x="260" y="200" font-family="Arial, sans-serif" font-size="32" fill="#373D36" opacity="0.7">Specialized AI for every need</text>
+  
+  <rect x="150" y="270" width="900" height="100" rx="20" fill="white" opacity="0.5"/>
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#373D36" text-anchor="middle">Deploy in 7-15 days | 24/7 Support | Multilingual</text>
+  
+  <g transform="translate(150, 430)">
+    <rect width="240" height="120" rx="15" fill="white" opacity="0.8"/>
+    <text x="120" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#C98769" text-anchor="middle">🏠 Real Estate</text>
+    <text x="120" y="85" font-family="Arial, sans-serif" font-size="18" fill="#373D36" text-anchor="middle">Lead Management</text>
+  </g>
+  
+  <g transform="translate(420, 430)">
+    <rect width="240" height="120" rx="15" fill="white" opacity="0.8"/>
+    <text x="120" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#C98769" text-anchor="middle">🛒 E-commerce</text>
+    <text x="120" y="85" font-family="Arial, sans-serif" font-size="18" fill="#373D36" text-anchor="middle">Sales Automation</text>
+  </g>
+  
+  <g transform="translate(690, 430)">
+    <rect width="240" height="120" rx="15" fill="white" opacity="0.8"/>
+    <text x="120" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#C98769" text-anchor="middle">💬 Support</text>
+    <text x="120" y="85" font-family="Arial, sans-serif" font-size="18" fill="#373D36" text-anchor="middle">24/7 Customer Care</text>
+  </g>
+</svg>

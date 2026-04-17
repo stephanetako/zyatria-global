@@ -1,0 +1,120 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5F1EB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C98769;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Gradient Orbs -->
+  <circle cx="650" cy="100" r="150" fill="url(#primaryGrad)" opacity="0.08"/>
+  <circle cx="150" cy="500" r="120" fill="url(#primaryGrad)" opacity="0.08"/>
+  
+  <!-- Main Dashboard Card -->
+  <g filter="url(#shadow)">
+    <rect x="100" y="80" width="600" height="440" rx="20" fill="url(#cardGrad)"/>
+    <rect x="100" y="80" width="600" height="440" rx="20" stroke="#C98769" stroke-width="2" fill="none" opacity="0.2"/>
+  </g>
+  
+  <!-- Header -->
+  <rect x="120" y="100" width="560" height="60" rx="10" fill="#C98769" opacity="0.1"/>
+  <circle cx="150" cy="130" r="20" fill="url(#primaryGrad)"/>
+  <text x="185" y="138" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#373D36">Performance Dashboard</text>
+  <circle cx="660" cy="130" r="6" fill="#10B981"/>
+  <text x="620" y="138" font-family="Arial, sans-serif" font-size="12" fill="#10B981" font-weight="600">● Live</text>
+  
+  <!-- Metrics Cards -->
+  <!-- Card 1: Conversion Rate -->
+  <g>
+    <rect x="130" y="180" width="160" height="110" rx="10" fill="white" opacity="0.9"/>
+    <rect x="130" y="180" width="160" height="110" rx="10" stroke="#C98769" stroke-width="1" fill="none" opacity="0.3"/>
+    <text x="150" y="210" font-family="Arial, sans-serif" font-size="12" fill="#666" font-weight="600">CONVERSION</text>
+    <text x="150" y="245" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#C98769">+67%</text>
+    <text x="150" y="270" font-family="Arial, sans-serif" font-size="11" fill="#059669">↑ 42% vs last month</text>
+  </g>
+  
+  <!-- Card 2: Response Time -->
+  <g>
+    <rect x="320" y="180" width="160" height="110" rx="10" fill="white" opacity="0.9"/>
+    <rect x="320" y="180" width="160" height="110" rx="10" stroke="#9333EA" stroke-width="1" fill="none" opacity="0.3"/>
+    <text x="340" y="210" font-family="Arial, sans-serif" font-size="12" fill="#666" font-weight="600">RESPONSE TIME</text>
+    <text x="340" y="245" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#9333EA">3.2s</text>
+    <text x="340" y="270" font-family="Arial, sans-serif" font-size="11" fill="#059669">↓ -80% faster</text>
+  </g>
+  
+  <!-- Card 3: Active Agents -->
+  <g>
+    <rect x="510" y="180" width="160" height="110" rx="10" fill="white" opacity="0.9"/>
+    <rect x="510" y="180" width="160" height="110" rx="10" stroke="#60A5FA" stroke-width="1" fill="none" opacity="0.3"/>
+    <text x="530" y="210" font-family="Arial, sans-serif" font-size="12" fill="#666" font-weight="600">ACTIVE AGENTS</text>
+    <text x="530" y="245" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#60A5FA">6/6</text>
+    <text x="530" y="270" font-family="Arial, sans-serif" font-size="11" fill="#10B981">● All systems operational</text>
+  </g>
+  
+  <!-- Chart Area -->
+  <rect x="130" y="310" width="540" height="180" rx="10" fill="white" opacity="0.9"/>
+  <rect x="130" y="310" width="540" height="180" rx="10" stroke="#C98769" stroke-width="1" fill="none" opacity="0.2"/>
+  
+  <!-- Chart Title -->
+  <text x="150" y="340" font-family="Arial, sans-serif" font-size="14" fill="#373D36" font-weight="700">Weekly Performance</text>
+  
+  <!-- Chart Bars -->
+  <rect x="160" y="420" width="60" height="50" rx="4" fill="#C98769" opacity="0.6"/>
+  <rect x="240" y="400" width="60" height="70" rx="4" fill="#C98769" opacity="0.7"/>
+  <rect x="320" y="380" width="60" height="90" rx="4" fill="#C98769" opacity="0.8"/>
+  <rect x="400" y="360" width="60" height="110" rx="4" fill="url(#primaryGrad)"/>
+  <rect x="480" y="370" width="60" height="100" rx="4" fill="#9333EA" opacity="0.7"/>
+  <rect x="560" y="390" width="60" height="80" rx="4" fill="#9333EA" opacity="0.6"/>
+  
+  <!-- Chart Labels -->
+  <text x="175" y="485" font-family="Arial, sans-serif" font-size="10" fill="#666">Mon</text>
+  <text x="257" y="485" font-family="Arial, sans-serif" font-size="10" fill="#666">Tue</text>
+  <text x="335" y="485" font-family="Arial, sans-serif" font-size="10" fill="#666">Wed</text>
+  <text x="415" y="485" font-family="Arial, sans-serif" font-size="10" fill="#666">Thu</text>
+  <text x="498" y="485" font-family="Arial, sans-serif" font-size="10" fill="#666">Fri</text>
+  <text x="577" y="485" font-family="Arial, sans-serif" font-size="10" fill="#666">Sat</text>
+  
+  <!-- Success Badge -->
+  <g>
+    <rect x="580" y="320" width="70" height="30" rx="15" fill="url(#successGrad)"/>
+    <text x="595" y="340" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="600">+98%</text>
+  </g>
+  
+  <!-- Floating Status Indicators -->
+  <g opacity="0.8">
+    <!-- Indicator 1 -->
+    <circle cx="80" cy="200" r="30" fill="white" filter="url(#shadow)"/>
+    <circle cx="80" cy="200" r="30" stroke="#C98769" stroke-width="2" fill="none" opacity="0.3"/>
+    <text x="80" y="195" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">✓</text>
+    <text x="80" y="213" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#059669">Active</text>
+    
+    <!-- Indicator 2 -->
+    <circle cx="720" cy="350" r="30" fill="white" filter="url(#shadow)"/>
+    <circle cx="720" cy="350" r="30" stroke="#9333EA" stroke-width="2" fill="none" opacity="0.3"/>
+    <text x="720" y="345" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">⚡</text>
+    <text x="720" y="363" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#9333EA">Fast</text>
+    
+    <!-- Indicator 3 -->
+    <circle cx="80" cy="450" r="30" fill="white" filter="url(#shadow)"/>
+    <circle cx="80" cy="450" r="30" stroke="#60A5FA" stroke-width="2" fill="none" opacity="0.3"/>
+    <text x="80" y="445" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">🌍</text>
+    <text x="80" y="463" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#60A5FA">Global</text>
+  </g>
+  
+  <!-- Pulse Animation Circles -->
+  <circle cx="400" cy="360" r="8" fill="#C98769" opacity="0.3">
+    <animate attributeName="r" values="8;15;8" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>
