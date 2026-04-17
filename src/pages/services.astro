@@ -1,0 +1,35 @@
+
+
+
+---
+import MainLayout from '../layouts/main.astro';
+import Navigation from '../components/Navigation';
+import ServicesPage from '../components/pages/ServicesPage';
+import Footer from '../components/Footer';
+import FormspreeButton from '../components/FormspreeButton';
+
+const seoData = {
+  title: "Nos Services IA | Agents Intelligents, Automatisation & Micro-Agents | ZyatrIA Global",
+  description: "Découvrez nos services d'intelligence artificielle : agents IA conversationnels 24/7, automatisation avancée de workflows, et micro-agents spécialisés pour votre secteur. Support multilingue (FR, EN, ES, PT). Déploiement en 7-15 jours.",
+  ogImage: "/og-image-services.jpg",
+  keywords: "services IA, agents intelligents, automatisation workflow, micro-agents spécialisés, IA conversationnelle, support 24/7, CRM automation, intégration IA"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+<div class="relative">
+<Navigation client:load />
+<ServicesPage client:only="react" />
+<Footer client:only="react" />
+<FormspreeButton client:only="react" />
+</div>
+</MainLayout>
+
+
+
+
+

@@ -1,0 +1,141 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C98769;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#C98769;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333EA;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#60A5FA;stop-opacity:0.6" />
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Circles -->
+  <circle cx="400" cy="300" r="280" fill="url(#grad1)" opacity="0.1"/>
+  <circle cx="500" cy="250" r="200" fill="url(#grad2)" opacity="0.08"/>
+  <circle cx="300" cy="350" r="150" fill="url(#grad3)" opacity="0.08"/>
+  
+  <!-- Central Network Hub -->
+  <circle cx="400" cy="300" r="80" fill="url(#grad1)" opacity="0.9"/>
+  <circle cx="400" cy="300" r="70" fill="white" opacity="0.3"/>
+  <circle cx="400" cy="300" r="50" fill="url(#grad1)"/>
+  
+  <!-- Central Icon/Text -->
+  <text x="400" y="315" font-family="Arial, sans-serif" font-size="36" font-weight="900" fill="white" text-anchor="middle">AI</text>
+  
+  <!-- Orbiting Nodes -->
+  <!-- Node 1 - Top -->
+  <g>
+    <line x1="400" y1="300" x2="400" y2="120" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="400" cy="120" r="45" fill="url(#grad2)" opacity="0.9"/>
+    <circle cx="400" cy="120" r="35" fill="white" opacity="0.4"/>
+    <text x="400" y="130" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">📊</text>
+  </g>
+  
+  <!-- Node 2 - Top Right -->
+  <g>
+    <line x1="400" y1="300" x2="600" y2="180" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="600" cy="180" r="45" fill="url(#grad3)" opacity="0.9"/>
+    <circle cx="600" cy="180" r="35" fill="white" opacity="0.4"/>
+    <text x="600" y="190" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">⚡</text>
+  </g>
+  
+  <!-- Node 3 - Right -->
+  <g>
+    <line x1="400" y1="300" x2="650" y2="300" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="650" cy="300" r="45" fill="url(#grad1)" opacity="0.9"/>
+    <circle cx="650" cy="300" r="35" fill="white" opacity="0.4"/>
+    <text x="650" y="310" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🎯</text>
+  </g>
+  
+  <!-- Node 4 - Bottom Right -->
+  <g>
+    <line x1="400" y1="300" x2="600" y2="420" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="600" cy="420" r="45" fill="url(#grad2)" opacity="0.9"/>
+    <circle cx="600" cy="420" r="35" fill="white" opacity="0.4"/>
+    <text x="600" y="430" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">💬</text>
+  </g>
+  
+  <!-- Node 5 - Bottom -->
+  <g>
+    <line x1="400" y1="300" x2="400" y2="480" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="400" cy="480" r="45" fill="url(#grad3)" opacity="0.9"/>
+    <circle cx="400" cy="480" r="35" fill="white" opacity="0.4"/>
+    <text x="400" y="490" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🌐</text>
+  </g>
+  
+  <!-- Node 6 - Bottom Left -->
+  <g>
+    <line x1="400" y1="300" x2="200" y2="420" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="200" cy="420" r="45" fill="url(#grad1)" opacity="0.9"/>
+    <circle cx="200" cy="420" r="35" fill="white" opacity="0.4"/>
+    <text x="200" y="430" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">📅</text>
+  </g>
+  
+  <!-- Node 7 - Left -->
+  <g>
+    <line x1="400" y1="300" x2="150" y2="300" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="150" cy="300" r="45" fill="url(#grad2)" opacity="0.9"/>
+    <circle cx="150" cy="300" r="35" fill="white" opacity="0.4"/>
+    <text x="150" y="310" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🔔</text>
+  </g>
+  
+  <!-- Node 8 - Top Left -->
+  <g>
+    <line x1="400" y1="300" x2="200" y2="180" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+    <circle cx="200" cy="180" r="45" fill="url(#grad3)" opacity="0.9"/>
+    <circle cx="200" cy="180" r="35" fill="white" opacity="0.4"/>
+    <text x="200" y="190" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🚀</text>
+  </g>
+  
+  <!-- Data Flow Particles -->
+  <g opacity="0.6">
+    <circle cx="300" cy="240" r="4" fill="#C98769">
+      <animateMotion path="M 0 0 L 100 60" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="500" cy="240" r="4" fill="#9333EA">
+      <animateMotion path="M 0 0 L -100 60" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="400" r="4" fill="#60A5FA">
+      <animateMotion path="M 0 0 L 0 -100" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Pulse Rings from Center -->
+  <circle cx="400" cy="300" r="80" stroke="#C98769" stroke-width="2" fill="none" opacity="0.3">
+    <animate attributeName="r" values="80;150;80" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="400" cy="300" r="100" stroke="#9333EA" stroke-width="2" fill="none" opacity="0.2">
+    <animate attributeName="r" values="100;180;100" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0;0.2" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Stats Overlay -->
+  <g opacity="0.9">
+    <!-- Top Left Badge -->
+    <rect x="50" y="50" width="120" height="50" rx="25" fill="white" filter="url(#blur)"/>
+    <rect x="50" y="50" width="120" height="50" rx="25" fill="url(#grad1)" opacity="0.9"/>
+    <text x="110" y="82" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">24/7</text>
+    
+    <!-- Top Right Badge -->
+    <rect x="630" y="50" width="120" height="50" rx="25" fill="white" filter="url(#blur)"/>
+    <rect x="630" y="50" width="120" height="50" rx="25" fill="url(#grad2)" opacity="0.9"/>
+    <text x="690" y="82" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">+98%</text>
+    
+    <!-- Bottom Badge -->
+    <rect x="330" y="520" width="140" height="50" rx="25" fill="white" filter="url(#blur)"/>
+    <rect x="330" y="520" width="140" height="50" rx="25" fill="url(#grad3)" opacity="0.9"/>
+    <text x="400" y="552" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle">7-15 Days</text>
+  </g>
+</svg>

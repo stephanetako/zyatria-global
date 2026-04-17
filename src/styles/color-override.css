@@ -1,0 +1,311 @@
+/**
+ * COLOR OVERRIDE - OPTION 1: TECH MODERNE
+ * 
+ * Cette palette remplace les couleurs terracotta par une palette tech professionnelle
+ * inspirée de Stripe, Vercel, et les leaders tech internationaux.
+ * 
+ * Style: Tech moderne, professionnel, international
+ * Parfait pour: IA, SaaS, B2B, startups tech
+ */
+
+/* === HIGH IMPACT GRADIENTS === */
+.gradient-primary,
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%) !important;
+}
+
+.gradient-tech,
+.bg-gradient-tech {
+  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%) !important;
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #0066FF 0%, #1E40AF 50%, #8B5CF6 100%) !important;
+}
+
+.gradient-violet,
+.bg-gradient-violet {
+  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%) !important;
+}
+
+.gradient-cyan {
+  background: linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%) !important;
+}
+
+/* TEXT GRADIENTS - TRÈS VISIBLES */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.text-gradient-tech {
+  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.text-gradient-violet {
+  background: linear-gradient(135deg, #8B5CF6 0%, #C084FC 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* BACKGROUND GRADIENTS POUR SECTIONS */
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, var(--background), var(--muted), rgba(0, 102, 255, 0.05)) !important;
+}
+
+.from-background {
+  background: var(--background) !important;
+}
+
+/* FORCE PRIMARY COLOR */
+.text-primary,
+.text-primary * {
+  color: #0066FF !important;
+}
+
+.bg-primary,
+.bg-primary * {
+  background-color: #0066FF !important;
+}
+
+.border-primary {
+  border-color: #0066FF !important;
+}
+
+:root {
+  /* === COULEURS PRINCIPALES === */
+  
+  /* Primary - Bleu électrique (confiance, tech, international) */
+  --_apps---colors--primary: #0066FF;
+  --_apps---colors--primary-foreground: #FFFFFF;
+  --_apps---colors--ring: #0066FF;
+  
+  /* Background & Foreground - Contraste maximal */
+  --_apps---colors--background: #FFFFFF;
+  --_apps---colors--foreground: #0A0A0A;
+  
+  /* Secondary - Violet IA (innovation, premium) */
+  --_apps---colors--secondary: #F3F4F6;
+  --_apps---colors--secondary-foreground: #8B5CF6;
+  
+  /* Muted - Gris moderne */
+  --_apps---colors--muted: #F4F4F5;
+  --_apps---colors--muted-foreground: #71717A;
+  
+  /* Accent - Cyan tech */
+  --_apps---colors--accent: #EFF6FF;
+  --_apps---colors--accent-foreground: #06B6D4;
+  
+  /* Cards */
+  --_apps---colors--card: #FFFFFF;
+  --_apps---colors--card-foreground: #0A0A0A;
+  
+  /* Popover */
+  --_apps---colors--popover: #FFFFFF;
+  --_apps---colors--popover-foreground: #0A0A0A;
+  
+  /* Borders & Inputs */
+  --_apps---colors--border: #E4E4E7;
+  --_apps---colors--input: #E4E4E7;
+  
+  /* Destructive - Rouge moderne */
+  --_apps---colors--destructive: #EF4444;
+  
+  /* === CHARTS === */
+  --_apps---charts--chart-1: #0066FF;
+  --_apps---charts--chart-2: #8B5CF6;
+  --_apps---charts--chart-3: #06B6D4;
+  --_apps---charts--chart-4: #10B981;
+  --_apps---charts--chart-5: #F59E0B;
+  
+  /* === SIDEBAR === */
+  --_apps---sidebar--sidebar: #FAFAFA;
+  --_apps---sidebar--sidebar-foreground: #0A0A0A;
+  --_apps---sidebar--sidebar-primary: #0066FF;
+  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
+  --_apps---sidebar--sidebar-accent: #F4F4F5;
+  --_apps---sidebar--sidebar-accent-foreground: #71717A;
+  --_apps---sidebar--sidebar-border: #E4E4E7;
+  --_apps---sidebar--sidebar-ring: #0066FF;
+}
+
+/* === DARK MODE === */
+.dark {
+  /* Primary - Bleu électrique (plus vif en dark) */
+  --_apps---colors--primary: #3B82F6;
+  --_apps---colors--primary-foreground: #FFFFFF;
+  --_apps---colors--ring: #3B82F6;
+  
+  /* Background & Foreground - Mode sombre élégant */
+  --_apps---colors--background: #09090B;
+  --_apps---colors--foreground: #FAFAFA;
+  
+  /* Secondary - Violet IA */
+  --_apps---colors--secondary: #18181B;
+  --_apps---colors--secondary-foreground: #A78BFA;
+  
+  /* Muted - Gris charbon */
+  --_apps---colors--muted: #27272A;
+  --_apps---colors--muted-foreground: #A1A1AA;
+  
+  /* Accent - Cyan lumineux */
+  --_apps---colors--accent: #18181B;
+  --_apps---colors--accent-foreground: #22D3EE;
+  
+  /* Cards */
+  --_apps---colors--card: #09090B;
+  --_apps---colors--card-foreground: #FAFAFA;
+  
+  /* Popover */
+  --_apps---colors--popover: #09090B;
+  --_apps---colors--popover-foreground: #FAFAFA;
+  
+  /* Borders & Inputs */
+  --_apps---colors--border: #27272A;
+  --_apps---colors--input: #27272A;
+  
+  /* Destructive - Rouge vif */
+  --_apps---colors--destructive: #F87171;
+  
+  /* Charts Dark */
+  --_apps---charts--chart-1: #3B82F6;
+  --_apps---charts--chart-2: #A78BFA;
+  --_apps---charts--chart-3: #22D3EE;
+  --_apps---charts--chart-4: #34D399;
+  --_apps---charts--chart-5: #FBBF24;
+  
+  /* Sidebar Dark */
+  --_apps---sidebar--sidebar: #09090B;
+  --_apps---sidebar--sidebar-foreground: #FAFAFA;
+  --_apps---sidebar--sidebar-primary: #3B82F6;
+  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
+  --_apps---sidebar--sidebar-accent: #18181B;
+  --_apps---sidebar--sidebar-accent-foreground: #A1A1AA;
+  --_apps---sidebar--sidebar-border: #27272A;
+  --_apps---sidebar--sidebar-ring: #3B82F6;
+}
+
+/* === GRADIENTS TECH === */
+.gradient-primary {
+  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%);
+}
+
+.gradient-violet {
+  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+}
+
+.gradient-tech {
+  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%);
+}
+
+/* === GLOWS & EFFECTS === */
+.glow-primary {
+  box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+}
+
+.glow-violet {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+/* === HOVER STATES === */
+.hover-primary:hover {
+  background-color: #0052CC;
+  transition: background-color 0.2s ease;
+}
+
+.hover-violet:hover {
+  background-color: #7C3AED;
+  transition: background-color 0.2s ease;
+}
+
+/* === TEXT GRADIENTS === */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-tech {
+  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 102, 255, 0.6);
+  }
+}
+
+.animate-pulse-blue {
+  animation: pulse-blue 3s ease-in-out infinite;
+}
+
+/* === BORDERS TECH === */
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--_apps---colors--background), var(--_apps---colors--background)) padding-box,
+              linear-gradient(135deg, #0066FF, #8B5CF6) border-box;
+}
+
+/* === ACCESSIBILITY === */
+/* Ensure all colors meet WCAG AA standards */
+*:focus-visible {
+  outline: 2px solid var(--_apps---colors--primary);
+  outline-offset: 2px;
+}
+
+/* === BUTTON OVERRIDES === */
+button[class*="bg-primary"],
+a[class*="bg-primary"] {
+  background-color: var(--_apps---colors--primary) !important;
+  color: var(--_apps---colors--primary-foreground) !important;
+}
+
+button[class*="bg-primary"]:hover,
+a[class*="bg-primary"]:hover {
+  background-color: #0052CC !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+/* === CARD SHADOWS === */
+.card-tech {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-tech:hover {
+  box-shadow: 0 14px 28px rgba(0, 102, 255, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* === GLASS MORPHISM === */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+

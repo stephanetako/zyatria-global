@@ -1,0 +1,27 @@
+
+---
+import MainLayout from '../layouts/main.astro';
+import Navigation from '../components/Navigation';
+import KnowledgeBasePage from '../components/pages/KnowledgeBasePage';
+import Footer from '../components/Footer';
+
+const seoData = {
+  title: "Base de Connaissances | Guides & Documentation Agents IA | ZyatrIA Global",
+  description: "Accédez à notre base de connaissances complète sur les agents IA : guides de démarrage, documentation technique, meilleures pratiques, FAQ, tutoriels d'intégration. Ressources multilingues pour maximiser vos résultats avec l'IA.",
+  ogImage: "/og-image-knowledge.jpg",
+  keywords: "base de connaissances IA, documentation agents IA, guides IA, tutoriels micro-agents, FAQ IA, ressources IA, formation agents intelligents"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+  <div class="relative">
+    <Navigation client:load />
+    <KnowledgeBasePage client:only="react" />
+    <Footer client:only="react" />
+  </div>
+</MainLayout>
+

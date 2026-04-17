@@ -1,0 +1,64 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="step1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C98769;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C98769;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333EA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C98769;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Step 1: Analysis -->
+  <g transform="translate(100, 200)">
+    <circle cx="0" cy="0" r="70" fill="url(#step1)"/>
+    <text x="0" y="-5" font-family="Arial, sans-serif" font-size="50" text-anchor="middle">🔍</text>
+    <text x="0" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#373D36" text-anchor="middle">1. Analysis</text>
+    <text x="0" y="130" font-family="Arial, sans-serif" font-size="16" fill="#373D36" opacity="0.7" text-anchor="middle">Understand needs</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M 180 200 L 280 200" stroke="#C98769" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#C98769"/>
+    </marker>
+  </defs>
+  
+  <!-- Step 2: Creation -->
+  <g transform="translate(350, 200)">
+    <circle cx="0" cy="0" r="70" fill="url(#step2)"/>
+    <text x="0" y="-5" font-family="Arial, sans-serif" font-size="50" text-anchor="middle">⚙️</text>
+    <text x="0" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#373D36" text-anchor="middle">2. Build</text>
+    <text x="0" y="130" font-family="Arial, sans-serif" font-size="16" fill="#373D36" opacity="0.7" text-anchor="middle">Custom agent</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M 430 200 L 530 200" stroke="#60A5FA" stroke-width="3" marker-end="url(#arrowhead2)"/>
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#60A5FA"/>
+    </marker>
+  </defs>
+  
+  <!-- Step 3: Deploy -->
+  <g transform="translate(600, 200)">
+    <circle cx="0" cy="0" r="70" fill="url(#step3)"/>
+    <text x="0" y="-5" font-family="Arial, sans-serif" font-size="50" text-anchor="middle">🚀</text>
+    <text x="0" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#373D36" text-anchor="middle">3. Deploy</text>
+    <text x="0" y="130" font-family="Arial, sans-serif" font-size="16" fill="#373D36" opacity="0.7" text-anchor="middle">7-15 days</text>
+  </g>
+  
+  <!-- Timeline -->
+  <line x1="100" y1="50" x2="600" y2="50" stroke="#C98769" stroke-width="2" opacity="0.3"/>
+  <text x="350" y="40" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#C98769" text-anchor="middle">Fast Track Process</text>
+  
+  <!-- Success Badge -->
+  <rect x="300" y="350" width="200" height="40" rx="20" fill="#C98769"/>
+  <text x="400" y="377" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">✓ Ready to Use</text>
+</svg>

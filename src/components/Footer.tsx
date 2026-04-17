@@ -1,0 +1,266 @@
+import { useState } from 'react';
+import { Globe2, MapPin } from 'lucide-react';
+import { baseUrl } from '../lib/base-url';
+
+const translations = {
+  en: {
+    tagline: "AI without borders.",
+    companyLocation: 'Canadian Company | Quebec 🇨🇦',
+    description: "International agency specializing in AI agents, automation and AI micro-agents.",
+    navTitle: "Navigation",
+    navLinks: [
+      { label: "Home", href: `${baseUrl}/` },
+      { label: "Services", href: `${baseUrl}/services` },
+      { label: "AI Micro-agents", href: `${baseUrl}/micro-agents` },
+      { label: "Pricing", href: `${baseUrl}/pricing` },
+      { label: "About", href: `${baseUrl}/about` },
+      { label: "Demo", href: `${baseUrl}/demo` }
+    ],
+    infoTitle: "Contact",
+    phone: "Phone",
+    email: "Email",
+    copyright: "© 2026 ZyatrIA Global",
+    rights: "All rights reserved",
+    regions: "Operating in North America, Europe, French-speaking Africa and Latin America",
+    poweredBy: "Powered by innovation and artificial intelligence."
+  },
+  fr: {
+    tagline: "IA sans frontières.",
+    companyLocation: 'Entreprise Canadienne | Québec 🇨🇦',
+    description: "Agence internationale spécialisée en agents IA, automatisation et micro‑agents IA.",
+    navTitle: "Navigation",
+    navLinks: [
+      { label: "Accueil", href: `${baseUrl}/` },
+      { label: "Services", href: `${baseUrl}/services` },
+      { label: "Micro‑agents IA", href: `${baseUrl}/micro-agents` },
+      { label: "Tarifs", href: `${baseUrl}/pricing` },
+      { label: "À propos", href: `${baseUrl}/about` },
+      { label: "Démo", href: `${baseUrl}/demo` }
+    ],
+    infoTitle: "Contact",
+    phone: "Téléphone",
+    email: "Courriel",
+    copyright: "© 2026 ZyatrIA Global",
+    rights: "Tous droits réservés",
+    regions: "Opère en Amérique du Nord, Europe, Afrique francophone et Amérique latine",
+    poweredBy: "Propulsé par l'innovation et l'intelligence artificielle."
+  },
+  es: {
+    tagline: "IA sin fronteras.",
+    companyLocation: 'Empresa Canadiense | Quebec 🇨🇦',
+    description: "Agencia internacional especializada en agentes IA, automatización y micro-agentes IA.",
+    navTitle: "Navegación",
+    navLinks: [
+      { label: "Inicio", href: `${baseUrl}/` },
+      { label: "Servicios", href: `${baseUrl}/services` },
+      { label: "Micro-agentes IA", href: `${baseUrl}/micro-agents` },
+      { label: "Precios", href: `${baseUrl}/pricing` },
+      { label: "Acerca de", href: `${baseUrl}/about` },
+      { label: "Demo", href: `${baseUrl}/demo` }
+    ],
+    infoTitle: "Contacto",
+    phone: "Teléfono",
+    email: "Correo",
+    copyright: "© 2026 ZyatrIA Global",
+    rights: "Todos los derechos reservados",
+    regions: "Opera en América del Norte, Europa, África francófona y América Latina",
+    poweredBy: "Impulsado por la innovación y la inteligencia artificial."
+  },
+  pt: {
+    tagline: "IA sem fronteiras.",
+    companyLocation: 'Empresa Canadense | Quebec 🇨🇦',
+    description: "Agência internacional especializada em agentes IA, automação e micro-agentes IA.",
+    navTitle: "Navegação",
+    navLinks: [
+      { label: "Início", href: `${baseUrl}/` },
+      { label: "Serviços", href: `${baseUrl}/services` },
+      { label: "Micro-agentes IA", href: `${baseUrl}/micro-agents` },
+      { label: "Preços", href: `${baseUrl}/pricing` },
+      { label: "Sobre", href: `${baseUrl}/about` },
+      { label: "Demo", href: `${baseUrl}/demo` }
+    ],
+    infoTitle: "Contato",
+    phone: "Telefone",
+    email: "E-mail",
+    copyright: "© 2026 ZyatrIA Global",
+    rights: "Todos os direitos reservados",
+    regions: "Opera na América do Norte, Europa, África francófona e América Latina",
+    poweredBy: "Alimentado pela inovação e inteligência artificial."
+  }
+};
+
+const content = {
+  en: {
+    legal: 'Legal',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Service'
+  },
+  fr: {
+    legal: 'Légal',
+    privacy: 'Politique de confidentialité',
+    terms: "Conditions d'utilisation"
+  },
+  es: {
+    legal: 'Legal',
+    privacy: 'Política de privacidad',
+    terms: 'Términos de servicio'
+  },
+  pt: {
+    legal: 'Legal',
+    privacy: 'Política de privacidade',
+    terms: 'Termos de serviço'
+  }
+};
+
+export default function Footer() {
+  const [lang, setLang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
+  const t = translations[lang];
+
+  return (
+    <footer className="bg-muted/50 border-t border-border">
+      <div className="container py-12">
+        {/* Language Switcher */}
+        <div className="flex justify-center gap-2 mb-8">
+          {(['en', 'fr', 'es', 'pt'] as const).map((l) => (
+            <button
+              key={l}
+              onClick={() => setLang(l)}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                lang === l
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-zinc-800 border-2 border-zinc-200 dark:bg-zinc-900 dark:text-white dark:border-zinc-700'
+              }`}
+            >
+              {l.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        {/* Footer Grid - 3 Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          
+          {/* Column 1 - Identity */}
+          <div className="footer-col space-y-4">
+            {/* Logo */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-violet-600 rounded-xl flex items-center justify-center">
+                <Globe2 className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">ZyatrIA Global</h3>
+              </div>
+            </div>
+            
+            {/* Tagline */}
+            <p className="text-blue-600 font-semibold">
+              {t.tagline}
+            </p>
+            
+            {/* Canadian Company Badge */}
+            {t.companyLocation && (
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full">
+                <MapPin className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-semibold text-blue-600">
+                  {t.companyLocation}
+                </span>
+              </div>
+            )}
+            
+            {/* Description */}
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {t.description}
+            </p>
+          </div>
+
+          {/* Column 2 - Navigation */}
+          <div className="footer-col">
+            <h4 className="text-lg font-bold mb-4">{t.navTitle}</h4>
+            <ul className="space-y-3">
+              {t.navLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-blue-600 transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 group-hover:bg-blue-600 transition-colors"></span>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3 - Legal Information */}
+          <div className="footer-col">
+            <h4 className="text-lg font-bold mb-4">{t.infoTitle}</h4>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <div>
+                <p className="font-semibold text-foreground mb-1">{t.phone}</p>
+                <a href="tel:+14388874507" className="hover:text-blue-600 transition-colors">
+                  +1 (438) 887-4507
+                </a>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground mb-1">{t.email}</p>
+                <a href="mailto:ZyatrIA.contact@gmail.com" className="hover:text-blue-600 transition-colors break-all">
+                  ZyatrIA.contact@gmail.com
+                </a>
+              </div>
+              <div className="pt-2 border-t border-border">
+                <p className="font-semibold text-foreground">{t.copyright}</p>
+                <p>{t.rights}</p>
+              </div>
+              <p className="leading-relaxed">
+                {t.regions}
+              </p>
+              <div>
+                <h4 className="font-semibold text-foreground mb-4">
+                  {content[lang].legal}
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="/privacy"
+                      className="text-zinc-600 dark:text-zinc-400 hover:text-blue-600 transition-colors"
+                    >
+                      {content[lang].privacy}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/terms"
+                      className="text-zinc-600 dark:text-zinc-400 hover:text-blue-600 transition-colors"
+                    >
+                      {content[lang].terms}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Separator Line */}
+        <div className="footer-line h-px bg-border my-8"></div>
+
+        {/* Final Text */}
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground italic">
+            {t.poweredBy}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+

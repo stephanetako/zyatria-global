@@ -1,0 +1,35 @@
+
+
+
+---
+import MainLayout from '../layouts/main.astro';
+import Navigation from '../components/Navigation';
+import MicroAgentsPage from '../components/pages/MicroAgentsPage';
+import Footer from '../components/Footer';
+import FormspreeButton from '../components/FormspreeButton';
+
+const seoData = {
+  title: "Micro-Agents IA Spécialisés | Immobilier, E-commerce, Support, Qualification | ZyatrIA",
+  description: "Déployez des micro-agents IA spécialisés en moins de 7 jours : Agent Immobilier, Agent E-commerce, Agent Support 24/7, Agent Qualification Leads, Agent Rendez-vous, Agent Sur-Mesure. Automatisation intelligente pour votre secteur.",
+  ogImage: "/og-image-micro-agents.jpg",
+  keywords: "micro-agents IA, agent immobilier IA, agent e-commerce IA, support client automatisé, qualification leads IA, prise de rendez-vous automatique, agent sur-mesure"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+<div class="relative">
+<Navigation client:load />
+<MicroAgentsPage client:only="react" />
+<Footer client:only="react" />
+<FormspreeButton client:only="react" />
+</div>
+</MainLayout>
+
+
+
+
+
