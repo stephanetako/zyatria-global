@@ -3,28 +3,36 @@ import { Check, X, Zap, Award, CheckCircle2 } from 'lucide-react';
 
 const translations = {
   en: {
+    badge: "Comparison",
     title: "Why Choose ZyatrIA?",
+    titleHighlight: "Why Choose ZyatrIA?",
     subtitle: "See how we compare to other AI automation providers",
     us: "ZyatrIA Global",
     competitors: "Other Providers",
     getStarted: "Get Started Today"
   },
   fr: {
+    badge: "Comparaison",
     title: "Pourquoi choisir ZyatrIA ?",
+    titleHighlight: "Pourquoi choisir ZyatrIA ?",
     subtitle: "Voyez comment nous nous comparons aux autres fournisseurs d'automatisation IA",
     us: "ZyatrIA Global",
     competitors: "Autres fournisseurs",
     getStarted: "Commencer aujourd'hui"
   },
   es: {
+    badge: "Comparación",
     title: "¿Por qué elegir ZyatrIA?",
+    titleHighlight: "¿Por qué elegir ZyatrIA?",
     subtitle: "Vea cómo nos comparamos con otros proveedores de automatización IA",
     us: "ZyatrIA Global",
     competitors: "Otros proveedores",
     getStarted: "Comenzar hoy"
   },
   pt: {
+    badge: "Comparação",
     title: "Por que escolher a ZyatrIA?",
+    titleHighlight: "Por que escolher a ZyatrIA?",
     subtitle: "Veja como nos comparamos com outros provedores de automação IA",
     us: "ZyatrIA Global",
     competitors: "Outros provedores",
@@ -248,6 +256,7 @@ export default function CompetitorComparison() {
     </section>
   );
 }
+
 
 
 

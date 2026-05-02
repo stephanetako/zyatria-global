@@ -3,7 +3,6 @@
 
 
 
-
 import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Sparkles, Zap, Globe2 } from 'lucide-react';
@@ -97,14 +96,14 @@ const translations = {
 };
 
 interface HeroProps {
-  lang?: string;
+  lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
 const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
   // Direct Stripe checkout URL (replace with your actual Stripe link)
   const stripeCheckoutUrl = 'https://buy.stripe.com/xxxxxx';
   
-  const content: Record<string, any> = {
+  const content: Record<'en' | 'fr' | 'es' | 'pt', any> = {
     en: {
       badge: 'AI without borders',
       title: 'Intelligent AI Agents for a ',
@@ -256,6 +255,7 @@ const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
 };
 
 export default Hero;
+
 
 
 

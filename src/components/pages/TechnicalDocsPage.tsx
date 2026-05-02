@@ -34,7 +34,9 @@ export default function TechnicalDocsPage({ lang = 'en' }: TechnicalDocsPageProp
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
-  const translations = {
+  type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+
+  const translations: Record<TranslationKey, any> = {
     en: {
       hero: {
         badge: "Technical Documentation",
@@ -693,3 +695,4 @@ fetch('https://api.notion.com/v1/pages', {
     </div>
   );
 }
+

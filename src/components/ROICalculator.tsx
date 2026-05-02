@@ -5,7 +5,9 @@ import { Card } from './ui/card';
 
 const translations = {
   en: {
+    badge: "ROI Calculator",
     title: "Calculate Your ROI",
+    titleHighlight: "Calculate Your ROI",
     subtitle: "See how much you could save with AI automation",
     employees: "Number of employees",
     avgSalary: "Average salary per employee",
@@ -22,7 +24,9 @@ const translations = {
     }
   },
   fr: {
+    badge: "Calculateur de ROI",
     title: "Calculez votre ROI",
+    titleHighlight: "Calculez votre ROI",
     subtitle: "Découvrez combien vous pourriez économiser avec l'automatisation IA",
     employees: "Nombre d'employés",
     avgSalary: "Salaire moyen par employé",
@@ -39,7 +43,9 @@ const translations = {
     }
   },
   es: {
+    badge: "Calculadora de ROI",
     title: "Calcula tu ROI",
+    titleHighlight: "Calcula tu ROI",
     subtitle: "Descubre cuánto podrías ahorrar con la automatización IA",
     employees: "Número de empleados",
     avgSalary: "Salario promedio por empleado",
@@ -56,7 +62,9 @@ const translations = {
     }
   },
   pt: {
+    badge: "Calculadora de ROI",
     title: "Calcule seu ROI",
+    titleHighlight: "Calcule seu ROI",
     subtitle: "Veja quanto você poderia economizar com automação IA",
     employees: "Número de funcionários",
     avgSalary: "Salário médio por funcionário",
@@ -277,6 +285,7 @@ export default function ROICalculator() {
     </section>
   );
 }
+
 
 
 

@@ -1,7 +1,2 @@
 import * as React from "react";
-
-declare function ServicesHeroSection(
-    props: {
-        as?: React.ElementType;
-    }
-): React.JSX.Element
+declare function ServicesHeroSection(props: {}): React.JSX.Element;

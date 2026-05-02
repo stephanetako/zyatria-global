@@ -1,6 +1,12 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
 
+interface CheckoutSessionBody {
+  priceId: string;
+  successUrl?: string;
+  cancelUrl?: string;
+}
+
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
     // Get Stripe secret key from environment
@@ -15,11 +21,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     const stripe = new Stripe(stripeSecretKey, {
-      apiVersion: '2024-12-18.acacia',
+      apiVersion: '2026-01-28.clover',
     });
 
     // Parse request body
-    const { priceId, successUrl, cancelUrl } = await request.json();
+    const body = await request.json() as CheckoutSessionBody;
+    const { priceId, successUrl, cancelUrl } = body;
 
     if (!priceId) {
       return new Response(
@@ -72,3 +79,4 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
   }
 };
+

@@ -1,6 +1,9 @@
-import React from 'react';
 import { useState } from 'react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { baseUrl } from '../lib/base-url';
+import { stripeLinks } from '../config/stripe-links';
+
+const DEFAULT_STRIPE_LINK = stripeLinks.starter.monthly;
 
 const translations = {
   en: {
@@ -134,6 +137,7 @@ export default function CTAFinal() {
     </section>
   );
 }
+
 
 
 

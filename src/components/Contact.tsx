@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Card } from './ui/card';
@@ -379,7 +380,7 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
           <Card className="p-8 border-2">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Error Messages */}
-              {state.errors && state.errors.length > 0 && (
+              {state.errors && Array.isArray(state.errors) && state.errors.length > 0 && (
                 <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
                   <p className="text-sm text-red-800 dark:text-red-200">
                     {t.errorMessage}
@@ -598,4 +599,5 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
 };
 
 export default Contact;
+
 

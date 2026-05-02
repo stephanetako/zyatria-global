@@ -1,4 +1,6 @@
 
+
+
 import React, { useState } from 'react';
 import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
@@ -8,13 +10,15 @@ import { cn } from '../lib/utils';
 import { baseUrl } from '../lib/base-url';
 
 interface PricingProps {
-  lang?: string;
+  lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
 type PlanKey = 'starter' | 'professional' | 'enterprise';
 type BillingType = 'oneTime' | 'monthly';
 
-const translations = {
+type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+
+const translations: Record<TranslationKey, any> = {
   en: {
     badge: "Transparent Pricing",
     title: "Choose Your AI Solution",
@@ -57,7 +61,7 @@ const translations = {
   }
 };
 
-const Pricing: React.FC<PricingProps> = ({ lang = 'fr' }) => {
+const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
   const t = translations[lang];
   const [billingType, setBillingType] = useState<BillingType>('monthly');
 
@@ -365,4 +369,6 @@ const Pricing: React.FC<PricingProps> = ({ lang = 'fr' }) => {
 };
 
 export default Pricing;
+
+
 
