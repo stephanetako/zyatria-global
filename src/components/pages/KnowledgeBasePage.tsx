@@ -24,256 +24,258 @@ interface KnowledgeBasePageProps {
   lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
+type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+
+const translations: Record<TranslationKey, any> = {
+  en: {
+    hero: {
+      badge: "Knowledge Base",
+      title: "ZyatrIA Global Help Center",
+      subtitle: "Everything you need to know about AI agents, automation, and deployment",
+      searchPlaceholder: "Search for help..."
+    },
+    categories: {
+      title: "Browse by Category",
+      items: [
+        {
+          icon: Book,
+          title: "Getting Started",
+          description: "Begin your journey with AI agents",
+          articles: 12,
+          slug: "getting-started",
+          color: "bg-gradient-primary"
+        },
+        {
+          icon: Code,
+          title: "Technical Documentation",
+          description: "API references and code examples",
+          articles: 24,
+          slug: "technical",
+          color: "bg-gradient-accent"
+        },
+        {
+          icon: Zap,
+          title: "Integrations",
+          description: "Connect with your favorite tools",
+          articles: 18,
+          slug: "integrations",
+          color: "bg-gradient-warm"
+        },
+        {
+          icon: Settings,
+          title: "Configuration",
+          description: "Set up and customize your agents",
+          articles: 15,
+          slug: "configuration",
+          color: "bg-gradient-cool"
+        },
+        {
+          icon: HelpCircle,
+          title: "Troubleshooting",
+          description: "Common issues and solutions",
+          articles: 20,
+          slug: "troubleshooting",
+          color: "bg-gradient-sunset"
+        },
+        {
+          icon: Lightbulb,
+          title: "Best Practices",
+          description: "Tips from our experts",
+          articles: 16,
+          slug: "best-practices",
+          color: "bg-gradient-ocean"
+        }
+      ]
+    },
+    popular: {
+      title: "Popular Articles",
+      articles: [
+        {
+          icon: FileText,
+          title: "How to Deploy Your First AI Agent",
+          description: "Step-by-step guide for beginners",
+          readTime: "5 min read",
+          views: "12.5K views"
+        },
+        {
+          icon: Code,
+          title: "Connecting Webflow Forms to AI Agents",
+          description: "Complete integration tutorial",
+          readTime: "8 min read",
+          views: "8.2K views"
+        },
+        {
+          icon: Settings,
+          title: "Configuring Autonomy Rules",
+          description: "Define when agents act vs. escalate",
+          readTime: "10 min read",
+          views: "6.8K views"
+        },
+        {
+          icon: Zap,
+          title: "Make.com Scenario Templates",
+          description: "Pre-built workflows you can import",
+          readTime: "6 min read",
+          views: "9.1K views"
+        }
+      ]
+    },
+    resources: {
+      title: "Additional Resources",
+      items: [
+        {
+          icon: Video,
+          title: "Video Tutorials",
+          description: "Watch step-by-step guides",
+          link: "/tutorials",
+          badge: "12 videos"
+        },
+        {
+          icon: Download,
+          title: "Downloadable Templates",
+          description: "Ready-to-use configurations",
+          link: "/templates",
+          badge: "8 templates"
+        },
+        {
+          icon: BookOpen,
+          title: "API Reference",
+          description: "Complete API documentation",
+          link: "/api-reference",
+          badge: "Full docs"
+        },
+        {
+          icon: MessageCircle,
+          title: "Community Forum",
+          description: "Connect with other users",
+          link: "/forum",
+          badge: "Active"
+        }
+      ]
+    },
+    guides: {
+      title: "Step-by-Step Guides",
+      items: [
+        {
+          title: "Quick Start (15 minutes)",
+          steps: [
+            "Create your ZyatrIA account",
+            "Choose your AI model (GPT-4 recommended)",
+            "Connect your first integration",
+            "Deploy a simple lead qualification agent",
+            "Test with sample data"
+          ]
+        },
+        {
+          title: "Production Setup (1-2 hours)",
+          steps: [
+            "Configure all required API keys",
+            "Set up orchestration platform (Make/Zapier)",
+            "Connect CRM and databases",
+            "Define autonomy rules",
+            "Run comprehensive tests",
+            "Deploy to production with monitoring"
+          ]
+        },
+        {
+          title: "Advanced Configuration (2-4 hours)",
+          steps: [
+            "Implement custom business logic",
+            "Set up multi-agent workflows",
+            "Configure advanced error handling",
+            "Optimize for high volume",
+            "Integrate with proprietary systems",
+            "Set up analytics and reporting"
+          ]
+        }
+      ]
+    },
+    support: {
+      title: "Still Need Help?",
+      description: "Our support team is here 24/7",
+      channels: [
+        { icon: "💬", label: "Live Chat", value: "Available now", action: "Start Chat" },
+        { icon: "📧", label: "Email Support", value: "tech@zyatria.global", action: "Send Email" },
+        { icon: "📞", label: "Phone Support", value: "+1 (555) 123-4567", action: "Call Now" },
+        { icon: "📅", label: "Book a Call", value: "1-on-1 assistance", action: "Schedule" }
+      ]
+    }
+  },
+  fr: {
+    hero: {
+      badge: "Base de Connaissances",
+      title: "Centre d'Aide ZyatrIA Global",
+      subtitle: "Tout ce que vous devez savoir sur les agents IA, l'automation et le déploiement",
+      searchPlaceholder: "Rechercher de l'aide..."
+    },
+    categories: {
+      title: "Parcourir par Catégorie",
+      items: [
+        {
+          icon: Book,
+          title: "Démarrage",
+          description: "Commencez votre parcours avec les agents IA",
+          articles: 12,
+          slug: "demarrage",
+          color: "bg-gradient-primary"
+        },
+        {
+          icon: Code,
+          title: "Documentation Technique",
+          description: "Références API et exemples de code",
+          articles: 24,
+          slug: "technique",
+          color: "bg-gradient-accent"
+        },
+        {
+          icon: Zap,
+          title: "Intégrations",
+          description: "Connectez vos outils préférés",
+          articles: 18,
+          slug: "integrations",
+          color: "bg-gradient-warm"
+        },
+        {
+          icon: Settings,
+          title: "Configuration",
+          description: "Configurez et personnalisez vos agents",
+          articles: 15,
+          slug: "configuration",
+          color: "bg-gradient-cool"
+        },
+        {
+          icon: HelpCircle,
+          title: "Dépannage",
+          description: "Problèmes courants et solutions",
+          articles: 20,
+          slug: "depannage",
+          color: "bg-gradient-sunset"
+        },
+        {
+          icon: Lightbulb,
+          title: "Bonnes Pratiques",
+          description: "Conseils de nos experts",
+          articles: 16,
+          slug: "bonnes-pratiques",
+          color: "bg-gradient-ocean"
+        }
+      ]
+    },
+    support: {
+      title: "Besoin d'Aide ?",
+      description: "Notre équipe est disponible 24/7",
+      channels: [
+        { icon: "💬", label: "Chat en Direct", value: "Disponible maintenant", action: "Démarrer" },
+        { icon: "📧", label: "Support Email", value: "tech@zyatria.global", action: "Envoyer" },
+        { icon: "📞", label: "Support Téléphone", value: "+1 (555) 123-4567", action: "Appeler" },
+        { icon: "📅", label: "Réserver un Appel", value: "Assistance 1-à-1", action: "Planifier" }
+      ]
+    }
+  }
+};
+
 export default function KnowledgeBasePage({ lang = 'en' }: KnowledgeBasePageProps) {
   const [searchQuery, setSearchQuery] = useState('');
-
-  const translations = {
-    en: {
-      hero: {
-        badge: "Knowledge Base",
-        title: "ZyatrIA Global Help Center",
-        subtitle: "Everything you need to know about AI agents, automation, and deployment",
-        searchPlaceholder: "Search for help..."
-      },
-      categories: {
-        title: "Browse by Category",
-        items: [
-          {
-            icon: Book,
-            title: "Getting Started",
-            description: "Begin your journey with AI agents",
-            articles: 12,
-            slug: "getting-started",
-            color: "bg-gradient-primary"
-          },
-          {
-            icon: Code,
-            title: "Technical Documentation",
-            description: "API references and code examples",
-            articles: 24,
-            slug: "technical",
-            color: "bg-gradient-accent"
-          },
-          {
-            icon: Zap,
-            title: "Integrations",
-            description: "Connect with your favorite tools",
-            articles: 18,
-            slug: "integrations",
-            color: "bg-gradient-warm"
-          },
-          {
-            icon: Settings,
-            title: "Configuration",
-            description: "Set up and customize your agents",
-            articles: 15,
-            slug: "configuration",
-            color: "bg-gradient-cool"
-          },
-          {
-            icon: HelpCircle,
-            title: "Troubleshooting",
-            description: "Common issues and solutions",
-            articles: 20,
-            slug: "troubleshooting",
-            color: "bg-gradient-sunset"
-          },
-          {
-            icon: Lightbulb,
-            title: "Best Practices",
-            description: "Tips from our experts",
-            articles: 16,
-            slug: "best-practices",
-            color: "bg-gradient-ocean"
-          }
-        ]
-      },
-      popular: {
-        title: "Popular Articles",
-        articles: [
-          {
-            icon: FileText,
-            title: "How to Deploy Your First AI Agent",
-            description: "Step-by-step guide for beginners",
-            readTime: "5 min read",
-            views: "12.5K views"
-          },
-          {
-            icon: Code,
-            title: "Connecting Webflow Forms to AI Agents",
-            description: "Complete integration tutorial",
-            readTime: "8 min read",
-            views: "8.2K views"
-          },
-          {
-            icon: Settings,
-            title: "Configuring Autonomy Rules",
-            description: "Define when agents act vs. escalate",
-            readTime: "10 min read",
-            views: "6.8K views"
-          },
-          {
-            icon: Zap,
-            title: "Make.com Scenario Templates",
-            description: "Pre-built workflows you can import",
-            readTime: "6 min read",
-            views: "9.1K views"
-          }
-        ]
-      },
-      resources: {
-        title: "Additional Resources",
-        items: [
-          {
-            icon: Video,
-            title: "Video Tutorials",
-            description: "Watch step-by-step guides",
-            link: "/tutorials",
-            badge: "12 videos"
-          },
-          {
-            icon: Download,
-            title: "Downloadable Templates",
-            description: "Ready-to-use configurations",
-            link: "/templates",
-            badge: "8 templates"
-          },
-          {
-            icon: BookOpen,
-            title: "API Reference",
-            description: "Complete API documentation",
-            link: "/api-reference",
-            badge: "Full docs"
-          },
-          {
-            icon: MessageCircle,
-            title: "Community Forum",
-            description: "Connect with other users",
-            link: "/forum",
-            badge: "Active"
-          }
-        ]
-      },
-      guides: {
-        title: "Step-by-Step Guides",
-        items: [
-          {
-            title: "Quick Start (15 minutes)",
-            steps: [
-              "Create your ZyatrIA account",
-              "Choose your AI model (GPT-4 recommended)",
-              "Connect your first integration",
-              "Deploy a simple lead qualification agent",
-              "Test with sample data"
-            ]
-          },
-          {
-            title: "Production Setup (1-2 hours)",
-            steps: [
-              "Configure all required API keys",
-              "Set up orchestration platform (Make/Zapier)",
-              "Connect CRM and databases",
-              "Define autonomy rules",
-              "Run comprehensive tests",
-              "Deploy to production with monitoring"
-            ]
-          },
-          {
-            title: "Advanced Configuration (2-4 hours)",
-            steps: [
-              "Implement custom business logic",
-              "Set up multi-agent workflows",
-              "Configure advanced error handling",
-              "Optimize for high volume",
-              "Integrate with proprietary systems",
-              "Set up analytics and reporting"
-            ]
-          }
-        ]
-      },
-      support: {
-        title: "Still Need Help?",
-        description: "Our support team is here 24/7",
-        channels: [
-          { icon: "💬", label: "Live Chat", value: "Available now", action: "Start Chat" },
-          { icon: "📧", label: "Email Support", value: "tech@zyatria.global", action: "Send Email" },
-          { icon: "📞", label: "Phone Support", value: "+1 (555) 123-4567", action: "Call Now" },
-          { icon: "📅", label: "Book a Call", value: "1-on-1 assistance", action: "Schedule" }
-        ]
-      }
-    },
-    fr: {
-      hero: {
-        badge: "Base de Connaissances",
-        title: "Centre d'Aide ZyatrIA Global",
-        subtitle: "Tout ce que vous devez savoir sur les agents IA, l'automation et le déploiement",
-        searchPlaceholder: "Rechercher de l'aide..."
-      },
-      categories: {
-        title: "Parcourir par Catégorie",
-        items: [
-          {
-            icon: Book,
-            title: "Démarrage",
-            description: "Commencez votre parcours avec les agents IA",
-            articles: 12,
-            slug: "demarrage",
-            color: "bg-gradient-primary"
-          },
-          {
-            icon: Code,
-            title: "Documentation Technique",
-            description: "Références API et exemples de code",
-            articles: 24,
-            slug: "technique",
-            color: "bg-gradient-accent"
-          },
-          {
-            icon: Zap,
-            title: "Intégrations",
-            description: "Connectez vos outils préférés",
-            articles: 18,
-            slug: "integrations",
-            color: "bg-gradient-warm"
-          },
-          {
-            icon: Settings,
-            title: "Configuration",
-            description: "Configurez et personnalisez vos agents",
-            articles: 15,
-            slug: "configuration",
-            color: "bg-gradient-cool"
-          },
-          {
-            icon: HelpCircle,
-            title: "Dépannage",
-            description: "Problèmes courants et solutions",
-            articles: 20,
-            slug: "depannage",
-            color: "bg-gradient-sunset"
-          },
-          {
-            icon: Lightbulb,
-            title: "Bonnes Pratiques",
-            description: "Conseils de nos experts",
-            articles: 16,
-            slug: "bonnes-pratiques",
-            color: "bg-gradient-ocean"
-          }
-        ]
-      },
-      support: {
-        title: "Besoin d'Aide ?",
-        description: "Notre équipe est disponible 24/7",
-        channels: [
-          { icon: "💬", label: "Chat en Direct", value: "Disponible maintenant", action: "Démarrer" },
-          { icon: "📧", label: "Support Email", value: "tech@zyatria.global", action: "Envoyer" },
-          { icon: "📞", label: "Support Téléphone", value: "+1 (555) 123-4567", action: "Appeler" },
-          { icon: "📅", label: "Réserver un Appel", value: "Assistance 1-à-1", action: "Planifier" }
-        ]
-      }
-    }
-  };
 
   const t = translations[lang];
 
@@ -478,3 +480,4 @@ export default function KnowledgeBasePage({ lang = 'en' }: KnowledgeBasePageProp
     </div>
   );
 }
+

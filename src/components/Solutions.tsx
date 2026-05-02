@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from './ui/card';
-import { ArrowRight, Target, Zap, Building, Briefcase, Smartphone } from 'lucide-react';
+import { ArrowRight, Target, Zap, Building, Briefcase, Smartphone, Heart, GraduationCap, ShoppingCart } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface SolutionsProps {
@@ -428,6 +428,7 @@ const Solutions: React.FC<SolutionsProps> = ({ lang = 'en' }) => {
 };
 
 export default Solutions;
+
 
 
 

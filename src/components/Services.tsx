@@ -12,6 +12,7 @@ const translations = {
     badge: "Our Solutions",
     title: "Everything You Need to Scale Your Business",
     subtitle: "Discover how our AI solutions transform your business, regardless of your industry",
+    cta: "See How It Works",
     services: [
       {
         icon: Brain,
@@ -58,6 +59,7 @@ const translations = {
     badge: "Nos Solutions",
     title: "Tout Ce Dont Vous Avez Besoin Pour Faire Grandir Votre Entreprise",
     subtitle: "Découvrez comment nos solutions IA transforment votre entreprise, quel que soit votre secteur",
+    cta: "Voir Comment Ça Marche",
     services: [
       {
         icon: Brain,
@@ -104,6 +106,7 @@ const translations = {
     badge: "Nuestras Soluciones",
     title: "Todo Lo Que Necesita Para Hacer Crecer Su Negocio",
     subtitle: "Descubra cómo nuestras soluciones IA transforman su empresa, sin importar su sector",
+    cta: "Ver Cómo Funciona",
     services: [
       {
         icon: Brain,
@@ -150,6 +153,7 @@ const translations = {
     badge: "Nossas Soluções",
     title: "Tudo O Que Você Precisa Para Fazer Seu Negócio Crescer",
     subtitle: "Descubra como nossas soluções IA transformam sua empresa, independentemente do seu setor",
+    cta: "Ver Como Funciona",
     services: [
       {
         icon: Brain,
@@ -294,6 +298,7 @@ const Services: React.FC<ServicesProps> = ({ lang = 'en' }) => {
 };
 
 export default Services;
+
 
 
 

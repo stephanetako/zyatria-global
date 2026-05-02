@@ -7,6 +7,9 @@ const translations = {
     title: "Stop Wasting Time on Repetitive Tasks",
     subtitle: "We Help You Automate What Slows You Down",
     description: "ZyatrIA Global deploys intelligent solutions that handle your repetitive work while you focus on growing your business. Whether you're in Montreal, Paris, Brussels, São Paulo, or Madrid—we speak your language and understand your market.",
+    description2: "Our AI agents work tirelessly to streamline your operations, reduce errors, and free up your team to focus on what truly matters.",
+    description3: "Join hundreds of businesses that have already transformed their workflows with our cutting-edge automation solutions.",
+    cta: "Discover Our Solutions",
     highlights: [
       "Solutions ready in 10-15 days, not 3-6 months",
       "Works 24/7 without vacation or errors",
@@ -19,6 +22,9 @@ const translations = {
     title: "Arrêtez de Perdre du Temps sur des Tâches Répétitives",
     subtitle: "Nous Vous Aidons à Automatiser Ce Qui Vous Ralentit",
     description: "ZyatrIA Global déploie des solutions intelligentes qui gèrent votre travail répétitif pendant que vous vous concentrez sur la croissance de votre entreprise. Que vous soyez à Montréal, Paris, Bruxelles, São Paulo ou Madrid—nous parlons votre langue et comprenons votre marché.",
+    description2: "Nos agents IA travaillent sans relâche pour rationaliser vos opérations, réduire les erreurs et libérer votre équipe pour se concentrer sur ce qui compte vraiment.",
+    description3: "Rejoignez des centaines d'entreprises qui ont déjà transformé leurs flux de travail avec nos solutions d'automatisation de pointe.",
+    cta: "Découvrir Nos Solutions",
     highlights: [
       "Solutions prêtes en 10-15 jours, pas 3-6 mois",
       "Fonctionne 24/7 sans vacances ni erreurs",
@@ -31,6 +37,9 @@ const translations = {
     title: "Deje de Perder Tiempo en Tareas Repetitivas",
     subtitle: "Le Ayudamos a Automatizar Lo Que Le Frena",
     description: "ZyatrIA Global implementa soluciones inteligentes que manejan su trabajo repetitivo mientras usted se enfoca en hacer crecer su negocio. Ya sea en Montreal, París, Bruselas, São Paulo o Madrid—hablamos su idioma y entendemos su mercado.",
+    description2: "Nuestros agentes de IA trabajan incansablemente para optimizar sus operaciones, reducir errores y liberar a su equipo para concentrarse en lo que realmente importa.",
+    description3: "Únase a cientos de empresas que ya han transformado sus flujos de trabajo con nuestras soluciones de automatización de vanguardia.",
+    cta: "Descubrir Nuestras Soluciones",
     highlights: [
       "Soluciones listas en 10-15 días, no 3-6 meses",
       "Funciona 24/7 sin vacaciones ni errores",
@@ -43,6 +52,9 @@ const translations = {
     title: "Pare de Perder Tempo com Tarefas Repetitivas",
     subtitle: "Ajudamos Você a Automatizar O Que Te Atrasa",
     description: "ZyatrIA Global implementa soluções inteligentes que cuidam do seu trabalho repetitivo enquanto você foca em crescer seu negócio. Seja em Montreal, Paris, Bruxelas, São Paulo ou Madrid—falamos seu idioma e entendemos seu mercado.",
+    description2: "Nossos agentes de IA trabalham incansavelmente para otimizar suas operações, reduzir erros e liberar sua equipe para se concentrar no que realmente importa.",
+    description3: "Junte-se a centenas de empresas que já transformaram seus fluxos de trabalho com nossas soluções de automação de ponta.",
+    cta: "Descobrir Nossas Soluções",
     highlights: [
       "Soluções prontas em 10-15 dias, não 3-6 meses",
       "Funciona 24/7 sem férias ou erros",
@@ -142,6 +154,7 @@ export default function Intro() {
     </section>
   );
 }
+
 
 
 

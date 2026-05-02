@@ -1,5 +1,9 @@
+
+
 import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap } from 'lucide-react';
 import { useState } from 'react';
+import { Card } from './ui/card';
+import { baseUrl } from '../lib/base-url';
 
 const translations = {
   en: {
@@ -7,6 +11,7 @@ const translations = {
     title: "Our AI Micro-Agents",
     subtitle: "Choose the micro-agent suited to your business",
     description: "Pre-configured solutions ready to deploy. Choose your micro-agent, we set it up, and you see results within a week.",
+    intro: "Pre-configured solutions ready to deploy. Choose your micro-agent, we set it up, and you see results within a week.",
     cta: {
       button: "Request a Demo",
       link: "Or contact us to discuss your needs"
@@ -97,6 +102,7 @@ const translations = {
     title: "Nos Micro-Agents IA",
     subtitle: "Choisissez le micro-agent adapté à votre activité",
     description: "Des solutions pré-configurées prêtes à déployer. Choisissez votre micro-agent, nous le configurons, et vous voyez des résultats en une semaine.",
+    intro: "Des solutions pré-configurées prêtes à déployer. Choisissez votre micro-agent, nous le configurons, et vous voyez des résultats en une semaine.",
     cta: {
       button: "Demander une Démo",
       link: "Ou contactez-nous pour discuter de vos besoins"
@@ -187,6 +193,7 @@ const translations = {
     title: "Nuestros Micro-Agentes IA",
     subtitle: "Elija el micro-agente adaptado a su actividad",
     description: "Soluciones preconfiguradas listas para implementar. Elija su micro-agente, lo configuramos y ve resultados en una semana.",
+    intro: "Soluciones preconfiguradas listas para implementar. Elija su micro-agente, lo configuramos y ve resultados en una semana.",
     cta: {
       button: "Solicitar una Demo",
       link: "O contáctenos para discutir sus necesidades"
@@ -277,6 +284,7 @@ const translations = {
     title: "Nossos Micro-Agentes IA",
     subtitle: "Escolha o micro-agente adaptado à sua atividade",
     description: "Soluções pré-configuradas prontas para implementar. Escolha seu micro-agente, configuramos e você vê resultados em uma semana.",
+    intro: "Soluções pré-configuradas prontas para implementar. Escolha seu micro-agente, configuramos e você vê resultados em uma semana.",
     cta: {
       button: "Solicitar uma Demo",
       link: "Ou entre em contato para discutir suas necessidades"
@@ -419,16 +427,16 @@ export default function MicroAgents() {
                 key={index}
                 className="group p-8 rounded-2xl border-2 hover:border-blue-400/40 bg-white dark:bg-zinc-900 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-500"
               >
-                <div className={`w-16 h-16 ${gradients[index % gradients.length]} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
+                <div className={`w-16 h-16 bg-gradient-to-br ${gradients[index % gradients.length]} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
                   <Icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold font-heading mb-3 group-hover:text-blue-500 transition-colors">
-                  {agent.title}
+                  {agent.name}
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   {agent.description}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-6">
                   {agent.features.map((feature: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
@@ -436,31 +444,41 @@ export default function MicroAgents() {
                     </li>
                   ))}
                 </ul>
+                <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
+                  <span className="text-lg font-bold text-blue-500">{agent.price}</span>
+                </div>
               </Card>
             );
           })}
         </div>
 
         {/* CTA */}
-        <div className="text-center animate-fade-in-up delay-1000">
+        <div className="mt-16 text-center space-y-4 animate-fade-in-up delay-1000">
           <button
             onClick={scrollToContact}
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-violet-600 transition-all shadow-lg shadow-blue-500/30 hover:shadow-xl hover:scale-105"
           >
-            {t.cta}
+            {t.cta.button}
             <ArrowRight className="w-5 h-5" />
           </button>
-          <a 
-            href={`${baseUrl}/demo`}
-            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-500 transition-colors text-lg"
-          >
-            Or request a demo
-          </a>
+          <div>
+            <a 
+              href={`${baseUrl}/demo`}
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-500 transition-colors text-sm"
+            >
+              {t.cta.link}
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+
+
+
 
 
 

@@ -1,7 +1,2 @@
 import * as React from "react";
-
-declare function Navigation(
-    props: {
-        as?: React.ElementType;
-    }
-): React.JSX.Element
+declare function Navigation(props: {}): React.JSX.Element;

@@ -1,11 +1,20 @@
 "use client";
 import React from "react";
-import * as _Builtin from "./_Builtin";
+import { DEVLINK_SCOPE_CLASS } from "./devlinkScope";
+import Block from "./webflow_modules/Basic/components/Block";
+import Section from "./webflow_modules/Layout/components/Section";
 
-export function ServicesHeroSection(
-    {
-        as: _Component = _Builtin.Section
-    }
-) {
-    return <_Component tag="header"><_Builtin.Block className="container" tag="div" /></_Component>;
+export function ServicesHeroSection({}) {
+  return (
+    <div
+      className={DEVLINK_SCOPE_CLASS}
+      style={{
+        display: "contents",
+      }}
+    >
+      <Section tag={"header"}>
+        <Block className={"container"} tag={"div"} />
+      </Section>
+    </div>
+  );
 }
