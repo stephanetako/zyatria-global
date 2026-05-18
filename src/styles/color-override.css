@@ -1,3 +1,7 @@
+
+
+
+
 /**
  * COLOR OVERRIDE - OPTION 1: TECH MODERNE
  * 
@@ -88,34 +92,34 @@
   
   /* Background & Foreground - Contraste maximal */
   --_apps---colors--background: #FFFFFF;
-  --_apps---colors--foreground: #0A0A0A;
+  --_apps---colors--foreground: #09090B;
   
-  /* Secondary - Violet IA (innovation, premium) */
+  /* Secondary - Violet IA (innovation, premium) - TRÈS FONCÉ */
   --_apps---colors--secondary: #F3F4F6;
-  --_apps---colors--secondary-foreground: #8B5CF6;
+  --_apps---colors--secondary-foreground: #5B21B6;
   
-  /* Muted - Gris moderne */
+  /* Muted - Gris moderne - BEAUCOUP PLUS FONCÉ POUR EXCELLENTE VISIBILITÉ */
   --_apps---colors--muted: #F4F4F5;
-  --_apps---colors--muted-foreground: #71717A;
+  --_apps---colors--muted-foreground: #27272A;
   
-  /* Accent - Cyan tech */
+  /* Accent - Cyan tech - PLUS FONCÉ */
   --_apps---colors--accent: #EFF6FF;
-  --_apps---colors--accent-foreground: #06B6D4;
+  --_apps---colors--accent-foreground: #0E7490;
   
   /* Cards */
   --_apps---colors--card: #FFFFFF;
-  --_apps---colors--card-foreground: #0A0A0A;
+  --_apps---colors--card-foreground: #09090B;
   
   /* Popover */
   --_apps---colors--popover: #FFFFFF;
-  --_apps---colors--popover-foreground: #0A0A0A;
+  --_apps---colors--popover-foreground: #09090B;
   
-  /* Borders & Inputs */
-  --_apps---colors--border: #E4E4E7;
-  --_apps---colors--input: #E4E4E7;
+  /* Borders & Inputs - Plus visible */
+  --_apps---colors--border: #D4D4D8;
+  --_apps---colors--input: #D4D4D8;
   
   /* Destructive - Rouge moderne */
-  --_apps---colors--destructive: #EF4444;
+  --_apps---colors--destructive: #DC2626;
   
   /* === CHARTS === */
   --_apps---charts--chart-1: #0066FF;
@@ -126,12 +130,12 @@
   
   /* === SIDEBAR === */
   --_apps---sidebar--sidebar: #FAFAFA;
-  --_apps---sidebar--sidebar-foreground: #0A0A0A;
+  --_apps---sidebar--sidebar-foreground: #09090B;
   --_apps---sidebar--sidebar-primary: #0066FF;
   --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
   --_apps---sidebar--sidebar-accent: #F4F4F5;
-  --_apps---sidebar--sidebar-accent-foreground: #71717A;
-  --_apps---sidebar--sidebar-border: #E4E4E7;
+  --_apps---sidebar--sidebar-accent-foreground: #27272A;
+  --_apps---sidebar--sidebar-border: #D4D4D8;
   --_apps---sidebar--sidebar-ring: #0066FF;
 }
 
@@ -308,4 +312,8 @@ a[class*="bg-primary"]:hover {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
+
+
 

@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { Button } from './ui/button';
 import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 import { stripeLinks } from '../config/stripe-links';
 
 const DEFAULT_STRIPE_LINK = stripeLinks.starter.monthly;
@@ -37,8 +39,8 @@ const translations = {
 };
 
 export default function CTAFinal() {
-  const [lang, setLang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const goToDemo = () => {
     window.location.href = `${baseUrl}/demo`;
@@ -52,9 +54,9 @@ export default function CTAFinal() {
           {(['en', 'fr', 'es', 'pt'] as const).map((l) => (
             <button
               key={l}
-              onClick={() => setLang(l)}
+              onClick={() => {}}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                lang === l
+                language === l
                   ? 'bg-white text-blue-500 shadow-lg'
                   : 'bg-white/20 text-white hover:bg-white/30'
               }`}
@@ -137,6 +139,7 @@ export default function CTAFinal() {
     </section>
   );
 }
+
 
 
 

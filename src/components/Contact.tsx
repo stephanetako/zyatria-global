@@ -1,4 +1,8 @@
 
+
+
+
+
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Card } from './ui/card';
@@ -7,298 +11,165 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { useLanguage } from '../lib/language-context';
 
-interface ContactProps {
-  lang?: string;
-}
+const content: Record<'en' | 'fr', any> = {
+  en: {
+    badge: 'Get in Touch',
+    title: 'Let\'s Build Something ',
+    titleHighlight: 'Amazing Together',
+    description: 'Ready to transform your business with AI? Contact our team for a personalized consultation.',
+    successMessageTitle: 'Thank you! We\'ll get back to you within 24 hours.',
+    successMessageDesc: 'Your message has been sent successfully.',
+    sendAnother: 'Send another message',
+    sending: 'Sending...',
+    globalPresence: 'Serving clients worldwide',
+    form: {
+      name: 'Full Name *',
+      namePlaceholder: 'John Doe',
+      email: 'Professional Email *',
+      emailPlaceholder: 'john@company.com',
+      company: 'Company Name *',
+      companyPlaceholder: 'Your Company',
+      phone: 'Phone Number',
+      phonePlaceholder: '+1 (555) 123-4567',
+      service: 'Service Interested In *',
+      servicePlaceholder: 'Select a service',
+      serviceOptions: [
+        { value: '', label: 'Select a service' },
+        { value: 'intelligent-agents', label: 'Intelligent AI Agents' },
+        { value: 'automation', label: 'Advanced Automation' },
+        { value: 'micro-agents', label: 'Specialized Micro-agents' },
+        { value: 'custom', label: 'Custom Solution' },
+        { value: 'consultation', label: 'Consultation Only' },
+      ],
+      budget: 'Estimated Budget',
+      budgetPlaceholder: 'Select budget range',
+      budgetOptions: [
+        { value: '', label: 'Select budget range' },
+        { value: 'starter', label: '< $500/month (Starter)' },
+        { value: 'business', label: '$500 - $2000/month (Business)' },
+        { value: 'enterprise', label: '$2000+/month (Enterprise)' },
+        { value: 'custom', label: 'Custom Project (One-time)' },
+      ],
+      timeline: 'When would you like to start?',
+      timelinePlaceholder: 'Select timeline',
+      timelineOptions: [
+        { value: '', label: 'Select timeline' },
+        { value: 'asap', label: 'As soon as possible' },
+        { value: '1-month', label: 'Within 1 month' },
+        { value: '3-months', label: 'Within 3 months' },
+        { value: 'planning', label: 'Just planning / Exploring' },
+      ],
+      message: 'Tell us about your project *',
+      messagePlaceholder: 'Describe your needs, challenges, and what you want to achieve with AI...',
+      submit: 'Send Message',
+      required: 'Required fields *',
+    },
+    info: [
+      {
+        icon: Mail,
+        title: 'Email',
+        value: 'ZyatrIA.contact@gmail.com',
+        link: 'mailto:ZyatrIA.contact@gmail.com',
+      },
+      {
+        icon: Phone,
+        title: 'Phone',
+        value: '+1 (438) 887-4507',
+        link: 'tel:+14388874507',
+      },
+      {
+        icon: MapPin,
+        title: 'Global Offices',
+        value: 'North America • Europe • Africa • Latin America',
+        link: null,
+      },
+    ],
+    successMessage: 'Thank you! We\'ll get back to you within 24 hours.',
+    errorMessage: 'An error occurred. Please try again or email us directly.',
+  },
+  fr: {
+    badge: 'Contactez-nous',
+    title: 'Construisons Ensemble ',
+    titleHighlight: 'Quelque Chose d\'Incroyable',
+    description: 'Prêt à transformer votre entreprise avec l\'IA ? Contactez notre équipe pour une consultation personnalisée.',
+    successMessageTitle: 'Merci ! Nous vous répondrons dans les 24 heures.',
+    successMessageDesc: 'Votre message a été envoyé avec succès.',
+    sendAnother: 'Envoyer un autre message',
+    sending: 'Envoi en cours...',
+    globalPresence: 'Présence mondiale',
+    form: {
+      name: 'Nom Complet *',
+      namePlaceholder: 'Jean Dupont',
+      email: 'Email Professionnel *',
+      emailPlaceholder: 'jean@entreprise.com',
+      company: 'Nom de l\'Entreprise *',
+      companyPlaceholder: 'Votre Entreprise',
+      phone: 'Numéro de Téléphone',
+      phonePlaceholder: '+1 (438) 123-4567',
+      service: 'Service Souhaité *',
+      servicePlaceholder: 'Sélectionnez un service',
+      serviceOptions: [
+        { value: '', label: 'Sélectionnez un service' },
+        { value: 'intelligent-agents', label: 'Agents IA Intelligents' },
+        { value: 'automation', label: 'Automatisation Avancée' },
+        { value: 'micro-agents', label: 'Micro-agents Spécialisés' },
+        { value: 'custom', label: 'Solution Sur Mesure' },
+        { value: 'consultation', label: 'Consultation Uniquement' },
+      ],
+      budget: 'Budget Estimé',
+      budgetPlaceholder: 'Sélectionnez une fourchette',
+      budgetOptions: [
+        { value: '', label: 'Sélectionnez une fourchette' },
+        { value: 'starter', label: '< 500$/mois (Starter)' },
+        { value: 'business', label: '500$ - 2000$/mois (Business)' },
+        { value: 'enterprise', label: '2000$+/mois (Enterprise)' },
+        { value: 'custom', label: 'Projet Sur Mesure (Ponctuel)' },
+      ],
+      timeline: 'Quand souhaitez-vous démarrer ?',
+      timelinePlaceholder: 'Sélectionnez un délai',
+      timelineOptions: [
+        { value: '', label: 'Sélectionnez un délai' },
+        { value: 'asap', label: 'Dès que possible' },
+        { value: '1-month', label: 'Dans 1 mois' },
+        { value: '3-months', label: 'Dans 3 mois' },
+        { value: 'planning', label: 'En phase de réflexion' },
+      ],
+      message: 'Parlez-nous de votre projet *',
+      messagePlaceholder: 'Décrivez vos besoins, défis et ce que vous souhaitez accomplir avec l\'IA...',
+      submit: 'Envoyer le Message',
+      required: 'Champs obligatoires *',
+    },
+    info: [
+      {
+        icon: Mail,
+        title: 'Email',
+        value: 'ZyatrIA.contact@gmail.com',
+        link: 'mailto:ZyatrIA.contact@gmail.com',
+      },
+      {
+        icon: Phone,
+        title: 'Téléphone',
+        value: '+1 (438) 887-4507',
+        link: 'tel:+14388874507',
+      },
+      {
+        icon: MapPin,
+        title: 'Bureaux Mondiaux',
+        value: 'Amérique du Nord • Europe • Afrique • Amérique Latine',
+        link: null,
+      },
+    ],
+    successMessage: 'Merci ! Nous vous répondrons dans les 24 heures.',
+    errorMessage: 'Une erreur est survenue. Veuillez réessayer ou nous contacter par email.',
+  },
+};
 
-const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
+const Contact: React.FC = () => {
+  const { language } = useLanguage();
+  const t = content[language];
   const [state, handleSubmit] = useForm('xeelvrdl');
-
-  const content: Record<string, any> = {
-    en: {
-      badge: 'Get in Touch',
-      title: 'Let\'s Build Something ',
-      titleHighlight: 'Amazing Together',
-      description: 'Ready to transform your business with AI? Contact our team for a personalized consultation.',
-      form: {
-        name: 'Full Name *',
-        namePlaceholder: 'John Doe',
-        email: 'Professional Email *',
-        emailPlaceholder: 'john@company.com',
-        company: 'Company Name *',
-        companyPlaceholder: 'Your Company',
-        phone: 'Phone Number',
-        phonePlaceholder: '+1 (555) 123-4567',
-        service: 'Service Interested In *',
-        servicePlaceholder: 'Select a service',
-        serviceOptions: [
-          { value: '', label: 'Select a service' },
-          { value: 'intelligent-agents', label: 'Intelligent AI Agents' },
-          { value: 'automation', label: 'Advanced Automation' },
-          { value: 'micro-agents', label: 'Specialized Micro-agents' },
-          { value: 'custom', label: 'Custom Solution' },
-          { value: 'consultation', label: 'Consultation Only' },
-        ],
-        budget: 'Estimated Budget',
-        budgetPlaceholder: 'Select budget range',
-        budgetOptions: [
-          { value: '', label: 'Select budget range' },
-          { value: 'starter', label: '< $500/month (Starter)' },
-          { value: 'business', label: '$500 - $2000/month (Business)' },
-          { value: 'enterprise', label: '$2000+/month (Enterprise)' },
-          { value: 'custom', label: 'Custom Project (One-time)' },
-        ],
-        timeline: 'When would you like to start?',
-        timelinePlaceholder: 'Select timeline',
-        timelineOptions: [
-          { value: '', label: 'Select timeline' },
-          { value: 'asap', label: 'As soon as possible' },
-          { value: '1-month', label: 'Within 1 month' },
-          { value: '3-months', label: 'Within 3 months' },
-          { value: 'planning', label: 'Just planning / Exploring' },
-        ],
-        message: 'Tell us about your project *',
-        messagePlaceholder: 'Describe your needs, challenges, and what you want to achieve with AI...',
-        submit: 'Send Message',
-        required: 'Required fields *',
-      },
-      info: [
-        {
-          icon: Mail,
-          title: 'Email',
-          value: 'ZyatrIA.contact@gmail.com',
-          link: 'mailto:ZyatrIA.contact@gmail.com',
-        },
-        {
-          icon: Phone,
-          title: 'Phone',
-          value: '+1 (438) 887-4507',
-          link: 'tel:+14388874507',
-        },
-        {
-          icon: MapPin,
-          title: 'Global Offices',
-          value: 'North America • Europe • Africa • Latin America',
-          link: null,
-        },
-      ],
-      successMessage: 'Thank you! We\'ll get back to you within 24 hours.',
-      errorMessage: 'An error occurred. Please try again or email us directly.',
-    },
-    fr: {
-      badge: 'Contactez-nous',
-      title: 'Construisons Ensemble ',
-      titleHighlight: 'Quelque Chose d\'Incroyable',
-      description: 'Prêt à transformer votre entreprise avec l\'IA ? Contactez notre équipe pour une consultation personnalisée.',
-      form: {
-        name: 'Nom Complet *',
-        namePlaceholder: 'Jean Dupont',
-        email: 'Email Professionnel *',
-        emailPlaceholder: 'jean@entreprise.com',
-        company: 'Nom de l\'Entreprise *',
-        companyPlaceholder: 'Votre Entreprise',
-        phone: 'Numéro de Téléphone',
-        phonePlaceholder: '+1 (438) 123-4567',
-        service: 'Service Souhaité *',
-        servicePlaceholder: 'Sélectionnez un service',
-        serviceOptions: [
-          { value: '', label: 'Sélectionnez un service' },
-          { value: 'intelligent-agents', label: 'Agents IA Intelligents' },
-          { value: 'automation', label: 'Automatisation Avancée' },
-          { value: 'micro-agents', label: 'Micro-agents Spécialisés' },
-          { value: 'custom', label: 'Solution Sur Mesure' },
-          { value: 'consultation', label: 'Consultation Uniquement' },
-        ],
-        budget: 'Budget Estimé',
-        budgetPlaceholder: 'Sélectionnez une fourchette',
-        budgetOptions: [
-          { value: '', label: 'Sélectionnez une fourchette' },
-          { value: 'starter', label: '< 500$/mois (Starter)' },
-          { value: 'business', label: '500$ - 2000$/mois (Business)' },
-          { value: 'enterprise', label: '2000$+/mois (Enterprise)' },
-          { value: 'custom', label: 'Projet Sur Mesure (Ponctuel)' },
-        ],
-        timeline: 'Quand souhaitez-vous démarrer ?',
-        timelinePlaceholder: 'Sélectionnez un délai',
-        timelineOptions: [
-          { value: '', label: 'Sélectionnez un délai' },
-          { value: 'asap', label: 'Dès que possible' },
-          { value: '1-month', label: 'Dans 1 mois' },
-          { value: '3-months', label: 'Dans 3 mois' },
-          { value: 'planning', label: 'En phase de réflexion' },
-        ],
-        message: 'Parlez-nous de votre projet *',
-        messagePlaceholder: 'Décrivez vos besoins, défis et ce que vous souhaitez accomplir avec l\'IA...',
-        submit: 'Envoyer le Message',
-        required: 'Champs obligatoires *',
-      },
-      info: [
-        {
-          icon: Mail,
-          title: 'Email',
-          value: 'ZyatrIA.contact@gmail.com',
-          link: 'mailto:ZyatrIA.contact@gmail.com',
-        },
-        {
-          icon: Phone,
-          title: 'Téléphone',
-          value: '+1 (438) 887-4507',
-          link: 'tel:+14388874507',
-        },
-        {
-          icon: MapPin,
-          title: 'Bureaux Mondiaux',
-          value: 'Amérique du Nord • Europe • Afrique • Amérique Latine',
-          link: null,
-        },
-      ],
-      successMessage: 'Merci ! Nous vous répondrons dans les 24 heures.',
-      errorMessage: 'Une erreur est survenue. Veuillez réessayer ou nous contacter par email.',
-    },
-    es: {
-      badge: 'Póngase en Contacto',
-      title: 'Construyamos Juntos ',
-      titleHighlight: 'Algo Increíble',
-      description: '¿Listo para transformar su negocio con IA? Contacte a nuestro equipo para una consulta personalizada.',
-      form: {
-        name: 'Nombre Completo *',
-        namePlaceholder: 'Juan Pérez',
-        email: 'Email Profesional *',
-        emailPlaceholder: 'juan@empresa.com',
-        company: 'Nombre de la Empresa *',
-        companyPlaceholder: 'Su Empresa',
-        phone: 'Número de Teléfono',
-        phonePlaceholder: '+34 612 345 678',
-        service: 'Servicio de Interés *',
-        servicePlaceholder: 'Seleccione un servicio',
-        serviceOptions: [
-          { value: '', label: 'Seleccione un servicio' },
-          { value: 'intelligent-agents', label: 'Agentes IA Inteligentes' },
-          { value: 'automation', label: 'Automatización Avanzada' },
-          { value: 'micro-agents', label: 'Micro-agentes Especializados' },
-          { value: 'custom', label: 'Solución Personalizada' },
-          { value: 'consultation', label: 'Solo Consultoría' },
-        ],
-        budget: 'Presupuesto Estimado',
-        budgetPlaceholder: 'Seleccione rango',
-        budgetOptions: [
-          { value: '', label: 'Seleccione rango' },
-          { value: 'starter', label: '< $500/mes (Starter)' },
-          { value: 'business', label: '$500 - $2000/mes (Business)' },
-          { value: 'enterprise', label: '$2000+/mes (Enterprise)' },
-          { value: 'custom', label: 'Proyecto Personalizado (Único)' },
-        ],
-        timeline: '¿Cuándo le gustaría comenzar?',
-        timelinePlaceholder: 'Seleccione plazo',
-        timelineOptions: [
-          { value: '', label: 'Seleccione plazo' },
-          { value: 'asap', label: 'Lo antes posible' },
-          { value: '1-month', label: 'En 1 mes' },
-          { value: '3-months', label: 'En 3 meses' },
-          { value: 'planning', label: 'Solo explorando' },
-        ],
-        message: 'Cuéntenos sobre su proyecto *',
-        messagePlaceholder: 'Describa sus necesidades, desafíos y qué desea lograr con IA...',
-        submit: 'Enviar Mensaje',
-        required: 'Campos obligatorios *',
-      },
-      info: [
-        {
-          icon: Mail,
-          title: 'Email',
-          value: 'ZyatrIA.contact@gmail.com',
-          link: 'mailto:ZyatrIA.contact@gmail.com',
-        },
-        {
-          icon: Phone,
-          title: 'Teléfono',
-          value: '+1 (438) 887-4507',
-          link: 'tel:+14388874507',
-        },
-        {
-          icon: MapPin,
-          title: 'Oficinas Globales',
-          value: 'América del Norte • Europa • África • América Latina',
-          link: null,
-        },
-      ],
-      successMessage: '¡Gracias! Nos pondremos en contacto en 24 horas.',
-      errorMessage: 'Ocurrió un error. Inténtelo de nuevo o contáctenos por email.',
-    },
-    pt: {
-      badge: 'Entre em Contato',
-      title: 'Vamos Construir Juntos ',
-      titleHighlight: 'Algo Incrível',
-      description: 'Pronto para transformar seu negócio com IA? Entre em contato com nossa equipe para uma consulta personalizada.',
-      form: {
-        name: 'Nome Completo *',
-        namePlaceholder: 'João Silva',
-        email: 'Email Profissional *',
-        emailPlaceholder: 'joao@empresa.com',
-        company: 'Nome da Empresa *',
-        companyPlaceholder: 'Sua Empresa',
-        phone: 'Número de Telefone',
-        phonePlaceholder: '+55 11 98765-4321',
-        service: 'Serviço de Interesse *',
-        servicePlaceholder: 'Selecione um serviço',
-        serviceOptions: [
-          { value: '', label: 'Selecione um serviço' },
-          { value: 'intelligent-agents', label: 'Agentes IA Inteligentes' },
-          { value: 'automation', label: 'Automação Avançada' },
-          { value: 'micro-agents', label: 'Micro-agentes Especializados' },
-          { value: 'custom', label: 'Solução Personalizada' },
-          { value: 'consultation', label: 'Apenas Consultoria' },
-        ],
-        budget: 'Orçamento Estimado',
-        budgetPlaceholder: 'Selecione a faixa',
-        budgetOptions: [
-          { value: '', label: 'Selecione a faixa' },
-          { value: 'starter', label: '< R$2500/mês (Starter)' },
-          { value: 'business', label: 'R$2500 - R$10000/mês (Business)' },
-          { value: 'enterprise', label: 'R$10000+/mês (Enterprise)' },
-          { value: 'custom', label: 'Projeto Personalizado (Único)' },
-        ],
-        timeline: 'Quando gostaria de começar?',
-        timelinePlaceholder: 'Selecione o prazo',
-        timelineOptions: [
-          { value: '', label: 'Selecione o prazo' },
-          { value: 'asap', label: 'O mais rápido possível' },
-          { value: '1-month', label: 'Em 1 mês' },
-          { value: '3-months', label: 'Em 3 meses' },
-          { value: 'planning', label: 'Apenas explorando' },
-        ],
-        message: 'Conte-nos sobre seu projeto *',
-        messagePlaceholder: 'Descreva suas necessidades, desafios e o que deseja alcançar com IA...',
-        submit: 'Enviar Mensagem',
-        required: 'Campos obrigatórios *',
-      },
-      info: [
-        {
-          icon: Mail,
-          title: 'Email',
-          value: 'ZyatrIA.contact@gmail.com',
-          link: 'mailto:ZyatrIA.contact@gmail.com',
-        },
-        {
-          icon: Phone,
-          title: 'Telefone',
-          value: '+1 (438) 887-4507',
-          link: 'tel:+14388874507',
-        },
-        {
-          icon: MapPin,
-          title: 'Escritórios Globais',
-          value: 'América do Norte • Europa • África • América Latina',
-          link: null,
-        },
-      ],
-      successMessage: 'Obrigado! Entraremos em contato em 24 horas.',
-      errorMessage: 'Ocorreu um erro. Tente novamente ou entre em contato por email.',
-    },
-  };
-
-  const t = content[lang];
 
   const gradients = [
     'from-blue-600 to-violet-600',
@@ -331,21 +202,15 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
             <Card className="p-8 border-2">
               <div className="text-center py-12">
                 <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">{t.successMessage}</h3>
+                <h3 className="text-2xl font-bold mb-2">{t.successMessageTitle}</h3>
                 <p className="text-muted-foreground mb-6">
-                  {lang === 'fr' ? 'Votre message a été envoyé avec succès.' :
-                   lang === 'es' ? 'Su mensaje ha sido enviado con éxito.' :
-                   lang === 'pt' ? 'Sua mensagem foi enviada com sucesso.' :
-                   'Your message has been sent successfully.'}
+                  {t.successMessageDesc}
                 </p>
                 <Button 
                   onClick={() => window.location.reload()} 
                   variant="outline"
                 >
-                  {lang === 'fr' ? 'Envoyer un autre message' :
-                   lang === 'es' ? 'Enviar otro mensaje' :
-                   lang === 'pt' ? 'Enviar outra mensagem' :
-                   'Send another message'}
+                  {t.sendAnother}
                 </Button>
               </div>
             </Card>
@@ -519,7 +384,7 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
 
               {/* Hidden field for language */}
               <input type="hidden" name="zyatria.contact@gmail.com" value="zyatria.contact@gmail.com" />
-              <input type="hidden" name="language" value={lang} />
+              <input type="hidden" name="language" value={language} />
 
               {/* Required fields note */}
               <p className="text-xs text-muted-foreground">{t.form.required}</p>
@@ -527,12 +392,7 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
               <Button type="submit" size="lg" className="w-full group" disabled={state.submitting}>
                 {state.submitting ? (
                   <>
-                    <span className="mr-2">
-                      {lang === 'fr' ? 'Envoi en cours...' :
-                       lang === 'es' ? 'Enviando...' :
-                       lang === 'pt' ? 'Enviando...' :
-                       'Sending...'}
-                    </span>
+                    <span className="mr-2">{t.sending}</span>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   </>
                 ) : (
@@ -583,10 +443,7 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
                   <MapPin className="w-12 h-12 text-blue-600 mx-auto mb-2" />
                   <p className="text-sm text-muted-foreground font-medium">Global Presence</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {lang === 'fr' ? 'Présence mondiale' :
-                     lang === 'es' ? 'Presencia global' :
-                     lang === 'pt' ? 'Presença global' :
-                     'Serving clients worldwide'}
+                    {t.globalPresence}
                   </p>
                 </div>
               </div>
@@ -599,5 +456,9 @@ const Contact: React.FC<ContactProps> = ({ lang = 'en' }) => {
 };
 
 export default Contact;
+
+
+
+
 
 

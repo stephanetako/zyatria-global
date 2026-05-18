@@ -1,7 +1,8 @@
 import React from 'react';
-import { Target, Eye, Heart, Globe, TrendingUp, Users, Shield } from 'lucide-react';
+import { Target, Eye, Heart, Globe, TrendingUp, Users, Shield, Zap } from 'lucide-react';
 import { Button } from '../ui/button';
 import { baseUrl } from '../../lib/base-url';
+import { useLanguage } from '../../lib/language-context';
 
 const translations = {
   en: {
@@ -24,7 +25,7 @@ const translations = {
         { icon: Shield, name: "Transparency", description: "Clear communication" },
         { icon: Target, name: "Performance", description: "Measurable results" },
         { icon: Users, name: "Accessibility", description: "AI for everyone" },
-        { icon: Globe, name: "International", description: "AI without borders" }
+        { icon: Globe, name: "International", description: "Worldwide Coverage" }
       ]
     },
     cta: {
@@ -119,20 +120,8 @@ const translations = {
 };
 
 export default function AboutPage() {
-  const [language, setLanguage] = React.useState<'en' | 'fr' | 'es' | 'pt'>('en');
+  const { language } = useLanguage();
   const t = translations[language];
-
-  React.useEffect(() => {
-    const savedLang = localStorage.getItem('language') as 'en' | 'fr' | 'es' | 'pt';
-    if (savedLang) setLanguage(savedLang);
-
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange as EventListener);
-    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
-  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -219,4 +208,8 @@ export default function AboutPage() {
     </div>
   );
 }
+
+
+
+
 

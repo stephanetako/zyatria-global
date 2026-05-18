@@ -8,23 +8,15 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
-interface NavigationProps {
-  currentLang?: string;
-  onLanguageChange?: (lang: string) => void;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ 
-  currentLang = 'en',
-  onLanguageChange = () => {}
-}) => {
+const Navigation: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'pt', name: 'Português', flag: '🇧🇷' },
+    { code: 'en' as const, name: 'English', flag: '🇬🇧' },
+    { code: 'fr' as const, name: 'Français', flag: '🇫🇷' },
   ];
 
   const translations: Record<string, any> = {
@@ -54,51 +46,22 @@ const Navigation: React.FC<NavigationProps> = ({
       docs: 'Documentation',
       help: 'Centre d\'Aide',
     },
-    es: {
-      home: 'Inicio',
-      services: 'Servicios',
-      microAgents: 'Micro-agentes',
-      pricing: 'Precios',
-      demo: 'Demo',
-      about: 'Acerca de',
-      getStarted: 'Empezar',
-      resources: 'Recursos',
-      technology: 'Tecnología',
-      docs: 'Documentación',
-      help: 'Centro de Ayuda',
-    },
-    pt: {
-      home: 'Início',
-      services: 'Serviços',
-      microAgents: 'Micro-agentes',
-      pricing: 'Preços',
-      demo: 'Demo',
-      about: 'Sobre',
-      getStarted: 'Começar',
-      resources: 'Recursos',
-      technology: 'Tecnologia',
-      docs: 'Documentação',
-      help: 'Centro de Ajuda',
-    },
   };
 
-  const t = translations[currentLang];
-  const currentLanguage = languages.find(lang => lang.code === currentLang);
+  const t = translations[language];
+  const currentLanguage = languages.find(lang => lang.code === language);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href={`${baseUrl}/`} className="flex items-center space-x-2">
+          <a href={`${baseUrl}/`} className="flex items-center space-x-2 hover:opacity-80 transition">
             <img 
-              src="/logo.svg" 
+              src="/logo-with-text.svg" 
               alt="ZyatrIA Global Logo" 
-              className="w-10 h-10"
+              className="h-8 w-auto"
             />
-            <span className="text-xl font-bold font-heading">
-              ZyatrIA <span className="text-blue-600">Global</span>
-            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -165,7 +128,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => onLanguageChange(lang.code)}
+                    onClick={() => setLanguage(lang.code)}
                     className="cursor-pointer"
                   >
                     <span className="mr-2">{lang.flag}</span>
@@ -257,6 +220,14 @@ const Navigation: React.FC<NavigationProps> = ({
 };
 
 export default Navigation;
+
+
+
+
+
+
+
+
 
 
 

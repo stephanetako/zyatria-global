@@ -18,12 +18,14 @@ import {
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
+import { useLanguage } from '../../lib/language-context';
 
 interface TechnologyPageProps {
   lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
-export default function TechnologyPage({ lang = 'en' }: TechnologyPageProps) {
+export default function TechnologyPage() {
+  const { language } = useLanguage();
   const translations = {
     en: {
       hero: {
@@ -547,7 +549,7 @@ export default function TechnologyPage({ lang = 'en' }: TechnologyPageProps) {
     }
   };
 
-  const t = translations[lang];
+  const t = translations[language];
 
   return (
     <div className="min-h-screen">
@@ -740,3 +742,4 @@ export default function TechnologyPage({ lang = 'en' }: TechnologyPageProps) {
     </div>
   );
 }
+

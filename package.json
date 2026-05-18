@@ -1,7 +1,7 @@
 {
-  "name": "astro",
+  "name": "zyatria-global",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "predev": "npx kill-port 3000 || true",
     "dev": "astro dev",

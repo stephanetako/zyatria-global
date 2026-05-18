@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Calculator, TrendingUp, DollarSign, Clock, Users } from 'lucide-react';
 import { Slider } from './ui/slider';
-import { Card } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
@@ -83,8 +84,8 @@ const translations = {
 };
 
 export default function ROICalculator() {
-  const [lang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const [employees, setEmployees] = useState([50]);
   const [avgSalary, setAvgSalary] = useState([50000]);
@@ -285,7 +286,4 @@ export default function ROICalculator() {
     </section>
   );
 }
-
-
-
 

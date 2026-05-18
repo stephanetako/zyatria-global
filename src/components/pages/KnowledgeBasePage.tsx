@@ -13,7 +13,12 @@ import {
   ExternalLink,
   BookOpen,
   Lightbulb,
-  MessageCircle
+  MessageCircle,
+  Rocket,
+  Bot,
+  CreditCard,
+  Shield,
+  Mail
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
@@ -271,6 +276,106 @@ const translations: Record<TranslationKey, any> = {
         { icon: "📅", label: "Réserver un Appel", value: "Assistance 1-à-1", action: "Planifier" }
       ]
     }
+  },
+  es: {
+    hero: {
+      badge: "Base de Conocimientos",
+      title: "Centro de Ayuda ZyatrIA Global",
+      subtitle: "Todo lo que necesita saber sobre agentes IA, automatización y despliegue",
+      searchPlaceholder: "Buscar ayuda..."
+    },
+    categories: {
+      title: "Categorías",
+      items: [
+        { icon: Rocket, title: "Primeros Pasos", description: "Comience con ZyatrIA", articles: 12, color: "blue" },
+        { icon: Bot, title: "Agentes IA", description: "Comprenda los agentes IA", articles: 18, color: "purple" },
+        { icon: Zap, title: "Automatización", description: "Automatice sus procesos", articles: 15, color: "orange" },
+        { icon: Settings, title: "Configuración", description: "Configure su cuenta", articles: 10, color: "green" },
+        { icon: CreditCard, title: "Facturación", description: "Gestione su suscripción", articles: 8, color: "pink" },
+        { icon: Shield, title: "Seguridad", description: "Proteja sus datos", articles: 14, color: "red" }
+      ]
+    },
+    popular: {
+      title: "Artículos Populares",
+      items: [
+        { title: "¿Cómo crear mi primer agente IA?", views: "12.5K", time: "5 min" },
+        { title: "Integrar ZyatrIA con mi CRM", views: "8.2K", time: "8 min" },
+        { title: "Mejores prácticas de automatización", views: "6.8K", time: "10 min" },
+        { title: "Comprender los precios", views: "5.4K", time: "3 min" }
+      ]
+    },
+    resources: {
+      title: "Recursos Adicionales",
+      items: [
+        { icon: BookOpen, title: "Documentación", description: "Documentación técnica completa" },
+        { icon: Video, title: "Tutoriales en Video", description: "Aprenda visualmente" },
+        { icon: MessageCircle, title: "Comunidad", description: "Únase a nuestra comunidad" },
+        { icon: Mail, title: "Soporte", description: "Contáctenos" }
+      ]
+    },
+    guides: {
+      title: "Guías Paso a Paso",
+      items: [
+        { title: "Configurar su primer flujo de trabajo", duration: "15 min", level: "Principiante" },
+        { title: "Optimizar el rendimiento de los agentes", duration: "20 min", level: "Intermedio" },
+        { title: "Integración API avanzada", duration: "30 min", level: "Avanzado" }
+      ]
+    },
+    cta: {
+      title: "¿No encuentra lo que busca?",
+      description: "Nuestro equipo de soporte está aquí para ayudarle",
+      button: "Contactar Soporte"
+    }
+  },
+  pt: {
+    hero: {
+      badge: "Base de Conhecimento",
+      title: "Centro de Ajuda ZyatrIA Global",
+      subtitle: "Tudo o que você precisa saber sobre agentes IA, automação e implantação",
+      searchPlaceholder: "Buscar ajuda..."
+    },
+    categories: {
+      title: "Categorias",
+      items: [
+        { icon: Rocket, title: "Primeiros Passos", description: "Comece com ZyatrIA", articles: 12, color: "blue" },
+        { icon: Bot, title: "Agentes IA", description: "Entenda os agentes IA", articles: 18, color: "purple" },
+        { icon: Zap, title: "Automação", description: "Automatize seus processos", articles: 15, color: "orange" },
+        { icon: Settings, title: "Configuração", description: "Configure sua conta", articles: 10, color: "green" },
+        { icon: CreditCard, title: "Faturamento", description: "Gerencie sua assinatura", articles: 8, color: "pink" },
+        { icon: Shield, title: "Segurança", description: "Proteja seus dados", articles: 14, color: "red" }
+      ]
+    },
+    popular: {
+      title: "Artigos Populares",
+      items: [
+        { title: "Como criar meu primeiro agente IA?", views: "12.5K", time: "5 min" },
+        { title: "Integrar ZyatrIA com meu CRM", views: "8.2K", time: "8 min" },
+        { title: "Melhores práticas de automação", views: "6.8K", time: "10 min" },
+        { title: "Entender os preços", views: "5.4K", time: "3 min" }
+      ]
+    },
+    resources: {
+      title: "Recursos Adicionais",
+      items: [
+        { icon: BookOpen, title: "Documentação", description: "Documentação técnica completa" },
+        { icon: Video, title: "Tutoriais em Vídeo", description: "Aprenda visualmente" },
+        { icon: MessageCircle, title: "Comunidade", description: "Junte-se à nossa comunidade" },
+        { icon: Mail, title: "Suporte", description: "Entre em contato" }
+      ]
+    },
+    guides: {
+      title: "Guias Passo a Passo",
+      items: [
+        { title: "Configurar seu primeiro fluxo de trabajo", duration: "15 min", level: "Iniciante" },
+        { title: "Otimizar o desempenho dos agentes", duration: "20 min", level: "Intermediário" },
+        { title: "Integração API avançada", duration: "30 min", level: "Avançado" }
+      ]
+    },
+    cta: {
+      title: "Não encontra o que procura?",
+      description: "Nossa equipe de suporte está aqui para ajudá-lo",
+      button: "Contatar Suporte"
+    }
   }
 };
 
@@ -480,4 +585,7 @@ export default function KnowledgeBasePage({ lang = 'en' }: KnowledgeBasePageProp
     </div>
   );
 }
+
+
+
 

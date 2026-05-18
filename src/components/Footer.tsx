@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { Globe2, MapPin } from 'lucide-react';
+import React from 'react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
-    tagline: "AI without borders.",
+    tagline: "Intelligent Automation for Modern Business.",
     companyLocation: 'Canadian Company | Quebec 🇨🇦',
     description: "International agency specializing in AI agents, automation and AI micro-agents.",
     navTitle: "Navigation",
@@ -113,29 +114,13 @@ const content = {
 };
 
 export default function Footer() {
-  const [lang, setLang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
+  const legalContent = content[language];
 
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container py-12">
-        {/* Language Switcher */}
-        <div className="flex justify-center gap-2 mb-8">
-          {(['en', 'fr', 'es', 'pt'] as const).map((l) => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                lang === l
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-zinc-800 border-2 border-zinc-200 dark:bg-zinc-900 dark:text-white dark:border-zinc-700'
-              }`}
-            >
-              {l.toUpperCase()}
-            </button>
-          ))}
-        </div>
-
         {/* Footer Grid - 3 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           
@@ -143,9 +128,11 @@ export default function Footer() {
           <div className="footer-col space-y-4">
             {/* Logo */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-violet-600 rounded-xl flex items-center justify-center">
-                <Globe2 className="w-6 h-6 text-white" />
-              </div>
+              <img 
+                src="/logo.svg" 
+                alt="ZyatrIA Global Logo" 
+                className="w-12 h-12"
+              />
               <div>
                 <h3 className="text-xl font-bold">ZyatrIA Global</h3>
               </div>
@@ -215,7 +202,7 @@ export default function Footer() {
               </p>
               <div>
                 <h4 className="font-semibold text-foreground mb-4">
-                  {content[lang].legal}
+                  {legalContent.legal}
                 </h4>
                 <ul className="space-y-2">
                   <li>
@@ -223,7 +210,7 @@ export default function Footer() {
                       href="/privacy"
                       className="text-zinc-600 dark:text-zinc-400 hover:text-blue-600 transition-colors"
                     >
-                      {content[lang].privacy}
+                      {legalContent.privacy}
                     </a>
                   </li>
                   <li>
@@ -231,7 +218,7 @@ export default function Footer() {
                       href="/terms"
                       className="text-zinc-600 dark:text-zinc-400 hover:text-blue-600 transition-colors"
                     >
-                      {content[lang].terms}
+                      {legalContent.terms}
                     </a>
                   </li>
                 </ul>
@@ -253,6 +240,17 @@ export default function Footer() {
     </footer>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,15 +8,12 @@ import { Button } from './ui/button';
 import { stripeLinks, productDetails } from '../config/stripe-links';
 import { cn } from '../lib/utils';
 import { baseUrl } from '../lib/base-url';
-
-interface PricingProps {
-  lang?: 'en' | 'fr' | 'es' | 'pt';
-}
+import { useLanguage } from '../lib/language-context';
 
 type PlanKey = 'starter' | 'professional' | 'enterprise';
 type BillingType = 'oneTime' | 'monthly';
 
-type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+type TranslationKey = 'en' | 'fr';
 
 const translations: Record<TranslationKey, any> = {
   en: {
@@ -34,10 +31,13 @@ const translations: Record<TranslationKey, any> = {
     },
     services: {
       title: "Professional Services",
-      subtitle: "Expert consulting to maximize your AI ROI"
+      subtitle: "Expert consulting to maximize your AI ROI",
+      auditCta: "Order Audit",
+      consultationCta: "Book Consultation"
     },
     note: "All prices in Canadian Dollars (CAD). 30-day money-back guarantee.",
     paymentSecure: "🔒 Secure payments powered by Stripe",
+    infoNote: "💡 <strong>Note:</strong> Click on a plan to contact us and discuss your specific needs."
   },
   fr: {
     badge: "Tarification Transparente",
@@ -54,15 +54,19 @@ const translations: Record<TranslationKey, any> = {
     },
     services: {
       title: "Services Professionnels",
-      subtitle: "Conseil d'expert pour maximiser votre ROI IA"
+      subtitle: "Conseil d'expert pour maximiser votre ROI IA",
+      auditCta: "Commander l'Audit",
+      consultationCta: "Réserver une Consultation"
     },
     note: "Tous les prix en dollars canadiens (CAD). Garantie satisfait ou remboursé 30 jours.",
     paymentSecure: "🔒 Paiements sécurisés par Stripe",
-  }
+    infoNote: "💡 <strong>Note:</strong> Cliquez sur un plan pour nous contacter et discuter de vos besoins spécifiques."
+  },
 };
 
-const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
-  const t = translations[lang];
+const Pricing: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [billingType, setBillingType] = useState<BillingType>('monthly');
 
   const plans: Array<{
@@ -113,19 +117,31 @@ const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
   ];
 
   const handlePurchase = (planKey: PlanKey, type: BillingType) => {
-    const link = stripeLinks[planKey][type];
-    if (link) {
-      window.location.href = link;
+    // Scroll to contact form instead of redirecting to Stripe
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleServicePurchase = (service: 'audit' | 'consultation') => {
-    window.location.href = stripeLinks.services[service];
+    // Scroll to contact form instead of redirecting to Stripe
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-white via-amber-50/30 to-white dark:from-zinc-950 dark:via-amber-950/10 dark:to-zinc-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Info Banner */}
+        <div className="mb-8 max-w-4xl mx-auto">
+          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-center">
+            <p className="text-sm text-blue-800 dark:text-blue-200" dangerouslySetInnerHTML={{ __html: t.infoNote }} />
+          </div>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full mb-4">
@@ -259,7 +275,10 @@ const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
                         : 'bg-amber-500 hover:bg-amber-600 text-white'
                     )}
                   >
-                    {billingType === 'oneTime' ? t.cta.oneTime : t.cta.monthly}
+                    {plan.key === 'enterprise' 
+                      ? t.cta.enterprise 
+                      : (billingType === 'oneTime' ? t.cta.oneTime : t.cta.monthly)
+                    }
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </div>
@@ -311,7 +330,7 @@ const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
                 onClick={() => handleServicePurchase('audit')}
                 className="w-full bg-amber-500 hover:bg-amber-600 text-white"
               >
-                Commander l'Audit
+                {t.services.auditCta}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Card>
@@ -347,7 +366,7 @@ const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
                 onClick={() => handleServicePurchase('consultation')}
                 className="w-full bg-amber-500 hover:bg-amber-600 text-white"
               >
-                Réserver une Consultation
+                {t.services.consultationCta}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Card>
@@ -369,6 +388,15 @@ const Pricing: React.FC<PricingProps> = ({ lang = 'en' }) => {
 };
 
 export default Pricing;
+
+
+
+
+
+
+
+
+
 
 
 

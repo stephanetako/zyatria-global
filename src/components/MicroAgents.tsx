@@ -1,8 +1,7 @@
-
-
+import React from 'react';
 import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap } from 'lucide-react';
-import { useState } from 'react';
-import { Card } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { useLanguage } from '../lib/language-context';
 import { baseUrl } from '../lib/base-url';
 
 const translations = {
@@ -373,8 +372,8 @@ const translations = {
 };
 
 export default function MicroAgents() {
-  const [lang, setLang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -406,46 +405,46 @@ export default function MicroAgents() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {t.agents.map((agent: any, index: number) => {
             const Icon = agent.icon;
-            const gradients = [
-              'from-blue-500 to-violet-500',
-              'from-violet-500 to-cyan-500',
-              'from-cyan-500 to-blue-500',
-              'from-blue-500 to-cyan-500',
-              'from-violet-500 to-blue-500',
-              'from-cyan-500 to-violet-500'
+            const solidColors = [
+              'bg-blue-600',
+              'bg-violet-600',
+              'bg-cyan-600',
+              'bg-blue-600',
+              'bg-violet-600',
+              'bg-cyan-600'
             ];
-            const textGradients = [
-              'text-blue-500',
-              'text-violet-500',
-              'text-cyan-500',
-              'text-blue-500',
-              'text-violet-500',
-              'text-cyan-500'
+            const textColors = [
+              'text-blue-600',
+              'text-violet-600',
+              'text-cyan-600',
+              'text-blue-600',
+              'text-violet-600',
+              'text-cyan-600'
             ];
             return (
               <Card 
                 key={index}
                 className="group p-8 rounded-2xl border-2 hover:border-blue-400/40 bg-white dark:bg-zinc-900 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-500"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${gradients[index % gradients.length]} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
+                <div className={`w-16 h-16 ${solidColors[index % solidColors.length]} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
                   <Icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold font-heading mb-3 group-hover:text-blue-500 transition-colors">
+                <h3 className="text-2xl font-bold font-heading mb-3 group-hover:text-blue-600 transition-colors">
                   {agent.name}
                 </h3>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                   {agent.description}
                 </p>
                 <ul className="space-y-3 mb-6">
                   {agent.features.map((feature: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
-                      <span className="text-sm">{feature}</span>
+                      <CheckCircle2 className={`w-5 h-5 ${textColors[index % textColors.length]} flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform`} />
+                      <span className="text-sm text-zinc-700 dark:text-zinc-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                  <span className="text-lg font-bold text-blue-500">{agent.price}</span>
+                  <span className={`text-lg font-bold ${textColors[index % textColors.length]}`}>{agent.price}</span>
                 </div>
               </Card>
             );
@@ -475,6 +474,8 @@ export default function MicroAgents() {
     </section>
   );
 }
+
+
 
 
 

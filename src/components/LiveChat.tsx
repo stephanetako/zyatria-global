@@ -1,147 +1,162 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send, Minimize2 } from 'lucide-react';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { useLanguage } from '../lib/language-context';
 
-const translations = {
-  en: {
-    title: "Chat with us",
-    subtitle: "We typically reply in minutes",
-    placeholder: "Type your message...",
-    send: "Send",
-    online: "Online",
-    typing: "Agent is typing...",
-    welcome: "Hi! 👋 How can we help you today?",
-    quickReplies: {
-      demo: "Request a demo",
-      pricing: "Questions about pricing",
-      technical: "Technical question",
-      other: "Something else"
-    }
-  },
-  fr: {
-    title: "Discutez avec nous",
-    subtitle: "Nous répondons généralement en quelques minutes",
-    placeholder: "Tapez votre message...",
-    send: "Envoyer",
-    online: "En ligne",
-    typing: "Un agent écrit...",
-    welcome: "Bonjour ! 👋 Comment pouvons-nous vous aider aujourd'hui ?",
-    quickReplies: {
-      demo: "Demander une démo",
-      pricing: "Questions sur les tarifs",
-      technical: "Question technique",
-      other: "Autre chose"
-    }
-  },
-  es: {
-    title: "Chatea con nosotros",
-    subtitle: "Normalmente respondemos en minutos",
-    placeholder: "Escribe tu mensaje...",
-    send: "Enviar",
-    online: "En línea",
-    typing: "El agente está escribiendo...",
-    welcome: "¡Hola! 👋 ¿Cómo podemos ayudarte hoy?",
-    quickReplies: {
-      demo: "Solicitar una demostración",
-      pricing: "Preguntas sobre precios",
-      technical: "Pregunta técnica",
-      other: "Otra cosa"
-    }
-  },
-  pt: {
-    title: "Converse conosco",
-    subtitle: "Normalmente respondemos em minutos",
-    placeholder: "Digite sua mensagem...",
-    send: "Enviar",
-    online: "Online",
-    typing: "Agente está digitando...",
-    welcome: "Olá! 👋 Como podemos ajudá-lo hoje?",
-    quickReplies: {
-      demo: "Solicitar uma demonstração",
-      pricing: "Perguntas sobre preços",
-      technical: "Pergunta técnica",
-      other: "Outra coisa"
-    }
-  }
-};
+interface Message {
+  id: string;
+  text: string;
+  sender: 'user' | 'agent';
+  timestamp: Date;
+}
 
 export default function LiveChat() {
+  const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<Array<{ text: string; sender: 'user' | 'agent'; time: string }>>([]);
-  const [lang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  
-  const t = translations[lang];
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
 
-  const handleSend = () => {
-    if (!message.trim()) return;
-    
-    const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    setMessages([...messages, { text: message, sender: 'user', time: now }]);
-    setMessage('');
+  const content = {
+    en: {
+      title: 'Live Chat',
+      subtitle: 'We typically reply in a few minutes',
+      placeholder: 'Type your message...',
+      send: 'Send',
+      welcome: 'Hello! 👋 How can we help you today?',
+      offline: 'We\'re currently offline. Leave us a message!',
+      typing: 'Agent is typing...'
+    },
+    fr: {
+      title: 'Chat en Direct',
+      subtitle: 'Nous répondons généralement en quelques minutes',
+      placeholder: 'Tapez votre message...',
+      send: 'Envoyer',
+      welcome: 'Bonjour ! 👋 Comment pouvons-nous vous aider aujourd\'hui ?',
+      offline: 'Nous sommes actuellement hors ligne. Laissez-nous un message !',
+      typing: 'L\'agent écrit...'
+    },
+    es: {
+      title: 'Chat en Vivo',
+      subtitle: 'Normalmente respondemos en unos minutos',
+      placeholder: 'Escribe tu mensaje...',
+      send: 'Enviar',
+      welcome: '¡Hola! 👋 ¿Cómo podemos ayudarte hoy?',
+      offline: 'Actualmente estamos fuera de línea. ¡Déjanos un mensaje!',
+      typing: 'El agente está escribiendo...'
+    },
+    pt: {
+      title: 'Chat ao Vivo',
+      subtitle: 'Normalmente respondemos em alguns minutos',
+      placeholder: 'Digite sua mensagem...',
+      send: 'Enviar',
+      welcome: 'Olá! 👋 Como podemos ajudá-lo hoje?',
+      offline: 'Estamos offline no momento. Deixe-nos uma mensagem!',
+      typing: 'O agente está digitando...'
+    }
+  };
 
-    // Simulate agent response
-    setTimeout(() => {
-      setMessages(prev => [...prev, {
-        text: "Thanks for reaching out! A member of our team will be with you shortly. In the meantime, you can also schedule a demo at /demo",
+  const t = content[language];
+
+  // Initialize with welcome message
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      const welcomeMessage: Message = {
+        id: '1',
+        text: t.welcome,
         sender: 'agent',
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }]);
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    }
+  }, [isOpen, messages.length, t.welcome]);
+
+  const handleSend = async () => {
+    if (!message.trim()) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: message,
+      sender: 'user',
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setMessage('');
+    setIsTyping(true);
+
+    // Simulate agent response (replace with real chat API)
+    setTimeout(() => {
+      const agentMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: language === 'en' 
+          ? 'Thank you for your message! Our team will get back to you shortly.'
+          : language === 'fr'
+          ? 'Merci pour votre message ! Notre équipe vous répondra sous peu.'
+          : language === 'es'
+          ? '¡Gracias por tu mensaje! Nuestro equipo te responderá pronto.'
+          : 'Obrigado pela sua mensagem! Nossa equipe responderá em breve.',
+        sender: 'agent',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, agentMessage]);
+      setIsTyping(false);
     }, 2000);
   };
 
-  const handleQuickReply = (reply: string) => {
-    setMessage(reply);
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group animate-float"
-        aria-label="Open chat"
+        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110 animate-pulse-glow"
+        aria-label="Open live chat"
       >
         <MessageCircle className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
-        
-        {/* Tooltip */}
-        <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-foreground text-background text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          💬 Need help? Chat with us!
-          <div className="absolute bottom-0 right-4 transform translate-y-1/2 rotate-45 w-2 h-2 bg-foreground"></div>
-        </div>
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></span>
       </button>
     );
   }
 
   return (
-    <div className={`fixed bottom-6 right-6 z-50 bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300 ${
-      isMinimized ? 'w-80 h-14' : 'w-96 h-[600px]'
-    }`}>
+    <div 
+      className={`fixed bottom-6 right-6 z-50 bg-card border border-border rounded-2xl shadow-2xl transition-all ${
+        isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
+      } max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)]`}
+    >
       {/* Header */}
-      <div className="bg-primary text-primary-foreground p-4 rounded-t-2xl flex items-center justify-between">
+      <div className="flex items-center justify-between p-4 border-b border-border bg-primary text-primary-foreground rounded-t-2xl">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary-foreground/20 rounded-full flex items-center justify-center">
-            <MessageCircle className="w-5 h-5" />
+          <div className="relative">
+            <MessageCircle className="w-6 h-6" />
+            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-primary"></span>
           </div>
           <div>
-            <div className="font-semibold">{t.title}</div>
-            <div className="text-xs opacity-90 flex items-center gap-1">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              {t.online}
-            </div>
+            <h3 className="font-semibold text-sm">{t.title}</h3>
+            {!isMinimized && (
+              <p className="text-xs opacity-90">{t.subtitle}</p>
+            )}
           </div>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsMinimized(!isMinimized)}
-            className="hover:bg-primary-foreground/10 p-2 rounded-lg transition-colors"
-            aria-label="Minimize chat"
+            className="hover:bg-primary-foreground/10 p-1.5 rounded-lg transition-colors"
+            aria-label={isMinimized ? 'Maximize' : 'Minimize'}
           >
             <Minimize2 className="w-4 h-4" />
           </button>
           <button
             onClick={() => setIsOpen(false)}
-            className="hover:bg-primary-foreground/10 p-2 rounded-lg transition-colors"
+            className="hover:bg-primary-foreground/10 p-1.5 rounded-lg transition-colors"
             aria-label="Close chat"
           >
             <X className="w-4 h-4" />
@@ -151,93 +166,62 @@ export default function LiveChat() {
 
       {!isMinimized && (
         <>
-          {/* Messages Area */}
-          <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-muted/30">
-            {/* Welcome message */}
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground text-sm flex-shrink-0">
-                AI
-              </div>
-              <div className="flex-1">
-                <div className="bg-background border border-border rounded-2xl rounded-tl-none p-3 shadow-sm">
-                  <p className="text-sm">{t.welcome}</p>
-                </div>
-                <div className="text-xs text-muted-foreground mt-1">Just now</div>
-              </div>
-            </div>
-
-            {/* Quick replies */}
-            {messages.length === 0 && (
-              <div className="space-y-2">
-                <p className="text-xs text-muted-foreground px-2">Quick replies:</p>
-                {Object.entries(t.quickReplies).map(([key, value]) => (
-                  <button
-                    key={key}
-                    onClick={() => handleQuickReply(value)}
-                    className="w-full text-left px-4 py-2 bg-background border border-border rounded-lg text-sm hover:bg-muted transition-colors"
-                  >
-                    {value}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* User messages */}
-            {messages.map((msg, index) => (
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[calc(100%-8rem)]">
+            {messages.map((msg) => (
               <div
-                key={index}
-                className={`flex items-start gap-3 ${
-                  msg.sender === 'user' ? 'flex-row-reverse' : ''
-                }`}
+                key={msg.id}
+                className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0 ${
-                  msg.sender === 'user'
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-foreground'
-                }`}>
-                  {msg.sender === 'user' ? 'You' : 'AI'}
-                </div>
-                <div className="flex-1">
-                  <div className={`rounded-2xl p-3 shadow-sm ${
+                <div
+                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                     msg.sender === 'user'
-                      ? 'bg-primary text-primary-foreground rounded-tr-none'
-                      : 'bg-background border border-border rounded-tl-none'
-                  }`}>
-                    <p className="text-sm">{msg.text}</p>
-                  </div>
-                  <div className={`text-xs text-muted-foreground mt-1 ${
-                    msg.sender === 'user' ? 'text-right' : ''
-                  }`}>
-                    {msg.time}
-                  </div>
+                      ? 'bg-primary text-primary-foreground rounded-br-sm'
+                      : 'bg-muted text-foreground rounded-bl-sm'
+                  }`}
+                >
+                  <p className="text-sm">{msg.text}</p>
+                  <p className="text-xs opacity-70 mt-1">
+                    {msg.timestamp.toLocaleTimeString([], { 
+                      hour: '2-digit', 
+                      minute: '2-digit' 
+                    })}
+                  </p>
                 </div>
               </div>
             ))}
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="bg-muted text-foreground rounded-2xl rounded-bl-sm px-4 py-2">
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"></span>
+                    <span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce delay-100"></span>
+                    <span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce delay-200"></span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Input Area */}
-          <div className="p-4 border-t border-border bg-background rounded-b-2xl">
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
+          {/* Input */}
+          <div className="p-4 border-t border-border">
+            <div className="flex gap-2">
+              <Input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                onKeyPress={handleKeyPress}
                 placeholder={t.placeholder}
-                className="flex-1 px-4 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                className="flex-1"
               />
-              <button
+              <Button
                 onClick={handleSend}
                 disabled={!message.trim()}
-                className="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label={t.send}
+                size="icon"
+                className="flex-shrink-0"
               >
-                <Send className="w-5 h-5" />
-              </button>
+                <Send className="w-4 h-4" />
+              </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
-              {t.subtitle}
-            </p>
           </div>
         </>
       )}

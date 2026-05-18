@@ -1,0 +1,29 @@
+---
+import MainLayout from '../layouts/main.astro';
+
+const seoData = {
+  title: "Client Dashboard | ZyatrIA Global",
+  description: "Access your AI projects, track progress, and manage your automation solutions.",
+  ogImage: "/og-image.png"
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+  <div id="dashboard-root"></div>
+</MainLayout>
+
+<script>
+  import { createRoot } from 'react-dom/client';
+  import { createElement } from 'react';
+  import DashboardClientPage from '../components/pages/DashboardClientPage';
+
+  const container = document.getElementById('dashboard-root');
+  if (container) {
+    const root = createRoot(container);
+    root.render(createElement(DashboardClientPage));
+  }
+</script>

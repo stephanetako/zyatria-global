@@ -1,8 +1,15 @@
 /**
  * Stripe Payment Links Configuration
  * 
- * Ces liens sont générés depuis le tableau de bord Stripe.
- * Pour mettre à jour : https://dashboard.stripe.com/payment-links
+ * ⚠️ IMPORTANT: Ces liens sont des EXEMPLES et doivent être remplacés par vos vrais liens Stripe.
+ * 
+ * Pour créer vos liens de paiement Stripe:
+ * 1. Connectez-vous à https://dashboard.stripe.com
+ * 2. Allez dans "Produits" > "Liens de paiement"
+ * 3. Créez un nouveau lien de paiement pour chaque plan
+ * 4. Copiez l'URL générée et remplacez les liens ci-dessous
+ * 
+ * En attendant, les boutons de tarification redirigent vers le formulaire de contact.
  */
 
 export const stripeLinks = {
@@ -89,3 +96,4 @@ export const productDetails = {
     currency: 'CAD',
   },
 } as const;
+
