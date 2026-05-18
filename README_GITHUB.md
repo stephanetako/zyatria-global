@@ -1,173 +1,286 @@
-# 🤖 ZyatrIA Global - AI Agents & Automation Platform
+# 📦 Scripts de Push GitHub - ZyatrIA Global
 
-> **Agents IA intelligents et automatisation avancée pour entreprises**  
-> Déploiement rapide en 7-15 jours | Support multilingue | Sans frontières
+## 🎯 Scripts Disponibles
 
----
+### 1. `push-to-github.sh` (Linux/Mac)
+Script Bash interactif pour pousser vers GitHub avec authentification.
 
-## 🌟 À Propos
+**Utilisation :**
+```bash
+chmod +x push-to-github.sh
+./push-to-github.sh
+```
 
-ZyatrIA Global est une plateforme complète d'agents IA et d'automatisation conçue pour transformer les entreprises avec :
+### 2. `push-to-github.ps1` (Windows)
+Script PowerShell interactif pour pousser vers GitHub avec authentification.
 
-- 🤖 **Micro-agents spécialisés** (immobilier, e-commerce, support client, etc.)
-- ⚡ **Déploiement ultra-rapide** (7-15 jours)
-- 🌍 **Support multilingue** (EN, FR, ES, PT)
-- 🔗 **Intégrations avancées** (CRM, email, analytics)
-
----
-
-## 🛠️ Technologies
-
-- **Framework** : [Astro](https://astro.build) 5.x
-- **UI** : React 19 + TypeScript
-- **Styling** : Tailwind CSS 4 + shadcn/ui
-- **Deployment** : Cloudflare Pages
-- **Forms** : Formspree
-- **Payments** : Stripe
+**Utilisation :**
+```powershell
+.\push-to-github.ps1
+```
 
 ---
 
-## 🚀 Installation Locale
+## ✨ Fonctionnalités
+
+Les scripts offrent :
+
+✅ **Vérification automatique** du statut Git  
+✅ **Confirmation interactive** avant le push  
+✅ **Message de commit personnalisable**  
+✅ **3 méthodes d'authentification** :
+   - Token GitHub (recommandé)
+   - SSH
+   - Push direct (si déjà configuré)  
+✅ **Messages colorés** et clairs  
+✅ **Gestion des erreurs** complète  
+
+---
+
+## 🔐 Méthodes d'Authentification
+
+### Option 1 : Token GitHub (Recommandé)
+
+**Avantages :**
+- ✅ Simple et rapide
+- ✅ Fonctionne partout
+- ✅ Facile à révoquer
+
+**Comment obtenir un token :**
+1. Allez sur : https://github.com/settings/tokens
+2. Cliquez sur "Generate new token (classic)"
+3. Cochez : `repo` (accès complet)
+4. Générez et copiez le token
+5. Utilisez-le dans le script
+
+### Option 2 : SSH
+
+**Avantages :**
+- ✅ Plus sécurisé
+- ✅ Pas besoin de retaper le mot de passe
+- ✅ Recommandé pour un usage fréquent
+
+**Configuration SSH :**
+```bash
+# Générer une clé SSH
+ssh-keygen -t ed25519 -C "votre.email@example.com"
+
+# Copier la clé publique
+cat ~/.ssh/id_ed25519.pub
+
+# Ajouter sur GitHub : https://github.com/settings/keys
+```
+
+### Option 3 : Push Direct
+
+Si vous avez déjà configuré l'authentification, le script essaiera un push direct.
+
+---
+
+## 📝 Exemple d'Utilisation
+
+### Scénario 1 : Premier Push avec Token
 
 ```bash
-# Cloner le projet
-git clone https://github.com/TON-USERNAME/zyatria-global.git
-cd zyatria-global
+$ ./push-to-github.sh
 
-# Installer les dépendances
-npm install
+🚀 ==========================================
+   PUSH AUTOMATIQUE VERS GITHUB
+   ZyatrIA Global
+==========================================
 
-# Lancer le serveur de développement
-npm run dev
+📊 Statut actuel du dépôt...
+M  src/components/Hero.tsx
+M  src/pages/index.astro
+?? new-file.tsx
+
+⚠️  Voulez-vous pousser tous ces changements vers GitHub ?
+Continuer ? (o/n) : o
+
+📦 Ajout de tous les fichiers...
+
+💬 Message de commit (appuyez sur Entrée pour le message par défaut) :
+Ajout du nouveau composant Hero
+
+📝 Création du commit...
+✅ Commit créé avec succès !
+
+🔗 Remote actuel : https://github.com/stephanetako/-ZyatrIA-Global.git
+
+🔐 Choisissez la méthode d'authentification :
+1) Token GitHub (Recommandé)
+2) SSH
+3) Essayer le push direct (si déjà configuré)
+
+Votre choix (1/2/3) : 1
+
+🔑 Configuration avec Token GitHub
+
+📝 Entrez votre token GitHub :
+(Créez-en un sur : https://github.com/settings/tokens)
+[token caché]
+
+✅ Token configuré
+
+🚀 Push vers GitHub en cours...
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.23 KiB | 1.23 MiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To https://github.com/stephanetako/-ZyatrIA-Global.git
+   abc1234..def5678  main -> main
+
+==========================================
+   ✅ PUSH RÉUSSI !
+==========================================
+
+🎉 Vos changements ont été poussés vers GitHub
+🔗 Voir sur : https://github.com/stephanetako/-ZyatrIA-Global.git
 ```
-
-Le site sera accessible sur : **http://localhost:3000**
 
 ---
 
-## 📦 Build de Production
+## 🛠️ Personnalisation
 
+### Modifier le Message de Commit par Défaut
+
+Dans `push-to-github.sh` :
 ```bash
-npm run build
+COMMIT_MSG="🚀 Mise à jour automatique - $(date '+%Y-%m-%d %H:%M:%S')"
 ```
 
-Les fichiers optimisés seront dans le dossier `dist/`
-
----
-
-## 🌐 Déploiement
-
-### Déploiement sur Cloudflare Pages
-
-1. **Pousse le code sur GitHub** (ce dépôt)
-2. **Connecte-toi à Cloudflare** : https://dash.cloudflare.com
-3. **Crée un nouveau projet Pages**
-4. **Connecte ce dépôt GitHub**
-5. **Configure le build** :
-   - Framework preset: **Astro**
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-6. **Ajoute les variables d'environnement** :
-   ```
-   NODE_VERSION=20
-   FORMSPREE_FORM_ID=xeelvrdl
-   ```
-7. **Déploie !** 🚀
-
-Le site sera en ligne en 2-5 minutes avec HTTPS automatique et CDN mondial.
-
----
-
-## 🔧 Configuration
-
-### Formspree (Formulaire de Contact)
-
-1. Crée un compte sur [Formspree](https://formspree.io)
-2. Crée un nouveau formulaire
-3. Copie ton Form ID
-4. Configure dans `.env` :
-   ```
-   FORMSPREE_FORM_ID=ton-form-id
-   ```
-
-### Stripe (Paiements)
-
-1. Configure tes produits dans [Stripe](https://stripe.com)
-2. Crée des Payment Links pour chaque produit
-3. Mets à jour `src/config/stripe-links.ts` avec tes liens
-
----
-
-## 📁 Structure du Projet
-
+Dans `push-to-github.ps1` :
+```powershell
+$commitMsg = "🚀 Mise à jour automatique - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 ```
-/
-├── src/
-│   ├── components/       # Composants React
-│   │   ├── ui/          # Composants shadcn/ui
-│   │   └── pages/       # Composants de pages
-│   ├── layouts/         # Layouts Astro
-│   ├── pages/           # Pages du site
-│   │   ├── index.astro  # Page d'accueil
-│   │   ├── services.astro
-│   │   ├── pricing.astro
-│   │   └── ...
-│   ├── config/          # Configuration
-│   │   ├── formspree.ts
-│   │   └── stripe-links.ts
-│   └── styles/          # Styles globaux
-├── public/              # Assets statiques
-│   ├── favicon.svg
-│   ├── og-image.svg
-│   └── ...
-└── generated/           # Fichiers générés par Webflow
+
+### Changer la Branche par Défaut
+
+Remplacez `main` par votre branche :
+```bash
+git push origin votre-branche
 ```
 
 ---
 
-## 🎨 Personnalisation
+## ❌ Résolution de Problèmes
 
-### Couleurs et Thème
+### Erreur : "Permission denied"
 
-Les variables CSS sont dans `generated/webflow.css` :
-- `--_apps---colors--primary` : Couleur primaire (#C98769)
-- `--_apps---colors--background` : Fond (#F5F1EB)
-- Etc.
+**Cause :** Problème d'authentification
 
-Tu peux override ces variables dans `src/styles/color-override.css`
+**Solutions :**
+1. Vérifiez votre token GitHub
+2. Vérifiez vos clés SSH
+3. Recréez un nouveau token avec les bonnes permissions
 
-### Polices
+### Erreur : "Updates were rejected"
 
-Les polices sont configurées dans `generated/fonts.css` :
-- **Heading** : Instrument Sans
-- **Body** : Instrument Sans
-- **Button** : Instrument Sans
+**Cause :** Votre branche locale est en retard
+
+**Solution :**
+```bash
+git pull origin main --rebase
+./push-to-github.sh
+```
+
+### Erreur : "fatal: not a git repository"
+
+**Cause :** Vous n'êtes pas dans un dépôt Git
+
+**Solution :**
+```bash
+cd /chemin/vers/votre/projet
+./push-to-github.sh
+```
+
+### Le script ne s'exécute pas (Linux/Mac)
+
+**Cause :** Permissions manquantes
+
+**Solution :**
+```bash
+chmod +x push-to-github.sh
+./push-to-github.sh
+```
+
+### Le script ne s'exécute pas (Windows)
+
+**Cause :** Politique d'exécution PowerShell
+
+**Solution :**
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\push-to-github.ps1
+```
 
 ---
 
-## 📧 Contact
+## 🔒 Sécurité
 
-- **Email** : zyatria.contact@gmail.com
-- **Site** : https://zyatria.global (une fois déployé)
+### ⚠️ Important
 
----
+- ❌ **Ne commitez JAMAIS votre token** dans le code
+- ❌ **Ne partagez JAMAIS votre token** publiquement
+- ✅ **Révoquéz immédiatement** un token exposé
+- ✅ **Utilisez des tokens** avec les permissions minimales nécessaires
 
-## 📄 Licence
+### Bonnes Pratiques
 
-© 2024-2026 ZyatrIA Global. Tous droits réservés.
-
----
-
-## 🎯 Prochaines Étapes
-
-Après déploiement :
-
-1. ✅ Configure un domaine personnalisé
-2. ✅ Teste tous les formulaires
-3. ✅ Vérifie les liens Stripe
-4. ✅ Active les analytics Cloudflare
-5. ✅ Optimise les images si nécessaire
+1. **Créez un token par projet**
+2. **Définissez une date d'expiration**
+3. **Révoquéz les tokens inutilisés**
+4. **Utilisez SSH pour un usage fréquent**
 
 ---
 
-**🚀 Prêt à transformer ton business avec l'IA ? C'est parti !**
+## 📚 Documentation Complémentaire
+
+- 📖 [Guide Complet de Déploiement](🚀_GUIDE_COMPLET_DEPLOIEMENT.md)
+- ⚡ [Déploiement en 5 Minutes](⚡_DEPLOIE_EN_5_MINUTES.md)
+- ✅ [Checklist de Déploiement](✅_CHECKLIST_DEPLOIEMENT.md)
+- 🔧 [Guide GitHub Push](GUIDE_GITHUB_PUSH.md)
+
+---
+
+## 🆘 Support
+
+Si vous rencontrez des problèmes :
+
+1. **Consultez** : [PUSH_GITHUB_MAINTENANT.md](PUSH_GITHUB_MAINTENANT.md)
+2. **Vérifiez** : https://docs.github.com/en/authentication
+3. **Contactez** : support@zyatria.global
+
+---
+
+## 📊 Statistiques du Projet
+
+**Commit actuel :**
+- 📦 107 fichiers modifiés
+- ➕ 13,828 insertions
+- ➖ 3,358 suppressions
+
+**Contenu :**
+- ✅ Composants React complets
+- ✅ APIs fonctionnelles
+- ✅ Dashboard interactif
+- ✅ 15+ guides de déploiement
+- ✅ Scripts automatisés
+
+---
+
+## 🎉 Prochaines Étapes
+
+Après avoir poussé vers GitHub :
+
+1. ✅ Vérifiez sur GitHub que tout est présent
+2. 🔧 Configurez les secrets pour Cloudflare
+3. 🚀 Lancez le déploiement
+4. 🧪 Testez votre application
+
+---
+
+**Bon push ! 🚀**

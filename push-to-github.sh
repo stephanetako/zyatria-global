@@ -1,70 +1,160 @@
 #!/bin/bash
 
-echo "🚀 PRÉPARATION PUSH VERS GITHUB"
-echo "================================"
+# 🚀 Script de Push Automatique vers GitHub
+# ZyatrIA Global - Déploiement Automatisé
+
+echo "🚀 =========================================="
+echo "   PUSH AUTOMATIQUE VERS GITHUB"
+echo "   ZyatrIA Global"
+echo "=========================================="
 echo ""
 
-# Vérifier si Git est initialisé
+# Couleurs pour les messages
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Vérifier si git est installé
+if ! command -v git &> /dev/null; then
+    echo -e "${RED}❌ Git n'est pas installé${NC}"
+    exit 1
+fi
+
+# Vérifier si on est dans un repo git
 if [ ! -d .git ]; then
-  echo "📦 Initialisation Git..."
-  git init
-  echo "✅ Git initialisé"
-else
-  echo "✅ Git déjà initialisé"
+    echo -e "${RED}❌ Ce n'est pas un dépôt Git${NC}"
+    exit 1
 fi
 
-# Configurer Git (si nécessaire)
+echo -e "${BLUE}📊 Statut actuel du dépôt...${NC}"
+git status --short
 echo ""
-echo "👤 Configuration Git..."
-git config user.name "Stephane Chevry" 2>/dev/null || true
-git config user.email "stephanechevry@gmail.com" 2>/dev/null || true
 
-# Vérifier les remotes existants
+# Demander confirmation
+echo -e "${YELLOW}⚠️  Voulez-vous pousser tous ces changements vers GitHub ?${NC}"
+read -p "Continuer ? (o/n) : " -n 1 -r
 echo ""
-echo "🔍 Vérification des remotes..."
-git remote -v
 
-# Ajouter le remote si pas déjà présent
-if ! git remote | grep -q "origin"; then
-  echo ""
-  echo "➕ Ajout du remote GitHub..."
-  git remote add origin https://github.com/stephanechevry-dev/Zyatria-Global.git
-  echo "✅ Remote ajouté"
-else
-  echo "✅ Remote déjà configuré"
-  echo ""
-  echo "📝 Pour changer le remote:"
-  echo "git remote set-url origin https://github.com/stephanechevry-dev/Zyatria-Global.git"
+if [[ ! $REPLY =~ ^[OoYy]$ ]]; then
+    echo -e "${RED}❌ Opération annulée${NC}"
+    exit 1
 fi
 
-# Afficher les fichiers à committer
+# Ajouter tous les fichiers
+echo -e "${BLUE}📦 Ajout de tous les fichiers...${NC}"
+git add .
+
+# Demander le message de commit
 echo ""
-echo "📋 Fichiers à committer:"
-git status --short | head -20
+echo -e "${YELLOW}💬 Message de commit (appuyez sur Entrée pour le message par défaut) :${NC}"
+read -r COMMIT_MSG
+
+if [ -z "$COMMIT_MSG" ]; then
+    COMMIT_MSG="🚀 Mise à jour automatique - $(date '+%Y-%m-%d %H:%M:%S')"
+fi
+
+# Créer le commit
+echo -e "${BLUE}📝 Création du commit...${NC}"
+git commit -m "$COMMIT_MSG"
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ Erreur lors de la création du commit${NC}"
+    exit 1
+fi
 
 echo ""
-echo "📊 Total fichiers modifiés:"
-git status --short | wc -l
-
-echo ""
-echo "================================"
-echo "✅ PRÉPARATION TERMINÉE"
-echo ""
-echo "🎯 PROCHAINES COMMANDES:"
-echo ""
-echo "# 1. Ajouter tous les fichiers"
-echo "git add ."
-echo ""
-echo "# 2. Créer le commit"
-echo "git commit -m 'Site complet - Formspree + Stripe configurés'"
-echo ""
-echo "# 3. Vérifier la branche"
-echo "git branch -M main"
-echo ""
-echo "# 4. Pousser vers GitHub"
-echo "git push -u origin main"
-echo ""
-echo "# Si erreur 'rejected', forcer le push:"
-echo "git push -u origin main --force"
+echo -e "${GREEN}✅ Commit créé avec succès !${NC}"
 echo ""
 
+# Vérifier le remote
+REMOTE_URL=$(git remote get-url origin)
+echo -e "${BLUE}🔗 Remote actuel : ${REMOTE_URL}${NC}"
+echo ""
+
+# Méthode d'authentification
+echo -e "${YELLOW}🔐 Choisissez la méthode d'authentification :${NC}"
+echo "1) Token GitHub (Recommandé)"
+echo "2) SSH"
+echo "3) Essayer le push direct (si déjà configuré)"
+echo ""
+read -p "Votre choix (1/2/3) : " -n 1 -r AUTH_METHOD
+echo ""
+echo ""
+
+case $AUTH_METHOD in
+    1)
+        echo -e "${BLUE}🔑 Configuration avec Token GitHub${NC}"
+        echo ""
+        echo -e "${YELLOW}📝 Entrez votre token GitHub :${NC}"
+        echo "(Créez-en un sur : https://github.com/settings/tokens)"
+        read -s GITHUB_TOKEN
+        echo ""
+        
+        if [ -z "$GITHUB_TOKEN" ]; then
+            echo -e "${RED}❌ Token vide, opération annulée${NC}"
+            exit 1
+        fi
+        
+        # Extraire le nom d'utilisateur et le repo
+        REPO_PATH=$(echo $REMOTE_URL | sed 's/https:\/\/github.com\///')
+        
+        # Configurer le remote avec le token
+        git remote set-url origin "https://${GITHUB_TOKEN}@github.com/${REPO_PATH}"
+        
+        echo -e "${GREEN}✅ Token configuré${NC}"
+        ;;
+        
+    2)
+        echo -e "${BLUE}🔑 Configuration avec SSH${NC}"
+        
+        # Extraire le chemin du repo
+        REPO_PATH=$(echo $REMOTE_URL | sed 's/https:\/\/github.com\///')
+        
+        # Configurer le remote en SSH
+        git remote set-url origin "git@github.com:${REPO_PATH}"
+        
+        echo -e "${GREEN}✅ Remote configuré en SSH${NC}"
+        ;;
+        
+    3)
+        echo -e "${BLUE}🔄 Tentative de push direct...${NC}"
+        ;;
+        
+    *)
+        echo -e "${RED}❌ Choix invalide${NC}"
+        exit 1
+        ;;
+esac
+
+echo ""
+echo -e "${BLUE}🚀 Push vers GitHub en cours...${NC}"
+echo ""
+
+# Pousser vers GitHub
+git push origin main
+
+if [ $? -eq 0 ]; then
+    echo ""
+    echo -e "${GREEN}=========================================="
+    echo "   ✅ PUSH RÉUSSI !"
+    echo "=========================================="
+    echo ""
+    echo "🎉 Vos changements ont été poussés vers GitHub"
+    echo "🔗 Voir sur : ${REMOTE_URL}"
+    echo ""
+else
+    echo ""
+    echo -e "${RED}=========================================="
+    echo "   ❌ ERREUR LORS DU PUSH"
+    echo "=========================================="
+    echo ""
+    echo "💡 Solutions possibles :"
+    echo "   1. Vérifiez votre token GitHub"
+    echo "   2. Vérifiez vos clés SSH"
+    echo "   3. Vérifiez votre connexion internet"
+    echo "   4. Vérifiez les permissions du dépôt"
+    echo ""
+    exit 1
+fi
