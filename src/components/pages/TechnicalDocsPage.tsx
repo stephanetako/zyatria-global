@@ -22,7 +22,7 @@ import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 interface TechnicalDocsPageProps {
-  lang?: 'en' | 'fr' | 'es' | 'pt';
+  lang?: 'en' | 'fr';
 }
 
 export default function TechnicalDocsPage({ lang = 'en' }: TechnicalDocsPageProps) {
@@ -34,7 +34,7 @@ export default function TechnicalDocsPage({ lang = 'en' }: TechnicalDocsPageProp
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
-  type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+  type TranslationKey = 'en' | 'fr';
 
   const translations: Record<TranslationKey, any> = {
     en: {
@@ -695,4 +695,5 @@ fetch('https://api.notion.com/v1/pages', {
     </div>
   );
 }
+
 

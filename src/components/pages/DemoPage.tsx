@@ -1,9 +1,13 @@
+
+
+
 import React, { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { getFormspreeUrl } from '../../config/formspree';
+import { useLanguage } from '../../lib/language-context';
 
 const translations = {
   en: {
@@ -21,7 +25,7 @@ const translations = {
     },
     contact: {
       title: "ZyatrIA Global",
-      tagline: "AI without borders.",
+      tagline: "Intelligent Automation for Modern Business.",
       location: "Available in North America, Europe, Francophone Africa, and Latin America."
     }
   },
@@ -85,7 +89,8 @@ const translations = {
 };
 
 export default function DemoPage() {
-  const [language, setLanguage] = React.useState<'en' | 'fr' | 'es' | 'pt'>('en');
+  const { language } = useLanguage();
+  const t = translations[language];
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -93,19 +98,6 @@ export default function DemoPage() {
     sector: '',
     message: ''
   });
-  const t = translations[language];
-
-  React.useEffect(() => {
-    const savedLang = localStorage.getItem('language') as 'en' | 'fr' | 'es' | 'pt';
-    if (savedLang) setLanguage(savedLang);
-
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange as EventListener);
-    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,7 +150,6 @@ export default function DemoPage() {
           <button
             key={l}
             onClick={() => {
-              setLanguage(l);
               localStorage.setItem('language', l);
               window.dispatchEvent(new CustomEvent('languageChange', { detail: l }));
             }}
@@ -289,5 +280,4 @@ export default function DemoPage() {
     </div>
   );
 }
-
 

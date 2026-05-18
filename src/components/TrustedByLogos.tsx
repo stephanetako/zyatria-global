@@ -1,22 +1,15 @@
-import { useState } from 'react';
+import React from 'react';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
-    title: "Trusted by Industry Leaders",
-    subtitle: "Join 2,000+ companies already transforming their operations with AI"
+    title: "Trusted by Growing Companies Worldwide",
+    subtitle: "Join 150+ businesses that have transformed their operations with our AI solutions"
   },
   fr: {
-    title: "La confiance des leaders de l'industrie",
-    subtitle: "Rejoignez 2 000+ entreprises qui transforment déjà leurs opérations avec l'IA"
+    title: "Approuvé par des entreprises en croissance dans le monde entier",
+    subtitle: "Rejoignez plus de 150 entreprises qui ont transformé leurs opérations avec nos solutions IA"
   },
-  es: {
-    title: "Confianza de los líderes de la industria",
-    subtitle: "Únete a más de 2,000 empresas que ya están transformando sus operaciones con IA"
-  },
-  pt: {
-    title: "Confiança dos líderes da indústria",
-    subtitle: "Junte-se a mais de 2.000 empresas que já estão transformando suas operações com IA"
-  }
 };
 
 // Logos d'entreprises fictives mais crédibles
@@ -32,8 +25,8 @@ const companies = [
 ];
 
 export default function TrustedByLogos() {
-  const [lang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <section className="py-16 bg-muted/30">
@@ -89,3 +82,4 @@ export default function TrustedByLogos() {
     </section>
   );
 }
+

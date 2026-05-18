@@ -1,3 +1,5 @@
+import React from 'react';
+import { useLanguage } from '../lib/language-context';
 import { Newspaper, Trophy } from 'lucide-react';
 
 const translations = {
@@ -73,8 +75,8 @@ const awards = [
 ];
 
 export default function AsSeenIn() {
-  const lang = 'en' as 'en' | 'fr' | 'es' | 'pt';
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <section className="py-16 bg-background border-y border-border">
@@ -130,7 +132,7 @@ export default function AsSeenIn() {
               >
                 <Trophy className="w-8 h-8 text-yellow-500 mx-auto mb-3" />
                 <div className="font-semibold text-sm mb-2">
-                  {award[lang]}
+                  {award[language]}
                 </div>
                 <div className="text-xs text-muted-foreground">
                   {award.organization}
@@ -143,3 +145,4 @@ export default function AsSeenIn() {
     </section>
   );
 }
+

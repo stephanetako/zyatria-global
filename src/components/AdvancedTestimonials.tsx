@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Quote, Star, TrendingUp, Clock, DollarSign, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
@@ -89,8 +90,8 @@ const testimonials = [
 ];
 
 export default function AdvancedTestimonials() {
-  const [lang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <section className="py-20 bg-background">
@@ -132,7 +133,7 @@ export default function AdvancedTestimonials() {
               <div className="relative mb-6">
                 <Quote className="w-12 h-12 text-blue-600/20 mb-4" />
                 <p className="text-foreground/90 leading-relaxed pl-6 italic">
-                  "{testimonial.quote[lang]}"
+                  "{testimonial.quote[language]}"
                 </p>
               </div>
 
@@ -167,6 +168,7 @@ export default function AdvancedTestimonials() {
     </section>
   );
 }
+
 
 
 

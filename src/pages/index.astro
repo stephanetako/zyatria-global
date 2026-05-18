@@ -3,33 +3,9 @@
 
 
 
-
 ---
 import MainLayout from '../layouts/main.astro';
-import Navigation from '../components/Navigation';
-import Hero from '../components/Hero';
-import LiveStats from '../components/LiveStats';
-import Intro from '../components/Intro';
-import TrustedByLogos from '../components/TrustedByLogos';
-import AsSeenIn from '../components/AsSeenIn';
-import TrustStats from '../components/TrustStats';
-import TrustBadges from '../components/TrustBadges';
-import MicroAgents from '../components/MicroAgents';
-import HowItWorks from '../components/HowItWorks';
-import ConfigureMicroAgent from '../components/ConfigureMicroAgent';
-import Services from '../components/Services';
-import Pricing from '../components/Pricing';
-import CompetitorComparison from '../components/CompetitorComparison';
-import CaseStudies from '../components/CaseStudies';
-import AdvancedTestimonials from '../components/AdvancedTestimonials';
-import Solutions from '../components/Solutions';
-import ROICalculator from '../components/ROICalculator';
-import FAQ from '../components/FAQ';
-import Contact from '../components/Contact';
-import CTAFinal from '../components/CTAFinal';
-import Footer from '../components/Footer';
-import LiveChat from '../components/LiveChat';
-import FormspreeButton from '../components/FormspreeButton';
+import AppWrapper from '../components/AppWrapper';
 
 const seoData = {
   title: "ZyatrIA Global | Agents IA & Automation Sans Frontières - Déploiement en 7-15 jours",
@@ -44,32 +20,7 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-<div class="relative">
-<Navigation client:load />
-<Hero client:only="react" />
-<LiveStats client:only="react" />
-<Intro client:only="react" />
-<TrustedByLogos client:only="react" />
-<AsSeenIn client:only="react" />
-<TrustStats client:only="react" />
-<TrustBadges client:only="react" />
-<MicroAgents client:only="react" />
-<HowItWorks client:only="react" />
-<ConfigureMicroAgent client:only="react" />
-<Services client:only="react" />
-<Pricing client:only="react" />
-<CompetitorComparison client:only="react" />
-<CaseStudies client:only="react" />
-<AdvancedTestimonials client:only="react" />
-<Solutions client:only="react" />
-<ROICalculator client:only="react" />
-<FAQ client:only="react" />
-<Contact client:only="react" />
-<CTAFinal client:only="react" />
-<Footer client:only="react" />
-<LiveChat client:only="react" />
-<FormspreeButton client:only="react" />
-</div>
+<AppWrapper client:only="react" />
 </MainLayout>
 
 <style is:global>
@@ -269,6 +220,9 @@ height: 1px;
 overflow: hidden;
 }
 </style>
+
+
+
 
 
 

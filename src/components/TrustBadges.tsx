@@ -1,163 +1,96 @@
 
 
 
+
+
+
 import React from 'react';
 import { Shield, Lock, Award, CheckCircle2, Zap, Globe } from 'lucide-react';
 import { Card } from './ui/card';
+import { useLanguage } from '../lib/language-context';
 
-interface TrustBadgesProps {
-  lang?: string;
-}
+const content: Record<'en' | 'fr', any> = {
+  en: {
+    title: 'Your Success, ',
+    titleHighlight: 'Our Priority',
+    moneyBackTitle: 'Satisfaction or Money-Back Guarantee',
+    moneyBackDesc: '30 days to try risk-free. Not satisfied? Full refund.',
+    badges: [
+      {
+        icon: Shield,
+        title: 'GDPR Compliant',
+        description: 'Enterprise-grade security'
+      },
+      {
+        icon: Lock,
+        title: 'Data Encryption',
+        description: 'Bank-level protection'
+      },
+      {
+        icon: Award,
+        title: '30-Day Guarantee',
+        description: 'Risk-free trial'
+      },
+      {
+        icon: CheckCircle2,
+        title: 'ISO Certified',
+        description: 'International standards'
+      },
+      {
+        icon: Zap,
+        title: '99.9% Uptime',
+        description: 'Always available'
+      },
+      {
+        icon: Globe,
+        title: 'Global Support',
+        description: '24/7 multilingual'
+      }
+    ]
+  },
+  fr: {
+    title: 'Votre Succès, ',
+    titleHighlight: 'Notre Priorité',
+    moneyBackTitle: 'Garantie Satisfait ou Remboursé',
+    moneyBackDesc: '30 jours pour essayer sans risque. Pas satisfait ? Remboursement intégral.',
+    badges: [
+      {
+        icon: Shield,
+        title: 'Conforme RGPD',
+        description: 'Sécurité entreprise'
+      },
+      {
+        icon: Lock,
+        title: 'Chiffrement Data',
+        description: 'Protection bancaire'
+      },
+      {
+        icon: Award,
+        title: 'Garantie 30 Jours',
+        description: 'Essai sans risque'
+      },
+      {
+        icon: CheckCircle2,
+        title: 'Certifié ISO',
+        description: 'Normes internationales'
+      },
+      {
+        icon: Zap,
+        title: '99.9% Disponibilité',
+        description: 'Toujours actif'
+      },
+      {
+        icon: Globe,
+        title: 'Support Global',
+        description: '24/7 multilingue'
+      }
+    ]
+  },
+};
 
-const TrustBadges: React.FC<TrustBadgesProps> = ({ lang = 'en' }) => {
-  const content: Record<string, any> = {
-    en: {
-      title: 'Your Success, ',
-      titleHighlight: 'Our Priority',
-      badges: [
-        {
-          icon: Shield,
-          title: 'GDPR Compliant',
-          description: 'Enterprise-grade security'
-        },
-        {
-          icon: Lock,
-          title: 'Data Encryption',
-          description: 'Bank-level protection'
-        },
-        {
-          icon: Award,
-          title: '30-Day Guarantee',
-          description: 'Risk-free trial'
-        },
-        {
-          icon: CheckCircle2,
-          title: 'ISO Certified',
-          description: 'International standards'
-        },
-        {
-          icon: Zap,
-          title: '99.9% Uptime',
-          description: 'Always available'
-        },
-        {
-          icon: Globe,
-          title: 'Global Support',
-          description: '24/7 multilingual'
-        }
-      ]
-    },
-    fr: {
-      title: 'Votre Succès, ',
-      titleHighlight: 'Notre Priorité',
-      badges: [
-        {
-          icon: Shield,
-          title: 'Conforme RGPD',
-          description: 'Sécurité entreprise'
-        },
-        {
-          icon: Lock,
-          title: 'Chiffrement Data',
-          description: 'Protection bancaire'
-        },
-        {
-          icon: Award,
-          title: 'Garantie 30 Jours',
-          description: 'Essai sans risque'
-        },
-        {
-          icon: CheckCircle2,
-          title: 'Certifié ISO',
-          description: 'Normes internationales'
-        },
-        {
-          icon: Zap,
-          title: '99.9% Disponibilité',
-          description: 'Toujours actif'
-        },
-        {
-          icon: Globe,
-          title: 'Support Global',
-          description: '24/7 multilingue'
-        }
-      ]
-    },
-    es: {
-      title: 'Su Éxito, ',
-      titleHighlight: 'Nuestra Prioridad',
-      badges: [
-        {
-          icon: Shield,
-          title: 'Conforme GDPR',
-          description: 'Seguridad empresarial'
-        },
-        {
-          icon: Lock,
-          title: 'Cifrado de Datos',
-          description: 'Protección bancaria'
-        },
-        {
-          icon: Award,
-          title: 'Garantía 30 Días',
-          description: 'Prueba sin riesgo'
-        },
-        {
-          icon: CheckCircle2,
-          title: 'Certificado ISO',
-          description: 'Estándares internacionales'
-        },
-        {
-          icon: Zap,
-          title: '99.9% Disponibilidad',
-          description: 'Siempre activo'
-        },
-        {
-          icon: Globe,
-          title: 'Soporte Global',
-          description: '24/7 multilingüe'
-        }
-      ]
-    },
-    pt: {
-      title: 'Seu Sucesso, ',
-      titleHighlight: 'Nossa Prioridade',
-      badges: [
-        {
-          icon: Shield,
-          title: 'Conforme GDPR',
-          description: 'Segurança empresarial'
-        },
-        {
-          icon: Lock,
-          title: 'Criptografia de Dados',
-          description: 'Proteção bancária'
-        },
-        {
-          icon: Award,
-          title: 'Garantia 30 Dias',
-          description: 'Teste sem risco'
-        },
-        {
-          icon: CheckCircle2,
-          title: 'Certificado ISO',
-          description: 'Padrões internacionais'
-        },
-        {
-          icon: Zap,
-          title: '99.9% Disponibilidade',
-          description: 'Sempre ativo'
-        },
-        {
-          icon: Globe,
-          title: 'Suporte Global',
-          description: '24/7 multilíngue'
-        }
-      ]
-    }
-  };
-
-  const t = content[lang];
+const TrustBadges: React.FC = () => {
+  const { language } = useLanguage();
+  const t = content[language];
 
   return (
     <section className="py-16 bg-gradient-to-b from-white to-blue-50/30 dark:from-zinc-950 dark:to-blue-950/10">
@@ -211,21 +144,15 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({ lang = 'en' }) => {
 
         {/* Money-Back Guarantee Banner */}
         <div className="mt-12 max-w-3xl mx-auto">
-          <Card className="p-6 bg-gradient-ocean text-white border-0 shadow-xl glow-cyan animate-gradient">
+          <Card className="p-6 bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 text-white border-0 shadow-xl shadow-blue-600/30">
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <Award className="w-8 h-8 flex-shrink-0" />
               <div className="text-center sm:text-left">
-                <h3 className="font-bold text-xl mb-1">
-                  {lang === 'fr' ? 'Garantie Satisfait ou Remboursé' :
-                   lang === 'es' ? 'Garantía de Satisfacción o Reembolso' :
-                   lang === 'pt' ? 'Garantia de Satisfação ou Reembolso' :
-                   'Satisfaction or Money-Back Guarantee'}
+                <h3 className="font-bold text-xl mb-1 text-white">
+                  {t.moneyBackTitle}
                 </h3>
-                <p className="text-white/90">
-                  {lang === 'fr' ? '30 jours pour essayer sans risque. Pas satisfait ? Remboursement intégral.' :
-                   lang === 'es' ? '30 días para probar sin riesgo. ¿No satisfecho? Reembolso completo.' :
-                   lang === 'pt' ? '30 dias para experimentar sem risco. Não satisfeito? Reembolso total.' :
-                   '30 days to try risk-free. Not satisfied? Full refund.'}
+                <p className="text-white text-base">
+                  {t.moneyBackDesc}
                 </p>
               </div>
             </div>
@@ -237,6 +164,9 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({ lang = 'en' }) => {
 };
 
 export default TrustBadges;
+
+
+
 
 
 

@@ -1,5 +1,9 @@
-import { ShoppingBag, Building2, HeartHandshake, ArrowRight, TrendingUp, Clock, Users } from 'lucide-react';
-import { useState } from 'react';
+import React from 'react';
+import { ShoppingBag, Building2, HeartHandshake, ArrowRight, TrendingUp, Clock, Users, DollarSign } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
@@ -329,8 +333,7 @@ const translations = {
 };
 
 export default function CaseStudies() {
-  const [lang, setLang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const t = translations.en;
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -339,23 +342,6 @@ export default function CaseStudies() {
   return (
     <section id="case-studies" className="py-20 md:py-32 bg-background">
       <div className="container">
-        {/* Language Switcher */}
-        <div className="flex justify-center gap-2 mb-8 animate-fade-in">
-          {(['en', 'fr', 'es', 'pt'] as const).map((l) => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                lang === l
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white text-zinc-800 border-2 border-zinc-200 dark:bg-zinc-900 dark:text-white dark:border-zinc-700'
-              }`}
-            >
-              {l.toUpperCase()}
-            </button>
-          ))}
-        </div>
-
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-block px-4 py-2 rounded-full bg-sky-500/10 text-sky-600 text-sm font-medium animate-fade-in-up border border-sky-400/30">
@@ -486,6 +472,10 @@ export default function CaseStudies() {
     </section>
   );
 }
+
+
+
+
 
 
 

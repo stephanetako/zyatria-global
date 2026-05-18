@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
+import { useLanguage } from '../lib/language-context';
 
-interface FormspreeButtonProps {
-  lang?: string;
-}
-
-export default function FormspreeButton({ 
-  lang = 'en'
-}: FormspreeButtonProps) {
+export default function FormspreeButton() {
+  const { language } = useLanguage();
   
   useEffect(() => {
     // Check if script is already loaded
@@ -33,7 +29,7 @@ export default function FormspreeButton({
       setTimeout(() => {
         if (window.formbutton) {
           // Translations
-          const translations: Record<string, any> = {
+          const translations: Record<'en' | 'fr', any> = {
             en: {
               title: "Quick Contact 💬",
               nameLabel: "Name:",
@@ -54,29 +50,9 @@ export default function FormspreeButton({
               messagePlaceholder: "Comment pouvons-nous vous aider ?",
               submitText: "Envoyer"
             },
-            es: {
-              title: "Contacto Rápido 💬",
-              nameLabel: "Nombre:",
-              namePlaceholder: "Su nombre",
-              emailLabel: "Email:",
-              emailPlaceholder: "su@email.com",
-              messageLabel: "Mensaje:",
-              messagePlaceholder: "¿Cómo podemos ayudarle?",
-              submitText: "Enviar"
-            },
-            pt: {
-              title: "Contato Rápido 💬",
-              nameLabel: "Nome:",
-              namePlaceholder: "Seu nome",
-              emailLabel: "Email:",
-              emailPlaceholder: "seu@email.com",
-              messageLabel: "Mensagem:",
-              messagePlaceholder: "Como podemos ajudá-lo?",
-              submitText: "Enviar"
-            }
           };
 
-          const t = translations[lang] || translations.en;
+          const t = translations[language] || translations.en;
 
           window.formbutton("create", {
             action: "https://formspree.io/f/xeelvrdl",
@@ -129,7 +105,7 @@ export default function FormspreeButton({
     }
 
     // Don't cleanup - let the button persist
-  }, [lang]);
+  }, [language]);
 
   return null; // This component doesn't render anything visible itself
 }
@@ -140,3 +116,5 @@ declare global {
     formbutton: any;
   }
 }
+
+

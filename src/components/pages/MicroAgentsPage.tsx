@@ -1,7 +1,9 @@
 import React from 'react';
-import { Target, MessageSquare, Calendar, Bell, Home, ShoppingBag, CheckCircle } from 'lucide-react';
+import { Bot, MessageSquare, ShoppingCart, Users, FileText, Calendar, TrendingUp, Mail, ArrowRight, Target, Bell, Home, ShoppingBag } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { baseUrl } from '../../lib/base-url';
+import { useLanguage } from '../../lib/language-context';
 
 const translations = {
   en: {
@@ -127,20 +129,8 @@ const translations = {
 };
 
 export default function MicroAgentsPage() {
-  const [language, setLanguage] = React.useState<'en' | 'fr' | 'es' | 'pt'>('en');
+  const { language } = useLanguage();
   const t = translations[language];
-
-  React.useEffect(() => {
-    const savedLang = localStorage.getItem('language') as 'en' | 'fr' | 'es' | 'pt';
-    if (savedLang) setLanguage(savedLang);
-
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange as EventListener);
-    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
-  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -224,3 +214,7 @@ export default function MicroAgentsPage() {
     </div>
   );
 }
+
+
+
+

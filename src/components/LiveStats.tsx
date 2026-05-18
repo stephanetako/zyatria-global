@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TrendingUp, Users, Clock, Zap } from 'lucide-react';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
@@ -45,8 +46,8 @@ const translations = {
 };
 
 export default function LiveStats() {
-  const [lang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   // Simulated live counters
   const [activeAgents, setActiveAgents] = useState(2847);
@@ -185,5 +186,6 @@ export default function LiveStats() {
     </section>
   );
 }
+
 
 

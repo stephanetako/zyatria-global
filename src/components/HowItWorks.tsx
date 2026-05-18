@@ -1,7 +1,10 @@
+
+
 import React from 'react';
 import { Search, Wrench, Rocket, CheckCircle2, ArrowRight, Timer } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
+import { useLanguage } from '../lib/language-context';
 
 interface HowItWorksProps {
   lang?: string;
@@ -214,8 +217,9 @@ const translations = {
   }
 };
 
-const HowItWorks: React.FC<HowItWorksProps> = ({ lang = 'en' }) => {
-  const t = translations[lang as keyof typeof translations];
+const HowItWorks: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -256,17 +260,17 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ lang = 'en' }) => {
             {t.steps.map((step: any, index: number) => {
               const Icon = step.icon;
               const delays = ['delay-200', 'delay-400', 'delay-500'];
-              const gradients = [
-                'from-blue-600 to-violet-600',
-                'from-violet-600 to-cyan-600',
-                'from-cyan-600 to-blue-600'
+              const solidColors = [
+                'bg-blue-600',
+                'bg-violet-600',
+                'bg-cyan-600'
               ];
 
               return (
                 <div key={index} className={`relative animate-fade-in-up ${delays[index]}`}>
                   {/* Step Number Badge */}
                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${gradients[index]} rounded-full flex items-center justify-center shadow-2xl border-4 border-white dark:border-zinc-950`}>
+                    <div className={`w-16 h-16 ${solidColors[index]} rounded-full flex items-center justify-center shadow-2xl border-4 border-white dark:border-zinc-950`}>
                       <span className="text-2xl font-bold text-white">{index + 1}</span>
                     </div>
                   </div>
@@ -274,7 +278,7 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ lang = 'en' }) => {
                   <Card className="p-8 pt-16 hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500 group border-2 hover:border-blue-500/40 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm h-full">
                     {/* Icon */}
                     <div className={`absolute -top-10 left-1/2 transform -translate-x-1/2`}>
-                      <div className={`w-20 h-20 bg-gradient-to-br ${gradients[index]} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                      <div className={`w-20 h-20 ${solidColors[index]} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                         <Icon className="w-10 h-10 text-white" strokeWidth={2.5} />
                       </div>
                     </div>
@@ -290,7 +294,7 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ lang = 'en' }) => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-muted-foreground mb-6 leading-relaxed text-center">
+                    <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed text-center">
                       {step.description}
                     </p>
 
@@ -299,7 +303,7 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ lang = 'en' }) => {
                       {step.features.map((feature: string, idx: number) => (
                         <li key={idx} className="flex items-start gap-3 group/item">
                           <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
-                          <span className="text-sm leading-relaxed">{feature}</span>
+                          <span className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -333,6 +337,8 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ lang = 'en' }) => {
 };
 
 export default HowItWorks;
+
+
 
 
 

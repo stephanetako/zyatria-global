@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { Check, X, Zap, Award, CheckCircle2 } from 'lucide-react';
+import React from 'react';
+import { Check, X, Zap } from 'lucide-react';
+import { Button } from './ui/button';
+import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
@@ -141,8 +144,8 @@ const features = [
 ];
 
 export default function CompetitorComparison() {
-  const [lang] = useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const t = translations[lang];
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <section className="py-20 bg-background">
@@ -168,7 +171,7 @@ export default function CompetitorComparison() {
                 {t.us}
               </div>
               <div className="text-xs text-muted-foreground mt-1">
-                AI without borders
+                Fast & Reliable
               </div>
             </div>
             <div className="p-6 text-center">
@@ -191,7 +194,7 @@ export default function CompetitorComparison() {
             >
               {/* Feature name */}
               <div className={`p-4 font-medium ${feature.highlight ? 'pl-6 text-blue-600' : ''}`}>
-                {feature[lang]}
+                {feature[language]}
                 {feature.highlight && (
                   <span className="ml-2 text-xs bg-blue-500/10 text-blue-600 px-2 py-1 rounded">
                     Key Differentiator
@@ -256,6 +259,9 @@ export default function CompetitorComparison() {
     </section>
   );
 }
+
+
+
 
 
 

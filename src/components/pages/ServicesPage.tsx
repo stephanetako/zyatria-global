@@ -1,7 +1,9 @@
 import React from 'react';
-import { Brain, Workflow, Zap, CheckCircle } from 'lucide-react';
+import { Bot, Workflow, Zap, BarChart, Shield, Globe, ArrowRight, Check, Brain, CheckCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { baseUrl } from '../../lib/base-url';
+import { useLanguage } from '../../lib/language-context';
 
 const translations = {
   en: {
@@ -95,116 +97,12 @@ const translations = {
       title: "Prêt à commencer ?",
       button: "Request a demo"
     }
-  },
-  es: {
-    hero: {
-      badge: "Nuestros Servicios",
-      title: "Nuestros servicios",
-      subtitle: "Descubra cómo nuestras soluciones IA transforman su negocio, sin importar su industria."
-    },
-    services: [
-      {
-        icon: Brain,
-        title: "Agentes IA inteligentes",
-        description: "Agentes capaces de analizar, responder, decidir y ejecutar tareas en el corazón de su negocio.",
-        features: [
-          "Respuestas automáticas",
-          "Análisis inteligente",
-          "Ejecución de tareas",
-          "Se adapta a su negocio"
-        ]
-      },
-      {
-        icon: Workflow,
-        title: "Automatización avanzada",
-        description: "Conectamos sus herramientas, datos y procesos para crear flujos de trabajo fluidos y automatizados.",
-        features: [
-          "Integración CRM",
-          "Automatización de emails",
-          "Sincronización de datos",
-          "Flujos de trabajo inteligentes"
-        ]
-      },
-      {
-        icon: Zap,
-        title: "Micro-agentes IA",
-        description: "Soluciones rápidas, eficientes y adaptadas a su sector de actividad.",
-        features: [
-          "Implementación rápida",
-          "Costo reducido",
-          "Resultados inmediatos",
-          "Adaptados a cada sector"
-        ]
-      }
-    ],
-    cta: {
-      title: "¿Listo para empezar?",
-      button: "Request a demo"
-    }
-  },
-  pt: {
-    hero: {
-      badge: "Nossos Serviços",
-      title: "Nossos serviços",
-      subtitle: "Descubra como nossas soluções IA transformam seu negócio, independentemente do seu setor."
-    },
-    services: [
-      {
-        icon: Brain,
-        title: "Agentes IA inteligentes",
-        description: "Agentes capazes de analisar, responder, decidir e executar tarefas no coração do seu negócio.",
-        features: [
-          "Respostas automáticas",
-          "Análise inteligente",
-          "Execução de tarefas",
-          "Adapta-se ao seu negócio"
-        ]
-      },
-      {
-        icon: Workflow,
-        title: "Automação avançada",
-        description: "Conectamos suas ferramentas, dados e processos para criar fluxos de trabalho fluidos e automatizados.",
-        features: [
-          "Integração CRM",
-          "Automação de emails",
-          "Sincronização de dados",
-          "Fluxos de trabalho inteligentes"
-        ]
-      },
-      {
-        icon: Zap,
-        title: "Micro-agentes IA",
-        description: "Soluções rápidas, eficientes e adaptadas ao seu setor de atividade.",
-        features: [
-          "Implementação rápida",
-          "Custo reduzido",
-          "Resultados imediatos",
-          "Adaptados a cada setor"
-        ]
-      }
-    ],
-    cta: {
-      title: "Pronto para começar?",
-      button: "Request a demo"
-    }
   }
 };
 
 export default function ServicesPage() {
-  const [language, setLanguage] = React.useState<'en' | 'fr' | 'es' | 'pt'>('en');
+  const { language } = useLanguage();
   const t = translations[language];
-
-  React.useEffect(() => {
-    const savedLang = localStorage.getItem('language') as 'en' | 'fr' | 'es' | 'pt';
-    if (savedLang) setLanguage(savedLang);
-
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange as EventListener);
-    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
-  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -279,3 +177,5 @@ export default function ServicesPage() {
     </div>
   );
 }
+
+

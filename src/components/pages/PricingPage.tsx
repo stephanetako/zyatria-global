@@ -1,7 +1,11 @@
-import React from 'react';
-import { Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Zap, Building, Rocket } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { baseUrl } from '../../lib/base-url';
+import { useLanguage } from '../../lib/language-context';
+
+type Currency = 'eur' | 'usd' | 'cad';
 
 const translations = {
   en: {
@@ -141,167 +145,16 @@ const translations = {
       title: "Besoin d'aide pour choisir ?",
       button: "Request a demo"
     }
-  },
-  es: {
-    hero: {
-      title: "Nuestros planes",
-      subtitle: "Soluciones adaptadas a cada negocio, disponibles en EUR, USD y CAD."
-    },
-    currency: {
-      label: "Moneda:"
-    },
-    plans: [
-      {
-        name: "Starter",
-        price: { eur: 49, usd: 52, cad: 69 },
-        period: "/mes",
-        features: [
-          "1 micro-agente IA",
-          "Respuestas 24/7",
-          "Soporte por email"
-        ],
-        cta: "Comenzar",
-        popular: false
-      },
-      {
-        name: "Business",
-        price: { eur: 149, usd: 159, cad: 199 },
-        period: "/mes",
-        features: [
-          "3 micro-agentes IA",
-          "Automatizaciones avanzadas",
-          "Integraciones CRM",
-          "Soporte prioritario"
-        ],
-        cta: "Comenzar",
-        popular: true
-      },
-      {
-        name: "Enterprise",
-        price: "Personalizado",
-        period: "",
-        features: [
-          "Agentes IA personalizados",
-          "Automatización completa",
-          "Soporte dedicado"
-        ],
-        cta: "Contactarnos",
-        popular: false
-      }
-    ],
-    faq: {
-      title: "Preguntas frecuentes",
-      items: [
-        {
-          q: "¿Cómo funciona la facturación?",
-          a: "Facturación mensual simple. Puede cancelar en cualquier momento sin penalizaciones."
-        },
-        {
-          q: "¿Puedo cambiar de plan?",
-          a: "Sí, puede actualizar o degradar su plan en cualquier momento."
-        },
-        {
-          q: "¿Cuánto tiempo para implementar un agente IA?",
-          a: "La mayoría de los agentes se implementan en 7-14 días, según la complejidad."
-        }
-      ]
-    },
-    cta: {
-      title: "¿Necesita ayuda para elegir?",
-      button: "Request a demo"
-    }
-  },
-  pt: {
-    hero: {
-      title: "Nossos planos",
-      subtitle: "Soluções adaptadas a cada negócio, disponíveis em EUR, USD e CAD."
-    },
-    currency: {
-      label: "Moeda:"
-    },
-    plans: [
-      {
-        name: "Starter",
-        price: { eur: 49, usd: 52, cad: 69 },
-        period: "/mês",
-        features: [
-          "1 micro-agente IA",
-          "Respostas 24/7",
-          "Suporte por email"
-        ],
-        cta: "Começar",
-        popular: false
-      },
-      {
-        name: "Business",
-        price: { eur: 149, usd: 159, cad: 199 },
-        period: "/mês",
-        features: [
-          "3 micro-agentes IA",
-          "Automações avançadas",
-          "Integrações CRM",
-          "Suporte prioritário"
-        ],
-        cta: "Começar",
-        popular: true
-      },
-      {
-        name: "Enterprise",
-        price: "Personalizado",
-        period: "",
-        features: [
-          "Agentes IA personalizados",
-          "Automação completa",
-          "Suporte dedicado"
-        ],
-        cta: "Fale conosco",
-        popular: false
-      }
-    ],
-    faq: {
-      title: "Perguntas frequentes",
-      items: [
-        {
-          q: "Como funciona a cobrança?",
-          a: "Cobrança mensal simples. Você pode cancelar a qualquer momento sem penalidades."
-        },
-        {
-          q: "Posso mudar de plano?",
-          a: "Sim, você pode fazer upgrade ou downgrade do seu plano a qualquer momento."
-        },
-        {
-          q: "Quanto tempo para implementar um agente IA?",
-          a: "A maioria dos agentes é implementada em 7-14 dias, dependendo da complexidade."
-        }
-      ]
-    },
-    cta: {
-      title: "Precisa de ajuda para escolher?",
-      button: "Request a demo"
-    }
   }
 };
 
 export default function PricingPage() {
-  const [language, setLanguage] = React.useState<'en' | 'fr' | 'es' | 'pt'>('en');
-  const [currency, setCurrency] = React.useState<'eur' | 'usd' | 'cad'>('eur');
-  const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+  const { language } = useLanguage();
   const t = translations[language];
+  const [currency, setCurrency] = useState<Currency>('usd');
 
-  React.useEffect(() => {
-    const savedLang = localStorage.getItem('language') as 'en' | 'fr' | 'es' | 'pt';
-    if (savedLang) setLanguage(savedLang);
-
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange as EventListener);
-    return () => window.removeEventListener('languageChange', handleLanguageChange as EventListener);
-  }, []);
-
-  const getCurrencySymbol = () => {
-    switch (currency) {
+  const getCurrencySymbol = (curr: Currency) => {
+    switch (curr) {
       case 'eur': return '€';
       case 'usd': return '$';
       case 'cad': return 'CA$';
@@ -365,7 +218,7 @@ export default function PricingPage() {
                 <div className="mb-6">
                   {typeof plan.price === 'object' ? (
                     <div className="flex items-baseline">
-                      <span className="text-4xl font-bold font-heading">{getCurrencySymbol()}{plan.price[currency]}</span>
+                      <span className="text-4xl font-bold font-heading">{getCurrencySymbol(currency)}{plan.price[currency]}</span>
                       <span className="text-muted-foreground ml-2">{plan.period}</span>
                     </div>
                   ) : (
@@ -413,16 +266,11 @@ export default function PricingPage() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  onClick={() => window.location.href = `${baseUrl}/faq#${item.q.replace(/ /g, '-')}`}
                   className="w-full px-6 py-4 text-left font-semibold hover:bg-muted/50 transition-colors"
                 >
                   {item.q}
                 </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-4 text-muted-foreground">
-                    {item.a}
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -449,3 +297,5 @@ export default function PricingPage() {
     </div>
   );
 }
+
+

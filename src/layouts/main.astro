@@ -3,6 +3,7 @@
 
 
 
+
 ---
 import '../../generated/fonts.css';
 import '../site-components/global.css';
@@ -11,7 +12,7 @@ import '../styles/global.css';
 const { 
   pageClass = '',
   title = 'ZyatrIA Global | AI Agents & Automation Without Borders',
-  description = 'Transform your business with intelligent AI agents and advanced automation. Deploy in 7-15 days. Available in North America, Europe, Africa, and Latin America.',
+  description = 'Transformez votre entreprise avec des agents IA intelligents et une automatisation avancée. Déploiement en 7-15 jours. Disponible en Amérique du Nord, Europe, Afrique et Amérique Latine.',
   ogImage = '/og-image.svg',
   canonical
 } = Astro.props;
@@ -38,18 +39,18 @@ const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astr
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:image" content="/og-image.svg" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={ogImage} />
+<meta property="twitter:image" content="/og-image.svg" />
 
 <!-- Additional SEO -->
 <meta name="robots" content="index, follow" />
-<meta name="language" content="English" />
+<meta name="language" content="Français" />
 <meta name="author" content="ZyatrIA Global" />
 <meta name="keywords" content="AI agents, automation, business automation, intelligent agents, micro-agents, CRM automation, workflow automation, AI without borders" />
 
@@ -73,7 +74,7 @@ const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astr
     "telephone": "+1-555-123-4567",
     "contactType": "Customer Service",
     "areaServed": ["US", "CA", "FR", "ES", "PT", "BR"],
-    "availableLanguage": ["English", "French", "Spanish", "Portuguese"]
+    "availableLanguage": ["Français", "Anglais", "Espagnol", "Portugais"]
   },
   "address": {
     "@type": "PostalAddress",
@@ -86,7 +87,7 @@ const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astr
     "name": "ZyatrIA Global Team"
   },
   "foundingDate": "2024",
-  "slogan": "AI Without Borders",
+  "slogan": "IA Sans Frontières",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
@@ -168,6 +169,11 @@ padding-left: 0 !important;
 margin: 0 !important; 
 }
 </style>
+
+
+
+
+
 
 
 

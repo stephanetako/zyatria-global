@@ -1,7 +1,13 @@
+
+
+
 import React, { useState } from 'react';
 import { Sparkles, ArrowRight, CheckCircle2, Zap, Clock, Shield, Wrench } from 'lucide-react';
 import { Button } from './ui/button';
-import { Card } from './ui/card';
+import { Card, CardContent } from './ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
 interface ConfigureMicroAgentProps {
   lang?: string;
@@ -158,8 +164,9 @@ const translations = {
   }
 };
 
-const ConfigureMicroAgent: React.FC<ConfigureMicroAgentProps> = ({ lang = 'en' }) => {
-  const t = translations[lang as keyof typeof translations];
+const ConfigureMicroAgent: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [isHovered, setIsHovered] = useState(false);
 
   const scrollToContact = () => {
@@ -171,14 +178,14 @@ const ConfigureMicroAgent: React.FC<ConfigureMicroAgentProps> = ({ lang = 'en' }
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-block px-4 py-2 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-full mb-4 shadow-lg">
-            <Wrench className="w-4 h-4 text-sky-600" />
-            <span className="text-sm font-semibold text-sky-600">{t.badge}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-full mb-4 shadow-lg">
+            <Wrench className="w-4 h-4 text-white" />
+            <span className="text-sm font-semibold text-white">{t.badge}</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">{t.title}</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 max-w-3xl mx-auto">
             {t.subtitle}
           </p>
         </div>
@@ -188,10 +195,10 @@ const ConfigureMicroAgent: React.FC<ConfigureMicroAgentProps> = ({ lang = 'en' }
           {t.benefits.map((benefit: any, index: number) => {
             const Icon = benefit.icon;
             const delays = ['delay-200', 'delay-300', 'delay-400'];
-            const gradients = [
-              'from-blue-500 to-violet-500',
-              'from-violet-500 to-cyan-500',
-              'from-cyan-500 to-blue-500'
+            const solidColors = [
+              'bg-blue-600',
+              'bg-violet-600',
+              'bg-cyan-600'
             ];
 
             return (
@@ -199,13 +206,13 @@ const ConfigureMicroAgent: React.FC<ConfigureMicroAgentProps> = ({ lang = 'en' }
                 key={index} 
                 className={`p-8 text-center hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group border-2 hover:border-blue-500/40 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm animate-fade-in-up ${delays[index]}`}
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${gradients[index]} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 mx-auto`}>
+                <div className={`w-16 h-16 ${solidColors[index]} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 mx-auto`}>
                   <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
                 </div>
                 <h3 className="text-xl font-bold font-heading mb-3 group-hover:text-blue-600 transition-colors">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
                   {benefit.description}
                 </p>
               </Card>
@@ -283,6 +290,9 @@ const ConfigureMicroAgent: React.FC<ConfigureMicroAgentProps> = ({ lang = 'en' }
 };
 
 export default ConfigureMicroAgent;
+
+
+
 
 
 

@@ -3,10 +3,12 @@
 
 
 
+
 import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Sparkles, Zap, Globe2 } from 'lucide-react';
 import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
 const translations = {
   en: {
@@ -95,19 +97,17 @@ const translations = {
   }
 };
 
-interface HeroProps {
-  lang?: 'en' | 'fr' | 'es' | 'pt';
-}
-
-const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
+const Hero: React.FC = () => {
+  const { language } = useLanguage();
+  
   // Direct Stripe checkout URL (replace with your actual Stripe link)
   const stripeCheckoutUrl = 'https://buy.stripe.com/xxxxxx';
   
-  const content: Record<'en' | 'fr' | 'es' | 'pt', any> = {
+  const content: Record<'en' | 'fr', any> = {
     en: {
-      badge: 'AI without borders',
-      title: 'Intelligent AI Agents for a ',
-      titleHighlight: 'Borderless World',
+      badge: '',
+      title: 'Intelligent AI Agents for Modern Business',
+      titleHighlight: '',
       description: 'Transform your business with advanced AI automation, intelligent agents, and specialized micro-agents. Global solutions for modern enterprises.',
       cta1: 'Request a Demo',
       cta2: 'Explore Solutions',
@@ -118,9 +118,9 @@ const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
       ],
     },
     fr: {
-      badge: 'IA sans frontières',
-      title: 'Agents IA Intelligents pour un ',
-      titleHighlight: 'Monde Sans Frontières',
+      badge: '',
+      title: 'Agents IA Intelligents pour les Entreprises Modernes',
+      titleHighlight: '',
       description: 'Transformez votre entreprise avec l\'automatisation IA avancée, des agents intelligents et des micro-agents spécialisés. Solutions mondiales pour entreprises modernes.',
       cta1: 'Demander une démo',
       cta2: 'Découvrir les solutions',
@@ -130,35 +130,9 @@ const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
         { value: '98%', label: 'Satisfaction client' },
       ],
     },
-    es: {
-      badge: 'IA sin fronteras',
-      title: 'Agentes de IA Inteligentes para un ',
-      titleHighlight: 'Mundo Sin Fronteras',
-      description: 'Transforme su negocio con automatización IA avanzada, agentes inteligentes y micro-agentes especializados. Soluciones globales para empresas modernas.',
-      cta1: 'Solicitar una demo',
-      cta2: 'Explorar soluciones',
-      stats: [
-        { value: '150+', label: 'Proyectos activos' },
-        { value: '40+', label: 'Países atendidos' },
-        { value: '98%', label: 'Satisfacción del cliente' },
-      ],
-    },
-    pt: {
-      badge: 'IA sem fronteiras',
-      title: 'Agentes de IA Inteligentes para um ',
-      titleHighlight: 'Mundo Sem Fronteiras',
-      description: 'Transforme seu negócio com automação IA avançada, agentes inteligentes e micro-agentes especializados. Soluções globais para empresas modernas.',
-      cta1: 'Solicitar uma demo',
-      cta2: 'Explorar soluções',
-      stats: [
-        { value: '150+', label: 'Projetos ativos' },
-        { value: '40+', label: 'Países atendidos' },
-        { value: '98%', label: 'Satisfação do cliente' },
-      ],
-    },
   };
 
-  const t = content[lang];
+  const t = content[language];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-500 via-violet-500 to-cyan-500">
@@ -175,18 +149,10 @@ const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        {/* Badge - BLEU */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-6 animate-fade-in-up shadow-lg">
-          <Sparkles className="w-5 h-5 text-white" />
-          <span className="text-sm font-semibold text-white">{t.badge}</span>
-        </div>
-
         {/* Main Title */}
         <h1 className="text-5xl md:text-7xl font-bold font-heading mb-6 animate-fade-in-up">
-          {t.title}
-          <br />
           <span className="text-gradient-tech bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-500 bg-clip-text text-transparent font-extrabold">
-            {t.titleHighlight}
+            {t.title}
           </span>
         </h1>
 
@@ -223,7 +189,7 @@ const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
             rel="noopener noreferrer"
             className="text-sm text-zinc-500 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
           >
-            {content[lang]?.payNow || translations[lang]?.payNow}
+            {content[language]?.payNow || translations[language]?.payNow}
             <ArrowRight className="w-3 h-3" />
           </a>
         </div>
@@ -255,6 +221,15 @@ const Hero: React.FC<HeroProps> = ({ lang = 'en' }) => {
 };
 
 export default Hero;
+
+
+
+
+
+
+
+
+
 
 
 

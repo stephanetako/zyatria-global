@@ -1,0 +1,134 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="logoGradientAnim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1">
+        <animate attributeName="stop-color" values="#3B82F6;#8B5CF6;#06B6D4;#3B82F6" dur="4s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1">
+        <animate attributeName="stop-color" values="#8B5CF6;#06B6D4;#3B82F6;#8B5CF6" dur="4s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1">
+        <animate attributeName="stop-color" values="#06B6D4;#3B82F6;#8B5CF6;#06B6D4" dur="4s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <linearGradient id="accentGradientAnim" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1">
+        <animate attributeName="stop-color" values="#06B6D4;#3B82F6;#8B5CF6;#06B6D4" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1">
+        <animate attributeName="stop-color" values="#3B82F6;#8B5CF6;#06B6D4;#3B82F6" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Glow effect with animation -->
+    <filter id="glowAnim">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur">
+        <animate attributeName="stdDeviation" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+      </feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle with gradient and pulse -->
+  <circle cx="100" cy="100" r="95" fill="url(#logoGradientAnim)" opacity="0.1">
+    <animate attributeName="r" values="95;98;95" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.1;0.15;0.1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Main Z Letter - Modern & Tech Style with animation -->
+  <path d="M 50 60 L 150 60 L 150 75 L 75 125 L 150 125 L 150 140 L 50 140 L 50 125 L 125 75 L 50 75 Z" 
+        fill="url(#logoGradientAnim)" 
+        filter="url(#glowAnim)">
+    <animateTransform
+      attributeName="transform"
+      type="scale"
+      values="1;1.02;1"
+      dur="2s"
+      repeatCount="indefinite"
+      additive="sum"
+      calcMode="spline"
+      keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+  </path>
+  
+  <!-- AI Circuit Pattern - Top Right with animation -->
+  <g opacity="0.8">
+    <circle cx="140" cy="50" r="3" fill="#3B82F6">
+      <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="155" cy="45" r="2" fill="#8B5CF6">
+      <animate attributeName="r" values="2;3;2" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="60" r="2.5" fill="#06B6D4">
+      <animate attributeName="r" values="2.5;3.5;2.5" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <line x1="140" y1="50" x2="150" y2="60" stroke="#3B82F6" stroke-width="1.5" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="140" y1="50" x2="155" y2="45" stroke="#8B5CF6" stroke-width="1.5" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- AI Circuit Pattern - Bottom Left with animation -->
+  <g opacity="0.8">
+    <circle cx="60" cy="150" r="3" fill="#06B6D4">
+      <animate attributeName="r" values="3;4;3" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="45" cy="155" r="2" fill="#3B82F6">
+      <animate attributeName="r" values="2;3;2" dur="2.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="2.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="140" r="2.5" fill="#8B5CF6">
+      <animate attributeName="r" values="2.5;3.5;2.5" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <line x1="60" y1="150" x2="50" y2="140" stroke="#06B6D4" stroke-width="1.5" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2.2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="60" y1="150" x2="45" y2="155" stroke="#3B82F6" stroke-width="1.5" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2.7s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Neural Network Dots with animation -->
+  <g opacity="0.6">
+    <circle cx="165" cy="100" r="2" fill="#8B5CF6">
+      <animate attributeName="r" values="2;3;2" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="35" cy="100" r="2" fill="#3B82F6">
+      <animate attributeName="r" values="2;3;2" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="35" r="2" fill="#06B6D4">
+      <animate attributeName="r" values="2;3;2" dur="2.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="165" r="2" fill="#8B5CF6">
+      <animate attributeName="r" values="2;3;2" dur="2.9s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Accent Line - Bottom with animation -->
+  <rect x="60" y="155" width="80" height="3" rx="1.5" fill="url(#accentGradientAnim)" opacity="0.7">
+    <animate attributeName="width" values="80;85;80" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.7;0.9;0.7" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Rotating ring effect (subtle) -->
+  <circle cx="100" cy="100" r="90" stroke="url(#logoGradientAnim)" stroke-width="1" fill="none" opacity="0.2">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 100 100"
+      to="360 100 100"
+      dur="20s"
+      repeatCount="indefinite"/>
+  </circle>
+</svg>
