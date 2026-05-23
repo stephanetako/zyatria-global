@@ -1,203 +1,150 @@
-# ✅ Checklist de Déploiement - ZyatrIA Global
+# ✅ CHECKLIST DE DÉPLOIEMENT
 
 ## 📋 AVANT DE COMMENCER
 
-### Prérequis
-- [ ] Git est installé sur mon ordinateur
-- [ ] J'ai un compte GitHub (ou je vais en créer un)
-- [ ] J'ai un compte Cloudflare (ou je vais en créer un)
-- [ ] J'ai lu le guide de déploiement
+- [ ] Compte Cloudflare créé (gratuit)
+- [ ] Projet sur GitHub (✅ Fait !)
+- [ ] Clé API Mistral disponible
+- [ ] Email Formspree confirmé
 
 ---
 
-## 🚀 ÉTAPE 1 : PRÉPARATION GIT (2 min)
+## 🔧 CONFIGURATION CLOUDFLARE
 
-### Actions
-- [ ] Ouvrir le terminal/PowerShell dans le dossier du projet
-- [ ] Exécuter : `git init`
-- [ ] Exécuter : `git add .`
-- [ ] Exécuter : `git commit -m "Initial commit - ZyatrIA Global"`
+### Connexion
+- [ ] Connecté à https://dash.cloudflare.com/
+- [ ] Cliqué sur "Workers & Pages"
+- [ ] Cliqué sur "Create application"
+- [ ] Sélectionné l'onglet "Pages"
 
-### Vérification
-- [ ] La commande `git status` affiche "nothing to commit, working tree clean"
+### GitHub
+- [ ] Cliqué sur "Connect to Git"
+- [ ] Autorisé Cloudflare sur GitHub
+- [ ] Sélectionné le repo "zyatria-global"
+- [ ] Cliqué sur "Begin setup"
 
----
+### Paramètres de build
+- [ ] Project name: `zyatria-global`
+- [ ] Production branch: `main`
+- [ ] Framework preset: `Astro`
+- [ ] Build command: `npm run build`
+- [ ] Build output directory: `dist`
 
-## 🌐 ÉTAPE 2 : CRÉATION REPO GITHUB (3 min)
-
-### Actions
-- [ ] Aller sur https://github.com/new
-- [ ] Nom du repo : `zyatria-global`
-- [ ] Description : `ZyatrIA Global - AI Agents Platform`
-- [ ] Choisir Public ou Private
-- [ ] **NE PAS** cocher "Initialize with README"
-- [ ] Cliquer sur "Create repository"
-
-### Vérification
-- [ ] Le repo est créé et visible sur GitHub
-
----
-
-## 📤 ÉTAPE 3 : PUSH SUR GITHUB (2 min)
-
-### Actions
-- [ ] Copier l'URL du repo : `https://github.com/USERNAME/zyatria-global.git`
-- [ ] Exécuter : `git remote add origin URL_DU_REPO`
-- [ ] Exécuter : `git branch -M main`
-- [ ] Exécuter : `git push -u origin main`
-
-### Vérification
-- [ ] Le code est visible sur GitHub
-- [ ] Tous les fichiers sont présents
-
----
-
-## ☁️ ÉTAPE 4 : COMPTE CLOUDFLARE (3 min)
-
-### Actions
-- [ ] Aller sur https://dash.cloudflare.com/sign-up
-- [ ] Créer un compte (si pas déjà fait)
-- [ ] Vérifier l'email
-- [ ] Se connecter au dashboard
-
-### Vérification
-- [ ] Je suis connecté au dashboard Cloudflare
-
----
-
-## 🚀 ÉTAPE 5 : DÉPLOIEMENT CLOUDFLARE (5 min)
-
-### Actions
-- [ ] Cliquer sur "Workers & Pages" (menu de gauche)
-- [ ] Cliquer sur "Create application"
-- [ ] Sélectionner l'onglet "Pages"
-- [ ] Cliquer sur "Connect to Git"
-- [ ] Cliquer sur "Connect GitHub"
-- [ ] Autoriser Cloudflare à accéder à GitHub
-- [ ] Sélectionner le repo "zyatria-global"
-- [ ] Cliquer sur "Begin setup"
-
-### Configuration
-- [ ] Project name : `zyatria-global`
-- [ ] Production branch : `main`
-- [ ] Framework preset : `Astro`
-- [ ] Build command : `npm run build`
-- [ ] Build output directory : `dist`
+### Variables d'environnement
+- [ ] `MISTRAL_API_KEY` ajoutée
+- [ ] `FORMSPREE_ENDPOINT` ajoutée
+- [ ] `FORMSPREE_EMAIL` ajoutée
 
 ### Déploiement
-- [ ] Cliquer sur "Save and Deploy"
-- [ ] Attendre 2-3 minutes (le build se fait)
-
-### Vérification
-- [ ] Le build est terminé avec succès
-- [ ] Message "Success! Your site is live!" s'affiche
-- [ ] URL du site : `https://zyatria-global.pages.dev`
+- [ ] Cliqué sur "Save and Deploy"
+- [ ] Build réussi (3-5 minutes)
+- [ ] URL de production reçue
 
 ---
 
-## ✅ ÉTAPE 6 : VÉRIFICATION DU SITE (5 min)
+## 🧪 TESTS POST-DÉPLOIEMENT
 
-### Tests à faire
-- [ ] Ouvrir l'URL : `https://zyatria-global.pages.dev`
-- [ ] La page d'accueil s'affiche correctement
-- [ ] Le changement de langue FR/EN fonctionne
-- [ ] La navigation fonctionne (toutes les pages)
-- [ ] Les images se chargent
-- [ ] Le site est responsive (tester sur mobile)
-- [ ] Les formulaires s'affichent
-- [ ] Les boutons Stripe fonctionnent
+### Navigation
+- [ ] Page d'accueil charge correctement
+- [ ] Menu de navigation fonctionne
+- [ ] Toutes les pages sont accessibles
+- [ ] Footer s'affiche correctement
 
-### Problèmes courants
-- [ ] Si le site est blanc : vérifier les logs de build
-- [ ] Si les images ne chargent pas : vérifier les chemins
-- [ ] Si le build échoue : vérifier la configuration
+### Chatbot Mistral
+- [ ] Icône du chatbot visible
+- [ ] Chatbot s'ouvre au clic
+- [ ] Peut envoyer un message
+- [ ] Reçoit une réponse de l'IA
+- [ ] Pas d'erreurs dans la console (F12)
 
----
+### Formulaires
+- [ ] Formulaire de contact visible
+- [ ] Peut remplir les champs
+- [ ] Soumission réussie
+- [ ] Message de confirmation affiché
+- [ ] Email reçu sur Formspree
 
-## 🎁 ÉTAPE 7 : CONFIGURATION OPTIONNELLE
+### Responsive Design
+- [ ] Testé sur mobile (ou mode responsive F12)
+- [ ] Testé sur tablette
+- [ ] Testé sur desktop
+- [ ] Tous les éléments s'affichent correctement
 
-### Domaine Personnalisé (Optionnel)
-- [ ] Aller dans "Custom domains" sur Cloudflare
-- [ ] Cliquer sur "Set up a custom domain"
-- [ ] Entrer le domaine (ex: zyatria.com)
-- [ ] Suivre les instructions DNS
-
-### Variables d'Environnement (Optionnel)
-- [ ] Aller dans "Settings" > "Environment variables"
-- [ ] Ajouter : `FORMSPREE_FORM_ID=xeelvrdl`
-- [ ] Ajouter d'autres variables si nécessaire
-
-### Analytics (Optionnel)
-- [ ] Activer Cloudflare Web Analytics
-- [ ] Configurer Google Analytics (si souhaité)
+### Performance
+- [ ] Page charge en moins de 3 secondes
+- [ ] Images chargent correctement
+- [ ] Pas d'erreurs 404
+- [ ] Animations fluides
 
 ---
 
-## 🔄 MISES À JOUR FUTURES
+## 🎨 OPTIMISATIONS (Optionnel)
 
-### Pour mettre à jour le site
-- [ ] Faire des modifications dans le code
-- [ ] Exécuter : `git add .`
-- [ ] Exécuter : `git commit -m "Description des changements"`
-- [ ] Exécuter : `git push`
-- [ ] Cloudflare redéploie automatiquement !
+### SEO
+- [ ] Titre de page correct
+- [ ] Meta descriptions présentes
+- [ ] Images ont des attributs alt
+- [ ] Sitemap.xml accessible
+
+### Analytics
+- [ ] Cloudflare Analytics activé
+- [ ] Formspree Dashboard vérifié
+- [ ] Trafic visible
+
+### Domaine personnalisé
+- [ ] Domaine acheté (si souhaité)
+- [ ] DNS configurés
+- [ ] SSL/HTTPS actif
 
 ---
 
-## 📊 RÉCAPITULATIF
+## 🚀 DÉPLOIEMENTS FUTURS
 
-### Temps Total : ~15 minutes
+### Workflow
+- [ ] Modifications locales testées
+- [ ] Commit sur Git
+- [ ] Push vers GitHub avec `.\push-manuel.ps1`
+- [ ] Cloudflare détecte et redéploie automatiquement
+- [ ] Vérification du nouveau déploiement
 
-| Étape | Temps | Statut |
-|-------|-------|--------|
-| 1. Préparation Git | 2 min | ⬜ |
-| 2. Création repo GitHub | 3 min | ⬜ |
-| 3. Push sur GitHub | 2 min | ⬜ |
-| 4. Compte Cloudflare | 3 min | ⬜ |
-| 5. Déploiement Cloudflare | 5 min | ⬜ |
-| 6. Vérification du site | 5 min | ⬜ |
-| **TOTAL** | **20 min** | ⬜ |
+---
+
+## 📊 MONITORING CONTINU
+
+### Hebdomadaire
+- [ ] Vérifier Cloudflare Analytics
+- [ ] Vérifier soumissions Formspree
+- [ ] Tester le chatbot
+- [ ] Vérifier les erreurs
+
+### Mensuel
+- [ ] Mettre à jour les dépendances npm
+- [ ] Vérifier les performances
+- [ ] Optimiser si nécessaire
+- [ ] Backup du code
 
 ---
 
 ## 🎉 FÉLICITATIONS !
 
-Une fois toutes les cases cochées, ton site est en ligne ! 🚀
-
-### Informations Importantes
-
-**URL du site** : `https://zyatria-global.pages.dev`
-
-**Repo GitHub** : `https://github.com/USERNAME/zyatria-global`
-
-**Dashboard Cloudflare** : https://dash.cloudflare.com
+Une fois toutes ces cases cochées, votre site est :
+- ✅ En ligne
+- ✅ Fonctionnel
+- ✅ Optimisé
+- ✅ Prêt pour la production
 
 ---
 
-## 🆘 BESOIN D'AIDE ?
+## 📞 SUPPORT
 
-Si tu es bloqué à une étape :
+**Problème ?** Notez :
+1. À quelle étape vous êtes bloqué
+2. Le message d'erreur exact
+3. Ce que vous avez déjà essayé
 
-1. Vérifie que tu as bien suivi toutes les étapes précédentes
-2. Consulte les guides détaillés :
-   - `🚀_DEPLOIEMENT_MAINTENANT.md`
-   - `DEPLOIEMENT_ETAPE_PAR_ETAPE.md`
-3. Dis-moi où tu es bloqué et je t'aide ! 😄
-
----
-
-## 📝 NOTES
-
-Espace pour tes notes personnelles :
-
-```
-URL du site : 
-Repo GitHub : 
-Compte Cloudflare : 
-Domaine personnalisé : 
-Date de déploiement : 
-```
+Et demandez de l'aide ! 😊
 
 ---
 
-**Bonne chance ! 🎉**
+**Date de création :** 2026-05-23
+**Statut :** Prêt pour le déploiement
