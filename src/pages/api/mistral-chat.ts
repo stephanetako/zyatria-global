@@ -2,7 +2,8 @@ import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    const { messages } = await request.json();
+    const body = await request.json() as { messages: Array<{ role: string; content: string }> };
+    const { messages } = body;
 
     // Récupérer la clé API Mistral depuis les variables d'environnement
     const apiKey = locals?.runtime?.env?.MISTRAL_API_KEY || import.meta.env.MISTRAL_API_KEY;
@@ -51,7 +52,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const data = await response.json();
+    const data = await response.json() as { 
+      choices?: Array<{ 
+        message?: { 
+          content?: string 
+        } 
+      }> 
+    };
     const assistantMessage = data.choices?.[0]?.message?.content || 'Désolé, je n\'ai pas pu générer une réponse.';
 
     return new Response(
@@ -73,3 +80,5 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
   }
 };
+
+
