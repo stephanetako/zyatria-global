@@ -1,0 +1,9 @@
+﻿:root {
+  --_apps---colors--background: #F5F1EB;
+  --_apps---colors--foreground: #373D36;
+  --_apps---colors--primary: #C98769;
+  --_apps---colors--primary-foreground: #FFFFFF;
+  --_apps---colors--secondary: #E6DCD4;
+  --_apps---colors--border: rgba(55, 61, 54, 0.1);
+  --_apps---sizes--radius: 0.5rem;
+}
