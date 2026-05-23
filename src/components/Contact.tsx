@@ -3,6 +3,7 @@
 
 
 
+
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Card } from './ui/card';
@@ -383,7 +384,6 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Hidden field for language */}
-              <input type="hidden" name="zyatria.contact@gmail.com" value="zyatria.contact@gmail.com" />
               <input type="hidden" name="language" value={language} />
 
               {/* Required fields note */}
@@ -456,6 +456,7 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
+
 
 
 

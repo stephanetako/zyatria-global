@@ -3,6 +3,7 @@ import { Send, X, MessageCircle, Minimize2, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card } from './ui/card';
+import { baseUrl } from '../lib/base-url';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -45,7 +46,7 @@ export default function MistralChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/mistral-chat', {
+      const response = await fetch(`${baseUrl}/api/mistral-chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ export default function MistralChatBot() {
         throw new Error('Erreur API');
       }
 
-      const data = await response.json();
+      const data = await response.json() as { message?: string };
 
       const assistantMessage: Message = {
         role: 'assistant',
@@ -202,3 +203,5 @@ export default function MistralChatBot() {
     </>
   );
 }
+
+

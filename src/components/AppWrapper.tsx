@@ -19,8 +19,10 @@ import KnowledgeBasePage from './pages/KnowledgeBasePage';
 import DemoPage from './pages/DemoPage';
 import DashboardClientPage from './dashboard/DashboardClientPage';
 
+type PageType = 'home' | 'services' | 'micro-agents' | 'technology' | 'pricing' | 'about' | 'docs' | 'knowledge-base' | 'demo' | 'dashboard';
+
 const AppWrapper: React.FC = () => {
-  const currentPage = 'home'; // This is a placeholder for the actual current page logic
+  const currentPage = 'home' as PageType; // This is a placeholder for the actual current page logic
 
   const renderPage = () => {
     switch (currentPage) {
@@ -65,6 +67,8 @@ const AppWrapper: React.FC = () => {
 };
 
 export default AppWrapper;
+
+
 
 
 
