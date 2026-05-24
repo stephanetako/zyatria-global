@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 // API pour synchroniser avec des CRM externes
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const body = await request.json();
+    const body = await request.json() as any;
     const { provider, action, data } = body;
 
     // Simuler une synchronisation CRM
@@ -72,3 +72,4 @@ export const GET: APIRoute = async () => {
     }
   });
 };
+

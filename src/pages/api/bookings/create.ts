@@ -2,16 +2,13 @@ import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const body = await request.json();
-    
-    // Validation
-    const requiredFields = ['service', 'date', 'time', 'name', 'email'];
-    const missingFields = requiredFields.filter(field => !body[field]);
-    
-    if (missingFields.length > 0) {
+    const body = await request.json() as any;
+
+    // Validation basique
+    if (!body.name || !body.email || !body.date || !body.time) {
       return new Response(JSON.stringify({
         success: false,
-        error: `Missing required fields: ${missingFields.join(', ')}`
+        error: 'Missing required fields: name, email, date, time'
       }), {
         status: 400,
         headers: {
@@ -23,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Créer la réservation
     const booking = {
       id: `BK-${Date.now()}`,
-      service: body.service,
+      service: body.service || 'Consultation',
       date: body.date,
       time: body.time,
       duration: body.duration || '60',
@@ -62,3 +59,4 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 };
+

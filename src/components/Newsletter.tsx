@@ -149,7 +149,7 @@ export default function Newsletter() {
                     />
                   </div>
 
-                  {state.errors && state.errors.length > 0 && (
+                  {state.errors && Array.isArray(state.errors) && state.errors.length > 0 && (
                     <div className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
                       <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
                       <p className="text-sm text-destructive">{t.error}</p>
@@ -189,3 +189,4 @@ export default function Newsletter() {
     </section>
   );
 }
+
