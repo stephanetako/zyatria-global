@@ -97,7 +97,7 @@ export const GET: APIRoute = async ({ request }) => {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const body = await request.json();
+    const body = await request.json() as any;
     
     if (!body.firstName || !body.lastName || !body.email) {
       return new Response(JSON.stringify({
@@ -147,3 +147,4 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 };
+
