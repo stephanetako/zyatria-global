@@ -218,6 +218,15 @@ export default function About() {
           </Card>
         </div>
 
+        {/* Team Photo Section */}
+        <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop&q=80" 
+            alt="ZyatrIA Team" 
+            className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+
         {/* Core Values */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {t.values.map((value: any, index: number) => {
@@ -279,6 +288,7 @@ export default function About() {
     </section>
   );
 }
+
 
 
 

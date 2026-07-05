@@ -1,6 +1,8 @@
 
 
 
+
+
 import React, { useState } from 'react';
 import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
@@ -37,7 +39,8 @@ const translations: Record<TranslationKey, any> = {
     },
     note: "All prices in Canadian Dollars (CAD). 30-day money-back guarantee.",
     paymentSecure: "🔒 Secure payments powered by Stripe",
-    infoNote: "💡 <strong>Note:</strong> Click on a plan to contact us and discuss your specific needs."
+    infoNote: "💡 <strong>Note:</strong> Click on a plan to contact us and discuss your specific needs.",
+    savings: "Save"
   },
   fr: {
     badge: "Tarification Transparente",
@@ -60,7 +63,8 @@ const translations: Record<TranslationKey, any> = {
     },
     note: "Tous les prix en dollars canadiens (CAD). Garantie satisfait ou remboursé 30 jours.",
     paymentSecure: "🔒 Paiements sécurisés par Stripe",
-    infoNote: "💡 <strong>Note:</strong> Cliquez sur un plan pour nous contacter et discuter de vos besoins spécifiques."
+    infoNote: "💡 <strong>Note:</strong> Cliquez sur un plan pour nous contacter et discuter de vos besoins spécifiques.",
+    savings: "Économisez"
   },
 };
 
@@ -73,11 +77,15 @@ const Pricing: React.FC = () => {
     key: PlanKey;
     icon: any;
     popular?: boolean;
+    badge?: string;
+    badgeColor?: string;
     features: string[];
   }> = [
     {
       key: 'starter',
       icon: Sparkles,
+      badge: 'Meilleure valeur',
+      badgeColor: 'from-green-500 to-emerald-500',
       features: [
         "1 Bot IA spécialisé",
         "Déploiement en 7-15 jours",
@@ -90,6 +98,8 @@ const Pricing: React.FC = () => {
       key: 'professional',
       icon: Zap,
       popular: true,
+      badge: 'Recommandé',
+      badgeColor: 'from-amber-500 to-orange-500',
       features: [
         "3 Bots IA spécialisés",
         "Déploiement en 7-15 jours",
@@ -103,6 +113,8 @@ const Pricing: React.FC = () => {
     {
       key: 'enterprise',
       icon: Rocket,
+      badge: 'Premium',
+      badgeColor: 'from-purple-500 to-indigo-500',
       features: [
         "7 Bots IA - Suite complète",
         "Déploiement personnalisé",
@@ -117,18 +129,47 @@ const Pricing: React.FC = () => {
   ];
 
   const handlePurchase = (planKey: PlanKey, type: BillingType) => {
-    // Scroll to contact form instead of redirecting to Stripe
+    // Redirection vers le formulaire de contact pour pré-commande
+    console.log('🎯 Redirection vers formulaire de contact pour pré-commande:', {
+      planKey,
+      type
+    });
+    
+    // Scroll to contact form
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Optionnel: Pré-remplir le formulaire avec le plan sélectionné
+      setTimeout(() => {
+        const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+        if (messageField) {
+          const planName = productDetails[planKey].name;
+          const billingLabel = type === 'oneTime' ? 'Paiement Unique' : 'Abonnement Mensuel';
+          messageField.value = `Je suis intéressé par le plan ${planName} (${billingLabel}) avec l'offre de pré-lancement -30%.`;
+          messageField.focus();
+        }
+      }, 500);
     }
   };
 
   const handleServicePurchase = (service: 'audit' | 'consultation') => {
-    // Scroll to contact form instead of redirecting to Stripe
+    console.log('🎯 Redirection vers formulaire de contact pour service:', service);
+    
+    // Scroll to contact form
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Pré-remplir le formulaire
+      setTimeout(() => {
+        const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+        if (messageField) {
+          const serviceName = productDetails[service].name;
+          messageField.value = `Je souhaite réserver: ${serviceName}`;
+          messageField.focus();
+        }
+      }, 500);
     }
   };
 
@@ -137,8 +178,16 @@ const Pricing: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Info Banner */}
         <div className="mb-8 max-w-4xl mx-auto">
-          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-center">
-            <p className="text-sm text-blue-800 dark:text-blue-200" dangerouslySetInnerHTML={{ __html: t.infoNote }} />
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-500 rounded-lg p-6 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Sparkles className="w-5 h-5 text-green-600" />
+              <span className="text-lg font-bold text-green-700 dark:text-green-300">
+                🎁 Offre Pré-Lancement: -30% sur tous les plans
+              </span>
+            </div>
+            <p className="text-sm text-green-800 dark:text-green-200">
+              Réservez maintenant et bénéficiez de 30% de réduction + Formation gratuite (valeur 497$)
+            </p>
           </div>
         </div>
 
@@ -209,10 +258,18 @@ const Pricing: React.FC = () => {
                     : 'border-border hover:border-amber-400/50'
                 )}
               >
-                {/* Popular Badge */}
-                {plan.popular && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1.5 text-xs font-bold rounded-bl-lg shadow-lg">
-                    Recommandé
+                {/* Badge */}
+                {plan.badge && (
+                  <div className="absolute top-0 left-0 right-0 flex justify-between">
+                    <div className={cn(
+                      "text-white px-4 py-1.5 text-xs font-bold rounded-br-lg shadow-lg",
+                      `bg-gradient-to-r ${plan.badgeColor}`
+                    )}>
+                      {plan.badge}
+                    </div>
+                    <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1.5 text-xs font-bold rounded-bl-lg shadow-lg">
+                      -30% 🎁
+                    </div>
                   </div>
                 )}
 
@@ -236,13 +293,21 @@ const Pricing: React.FC = () => {
                   {/* Price */}
                   <div className="mb-6 pb-6 border-b border-border">
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-5xl font-bold font-heading text-foreground">
+                      <span className="text-3xl font-bold text-muted-foreground line-through">
                         {pricing.price.toLocaleString('fr-CA')} $
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className="text-5xl font-bold font-heading text-foreground">
+                        {Math.round(pricing.price * 0.7).toLocaleString('fr-CA')} $
                       </span>
                       {billingType === 'monthly' && (
                         <span className="text-muted-foreground text-lg">/mois</span>
                       )}
                     </div>
+                    <p className="text-xs text-green-600 dark:text-green-400 font-bold mb-2">
+                      💰 Économisez {Math.round(pricing.price * 0.3).toLocaleString('fr-CA')} $ avec l'offre pré-lancement
+                    </p>
                     <p className="text-xs text-muted-foreground font-medium">
                       {pricing.label}
                     </p>
@@ -269,17 +334,17 @@ const Pricing: React.FC = () => {
                   <Button
                     onClick={() => handlePurchase(plan.key, billingType)}
                     className={cn(
-                      'w-full font-button text-base h-12',
+                      "w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-semibold transition-all hover:scale-105 hover:shadow-lg",
                       plan.popular
-                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30'
-                        : 'bg-amber-500 hover:bg-amber-600 text-white'
+                        ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
+                        : "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
                     )}
                   >
                     {plan.key === 'enterprise' 
                       ? t.cta.enterprise 
                       : (billingType === 'oneTime' ? t.cta.oneTime : t.cta.monthly)
                     }
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className="w-5 h-5" />
                   </Button>
                 </div>
               </Card>
@@ -328,10 +393,10 @@ const Pricing: React.FC = () => {
 
               <Button
                 onClick={() => handleServicePurchase('audit')}
-                className="w-full bg-amber-500 hover:bg-amber-600 text-white"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
               >
+                <Sparkles className="w-4 h-4" />
                 {t.services.auditCta}
-                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Card>
 
@@ -364,10 +429,10 @@ const Pricing: React.FC = () => {
 
               <Button
                 onClick={() => handleServicePurchase('consultation')}
-                className="w-full bg-amber-500 hover:bg-amber-600 text-white"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
               >
+                <Rocket className="w-4 h-4" />
                 {t.services.consultationCta}
-                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Card>
           </div>
@@ -388,6 +453,42 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

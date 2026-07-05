@@ -1,11 +1,23 @@
-// Formspree configuration for contact forms
-// Get your form ID from https://formspree.io dashboard
-export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xeelvrdl';
+// Formspree configuration
+export const FORMSPREE_CONFIG = {
+  // Main contact form ID
+  contactFormId: 'xbdedonn',
+  
+  // Newsletter form ID (if different)
+  newsletterFormId: 'xbdedonn',
+  
+  // Lead qualification form ID (if different)
+  leadQualificationFormId: 'xbdedonn',
+};
 
-// Helper function to get the Formspree URL
-// formType parameter is for future extensibility (e.g., different forms)
-export function getFormspreeUrl(formType?: string): string {
-  return FORMSPREE_ENDPOINT;
+// Helper to get form endpoint
+export function getFormspreeEndpoint(formId: string = FORMSPREE_CONFIG.contactFormId): string {
+  return `https://formspree.io/f/${formId}`;
 }
+
+// Alias for backward compatibility
+export const getFormspreeUrl = getFormspreeEndpoint;
+
+
 
 

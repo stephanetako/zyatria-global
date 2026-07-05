@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Sparkles, Zap, Globe2 } from 'lucide-react';
@@ -14,125 +8,67 @@ const translations = {
   en: {
     badge: "Global AI Agency",
     canadianBadge: "🇨🇦 Canadian Company from Quebec",
-    title: {
-      line1: "Transform Your Business",
-      line2: "With Intelligent Automation",
-      highlight: "In Days, Not Months"
-    },
-    subtitle: "Specialized solutions that work 24/7 to grow your business. Deploy in 10-15 days. Results from day one.",
-    cta: {
-      primary: "See How It Works",
-      secondary: "Book a Free Demo"
-    },
+    title: "Intelligent AI Agents for Modern Business",
+    description: "Transform your business with advanced AI automation, intelligent agents, and specialized micro-agents. Global solutions for modern enterprises.",
+    cta1: "Request a Demo",
+    cta2: "Explore Solutions",
     payNow: "Already convinced? Start now",
     stats: [
-      { value: "50+", label: "Growing Companies" },
-      { value: "10-15", label: "Days to Launch" },
-      { value: "+42%", label: "Customer Satisfaction" },
-      { value: "24/7", label: "Always Available" }
+      { value: "150+", label: "Active Projects" },
+      { value: "40+", label: "Countries Served" },
+      { value: "98%", label: "Client Satisfaction" }
     ]
   },
   fr: {
     badge: "Agence IA Internationale",
     canadianBadge: "🇨🇦 Entreprise Canadienne du Québec",
-    title: {
-      line1: "Transformez Votre Entreprise",
-      line2: "Avec L'Automatisation Intelligente",
-      highlight: "En Jours, Pas En Mois"
-    },
-    subtitle: "Des solutions spécialisées qui travaillent 24/7 pour faire grandir votre entreprise. Déploiement en 10-15 jours. Résultats dès le premier jour.",
-    cta: {
-      primary: "Voir Comment Ça Marche",
-      secondary: "Réserver Une Démo Gratuite"
-    },
+    title: "Agents IA Intelligents pour les Entreprises Modernes",
+    description: "Transformez votre entreprise avec l'automatisation IA avancée, des agents intelligents et des micro-agents spécialisés. Solutions mondiales pour entreprises modernes.",
+    cta1: "Demander une démo",
+    cta2: "Découvrir les solutions",
     payNow: "Déjà convaincu ? Commencer maintenant",
     stats: [
-      { value: "50+", label: "Entreprises En Croissance" },
-      { value: "10-15", label: "Jours Pour Lancer" },
-      { value: "+42%", label: "Satisfaction Client" },
-      { value: "24/7", label: "Toujours Disponible" }
+      { value: "150+", label: "Projets actifs" },
+      { value: "40+", label: "Pays desservis" },
+      { value: "98%", label: "Satisfaction client" }
     ]
   },
   es: {
     badge: "Agencia IA Internacional",
     canadianBadge: "🇨🇦 Empresa Canadiense de Quebec",
-    title: {
-      line1: "Transforme Su Negocio",
-      line2: "Con Automatización Inteligente",
-      highlight: "En Días, No En Meses"
-    },
-    subtitle: "Soluciones especializadas que trabajan 24/7 para hacer crecer su negocio. Implementación en 10-15 días. Resultados desde el primer día.",
-    cta: {
-      primary: "Ver Cómo Funciona",
-      secondary: "Reservar Una Demo Gratuita"
-    },
+    title: "Agentes IA Inteligentes para Empresas Modernas",
+    description: "Transforme su negocio con automatización IA avanzada, agentes inteligentes y micro-agentes especializados. Soluciones globales para empresas modernas.",
+    cta1: "Solicitar una demo",
+    cta2: "Explorar soluciones",
     payNow: "¿Ya convencido? Empezar ahora",
     stats: [
-      { value: "50+", label: "Empresas En Crecimiento" },
-      { value: "10-15", label: "Días Para Lanzar" },
-      { value: "+42%", label: "Satisfacción Del Cliente" },
-      { value: "24/7", label: "Siempre Disponible" }
+      { value: "150+", label: "Proyectos activos" },
+      { value: "40+", label: "Países atendidos" },
+      { value: "98%", label: "Satisfacción del cliente" }
     ]
   },
   pt: {
     badge: "Agência IA Internacional",
     canadianBadge: "🇨🇦 Empresa Canadense de Quebec",
-    title: {
-      line1: "Transforme Seu Negócio",
-      line2: "Com Automação Inteligente",
-      highlight: "Em Dias, Não Em Meses"
-    },
-    subtitle: "Soluções especializadas que trabalham 24/7 para fazer crescer seu negócio. Implementação em 10-15 dias. Resultados desde o primeiro dia.",
-    cta: {
-      primary: "Ver Como Funciona",
-      secondary: "Agendar Uma Demo Gratuita"
-    },
+    title: "Agentes IA Inteligentes para Empresas Modernas",
+    description: "Transforme seu negócio com automação IA avançada, agentes inteligentes e micro-agentes especializados. Soluções globais para empresas modernas.",
+    cta1: "Solicitar uma demo",
+    cta2: "Explorar soluções",
     payNow: "Já convencido? Começar agora",
     stats: [
-      { value: "50+", label: "Empresas Em Crescimento" },
-      { value: "10-15", label: "Dias Para Lançar" },
-      { value: "+42%", label: "Satisfação Do Cliente" },
-      { value: "24/7", label: "Sempre Disponível" }
+      { value: "150+", label: "Projetos ativos" },
+      { value: "40+", label: "Países atendidos" },
+      { value: "98%", label: "Satisfação do cliente" }
     ]
   }
 };
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
+  const t = translations[language as keyof typeof translations] || translations.fr;
   
   // Direct Stripe checkout URL (replace with your actual Stripe link)
   const stripeCheckoutUrl = 'https://buy.stripe.com/xxxxxx';
-  
-  const content: Record<'en' | 'fr', any> = {
-    en: {
-      badge: '',
-      title: 'Intelligent AI Agents for Modern Business',
-      titleHighlight: '',
-      description: 'Transform your business with advanced AI automation, intelligent agents, and specialized micro-agents. Global solutions for modern enterprises.',
-      cta1: 'Request a Demo',
-      cta2: 'Explore Solutions',
-      stats: [
-        { value: '150+', label: 'Active Projects' },
-        { value: '40+', label: 'Countries Served' },
-        { value: '98%', label: 'Client Satisfaction' },
-      ],
-    },
-    fr: {
-      badge: '',
-      title: 'Agents IA Intelligents pour les Entreprises Modernes',
-      titleHighlight: '',
-      description: 'Transformez votre entreprise avec l\'automatisation IA avancée, des agents intelligents et des micro-agents spécialisés. Solutions mondiales pour entreprises modernes.',
-      cta1: 'Demander une démo',
-      cta2: 'Découvrir les solutions',
-      stats: [
-        { value: '150+', label: 'Projets actifs' },
-        { value: '40+', label: 'Pays desservis' },
-        { value: '98%', label: 'Satisfaction client' },
-      ],
-    },
-  };
-
-  const t = content[language];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-500 via-violet-500 to-cyan-500">
@@ -149,6 +85,12 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6 animate-fade-in">
+          <Sparkles className="w-4 h-4 text-yellow-300" />
+          <span className="text-sm font-medium text-white">{t.badge}</span>
+        </div>
+
         {/* Main Title */}
         <h1 className="text-5xl md:text-7xl font-bold font-heading mb-6 animate-fade-in-up">
           <span className="text-gradient-tech bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-500 bg-clip-text text-transparent font-extrabold">
@@ -157,12 +99,12 @@ const Hero: React.FC = () => {
         </h1>
 
         {/* Description */}
-        <p className="text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-12 animate-fade-in-up delay-200">
+        <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 animate-fade-in-up delay-200">
           {t.description}
         </p>
 
         {/* CTAs - BLEU ÉLECTRIQUE */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up delay-300">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up delay-400">
           <Button 
             size="lg" 
             className="text-lg px-8 py-6 group bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all"
@@ -174,7 +116,7 @@ const Hero: React.FC = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="text-lg px-8 py-6 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950"
+            className="text-lg px-8 py-6 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
             onClick={() => window.location.href = `${baseUrl}/services`}
           >
             {t.cta2}
@@ -187,9 +129,9 @@ const Hero: React.FC = () => {
             href={stripeCheckoutUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-zinc-500 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
+            className="text-sm text-white/70 hover:text-white transition-colors inline-flex items-center gap-1"
           >
-            {content[language]?.payNow || translations[language]?.payNow}
+            {t.payNow}
             <ArrowRight className="w-3 h-3" />
           </a>
         </div>
@@ -197,9 +139,9 @@ const Hero: React.FC = () => {
         {/* Stats - BORDURES BLEUES */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-fade-in-up delay-500">
           {t.stats.map((stat: any, index: number) => (
-            <div key={index} className="p-6 bg-white dark:bg-zinc-900 border-2 border-blue-100 dark:border-blue-900 rounded-xl backdrop-blur-sm hover:shadow-xl hover:shadow-blue-600/10 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300">
-              <div className="text-4xl font-bold text-blue-600 mb-2">{stat.value}</div>
-              <div className="text-sm text-zinc-600 dark:text-zinc-400">{stat.label}</div>
+            <div key={index} className="p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300">
+              <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
+              <div className="text-sm text-white/80">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -208,12 +150,12 @@ const Hero: React.FC = () => {
       {/* Floating Icons - BLEU/VIOLET */}
       <div className="absolute top-1/4 left-1/4 animate-float hidden lg:block">
         <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm border border-blue-500/30">
-          <Zap className="w-6 h-6 text-blue-600" />
+          <Zap className="w-6 h-6 text-blue-300" />
         </div>
       </div>
       <div className="absolute bottom-1/3 right-1/4 animate-float delay-500 hidden lg:block">
         <div className="w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm border border-violet-500/30">
-          <Globe2 className="w-6 h-6 text-violet-600" />
+          <Globe2 className="w-6 h-6 text-violet-300" />
         </div>
       </div>
     </section>
@@ -221,30 +163,4 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

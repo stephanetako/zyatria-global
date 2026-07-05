@@ -55,7 +55,7 @@ export default function FormspreeButton() {
           const t = translations[language] || translations.en;
 
           window.formbutton("create", {
-            action: "https://formspree.io/f/xeelvrdl",
+            action: "https://formspree.io/f/xbdedonn",
             title: t.title,
             fields: [
               { 
@@ -116,5 +116,7 @@ declare global {
     formbutton: any;
   }
 }
+
+
 
 

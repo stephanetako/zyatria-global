@@ -2,57 +2,59 @@
 
 
 
+
+
 /**
- * COLOR OVERRIDE - OPTION 1: TECH MODERNE
+ * COLOR OVERRIDE - PALETTE PAISIBLE ET NATURELLE
  * 
- * Cette palette remplace les couleurs terracotta par une palette tech professionnelle
- * inspirée de Stripe, Vercel, et les leaders tech internationaux.
+ * Cette palette utilise des couleurs douces et apaisantes
+ * inspirées de la nature : bleu ciel doux, vert sauge, tons terre.
  * 
- * Style: Tech moderne, professionnel, international
- * Parfait pour: IA, SaaS, B2B, startups tech
+ * Style: Calme, naturel, professionnel, apaisant
+ * Parfait pour: Bien-être, IA éthique, services professionnels
  */
 
 /* === HIGH IMPACT GRADIENTS === */
 .gradient-primary,
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%) !important;
+  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%) !important;
 }
 
 .gradient-tech,
 .bg-gradient-tech {
-  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%) !important;
+  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%) !important;
 }
 
 .gradient-hero {
-  background: linear-gradient(135deg, #0066FF 0%, #1E40AF 50%, #8B5CF6 100%) !important;
+  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 50%, #8B9D83 100%) !important;
 }
 
 .gradient-violet,
 .bg-gradient-violet {
-  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%) !important;
+  background: linear-gradient(135deg, #8B9D83 0%, #A8B5A1 100%) !important;
 }
 
 .gradient-cyan {
-  background: linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%) !important;
+  background: linear-gradient(135deg, #7BA8B8 0%, #9BC4D4 100%) !important;
 }
 
 /* TEXT GRADIENTS - TRÈS VISIBLES */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%) !important;
+  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
 .text-gradient-tech {
-  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%) !important;
+  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
 .text-gradient-violet {
-  background: linear-gradient(135deg, #8B5CF6 0%, #C084FC 100%) !important;
+  background: linear-gradient(135deg, #8B9D83 0%, #A8B5A1 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -60,7 +62,7 @@
 
 /* BACKGROUND GRADIENTS POUR SECTIONS */
 .bg-gradient-to-br {
-  background: linear-gradient(to bottom right, var(--background), var(--muted), rgba(0, 102, 255, 0.05)) !important;
+  background: linear-gradient(to bottom right, var(--background), var(--muted), rgba(91, 143, 163, 0.05)) !important;
 }
 
 .from-background {
@@ -70,41 +72,41 @@
 /* FORCE PRIMARY COLOR */
 .text-primary,
 .text-primary * {
-  color: #0066FF !important;
+  color: #4A7A8C !important;
 }
 
 .bg-primary,
 .bg-primary * {
-  background-color: #0066FF !important;
+  background-color: #5B8FA3 !important;
 }
 
 .border-primary {
-  border-color: #0066FF !important;
+  border-color: #5B8FA3 !important;
 }
 
 :root {
   /* === COULEURS PRINCIPALES === */
   
-  /* Primary - Bleu électrique (confiance, tech, international) */
-  --_apps---colors--primary: #0066FF;
+  /* Primary - Bleu doux apaisant (confiance, calme, sérénité) */
+  --_apps---colors--primary: #5B8FA3;
   --_apps---colors--primary-foreground: #FFFFFF;
-  --_apps---colors--ring: #0066FF;
+  --_apps---colors--ring: #5B8FA3;
   
   /* Background & Foreground - Contraste maximal */
   --_apps---colors--background: #FFFFFF;
   --_apps---colors--foreground: #09090B;
   
-  /* Secondary - Violet IA (innovation, premium) - TRÈS FONCÉ */
-  --_apps---colors--secondary: #F3F4F6;
-  --_apps---colors--secondary-foreground: #5B21B6;
+  /* Secondary - Vert sauge doux (nature, équilibre) */
+  --_apps---colors--secondary: #F5F7F4;
+  --_apps---colors--secondary-foreground: #18181B;
   
-  /* Muted - Gris moderne - BEAUCOUP PLUS FONCÉ POUR EXCELLENTE VISIBILITÉ */
+  /* Muted - Gris très foncé pour excellente lisibilité */
   --_apps---colors--muted: #F4F4F5;
-  --_apps---colors--muted-foreground: #27272A;
+  --_apps---colors--muted-foreground: #18181B;
   
-  /* Accent - Cyan tech - PLUS FONCÉ */
-  --_apps---colors--accent: #EFF6FF;
-  --_apps---colors--accent-foreground: #0E7490;
+  /* Accent - Vert sauge foncé pour bon contraste */
+  --_apps---colors--accent: #F0F4F0;
+  --_apps---colors--accent-foreground: #3D5A3D;
   
   /* Cards */
   --_apps---colors--card: #FFFFFF;
@@ -118,49 +120,49 @@
   --_apps---colors--border: #D4D4D8;
   --_apps---colors--input: #D4D4D8;
   
-  /* Destructive - Rouge moderne */
-  --_apps---colors--destructive: #DC2626;
+  /* Destructive - Rouge doux */
+  --_apps---colors--destructive: #C85A54;
   
   /* === CHARTS === */
-  --_apps---charts--chart-1: #0066FF;
-  --_apps---charts--chart-2: #8B5CF6;
-  --_apps---charts--chart-3: #06B6D4;
-  --_apps---charts--chart-4: #10B981;
-  --_apps---charts--chart-5: #F59E0B;
+  --_apps---charts--chart-1: #5B8FA3;
+  --_apps---charts--chart-2: #8B9D83;
+  --_apps---charts--chart-3: #7BA8B8;
+  --_apps---charts--chart-4: #A8B5A1;
+  --_apps---charts--chart-5: #D4A574;
   
   /* === SIDEBAR === */
   --_apps---sidebar--sidebar: #FAFAFA;
   --_apps---sidebar--sidebar-foreground: #09090B;
-  --_apps---sidebar--sidebar-primary: #0066FF;
+  --_apps---sidebar--sidebar-primary: #5B8FA3;
   --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
   --_apps---sidebar--sidebar-accent: #F4F4F5;
-  --_apps---sidebar--sidebar-accent-foreground: #27272A;
+  --_apps---sidebar--sidebar-accent-foreground: #18181B;
   --_apps---sidebar--sidebar-border: #D4D4D8;
-  --_apps---sidebar--sidebar-ring: #0066FF;
+  --_apps---sidebar--sidebar-ring: #5B8FA3;
 }
 
 /* === DARK MODE === */
 .dark {
-  /* Primary - Bleu électrique (plus vif en dark) */
-  --_apps---colors--primary: #3B82F6;
+  /* Primary - Bleu doux plus lumineux en dark */
+  --_apps---colors--primary: #7BA8B8;
   --_apps---colors--primary-foreground: #FFFFFF;
-  --_apps---colors--ring: #3B82F6;
+  --_apps---colors--ring: #7BA8B8;
   
   /* Background & Foreground - Mode sombre élégant */
   --_apps---colors--background: #09090B;
   --_apps---colors--foreground: #FAFAFA;
   
-  /* Secondary - Violet IA */
+  /* Secondary - Vert sauge doux */
   --_apps---colors--secondary: #18181B;
-  --_apps---colors--secondary-foreground: #A78BFA;
+  --_apps---colors--secondary-foreground: #E4E4E7;
   
-  /* Muted - Gris charbon */
+  /* Muted - Gris clair pour bonne lisibilité */
   --_apps---colors--muted: #27272A;
-  --_apps---colors--muted-foreground: #A1A1AA;
+  --_apps---colors--muted-foreground: #D4D4D8;
   
-  /* Accent - Cyan lumineux */
+  /* Accent - Vert sauge lumineux */
   --_apps---colors--accent: #18181B;
-  --_apps---colors--accent-foreground: #22D3EE;
+  --_apps---colors--accent-foreground: #A8B5A1;
   
   /* Cards */
   --_apps---colors--card: #09090B;
@@ -174,74 +176,74 @@
   --_apps---colors--border: #27272A;
   --_apps---colors--input: #27272A;
   
-  /* Destructive - Rouge vif */
-  --_apps---colors--destructive: #F87171;
+  /* Destructive - Rouge doux */
+  --_apps---colors--destructive: #E07A74;
   
   /* Charts Dark */
-  --_apps---charts--chart-1: #3B82F6;
-  --_apps---charts--chart-2: #A78BFA;
-  --_apps---charts--chart-3: #22D3EE;
-  --_apps---charts--chart-4: #34D399;
-  --_apps---charts--chart-5: #FBBF24;
+  --_apps---charts--chart-1: #7BA8B8;
+  --_apps---charts--chart-2: #A8B5A1;
+  --_apps---charts--chart-3: #9BC4D4;
+  --_apps---charts--chart-4: #B8C9B0;
+  --_apps---charts--chart-5: #E5C29A;
   
   /* Sidebar Dark */
   --_apps---sidebar--sidebar: #09090B;
   --_apps---sidebar--sidebar-foreground: #FAFAFA;
-  --_apps---sidebar--sidebar-primary: #3B82F6;
+  --_apps---sidebar--sidebar-primary: #7BA8B8;
   --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
   --_apps---sidebar--sidebar-accent: #18181B;
-  --_apps---sidebar--sidebar-accent-foreground: #A1A1AA;
+  --_apps---sidebar--sidebar-accent-foreground: #D4D4D8;
   --_apps---sidebar--sidebar-border: #27272A;
-  --_apps---sidebar--sidebar-ring: #3B82F6;
+  --_apps---sidebar--sidebar-ring: #7BA8B8;
 }
 
-/* === GRADIENTS TECH === */
+/* === GRADIENTS PAISIBLES === */
 .gradient-primary {
-  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%);
 }
 
 .gradient-violet {
-  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+  background: linear-gradient(135deg, #8B9D83 0%, #A8B5A1 100%);
 }
 
 .gradient-tech {
-  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%);
+  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%);
 }
 
 /* === GLOWS & EFFECTS === */
 .glow-primary {
-  box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+  box-shadow: 0 0 30px rgba(91, 143, 163, 0.3);
 }
 
 .glow-violet {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 30px rgba(139, 157, 131, 0.3);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 30px rgba(123, 168, 184, 0.3);
 }
 
 /* === HOVER STATES === */
 .hover-primary:hover {
-  background-color: #0052CC;
+  background-color: #4A7A8C;
   transition: background-color 0.2s ease;
 }
 
 .hover-violet:hover {
-  background-color: #7C3AED;
+  background-color: #7A8C72;
   transition: background-color 0.2s ease;
 }
 
 /* === TEXT GRADIENTS === */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #0066FF 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-tech {
-  background: linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #06B6D4 100%);
+  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -250,10 +252,10 @@
 /* === ANIMATIONS === */
 @keyframes pulse-blue {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+    box-shadow: 0 0 20px rgba(91, 143, 163, 0.4);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 102, 255, 0.6);
+    box-shadow: 0 0 40px rgba(91, 143, 163, 0.6);
   }
 }
 
@@ -265,7 +267,7 @@
 .border-gradient {
   border: 1px solid transparent;
   background: linear-gradient(var(--_apps---colors--background), var(--_apps---colors--background)) padding-box,
-              linear-gradient(135deg, #0066FF, #8B5CF6) border-box;
+              linear-gradient(135deg, #5B8FA3, #8B9D83) border-box;
 }
 
 /* === ACCESSIBILITY === */
@@ -273,6 +275,38 @@
 *:focus-visible {
   outline: 2px solid var(--_apps---colors--primary);
   outline-offset: 2px;
+}
+
+/* Force high contrast for all text elements */
+p, span, div, li, a {
+  color: inherit;
+}
+
+/* Ensure muted text is still readable */
+.text-muted-foreground {
+  color: #18181B !important;
+}
+
+.dark .text-muted-foreground {
+  color: #D4D4D8 !important;
+}
+
+/* Ensure secondary text is readable */
+.text-secondary-foreground {
+  color: #18181B !important;
+}
+
+.dark .text-secondary-foreground {
+  color: #E4E4E7 !important;
+}
+
+/* Ensure accent text is readable */
+.text-accent-foreground {
+  color: #3D5A3D !important;
+}
+
+.dark .text-accent-foreground {
+  color: #A8B5A1 !important;
 }
 
 /* === BUTTON OVERRIDES === */
@@ -284,9 +318,9 @@ a[class*="bg-primary"] {
 
 button[class*="bg-primary"]:hover,
 a[class*="bg-primary"]:hover {
-  background-color: #0052CC !important;
+  background-color: #4A7A8C !important;
   transform: translateY(-1px);
-  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(91, 143, 163, 0.3);
   transition: all 0.2s ease;
 }
 
@@ -297,7 +331,7 @@ a[class*="bg-primary"]:hover {
 }
 
 .card-tech:hover {
-  box-shadow: 0 14px 28px rgba(0, 102, 255, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 28px rgba(91, 143, 163, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
 }
 
 /* === GLASS MORPHISM === */
@@ -312,6 +346,8 @@ a[class*="bg-primary"]:hover {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
 
 
 

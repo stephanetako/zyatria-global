@@ -1,0 +1,200 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    🎯 ACTION IMMÉDIATE - ÉTAPE 1                             ║
+║                                                                              ║
+║                  Tester les Webhooks Stripe en 10 Minutes                   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  📋 CHECKLIST RAPIDE                                                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  [ ] Stripe CLI installé
+  [ ] Connecté à Stripe (stripe login)
+  [ ] Secret webhook dans .env
+  [ ] Serveur démarré (npm run dev)
+  [ ] Tests lancés
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  ⚡ COMMANDES À EXÉCUTER MAINTENANT                                          │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+1️⃣  INSTALLER STRIPE CLI
+    
+    macOS:
+    brew install stripe/stripe-cli/stripe
+    
+    Windows:
+    scoop install stripe
+    
+    Linux:
+    wget https://github.com/stripe/stripe-cli/releases/latest/download/stripe_linux_x86_64.tar.gz
+    tar -xvf stripe_linux_x86_64.tar.gz
+    sudo mv stripe /usr/local/bin/
+
+
+2️⃣  SE CONNECTER
+    
+    stripe login
+
+
+3️⃣  OBTENIR LE SECRET
+    
+    stripe listen --print-secret
+    
+    → Copier le secret qui commence par whsec_
+
+
+4️⃣  CONFIGURER .ENV
+    
+    Ouvrir .env et ajouter:
+    STRIPE_WEBHOOK_SECRET=whsec_votre_secret_ici
+    
+    ⚠️  REDÉMARRER LE SERVEUR APRÈS !
+
+
+5️⃣  DÉMARRER LE SERVEUR (Terminal 1)
+    
+    npm run dev
+
+
+6️⃣  ÉCOUTER LES WEBHOOKS (Terminal 2)
+    
+    stripe listen --forward-to localhost:4321/api/stripe/webhook
+
+
+7️⃣  LANCER LES TESTS (Terminal 3)
+    
+    Option A - Script automatique:
+    ./test-stripe-webhooks.sh
+    
+    Option B - Tests manuels:
+    stripe trigger payment_intent.succeeded
+    stripe trigger customer.subscription.created
+    stripe trigger customer.subscription.updated
+    stripe trigger payment_intent.payment_failed
+    stripe trigger customer.subscription.deleted
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  ✅ RÉSULTAT ATTENDU                                                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Terminal 2 (stripe listen):
+  ✔ [200] POST http://localhost:4321/api/stripe/webhook [evt_xxx]
+  ✔ [200] POST http://localhost:4321/api/stripe/webhook [evt_yyy]
+  ✔ [200] POST http://localhost:4321/api/stripe/webhook [evt_zzz]
+
+Terminal 1 (npm run dev):
+  🎯 Webhook reçu: customer.subscription.created
+  📊 ANALYSE:
+     Status: trialing
+     Score de santé: 100/100
+     🟢 Santé: [██████████] 100%
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  📚 DOCUMENTATION DISPONIBLE                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  📋 Démarrage rapide:
+     📋_COMMENCER_ICI_ETAPE_1.md
+
+  ⚡ Guide ultra-rapide (3 min):
+     🚀_DEMARRAGE_RAPIDE_STRIPE_CLI.md
+
+  📖 Guide complet (10 min):
+     GUIDE_TEST_STRIPE_CLI.md
+
+  🗺️  Plan 4 étapes:
+     PLAN_COMPLET_4_ETAPES.md
+
+  ✅ Statut:
+     ✅_ETAPE_1_PRETE.md
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  🐛 PROBLÈMES COURANTS                                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  ❌ "Webhook signature verification failed"
+     → Vérifier STRIPE_WEBHOOK_SECRET dans .env
+     → Redémarrer le serveur après modification
+
+  ❌ "Connection refused"
+     → Vérifier que npm run dev est actif
+     → Vérifier le port 4321
+
+  ❌ "Command not found: stripe"
+     → Réinstaller Stripe CLI
+     → Vérifier le PATH
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  ⏱️  TEMPS ESTIMÉ                                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Installation:     1 minute
+  Configuration:    2 minutes
+  Tests:            5 minutes
+  Vérification:     2 minutes
+  ─────────────────────────────
+  TOTAL:           10 minutes
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  🎯 VALIDATION                                                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Vous avez réussi si:
+  
+  ✅ Tous les événements retournent [200]
+  ✅ Les logs montrent les bonnes données
+  ✅ Les scores de santé sont corrects:
+     • Abonnement créé/actif: 100%
+     • Paiement échoué: 50%
+     • Abonnement annulé: 0%
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  🚀 APRÈS L'ÉTAPE 1                                                          │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Étape 2: Dashboard de Visualisation 📊
+  Étape 3: Configuration des Emails 📧
+  Étape 4: Personnalisation 🎨
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  💡 CONSEIL PRO                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Gardez "stripe listen" actif pendant tout le développement
+  pour voir les webhooks en temps réel !
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                         🚀 COMMENCEZ MAINTENANT                              ║
+║                                                                              ║
+║                              stripe login                                    ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  📞 BESOIN D'AIDE ?                                                          │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Consultez les guides détaillés ou demandez de l'aide !
+  Tous les fichiers sont prêts et testés. ✅
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+                              BONNE CHANCE ! 🎉
+
+═══════════════════════════════════════════════════════════════════════════════

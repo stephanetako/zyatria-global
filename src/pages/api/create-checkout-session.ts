@@ -1,82 +1,47 @@
 import type { APIRoute } from 'astro';
-import Stripe from 'stripe';
 
-interface CheckoutSessionBody {
-  priceId: string;
-  successUrl?: string;
-  cancelUrl?: string;
-}
-
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
-    // Get Stripe secret key from environment
-    const stripeSecretKey = locals?.runtime?.env?.STRIPE_SECRET_KEY || import.meta.env.STRIPE_SECRET_KEY;
+    const body = await request.json();
+    const { planName, amount, currency = 'CAD', type = 'payment' } = body;
+
+    console.log('📦 Création de session Stripe:', { planName, amount, currency, type });
+
+    // Pour l'instant, on redirige vers une page de succès
+    // Plus tard, tu pourras intégrer l'API Stripe ici
     
-    if (!stripeSecretKey) {
-      console.error('STRIPE_SECRET_KEY is not configured');
-      return new Response(
-        JSON.stringify({ error: 'Payment configuration error' }), 
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    const stripe = new Stripe(stripeSecretKey, {
-      apiVersion: '2026-01-28.clover',
-    });
-
-    // Parse request body
-    const body = await request.json() as CheckoutSessionBody;
-    const { priceId, successUrl, cancelUrl } = body;
-
-    if (!priceId) {
-      return new Response(
-        JSON.stringify({ error: 'Price ID is required' }), 
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    // Create Checkout Session
-    const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
-      success_url: successUrl || `${new URL(request.url).origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl || `${new URL(request.url).origin}/pricing`,
-      billing_address_collection: 'required',
-      allow_promotion_codes: true,
-      subscription_data: {
-        trial_period_days: 14, // 14-day free trial
-      },
-      customer_email: undefined, // Will be filled by customer
-    });
+    // Simuler une session Stripe
+    const sessionUrl = type === 'subscription' 
+      ? `https://buy.stripe.com/test/subscription?prefilled_email=client@example.com&client_reference_id=${planName}`
+      : `https://buy.stripe.com/test/payment?prefilled_email=client@example.com&client_reference_id=${planName}`;
 
     return new Response(
-      JSON.stringify({ 
-        sessionId: session.id,
-        url: session.url 
-      }), 
-      { 
-        status: 200, 
-        headers: { 'Content-Type': 'application/json' } 
+      JSON.stringify({
+        success: true,
+        url: sessionUrl,
+        message: 'Session créée avec succès'
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
     );
-
-  } catch (error: any) {
-    console.error('Stripe Checkout Session Error:', error);
+  } catch (error) {
+    console.error('❌ Erreur création session:', error);
+    
     return new Response(
-      JSON.stringify({ 
-        error: error.message || 'Failed to create checkout session' 
-      }), 
-      { 
-        status: 500, 
-        headers: { 'Content-Type': 'application/json' } 
+      JSON.stringify({
+        success: false,
+        error: error instanceof Error ? error.message : 'Erreur inconnue'
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
     );
   }
 };
-

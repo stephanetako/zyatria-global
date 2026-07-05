@@ -56,11 +56,12 @@ const Navigation: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href={`${baseUrl}/`} className="flex items-center space-x-2 hover:opacity-80 transition">
+          <a href="#" className="flex items-center group">
             <img 
-              src="/logo-with-text.svg" 
-              alt="ZyatrIA Global Logo" 
-              className="h-8 w-auto"
+              src="/zyatria-global-logo.svg" 
+              alt="ZyatrIA Global — Agents IA Intelligents pour les Entreprises Modernes"
+              style={{ width: '200px', height: 'auto' }}
+              className="transition-transform group-hover:scale-105"
             />
           </a>
 
@@ -220,6 +221,12 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
+
+
+
+
+
+
 
 
 

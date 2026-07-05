@@ -1,512 +1,252 @@
-# 🔗 GUIDE COMPLET : CRÉATION DES PAYMENT LINKS STRIPE
+# 🎯 Guide Complet : Configuration Stripe Payment Links
 
-Ce guide vous accompagne étape par étape pour créer vos liens de paiement Stripe et les intégrer sur votre site.
+## 📋 Table des Matières
 
----
-
-## 📋 TABLE DES MATIÈRES
-
-1. [Prérequis](#prérequis)
-2. [Connexion à Stripe](#connexion-à-stripe)
-3. [Création des produits](#création-des-produits)
-4. [Génération des Payment Links](#génération-des-payment-links)
-5. [Intégration dans le site](#intégration-dans-le-site)
-6. [Tests](#tests)
-7. [Passage en LIVE](#passage-en-live)
-8. [Dépannage](#dépannage)
+1. [Créer vos Payment Links](#1-créer-vos-payment-links)
+2. [Obtenir vos Price IDs](#2-obtenir-vos-price-ids)
+3. [Configurer les fichiers](#3-configurer-les-fichiers)
+4. [Tester l'intégration](#4-tester-lintégration)
+5. [Passer en production](#5-passer-en-production)
 
 ---
 
-## 🔧 PRÉREQUIS
+## 1️⃣ Créer vos Payment Links
 
-Avant de commencer, assurez-vous d'avoir :
+### Étape 1 : Accéder au Dashboard Stripe
 
-- ✅ Un compte Stripe (gratuit)
-- ✅ Les informations de votre entreprise
-- ✅ Accès au code de votre site
+1. **Connectez-vous** à : https://dashboard.stripe.com
+2. **Assurez-vous** d'être en **mode Test** (toggle en haut à droite)
+3. **Allez dans** : **Produits** → **Payment Links**
 
-**Budget** : Gratuit (Stripe prend 2.9% + 0.30€ par transaction)
+### Étape 2 : Créer un Payment Link
 
----
+1. **Cliquez sur** : `+ Nouveau lien de paiement`
 
-## 1. CONNEXION À STRIPE
+2. **Configurez le produit** :
+   - **Nom** : `Starter Plan` (ou le nom de votre choix)
+   - **Description** : `Paiement unique pour démarrer avec ZyatrIA`
+   - **Prix** : `99` EUR
+   - **Type** : `Paiement unique` ou `Abonnement`
 
-### 1.1 Créer un compte (si nécessaire)
+3. **Options avancées** (optionnel) :
+   - ✅ Autoriser les codes promo
+   - ✅ Collecter l'adresse de facturation
+   - ✅ Collecter le numéro de téléphone
 
-1. Allez sur : **https://dashboard.stripe.com/register**
-2. Remplissez le formulaire avec :
-   - **Email professionnel** : votre-email@entreprise.com
-   - **Nom de l'entreprise** : ZyatrIA Global
-   - **Pays** : Canada (ou votre pays)
-3. Validez votre email
-4. Complétez votre profil d'entreprise
+4. **Cliquez sur** : `Créer le lien`
 
-### 1.2 Se connecter
+5. **Copiez l'URL** générée (ressemble à `https://buy.stripe.com/test_XXXXXXXX`)
 
-1. Allez sur : **https://dashboard.stripe.com**
-2. Connectez-vous
+### Étape 3 : Répéter pour chaque plan
 
----
-
-## 2. CRÉATION DES PRODUITS
-
-### ⚠️ MODE TEST IMPORTANT
-
-**Avant toute chose**, assurez-vous d'être en **Mode Test** :
-
-```
-┌─────────────────────────────┐
-│  🔵 Mode Test   [Toggle]    │  ← Doit être ACTIVÉ
-└─────────────────────────────┘
-```
-
-En haut à gauche du dashboard, le toggle doit afficher **"Test mode"** avec un badge bleu.
+Créez des Payment Links pour :
+- ✅ **Starter** (99€ - paiement unique)
+- ✅ **Pro** (299€/mois - abonnement)
+- ✅ **Enterprise** (2999€/an - abonnement)
+- ✅ **Micro-Agent** (49€/mois - abonnement)
+- ✅ **Consultation** (199€ - paiement unique)
 
 ---
 
-### 2.1 Créer le plan STARTER
+## 2️⃣ Obtenir vos Price IDs
 
-1. **Cliquez sur "Products"** dans le menu de gauche
-2. **Cliquez sur "+ Add product"**
+### Méthode 1 : Depuis les Produits
 
-**Remplissez le formulaire :**
+1. **Allez dans** : **Produits** → **Tous les produits**
+2. **Cliquez** sur un produit
+3. **Copiez** le **Price ID** (commence par `price_`)
 
-#### **Informations du produit**
+### Méthode 2 : Depuis l'API
 
+1. **Allez dans** : **Développeurs** → **Clés API**
+2. **Utilisez** l'API Explorer pour lister vos prix :
+
+```bash
+curl https://api.stripe.com/v1/prices \
+  -u sk_test_VOTRE_CLE_SECRETE:
 ```
-┌─────────────────────────────────────────────┐
-│ Product information                         │
-├─────────────────────────────────────────────┤
-│                                             │
-│ Name (Required):                            │
-│ ┌─────────────────────────────────────────┐ │
-│ │ Starter Plan                            │ │
-│ └─────────────────────────────────────────┘ │
-│                                             │
-│ Description (Optional):                     │
-│ ┌─────────────────────────────────────────┐ │
-│ │ 1 micro-agent IA                        │ │
-│ │ Réponses automatiques 24/7              │ │
-│ │ Support email                           │ │
-│ └─────────────────────────────────────────┘ │
-│                                             │
-│ Statement descriptor (Optional):            │
-│ [Laissez vide]                              │
-│                                             │
-│ Unit label (Optional):                      │
-│ [Laissez vide]                              │
-└─────────────────────────────────────────────┘
-```
-
-#### **Pricing (Tarification)**
-
-```
-┌─────────────────────────────────────────────┐
-│ Pricing                                     │
-├─────────────────────────────────────────────┤
-│                                             │
-│ Pricing model:                              │
-│ ● Standard pricing                          │
-│ ○ Package pricing                           │
-│ ○ Graduated pricing                         │
-│                                             │
-│ Price:                                      │
-│ ┌──────┐  ┌──────────────┐                 │
-│ │  49  │  │     EUR €    │                 │
-│ └──────┘  └──────────────┘                 │
-│                                             │
-│ Billing period:                             │
-│ ● Recurring                                 │
-│   ┌──────────────┐                         │
-│   │   Monthly    │                         │
-│   └──────────────┘                         │
-│                                             │
-│ ☐ Usage is metered                          │  ← DÉCOCHER
-│                                             │
-└─────────────────────────────────────────────┘
-```
-
-3. **Cliquez sur "Save product"** en haut à droite
-
-✅ **Votre premier produit est créé !**
 
 ---
 
-### 2.2 Créer le plan BUSINESS
+## 3️⃣ Configurer les fichiers
 
-Répétez exactement le même processus :
+### Fichier 1 : `.env`
 
-**Product information:**
-```
-Name: Business Plan
+**Vérifiez** que vos clés Stripe sont bien configurées :
 
-Description:
-3 micro-agents IA
-Automatisations avancées
-Intégrations CRM (HubSpot, Salesforce, etc.)
-Support prioritaire
+```env
+# Stripe Keys (Test Mode)
+STRIPE_PUBLISHABLE_KEY=pk_test_VOTRE_CLE_PUBLIQUE
+STRIPE_SECRET_KEY=sk_test_VOTRE_CLE_SECRETE
 ```
 
-**Pricing:**
-```
-Price: 149
-Currency: EUR €
-Billing period: Monthly (Recurring)
-```
+### Fichier 2 : `src/config/stripe-links.ts`
 
-**Cliquez sur "Save product"**
-
-✅ **Votre deuxième produit est créé !**
-
----
-
-### 2.3 Plan ENTERPRISE
-
-⚠️ **NE CRÉEZ PAS** de produit pour Enterprise, car c'est un plan **sur mesure** (custom pricing).
-
-Les clients Enterprise contactent directement via la page `/demo`.
-
----
-
-## 3. GÉNÉRATION DES PAYMENT LINKS
-
-Maintenant, nous allons créer les liens de paiement publics pour chaque produit.
-
-### 3.1 Payment Link pour STARTER (EUR)
-
-1. **Allez dans "Products"** → Cliquez sur **"Starter Plan"**
-2. En haut à droite, **cliquez sur "Create payment link"**
-
-**Configurez le Payment Link :**
-
-```
-┌─────────────────────────────────────────────┐
-│ Payment link                                │
-├─────────────────────────────────────────────┤
-│                                             │
-│ Product:                                    │
-│ Starter Plan - €49.00 / month               │
-│                                             │
-│ Quantity:                                   │
-│ ○ Fixed quantity (1)                        │
-│ ● Customer chooses quantity                 │
-│   ☐ Allow quantity adjustment               │
-│                                             │
-│ Collect customer information:               │
-│ ☑ Email address (required)                  │
-│ ☑ Name                                      │
-│ ☐ Phone number                              │
-│ ☐ Billing address                           │
-│ ☐ Shipping address                          │
-│                                             │
-│ After payment:                              │
-│ ○ Show a confirmation page                  │
-│ ● Redirect to a URL                         │
-│   ┌─────────────────────────────────────┐   │
-│   │ https://votre-site.com/success      │   │
-│   └─────────────────────────────────────┘   │
-│                                             │
-│ Allow promotion codes:                      │
-│ ☑ Yes                                       │
-│                                             │
-│ Require billing address:                    │
-│ ○ Always                                    │
-│ ● Only if necessary for taxes               │
-│ ○ Never                                     │
-│                                             │
-│ Collect tax IDs:                            │
-│ ☐ Optional                                  │
-│                                             │
-└─────────────────────────────────────────────┘
-```
-
-**Paramètres recommandés :**
-- ✅ Email & Name (requis)
-- ✅ Redirect vers votre page `/success`
-- ✅ Allow promotion codes (pour les coupons)
-- ✅ Billing address uniquement si nécessaire
-
-3. **Cliquez sur "Create link"**
-
-**🎉 Votre lien est généré !**
-
-Il ressemble à ceci :
-```
-https://buy.stripe.com/test_XXXXXXXXXXXXXXXXX
-```
-
-4. **COPIEZ CE LIEN** et gardez-le précieusement ! 📋
-
----
-
-### 3.2 Payment Link pour BUSINESS (EUR)
-
-Répétez exactement le même processus pour le plan Business :
-
-1. Products → **"Business Plan"** → **"Create payment link"**
-2. Mêmes paramètres que Starter
-3. **Copiez le lien généré** 📋
-
----
-
-### 3.3 Créer les liens pour USD et CAD (Optionnel)
-
-Si vous voulez offrir plusieurs devises :
-
-#### **Option 1 : Multi-Currency Payment Links** (Recommandé)
-
-Stripe peut afficher automatiquement les prix dans la devise locale du client :
-
-1. Allez dans **Settings** → **Payment methods**
-2. Activez **"Presentment currencies"**
-3. Sélectionnez : EUR, USD, CAD
-
-Avec cette option, **un seul lien suffit** ! Stripe affichera automatiquement le prix dans la devise du client.
-
-#### **Option 2 : Créer des prix séparés** (Plus de contrôle)
-
-Pour créer des prix spécifiques en USD et CAD :
-
-1. Allez dans le produit (ex: Starter Plan)
-2. Cliquez sur **"Add another price"**
-3. Créez un prix à **52 USD**
-4. Créez un autre prix à **69 CAD**
-5. Générez des Payment Links pour chaque devise
-
----
-
-## 4. INTÉGRATION DANS LE SITE
-
-Maintenant que vous avez vos liens, il est temps de les intégrer !
-
-### 4.1 Ouvrir le fichier de configuration
-
-Le fichier **`src/config/stripe-links.ts`** a déjà été créé pour vous.
-
-Ouvrez-le et vous verrez :
+**Remplacez** les URLs et Price IDs :
 
 ```typescript
-export const STRIPE_TEST_LINKS = {
+export const stripePaymentLinks = {
   starter: {
-    eur: 'https://buy.stripe.com/test_REMPLACEZ_PAR_VOTRE_LIEN_STARTER_EUR',
-    usd: 'https://buy.stripe.com/test_REMPLACEZ_PAR_VOTRE_LIEN_STARTER_USD',
-    cad: 'https://buy.stripe.com/test_REMPLACEZ_PAR_VOTRE_LIEN_STARTER_CAD',
+    name: 'Starter',
+    price: '99€',
+    url: 'https://buy.stripe.com/test_XXXXXXXX', // ← REMPLACER ICI
+    // ...
   },
-  business: {
-    eur: 'https://buy.stripe.com/test_REMPLACEZ_PAR_VOTRE_LIEN_BUSINESS_EUR',
-    usd: 'https://buy.stripe.com/test_REMPLACEZ_PAR_VOTRE_LIEN_BUSINESS_USD',
-    cad: 'https://buy.stripe.com/test_REMPLACEZ_PAR_VOTRE_LIEN_BUSINESS_CAD',
-  },
+  // ...
 };
-```
 
-### 4.2 Remplacer les liens
-
-**Remplacez** les liens par vos vrais liens Stripe :
-
-```typescript
-export const STRIPE_TEST_LINKS = {
-  starter: {
-    eur: 'https://buy.stripe.com/test_14k8wA7EQ0aQ5by001',  // ✅ Votre vrai lien
-    usd: 'https://buy.stripe.com/test_14k8wA7EQ0aQ5by002',  // Si vous en avez un
-    cad: 'https://buy.stripe.com/test_14k8wA7EQ0aQ5by003',  // Si vous en avez un
-  },
-  business: {
-    eur: 'https://buy.stripe.com/test_28o4gk0gofZG2Vm004',  // ✅ Votre vrai lien
-    usd: 'https://buy.stripe.com/test_28o4gk0gofZG2Vm005',  // Si vous en avez un
-    cad: 'https://buy.stripe.com/test_28o4gk0gofZG2Vm006',  // Si vous en avez un
-  },
-};
-```
-
-**Si vous n'avez qu'un lien EUR**, vous pouvez mettre le même lien pour toutes les devises :
-
-```typescript
-export const STRIPE_TEST_LINKS = {
-  starter: {
-    eur: 'https://buy.stripe.com/test_14k8wA7EQ0aQ5by001',
-    usd: 'https://buy.stripe.com/test_14k8wA7EQ0aQ5by001',  // Même lien
-    cad: 'https://buy.stripe.com/test_14k8wA7EQ0aQ5by001',  // Même lien
-  },
+export const stripePriceIds = {
+  starter: 'price_XXXXXXXXXXXXXXXXXXXXXXXX', // ← REMPLACER ICI
   // ...
 };
 ```
 
-### 4.3 Sauvegarder le fichier
+### Fichier 3 : `src/components/pages/PaymentDemoPage.tsx`
 
-✅ **C'est tout !** Tous les liens de paiement sur votre site sont maintenant à jour !
-
-Les liens apparaissent dans :
-- ✅ Section Pricing (bouton "Payer maintenant")
-- ✅ Section CTA Final (lien "Déjà décidé ? S'abonner maintenant")
-- ✅ Toute autre section où vous ajoutez des liens de paiement
-
----
-
-## 5. TESTS
-
-### 5.1 Tester les liens en mode TEST
-
-1. **Allez sur votre site** (local ou déployé)
-2. **Cliquez sur le bouton "Payer maintenant"** dans la section Pricing
-3. **Vous devriez être redirigé** vers la page de paiement Stripe
-
-### 5.2 Effectuer un paiement test
-
-Utilisez les **cartes de test Stripe** :
-
-**Carte de crédit qui fonctionne :**
-```
-Numéro : 4242 4242 4242 4242
-Date : N'importe quelle date future (ex: 12/25)
-CVC : N'importe quel 3 chiffres (ex: 123)
-Code postal : N'importe lequel
-```
-
-**Carte qui sera refusée :**
-```
-Numéro : 4000 0000 0000 0002
-```
-
-Plus de cartes de test : https://stripe.com/docs/testing
-
-### 5.3 Vérifier le paiement dans Stripe
-
-1. Allez dans **Stripe Dashboard** → **Payments**
-2. Vous devriez voir votre paiement test
-3. Le statut doit être **"Succeeded"** (Réussi)
-
-✅ **Si vous voyez le paiement, tout fonctionne !**
-
----
-
-## 6. PASSAGE EN LIVE
-
-Une fois que tout fonctionne en mode TEST, vous pouvez passer en production.
-
-### 6.1 Activer votre compte Stripe
-
-Avant de passer en LIVE, Stripe vous demandera de :
-
-1. **Vérifier votre identité** (pièce d'identité)
-2. **Fournir les informations bancaires** (pour recevoir l'argent)
-3. **Compléter les informations fiscales**
-
-Allez dans : **Settings** → **Business settings** → **Complete your profile**
-
-### 6.2 Créer les produits LIVE
-
-1. **Désactivez le Mode Test** (toggle en haut à gauche)
-2. **Répétez les étapes 2 et 3** pour créer vos produits en LIVE
-3. **Copiez les nouveaux liens LIVE**
-
-### 6.3 Mettre à jour le code
-
-Dans `src/config/stripe-links.ts` :
+**Remplacez** les Price IDs dans les plans :
 
 ```typescript
-export const STRIPE_LIVE_LINKS = {
-  starter: {
-    eur: 'https://buy.stripe.com/VOTRE_LIEN_LIVE_STARTER',  // Sans "test_"
+const plans: PricingPlan[] = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    priceId: 'price_VOTRE_VRAI_PRICE_ID', // ← REMPLACER ICI
     // ...
   },
-  business: {
-    eur: 'https://buy.stripe.com/VOTRE_LIEN_LIVE_BUSINESS',  // Sans "test_"
-    // ...
-  },
-};
-
-// ⚠️ CHANGEZ CETTE VALEUR POUR PASSER EN LIVE
-export const USE_TEST_MODE = false;  // ← false = Mode LIVE
+  // ...
+];
 ```
 
-### 6.4 Déployer
+---
 
-1. **Commitez et pushez** vos changements sur GitHub
-2. **Cloudflare Pages** va automatiquement déployer votre site
-3. **Testez avec une vraie carte** (vous serez réellement débité !)
+## 4️⃣ Tester l'intégration
+
+### Test 1 : Payment Links directs
+
+1. **Ouvrez** votre site : `http://localhost:4321/pricing`
+2. **Cliquez** sur un bouton de paiement
+3. **Vérifiez** que vous êtes redirigé vers Stripe
+
+### Test 2 : Stripe Checkout API
+
+1. **Ouvrez** : `http://localhost:4321/payment-demo`
+2. **Cliquez** sur un plan
+3. **Vérifiez** la console pour les logs
+4. **Testez** avec une carte de test :
+   - **Numéro** : `4242 4242 4242 4242`
+   - **Date** : N'importe quelle date future
+   - **CVC** : N'importe quel code à 3 chiffres
+
+### Test 3 : Page de succès
+
+1. **Complétez** un paiement test
+2. **Vérifiez** que vous êtes redirigé vers `/success`
+3. **Vérifiez** que le `session_id` est affiché
+
+### Test 4 : Vérifier dans Stripe
+
+1. **Allez dans** : **Paiements** → **Tous les paiements**
+2. **Vérifiez** que votre paiement test apparaît
+3. **Cliquez** dessus pour voir les détails
 
 ---
 
-## 7. DÉPANNAGE
+## 5️⃣ Passer en production
 
-### ❌ "Le lien ne fonctionne pas"
+### Étape 1 : Créer les produits en mode Live
 
-**Solutions :**
-1. Vérifiez que le lien commence par `https://buy.stripe.com/`
-2. Vérifiez qu'il n'y a pas d'espace avant ou après
-3. Vérifiez que vous êtes en Mode Test si c'est un lien test
+1. **Basculez** en mode **Live** (toggle en haut à droite)
+2. **Recréez** tous vos Payment Links
+3. **Notez** les nouvelles URLs et Price IDs
 
-### ❌ "Page Stripe ne se charge pas"
+### Étape 2 : Obtenir les clés de production
 
-**Solutions :**
-1. Vérifiez votre connexion internet
-2. Essayez dans un autre navigateur
-3. Désactivez les bloqueurs de publicité
+1. **Allez dans** : **Développeurs** → **Clés API**
+2. **Copiez** :
+   - **Clé publique** (commence par `pk_live_`)
+   - **Clé secrète** (commence par `sk_live_`)
 
-### ❌ "Paiement refusé"
+### Étape 3 : Configurer les variables d'environnement
 
-**Solutions :**
-- En **Mode Test** : Utilisez une carte de test valide (4242...)
-- En **Mode Live** : Vérifiez les informations de la carte
+**Sur Cloudflare Pages** :
 
-### ❌ "Je ne reçois pas l'argent"
+1. **Allez dans** : Settings → Environment variables
+2. **Ajoutez** :
+   ```
+   STRIPE_PUBLISHABLE_KEY = pk_live_VOTRE_CLE
+   STRIPE_SECRET_KEY = sk_live_VOTRE_CLE
+   ```
 
-**Solutions :**
-1. Vérifiez que votre compte Stripe est **activé**
-2. Vérifiez vos **informations bancaires** dans Settings
-3. Les paiements Stripe prennent **2-7 jours** pour arriver sur votre compte
+### Étape 4 : Mettre à jour les fichiers
 
----
+1. **Mettez à jour** `src/config/stripe-links.ts` avec les URLs Live
+2. **Mettez à jour** les Price IDs avec les IDs Live
+3. **Changez** `mode: 'live'` dans `stripeConfig`
 
-## 📞 BESOIN D'AIDE ?
+### Étape 5 : Déployer
 
-### Ressources Stripe
-
-- **Documentation officielle** : https://stripe.com/docs
-- **Support Stripe** : https://support.stripe.com
-- **Cartes de test** : https://stripe.com/docs/testing
-
-### Support ZyatrIA
-
-Si vous avez besoin d'aide pour l'intégration technique :
-- Consultez le README.md
-- Vérifiez les fichiers de documentation dans le projet
+```bash
+npm run build
+git add .
+git commit -m "🚀 Stripe en production"
+git push
+```
 
 ---
 
-## ✅ CHECKLIST FINALE
+## 🎯 Checklist Finale
 
 Avant de passer en production, vérifiez :
 
-- [ ] Compte Stripe créé et vérifié
-- [ ] Produits créés en Mode Test
-- [ ] Payment Links générés en Mode Test
-- [ ] Liens intégrés dans `src/config/stripe-links.ts`
-- [ ] Tests réussis avec cartes de test
-- [ ] Paiements visibles dans Stripe Dashboard
-- [ ] Page `/success` fonctionne correctement
-- [ ] Compte Stripe activé (informations bancaires)
-- [ ] Produits recréés en Mode Live
-- [ ] Liens LIVE intégrés
-- [ ] `USE_TEST_MODE = false` dans le code
-- [ ] Site déployé en production
-- [ ] Test final avec une vraie carte
+- [ ] Tous les Payment Links sont créés en mode Live
+- [ ] Tous les Price IDs sont mis à jour
+- [ ] Les clés API Live sont configurées
+- [ ] Les tests en mode Test fonctionnent
+- [ ] Les URLs de redirection sont correctes
+- [ ] Les emails de confirmation sont configurés dans Stripe
+- [ ] Les webhooks sont configurés (optionnel)
+- [ ] La page de succès fonctionne
+- [ ] Les montants et devises sont corrects
 
 ---
 
-## 🎉 FÉLICITATIONS !
+## 🆘 Dépannage
 
-Votre système de paiement est maintenant opérationnel ! 💰
+### Problème : "Stripe n'a pas pu être chargé"
 
-Vos clients peuvent acheter vos plans directement depuis votre site, et vous recevez l'argent automatiquement sur votre compte bancaire.
+**Solution** : Vérifiez que `STRIPE_PUBLISHABLE_KEY` est bien dans `.env`
 
-**Prochaines étapes recommandées :**
-1. Créer des coupons de réduction dans Stripe
-2. Configurer les emails de confirmation
-3. Mettre en place des webhooks pour l'automatisation
-4. Analyser vos ventes dans le Dashboard Stripe
+### Problème : "Price ID manquant"
+
+**Solution** : Vérifiez que vous avez bien remplacé `price_XXXXXXXX` par votre vrai Price ID
+
+### Problème : "Session ID manquant"
+
+**Solution** : Vérifiez que votre clé secrète est correcte dans `.env`
+
+### Problème : Redirection ne fonctionne pas
+
+**Solution** : Vérifiez les URLs de succès/annulation dans le code
 
 ---
 
-**Fait avec ❤️ pour ZyatrIA Global**
+## 📚 Ressources
+
+- **Documentation Stripe** : https://stripe.com/docs
+- **Payment Links** : https://stripe.com/docs/payment-links
+- **Checkout** : https://stripe.com/docs/payments/checkout
+- **Cartes de test** : https://stripe.com/docs/testing
+
+---
+
+## ✅ Prochaines Étapes
+
+1. **Créez vos Payment Links** sur Stripe
+2. **Copiez les URLs** et Price IDs
+3. **Mettez à jour** `src/config/stripe-links.ts`
+4. **Testez** sur `/payment-demo`
+5. **Déployez** ! 🚀
+
+---
+
+**Besoin d'aide ?** Consultez la documentation Stripe ou contactez le support ! 💪

@@ -3,7 +3,6 @@
 
 
 
-
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Card } from './ui/card';
@@ -167,10 +166,22 @@ const content: Record<'en' | 'fr', any> = {
   },
 };
 
-const Contact: React.FC = () => {
+export default function Contact() {
   const { language } = useLanguage();
   const t = content[language];
-  const [state, handleSubmit] = useForm('xeelvrdl');
+  const [state, handleSubmit] = useForm('xbdedonn');
+
+  // Debug logging
+  React.useEffect(() => {
+    console.log('Formspree state:', state);
+  }, [state]);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('Form submitted!');
+    console.log('Form data:', new FormData(e.currentTarget));
+    await handleSubmit(e);
+  };
 
   const gradients = [
     'from-blue-600 to-violet-600',
@@ -244,7 +255,7 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <Card className="p-8 border-2">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={onSubmit} className="space-y-6">
               {/* Error Messages */}
               {state.errors && Array.isArray(state.errors) && state.errors.length > 0 && (
                 <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
@@ -453,13 +464,4 @@ const Contact: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Contact;
-
-
-
-
-
-
-
+}

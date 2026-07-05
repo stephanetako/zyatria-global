@@ -1,78 +1,81 @@
 import React from 'react';
 import { LanguageProvider } from '../lib/language-context';
 import Navigation from './Navigation';
+import HeroSimple from './HeroSimple';
+import TrustStatsSimple from './TrustStatsSimple';
+import Roadmap from './Roadmap';
+import ServicesAvailable from './ServicesAvailable';
+import Solutions from './Solutions';
+import MicroAgents from './MicroAgents';
+import HowItWorks from './HowItWorks';
+import Pricing from './Pricing';
+import AdvancedTestimonials from './AdvancedTestimonials';
+import FAQ from './FAQ';
+import ContactSection from './ContactSection';
 import Footer from './Footer';
-import LiveChat from './LiveChat';
-import FormspreeButton from './FormspreeButton';
-import MistralChatBot from './MistralChatBot';
-import Newsletter from './Newsletter';
+import MultiChannelChatbot from './MultiChannelChatbot';
 
-// Import pages
-import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import MicroAgentsPage from './pages/MicroAgentsPage';
-import TechnologyPage from './pages/TechnologyPage';
-import PricingPage from './pages/PricingPage';
-import AboutPage from './pages/AboutPage';
-import TechnicalDocsPage from './pages/TechnicalDocsPage';
-import KnowledgeBasePage from './pages/KnowledgeBasePage';
-import DemoPage from './pages/DemoPage';
-import DashboardClientPage from './dashboard/DashboardClientPage';
-
-type PageType = 'home' | 'services' | 'micro-agents' | 'technology' | 'pricing' | 'about' | 'docs' | 'knowledge-base' | 'demo' | 'dashboard';
-
-const AppWrapper: React.FC = () => {
-  const currentPage = 'home' as PageType; // This is a placeholder for the actual current page logic
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage />;
-      case 'services':
-        return <ServicesPage />;
-      case 'micro-agents':
-        return <MicroAgentsPage />;
-      case 'technology':
-        return <TechnologyPage />;
-      case 'pricing':
-        return <PricingPage />;
-      case 'about':
-        return <AboutPage />;
-      case 'docs':
-        return <TechnicalDocsPage />;
-      case 'knowledge-base':
-        return <KnowledgeBasePage />;
-      case 'demo':
-        return <DemoPage />;
-      case 'dashboard':
-        return <DashboardClientPage />;
-      default:
-        return <HomePage />;
-    }
-  };
-
+/**
+ * AppWrapper - Version fusionnée optimale
+ * 
+ * Combine le meilleur des deux versions:
+ * - HeroSimple: Plus moderne et épuré
+ * - TrustStatsSimple: Plus léger et performant
+ * - Roadmap: Montre la vision et progression
+ * - ServicesAvailable: Services clairs et directs
+ * - Solutions: Détails complets des solutions
+ * - AdvancedTestimonials: Preuve sociale forte
+ * - ContactSection: Formulaire optimisé
+ * - MultiChannelChatbot: Engagement client
+ */
+export default function AppWrapper() {
+  console.log('🚀 AppWrapper (Version Fusionnée Optimale) loaded successfully');
+  
   return (
     <LanguageProvider>
-      <div className="relative">
+      <div className="min-h-screen bg-background text-foreground">
+        {/* Navigation fixe */}
         <Navigation />
-        {renderPage()}
+        
+        {/* Hero moderne et épuré */}
+        <HeroSimple />
+        
+        {/* Stats de confiance (version légère) */}
+        <TrustStatsSimple />
+        
+        {/* Roadmap - Vision et progression */}
+        <Roadmap />
+        
+        {/* Services disponibles - Clair et direct */}
+        <ServicesAvailable />
+        
+        {/* Solutions détaillées */}
+        <Solutions />
+        
+        {/* Micro-agents spécialisés */}
+        <MicroAgents />
+        
+        {/* Comment ça marche */}
+        <HowItWorks />
+        
+        {/* Tarification */}
+        <Pricing />
+        
+        {/* Témoignages avancés */}
+        <AdvancedTestimonials />
+        
+        {/* FAQ */}
+        <FAQ />
+        
+        {/* Contact optimisé */}
+        <ContactSection />
+        
+        {/* Footer */}
         <Footer />
-        <Newsletter />
-        <LiveChat />
-        <FormspreeButton />
-        <MistralChatBot />
       </div>
+      
+      {/* Chatbot multicanal (flottant) */}
+      <MultiChannelChatbot />
     </LanguageProvider>
   );
-};
-
-export default AppWrapper;
-
-
-
-
-
-
-
-
-
+}

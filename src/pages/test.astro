@@ -1,0 +1,95 @@
+---
+// Test page simple
+const testData = {
+  success: true,
+  message: 'Page de test fonctionne!',
+  timestamp: new Date().toISOString(),
+  routes: [
+    '/api/test-simple',
+    '/api/stripe/test',
+    '/api/stripe/webhook'
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test ZyatrIA</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; }
+    pre {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .test-btn {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .test-btn:hover {
+      background: #45a049;
+    }
+    #results {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🧪 Test ZyatrIA - Routes API</h1>
+    
+    <h2>📊 Données de test :</h2>
+    <pre>{JSON.stringify(testData, null, 2)}</pre>
+
+    <h2>🔗 Tester les routes :</h2>
+    <button class="test-btn" onclick="testRoute('/api/test-simple')">Test Simple</button>
+    <button class="test-btn" onclick="testRoute('/api/stripe/test')">Test Stripe</button>
+    
+    <div id="results"></div>
+  </div>
+
+  <script>
+    async function testRoute(route) {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = `<p>⏳ Test de ${route}...</p>`;
+      
+      try {
+        const response = await fetch(route);
+        const data = await response.json();
+        
+        resultsDiv.innerHTML = `
+          <h3>✅ Succès pour ${route}</h3>
+          <pre>${JSON.stringify(data, null, 2)}</pre>
+        `;
+      } catch (error) {
+        resultsDiv.innerHTML = `
+          <h3>❌ Erreur pour ${route}</h3>
+          <pre>${error.message}</pre>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

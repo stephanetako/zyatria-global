@@ -1,8 +1,12 @@
+
+
+
 import React from 'react';
-import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap } from 'lucide-react';
+import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap, CreditCard } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { useLanguage } from '../lib/language-context';
 import { baseUrl } from '../lib/base-url';
+import { STRIPE_PAYMENT_LINKS } from '../config/stripe-links';
 
 const translations = {
   en: {
@@ -14,6 +18,10 @@ const translations = {
     cta: {
       button: "Request a Demo",
       link: "Or contact us to discuss your needs"
+    },
+    buttons: {
+      buyNow: "Buy Now",
+      requestDemo: "Request Demo"
     },
     agents: [
       {
@@ -27,7 +35,8 @@ const translations = {
           "Smart alerts for hot leads",
           "CRM integration"
         ],
-        price: "From 197€/month"
+        price: "From $197 CAD/month",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.leadQualification
       },
       {
         icon: MessageSquare,
@@ -40,7 +49,8 @@ const translations = {
           "FAQ database",
           "Human escalation when needed"
         ],
-        price: "From 147€/month"
+        price: "From $147 CAD/month",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.customerSupport
       },
       {
         icon: Calendar,
@@ -53,7 +63,8 @@ const translations = {
           "Calendar sync",
           "Confirmation management"
         ],
-        price: "From 127€/month"
+        price: "From $127 CAD/month",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.appointments
       },
       {
         icon: Bell,
@@ -66,7 +77,8 @@ const translations = {
           "Smart timing",
           "Engagement tracking"
         ],
-        price: "From 177€/month"
+        price: "From $177 CAD/month",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.prospectFollowup
       },
       {
         icon: Home,
@@ -79,7 +91,8 @@ const translations = {
           "Property Q&A",
           "Lead management"
         ],
-        price: "From 247€/month"
+        price: "From $247 CAD/month",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.realEstate
       },
       {
         icon: ShoppingCart,
@@ -92,7 +105,8 @@ const translations = {
           "Product FAQ",
           "Personalized recommendations"
         ],
-        price: "From 197€/month"
+        price: "From $197 CAD/month",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.ecommerce
       }
     ]
   },
@@ -106,6 +120,10 @@ const translations = {
       button: "Demander une Démo",
       link: "Ou contactez-nous pour discuter de vos besoins"
     },
+    buttons: {
+      buyNow: "Acheter maintenant",
+      requestDemo: "Demander une démo"
+    },
     agents: [
       {
         icon: Target,
@@ -118,7 +136,8 @@ const translations = {
           "Alertes intelligentes leads chauds",
           "Intégration CRM"
         ],
-        price: "À partir de 197€/mois"
+        price: "À partir de 197$ CAD/mois",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.leadQualification
       },
       {
         icon: MessageSquare,
@@ -131,7 +150,8 @@ const translations = {
           "Base de connaissances FAQ",
           "Escalade humaine si besoin"
         ],
-        price: "À partir de 147€/mois"
+        price: "À partir de 147$ CAD/mois",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.customerSupport
       },
       {
         icon: Calendar,
@@ -144,7 +164,8 @@ const translations = {
           "Synchronisation agenda",
           "Gestion des confirmations"
         ],
-        price: "À partir de 127€/mois"
+        price: "À partir de 127$ CAD/mois",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.appointments
       },
       {
         icon: Bell,
@@ -157,7 +178,8 @@ const translations = {
           "Timing intelligent",
           "Suivi d'engagement"
         ],
-        price: "À partir de 177€/mois"
+        price: "À partir de 177$ CAD/mois",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.prospectFollowup
       },
       {
         icon: Home,
@@ -170,7 +192,8 @@ const translations = {
           "Réponses sur les biens",
           "Gestion des leads"
         ],
-        price: "À partir de 247€/mois"
+        price: "À partir de 247$ CAD/mois",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.realEstate
       },
       {
         icon: ShoppingCart,
@@ -183,189 +206,8 @@ const translations = {
           "FAQ produits",
           "Recommandations personnalisées"
         ],
-        price: "À partir de 197€/mois"
-      }
-    ]
-  },
-  es: {
-    badge: "Micro-Agentes Digitales",
-    title: "Nuestros Micro-Agentes IA",
-    subtitle: "Elija el micro-agente adaptado a su actividad",
-    description: "Soluciones preconfiguradas listas para implementar. Elija su micro-agente, lo configuramos y ve resultados en una semana.",
-    intro: "Soluciones preconfiguradas listas para implementar. Elija su micro-agente, lo configuramos y ve resultados en una semana.",
-    cta: {
-      button: "Solicitar una Demo",
-      link: "O contáctenos para discutir sus necesidades"
-    },
-    agents: [
-      {
-        icon: Target,
-        name: "Calificación Automática de Leads",
-        subtitle: "Scoring de Leads",
-        description: "Califique automáticamente sus prospectos, puntúelos según su interés y alerte a su equipo solo para leads serios.",
-        features: [
-          "Auto-puntuación de prospectos",
-          "Calificación instantánea",
-          "Alertas inteligentes leads calientes",
-          "Integración CRM"
-        ],
-        price: "Desde 197€/mes"
-      },
-      {
-        icon: MessageSquare,
-        name: "Respuestas a Clientes 24/7",
-        subtitle: "Soporte Instantáneo",
-        description: "Nunca deje a un cliente esperando. Respuestas instantáneas a preguntas comunes, día y noche, en varios idiomas.",
-        features: [
-          "Respuestas instantáneas 24/7",
-          "Soporte multilingüe",
-          "Base de conocimientos FAQ",
-          "Escalación humana si es necesario"
-        ],
-        price: "Desde 147€/mes"
-      },
-      {
-        icon: Calendar,
-        name: "Gestión de Citas",
-        subtitle: "Reserva Inteligente",
-        description: "Automatice la gestión de reservas. Los clientes programan directamente, reciben recordatorios automáticos, sin más idas y venidas.",
-        features: [
-          "Reserva en línea directa",
-          "Recordatorios automáticos",
-          "Sincronización de calendario",
-          "Gestión de confirmaciones"
-        ],
-        price: "Desde 127€/mes"
-      },
-      {
-        icon: Bell,
-        name: "Seguimiento de Prospectos",
-        subtitle: "Nurturing Automatizado",
-        description: "Nunca deje que un prospecto se enfríe. Seguimientos automáticos por email, SMS o WhatsApp en el momento adecuado.",
-        features: [
-          "Secuencias automatizadas",
-          "Multi-canal (email, SMS, WhatsApp)",
-          "Timing inteligente",
-          "Seguimiento de compromiso"
-        ],
-        price: "Desde 177€/mes"
-      },
-      {
-        icon: Home,
-        name: "Micro-Agente Inmobiliario",
-        subtitle: "Visitas, Leads, Respuestas",
-        description: "Gestione visitas de propiedades, califique compradores, responda preguntas sobre listados 24/7. Todo automatizado.",
-        features: [
-          "Planificación de visitas",
-          "Calificación de compradores",
-          "Respuestas sobre propiedades",
-          "Gestión de leads"
-        ],
-        price: "Desde 247€/mes"
-      },
-      {
-        icon: ShoppingCart,
-        name: "Micro-Agente Comercio",
-        subtitle: "Carrito, Pedidos, FAQ",
-        description: "Recupere carritos abandonados, rastree pedidos, responda preguntas sobre productos. Aumente su tasa de conversión.",
-        features: [
-          "Recuperación de carritos",
-          "Seguimiento de pedidos",
-          "FAQ de productos",
-          "Recomendaciones personalizadas"
-        ],
-        price: "Desde 197€/mes"
-      }
-    ]
-  },
-  pt: {
-    badge: "Micro-Agentes Digitais",
-    title: "Nossos Micro-Agentes IA",
-    subtitle: "Escolha o micro-agente adaptado à sua atividade",
-    description: "Soluções pré-configuradas prontas para implementar. Escolha seu micro-agente, configuramos e você vê resultados em uma semana.",
-    intro: "Soluções pré-configuradas prontas para implementar. Escolha seu micro-agente, configuramos e você vê resultados em uma semana.",
-    cta: {
-      button: "Solicitar uma Demo",
-      link: "Ou entre em contato para discutir suas necessidades"
-    },
-    agents: [
-      {
-        icon: Target,
-        name: "Qualificação Automática de Leads",
-        subtitle: "Scoring de Leads",
-        description: "Qualifique automaticamente seus prospects, pontue-os de acordo com seu interesse e alerte sua equipe apenas para leads sérios.",
-        features: [
-          "Auto-pontuação de prospects",
-          "Qualificação instantânea",
-          "Alertas inteligentes leads quentes",
-          "Integração CRM"
-        ],
-        price: "A partir de 197€/mês"
-      },
-      {
-        icon: MessageSquare,
-        name: "Respostas a Clientes 24/7",
-        subtitle: "Suporte Instantâneo",
-        description: "Nunca deixe um cliente esperando. Respostas instantâneas a perguntas comuns, dia e noite, em vários idiomas.",
-        features: [
-          "Respostas instantâneas 24/7",
-          "Suporte multilíngue",
-          "Base de conhecimento FAQ",
-          "Escalação humana se necessário"
-        ],
-        price: "A partir de 147€/mês"
-      },
-      {
-        icon: Calendar,
-        name: "Gestão de Agendamentos",
-        subtitle: "Reserva Inteligente",
-        description: "Automatize a gestão de reservas. Clientes agendam diretamente, recebem lembretes automáticos, sem mais idas e vindas.",
-        features: [
-          "Reserva online direta",
-          "Lembretes automáticos",
-          "Sincronização de calendário",
-          "Gestão de confirmações"
-        ],
-        price: "A partir de 127€/mês"
-      },
-      {
-        icon: Bell,
-        name: "Acompanhamento de Prospects",
-        subtitle: "Nurturing Automatizado",
-        description: "Nunca deixe um prospect esfriar. Follow-ups automáticos por email, SMS ou WhatsApp no momento certo.",
-        features: [
-          "Sequências automatizadas",
-          "Multi-canal (email, SMS, WhatsApp)",
-          "Timing inteligente",
-          "Rastreamento de engajamento"
-        ],
-        price: "A partir de 177€/mês"
-      },
-      {
-        icon: Home,
-        name: "Micro-Agente Imobiliário",
-        subtitle: "Visitas, Leads, Respostas",
-        description: "Gerencie visitas a imóveis, qualifique compradores, responda perguntas sobre anúncios 24/7. Tudo automatizado.",
-        features: [
-          "Planejamento de visitas",
-          "Qualificação de compradores",
-          "Respostas sobre imóveis",
-          "Gestão de leads"
-        ],
-        price: "A partir de 247€/mês"
-      },
-      {
-        icon: ShoppingCart,
-        name: "Micro-Agente Comércio",
-        subtitle: "Carrinho, Pedidos, FAQ",
-        description: "Recupere carrinhos abandonados, rastreie pedidos, responda perguntas sobre produtos. Aumente sua taxa de conversão.",
-        features: [
-          "Recuperação de carrinhos",
-          "Rastreamento de pedidos",
-          "FAQ de produtos",
-          "Recomendações personalizadas"
-        ],
-        price: "A partir de 197€/mês"
+        price: "À partir de 197$ CAD/mois",
+        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.ecommerce
       }
     ]
   }
@@ -399,6 +241,15 @@ export default function MicroAgents() {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in-up delay-400">
             {t.intro}
           </p>
+        </div>
+
+        {/* Micro-Agents Illustration */}
+        <div className="flex justify-center mb-16 animate-fade-in-up delay-500">
+          <img 
+            src="/micro-agents-illustration.svg" 
+            alt="Micro-Agents Illustration" 
+            className="w-full max-w-3xl h-auto drop-shadow-xl opacity-90 hover:opacity-100 transition-opacity duration-300"
+          />
         </div>
 
         {/* Micro-Agents Grid */}
@@ -444,7 +295,27 @@ export default function MicroAgents() {
                   ))}
                 </ul>
                 <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                  <span className={`text-lg font-bold ${textColors[index % textColors.length]}`}>{agent.price}</span>
+                  <div className="mb-4">
+                    <span className={`text-lg font-bold ${textColors[index % textColors.length]}`}>{agent.price}</span>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href={agent.stripeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r ${solidColors[index % solidColors.length].replace('bg-', 'from-')} to-violet-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105`}
+                    >
+                      <CreditCard className="w-4 h-4" />
+                      {t.buttons.buyNow}
+                    </a>
+                    <button
+                      onClick={scrollToContact}
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-lg font-semibold hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                      {t.buttons.requestDemo}
+                    </button>
+                  </div>
                 </div>
               </Card>
             );
@@ -474,6 +345,13 @@ export default function MicroAgents() {
     </section>
   );
 }
+
+
+
+
+
+
+
 
 
 

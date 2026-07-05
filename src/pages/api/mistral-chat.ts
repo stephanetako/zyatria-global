@@ -62,7 +62,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const assistantMessage = data.choices?.[0]?.message?.content || 'Désolé, je n\'ai pas pu générer une réponse.';
 
     return new Response(
-      JSON.stringify({ message: assistantMessage }),
+      JSON.stringify({ response: assistantMessage }),
       { 
         status: 200, 
         headers: { 'Content-Type': 'application/json' } 
@@ -74,11 +74,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({ 
         error: 'Erreur serveur',
-        message: 'Une erreur inattendue s\'est produite. Veuillez réessayer.' 
+        response: 'Une erreur inattendue s\'est produite. Veuillez réessayer.' 
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };
+
 
 

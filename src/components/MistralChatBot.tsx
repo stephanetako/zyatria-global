@@ -1,27 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Send, X, MessageCircle, Minimize2, Sparkles } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Send, Sparkles, User, Loader2, AlertCircle, CheckCircle2, Minimize2, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Card } from './ui/card';
+import { Alert, AlertDescription } from './ui/alert';
 import { baseUrl } from '../lib/base-url';
 
 interface Message {
+  id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
 }
 
+interface DebugLog {
+  timestamp: string;
+  action: string;
+  data?: any;
+}
+
 export default function MistralChatBot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: 'Bonjour ! 👋 Je suis votre assistant IA ZyatrIA. Comment puis-je vous aider aujourd\'hui ?',
-      timestamp: new Date()
-    }
-  ]);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<'ready' | 'sending' | 'error'>('ready');
+  const [debugLogs, setDebugLogs] = useState<DebugLog[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -32,141 +37,215 @@ export default function MistralChatBot() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  const addDebugLog = (action: string, data?: any) => {
+    const timestamp = new Date().toLocaleTimeString();
+    const log = { timestamp, action, data };
+    console.log(`[${timestamp}] ${action}`, data || '');
+    setDebugLogs(prev => [...prev, log]);
+  };
 
-    const userMessage: Message = {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!input.trim() || isLoading) {
+      addDebugLog('❌ Input vide ou déjà en cours');
+      return;
+    }
+
+    const userMessage = input.trim();
+    addDebugLog('📤 Envoi du message utilisateur', { userMessage });
+    
+    const newUserMessage: Message = {
+      id: Date.now().toString(),
       role: 'user',
-      content: input,
+      content: userMessage,
       timestamp: new Date()
     };
-
-    setMessages(prev => [...prev, userMessage]);
+    
+    setMessages(prev => [...prev, newUserMessage]);
     setInput('');
     setIsLoading(true);
+    setStatus('sending');
+    setError(null);
 
     try {
-      const response = await fetch(`${baseUrl}/api/mistral-chat`, {
+      const apiUrl = `${baseUrl}/api/mistral-chat`;
+      addDebugLog('🌐 URL de l\'API', { apiUrl });
+
+      const requestBody = {
+        messages: [...messages, newUserMessage].map(m => ({
+          role: m.role,
+          content: m.content
+        }))
+      };
+      addDebugLog('📦 Corps de la requête', requestBody);
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          messages: [...messages, userMessage].map(m => ({
-            role: m.role,
-            content: m.content
-          }))
-        })
+        body: JSON.stringify(requestBody)
+      });
+
+      addDebugLog('📡 Réponse reçue', { 
+        status: response.status, 
+        statusText: response.statusText,
+        ok: response.ok 
       });
 
       if (!response.ok) {
-        throw new Error('Erreur API');
+        const errorText = await response.text();
+        addDebugLog('❌ Erreur de réponse', { errorText });
+        throw new Error(`Erreur ${response.status}: ${errorText}`);
       }
 
-      const data = await response.json() as { message?: string };
+      const data = await response.json();
+      addDebugLog('✅ Données reçues', data);
+
+      if (!data || typeof data !== 'object' || !('response' in data)) {
+        addDebugLog('❌ Pas de réponse dans les données', data);
+        throw new Error('Réponse invalide du serveur');
+      }
 
       const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.message || 'Désolé, je n\'ai pas pu traiter votre demande.',
+        content: (data as { response: string }).response,
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
-      console.error('Erreur chatbot:', error);
-      const errorMessage: Message = {
+      setStatus('ready');
+      addDebugLog('✅ Message ajouté avec succès');
+
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Erreur inconnue';
+      addDebugLog('❌ Erreur capturée', { error: errorMessage });
+      setError(errorMessage);
+      setStatus('error');
+      
+      const errorMsg: Message = {
+        id: (Date.now() + 2).toString(),
         role: 'assistant',
-        content: 'Désolé, une erreur s\'est produite. Veuillez réessayer.',
+        content: `Désolé, une erreur s'est produite : ${errorMessage}. Veuillez réessayer.`,
         timestamp: new Date()
       };
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages(prev => [...prev, errorMsg]);
     } finally {
       setIsLoading(false);
+      addDebugLog('🏁 Requête terminée');
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      handleSubmit(e);
     }
   };
 
+  if (!isOpen) {
+    return (
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110 animate-pulse-glow"
+        aria-label="Open AI Chat"
+      >
+        <Sparkles className="w-6 h-6" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></span>
+      </button>
+    );
+  }
+
   return (
-    <>
-      {/* Bouton flottant */}
-      {!isOpen && (
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-50 bg-gradient-to-br from-primary to-primary/80"
-          aria-label="Ouvrir le chat IA"
-        >
-          <MessageCircle className="h-7 w-7" />
-          <span className="absolute -top-1 -right-1 flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-foreground opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-primary-foreground"></span>
-          </span>
-        </Button>
-      )}
-
-      {/* Fenêtre de chat */}
-      {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-[400px] h-[650px] flex flex-col shadow-2xl z-50 overflow-hidden border-2 border-primary/20">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Sparkles className="h-6 w-6 animate-pulse" />
-              <div>
-                <h3 className="font-bold text-lg">Assistant ZyatrIA</h3>
-                <p className="text-xs opacity-90 flex items-center gap-1">
-                  <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  Propulsé par Mistral AI
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsOpen(false)}
-                className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
+    <div 
+      className={`fixed bottom-6 right-6 z-50 bg-card border border-border rounded-2xl shadow-2xl transition-all flex flex-col ${
+        isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
+      } max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)]`}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-border bg-primary text-primary-foreground rounded-t-2xl flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Sparkles className="w-6 h-6" />
+            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-primary"></span>
           </div>
+          <div>
+            <h3 className="font-semibold text-sm">Assistant IA ZyatrIA</h3>
+            {!isMinimized && (
+              <p className="text-xs opacity-90">Posez vos questions</p>
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMinimized(!isMinimized)}
+            className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+          >
+            <Minimize2 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(false)}
+            className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
 
+      {!isMinimized && (
+        <>
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-muted/30 to-background">
-            {messages.map((message, index) => (
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {messages.length === 0 && (
+              <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
+                Commencez une conversation...
+              </div>
+            )}
+            {messages.map((msg) => (
               <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                key={msg.id}
+                className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
+                {msg.role === 'assistant' && (
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Sparkles className="w-4 h-4 text-primary" />
+                  </div>
+                )}
                 <div
-                  className={`max-w-[85%] rounded-2xl p-4 shadow-sm ${
-                    message.role === 'user'
-                      ? 'bg-gradient-to-br from-primary to-primary/90 text-primary-foreground'
-                      : 'bg-card border border-border'
+                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                    msg.role === 'user'
+                      ? 'bg-indigo-600 text-white'
+                      : 'bg-slate-100 dark:bg-slate-800 text-foreground'
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
-                  <p className="text-xs opacity-70 mt-2">
-                    {message.timestamp.toLocaleTimeString('fr-FR', {
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
-                  </p>
+                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                  <span className="text-xs opacity-70 mt-1 block">
+                    {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
                 </div>
+                {msg.role === 'user' && (
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                )}
               </div>
             ))}
             {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-card border border-border rounded-2xl p-4 shadow-sm">
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div className="flex gap-3 justify-start">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                </div>
+                <div className="bg-slate-100 dark:bg-slate-800 rounded-2xl px-4 py-2">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
@@ -174,34 +253,90 @@ export default function MistralChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
+          {/* Status Indicator */}
+          <div className="px-4 py-2 border-t border-border bg-muted/50 flex-shrink-0">
+            <div className="flex items-center gap-2 text-xs">
+              {status === 'ready' && (
+                <>
+                  <CheckCircle2 className="w-3 h-3 text-green-500" />
+                  <span className="text-muted-foreground">Prêt</span>
+                </>
+              )}
+              {status === 'sending' && (
+                <>
+                  <Loader2 className="w-3 h-3 animate-spin text-primary" />
+                  <span className="text-muted-foreground">Envoi en cours...</span>
+                </>
+              )}
+              {status === 'error' && (
+                <>
+                  <AlertCircle className="w-3 h-3 text-destructive" />
+                  <span className="text-destructive">Erreur</span>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Error Alert */}
+          {error && (
+            <div className="px-4 pb-2 flex-shrink-0">
+              <Alert variant="destructive" className="py-2">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription className="text-xs">{error}</AlertDescription>
+              </Alert>
+            </div>
+          )}
+
           {/* Input */}
-          <div className="p-4 border-t border-border bg-background/95 backdrop-blur-sm">
-            <div className="flex gap-2">
+          <div className="p-4 border-t border-border bg-background flex-shrink-0">
+            <form onSubmit={handleSubmit} className="flex gap-2">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
                 placeholder="Posez votre question..."
                 disabled={isLoading}
-                className="flex-1 rounded-full border-2 focus:border-primary"
+                className="flex-1"
+                onKeyDown={handleKeyPress}
               />
-              <Button
-                onClick={handleSend}
-                disabled={!input.trim() || isLoading}
+              <Button 
+                type="submit" 
                 size="icon"
-                className="rounded-full h-10 w-10"
+                disabled={!input.trim() || isLoading}
+                className="flex-shrink-0"
               >
-                <Send className="h-4 w-4" />
+                {isLoading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
               </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
-              Appuyez sur Entrée pour envoyer
-            </p>
+            </form>
           </div>
-        </Card>
+        </>
       )}
-    </>
+
+      {/* Debug Panel - Development Only */}
+      {import.meta.env.DEV && debugLogs.length > 0 && (
+        <details className="absolute bottom-full right-0 mb-2 w-96 max-w-[calc(100vw-3rem)] bg-card border border-border rounded-lg shadow-lg p-4 text-xs">
+          <summary className="cursor-pointer font-semibold mb-2">🐛 Debug Logs ({debugLogs.length})</summary>
+          <div className="space-y-2 max-h-60 overflow-y-auto">
+            {debugLogs.map((log, i) => (
+              <div key={i} className="border-b border-border pb-2">
+                <div className="font-mono text-muted-foreground">{log.timestamp}</div>
+                <div className="font-semibold">{log.action}</div>
+                {log.data && (
+                  <pre className="mt-1 p-2 bg-muted rounded text-[10px] overflow-x-auto">
+                    {JSON.stringify(log.data, null, 2)}
+                  </pre>
+                )}
+              </div>
+            ))}
+          </div>
+        </details>
+      )}
+    </div>
   );
 }
+
 
 
