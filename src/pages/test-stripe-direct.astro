@@ -1,0 +1,106 @@
+---
+import MainLayout from '../layouts/main.astro';
+---
+
+<MainLayout title="Test Stripe Direct">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-8">
+    <div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full">
+      <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">
+        🧪 Test Stripe Direct
+      </h1>
+      
+      <div class="space-y-6">
+        <!-- Test 1: Lien direct -->
+        <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+          <h2 class="text-xl font-bold mb-4 text-blue-800">Test 1: Lien Direct (HTML)</h2>
+          <a 
+            href="https://buy.stripe.com/test_aFa14fbGS0HL1xe02r"
+            class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg text-center transition-all"
+          >
+            Cliquer ici (Lien HTML Direct)
+          </a>
+          <p class="text-sm text-blue-600 mt-2">
+            ✅ Si ça fonctionne, le problème vient du JavaScript
+          </p>
+        </div>
+
+        <!-- Test 2: JavaScript simple -->
+        <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6">
+          <h2 class="text-xl font-bold mb-4 text-green-800">Test 2: JavaScript Simple</h2>
+          <button 
+            id="test-js"
+            class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg text-center transition-all"
+          >
+            Cliquer ici (JavaScript)
+          </button>
+          <p class="text-sm text-green-600 mt-2">
+            ✅ Si ça fonctionne, le problème vient de React
+          </p>
+        </div>
+
+        <!-- Test 3: Nouvelle fenêtre -->
+        <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-6">
+          <h2 class="text-xl font-bold mb-4 text-purple-800">Test 3: Nouvelle Fenêtre</h2>
+          <button 
+            id="test-new-window"
+            class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-lg text-center transition-all"
+          >
+            Cliquer ici (Nouvelle Fenêtre)
+          </button>
+          <p class="text-sm text-purple-600 mt-2">
+            ✅ Ouvre dans un nouvel onglet
+          </p>
+        </div>
+
+        <!-- Console de logs -->
+        <div class="bg-gray-900 text-green-400 rounded-lg p-6 font-mono text-sm">
+          <div class="font-bold mb-2 text-white">📝 Console:</div>
+          <div id="console-log" class="space-y-1">
+            <div>🟢 Prêt pour les tests...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const stripeUrl = 'https://buy.stripe.com/test_aFa14fbGS0HL1xe02r';
+    const consoleLog = document.getElementById('console-log');
+
+    function log(message: string, type: 'info' | 'success' | 'error' = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : '🔵';
+      const entry = document.createElement('div');
+      entry.textContent = `[${timestamp}] ${icon} ${message}`;
+      consoleLog?.appendChild(entry);
+      console.log(`[${timestamp}] ${message}`);
+    }
+
+    // Test 2: JavaScript simple
+    document.getElementById('test-js')?.addEventListener('click', () => {
+      log('Test JavaScript: Clic détecté', 'info');
+      log(`URL: ${stripeUrl}`, 'info');
+      log('Redirection en cours...', 'success');
+      
+      setTimeout(() => {
+        window.location.href = stripeUrl;
+      }, 500);
+    });
+
+    // Test 3: Nouvelle fenêtre
+    document.getElementById('test-new-window')?.addEventListener('click', () => {
+      log('Test Nouvelle Fenêtre: Clic détecté', 'info');
+      log(`URL: ${stripeUrl}`, 'info');
+      
+      const newWindow = window.open(stripeUrl, '_blank');
+      
+      if (newWindow) {
+        log('✅ Nouvelle fenêtre ouverte avec succès', 'success');
+      } else {
+        log('❌ Bloqué par le navigateur (popup blocker)', 'error');
+      }
+    });
+
+    log('Page chargée - Tests prêts', 'success');
+  </script>
+</MainLayout>

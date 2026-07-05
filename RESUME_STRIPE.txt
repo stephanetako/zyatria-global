@@ -1,0 +1,60 @@
+╔══════════════════════════════════════════════════════════════╗
+║                  🎯 RÉSUMÉ DU PROBLÈME                       ║
+╚══════════════════════════════════════════════════════════════╝
+
+❌ PROBLÈME :
+Tu cliques sur "Starter" → Page Stripe s'ouvre → Erreur "Page not found"
+
+✅ CAUSE :
+Les liens Stripe dans le code sont des EXEMPLES qui n'existent pas 
+dans TON compte Stripe.
+
+╔══════════════════════════════════════════════════════════════╗
+║                  ✅ SOLUTION SIMPLE                          ║
+╚══════════════════════════════════════════════════════════════╝
+
+1. Va sur : https://dashboard.stripe.com/test/payment-links
+
+2. Crée un "Payment Link" pour chaque plan :
+   - Starter Mensuel : 299 CAD/mois
+   - Starter Unique : 2,499 CAD
+   - Professional Mensuel : 799 CAD/mois
+   - Professional Unique : 7,999 CAD
+   - Enterprise Mensuel : 3,999 CAD/mois
+   - Enterprise Unique : 45,000 CAD
+   - Audit IA : 499 CAD
+   - Consultation : 199 CAD
+
+3. Copie les URLs générées
+
+4. Mets-les dans : src/config/stripe-links.ts
+
+╔══════════════════════════════════════════════════════════════╗
+║              🔑 CLOUDFLARE & API KEYS                        ║
+╚══════════════════════════════════════════════════════════════╝
+
+❓ Question : "Dois-je mettre mes API keys sur Cloudflare ?"
+
+✅ Réponse : NON, pas pour les Payment Links !
+
+Les Payment Links sont des URLs publiques.
+Tu n'as PAS besoin de clés API.
+
+⚠️ Tu n'auras besoin de clés API QUE SI :
+- Tu veux créer des sessions de paiement dynamiques
+- Tu veux gérer les webhooks
+- Tu veux accéder aux données clients
+
+Pour l'instant, les Payment Links suffisent !
+
+╔══════════════════════════════════════════════════════════════╗
+║                  🎯 PROCHAINE ÉTAPE                          ║
+╚══════════════════════════════════════════════════════════════╝
+
+1. Va sur Stripe Dashboard
+2. Crée ton premier Payment Link (Starter Mensuel)
+3. Copie l'URL
+4. Dis-moi quand c'est fait !
+
+📖 Guide complet : Lis le fichier 👉_CREER_LIENS_STRIPE.md
+

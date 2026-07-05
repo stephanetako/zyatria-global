@@ -1,0 +1,102 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    🎯 ZYATRIA GLOBAL - CONFIGURATION                         ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           📊 STATUT ACTUEL                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  ✅ Stripe (Paiements)          → CONFIGURÉ
+  ✅ Mistral AI (Chatbot)        → CONFIGURÉ
+  ⚠️  Formspree (Formulaires)    → À CONFIGURER (5 MIN)
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        🚀 ACTION IMMÉDIATE                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  1️⃣  Allez sur : https://formspree.io/register
+  2️⃣  Créez un compte (2 min)
+  3️⃣  Créez un formulaire "ZyatrIA Contact Form" (2 min)
+  4️⃣  Copiez le Form ID (ex: xyzabc123)
+  5️⃣  Ajoutez dans .env : PUBLIC_FORMSPREE_FORM_ID="xyzabc123"
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          🧪 TESTER LOCALEMENT                                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  $ npm install
+  $ npm run dev
+  
+  → Ouvrez : http://localhost:4321
+  → Testez le formulaire de contact
+  → Vérifiez votre email
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                         🚀 DÉPLOYER SUR CLOUDFLARE                           │
+└─────────────────────────────────────────��────────────────────────────────────┘
+
+  $ npm run build
+  $ wrangler pages deploy dist
+  
+  ⚠️  N'oubliez pas d'ajouter les variables d'environnement sur Cloudflare !
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          📚 GUIDES DISPONIBLES                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  📖 🎯_COMMENCER_ICI.md              → Guide complet étape par étape
+  📖 🚀_ACTION_IMMEDIATE.md           → Instructions Formspree détaillées
+  📖 📋_CONFIGURATION_ETAPE_PAR_ETAPE.md → Configuration complète
+  
+  🔍 ./verifier-config.sh             → Vérifier votre configuration
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          🆘 BESOIN D'AIDE ?                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Dites-moi simplement :
+  • "Je suis bloqué à l'étape X"
+  • "J'ai cette erreur : [message]"
+  • "Comment faire pour [action]"
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          ⏱️  TEMPS ESTIMÉ                                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Configuration Formspree :  5 minutes
+  Test local :               2 minutes
+  Déploiement :             10 minutes
+  ─────────────────────────────────────
+  TOTAL :                   17 minutes
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          ✅ CHECKLIST                                        │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Configuration :
+  ☐ Compte Formspree créé
+  ☐ Formulaire créé
+  ☐ Form ID copié
+  ☐ Form ID ajouté dans .env
+
+  Tests :
+  ☐ npm install exécuté
+  ☐ npm run dev fonctionne
+  ☐ Site accessible sur localhost
+  ☐ Formulaire testé
+  ☐ Email reçu
+
+  Déploiement :
+  ☐ Build réussi
+  ☐ Déployé sur Cloudflare
+  ☐ Variables d'environnement ajoutées
+  ☐ Site en ligne testé
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    🎯 COMMENCEZ PAR FORMSPREE !                              ║
+║                    https://formspree.io/register                             ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝

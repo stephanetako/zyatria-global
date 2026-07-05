@@ -1,10 +1,11 @@
 
 
 
+
 ---
 import MainLayout from '../layouts/main.astro';
 import Navigation from '../components/Navigation';
-import PricingPage from '../components/pages/PricingPage';
+import Pricing from '../components/Pricing';
 import Footer from '../components/Footer';
 import FormspreeButton from '../components/FormspreeButton';
 
@@ -23,7 +24,7 @@ const seoData = {
 >
 <div class="relative">
 <Navigation client:load />
-<PricingPage client:only="react" />
+<Pricing client:only="react" />
 <Footer client:only="react" />
 <FormspreeButton client:only="react" />
 </div>

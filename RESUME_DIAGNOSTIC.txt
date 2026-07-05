@@ -1,0 +1,86 @@
+═══════════════════════════════════════════════════════════════
+🔍 DIAGNOSTIC PAGE BLANCHE - RÉSUMÉ RAPIDE
+═══════════════════════════════════════════════════════════════
+
+📍 PROBLÈME SIGNALÉ
+──────────────────
+Tu vois une page blanche au lieu du site ZyatrIA.
+
+✅ CORRECTIONS EFFECTUÉES
+──────────────────────────
+1. ✅ Ajout de console.log dans AppWrapper
+2. ✅ Ajout de console.log dans Hero
+3. ✅ Création de /test-simple (page de test basique)
+4. ✅ Création de /diagnostic (page de diagnostic complète)
+5. ✅ Nettoyage des imports inutilisés dans AppWrapper
+
+🎯 ÉTAPES À SUIVRE MAINTENANT
+──────────────────────────────
+
+ÉTAPE 1 : Teste la page simple
+───────────────────────────────
+Ouvre dans ton navigateur :
+→ http://localhost:4321/test-simple
+
+Si ça s'affiche :
+  ✅ Astro fonctionne
+  ✅ Le problème vient d'un composant React
+  
+Si ça ne s'affiche pas :
+  ❌ Problème avec le serveur
+  → Vérifie que "npm run dev" tourne
+
+ÉTAPE 2 : Ouvre la console (F12)
+─────────────────────────────────
+1. Appuie sur F12
+2. Va dans l'onglet "Console"
+3. Cherche des messages en rouge (erreurs)
+4. Cherche ces messages :
+   🚀 AppWrapper loaded successfully
+   🎯 Hero component rendering
+   📍 Current language: en
+
+ÉTAPE 3 : Vérifie l'onglet Network
+───────────────────────────────────
+1. Dans DevTools, onglet "Network"
+2. Recharge la page (Ctrl+R)
+3. Cherche des fichiers en rouge (404 ou 500)
+
+ÉTAPE 4 : Dis-moi ce que tu vois
+─────────────────────────────────
+Réponds simplement :
+- "La page /test-simple fonctionne" ou "ne fonctionne pas"
+- "Voici l'erreur dans la console : [copie l'erreur]"
+- "Voici ce que je vois : [description]"
+
+═══════════════════════════════════════════════════════════════
+🚀 SOLUTIONS RAPIDES SI BESOIN
+═══════════════════════════════════════════════════════════════
+
+Solution 1 : Redémarre le serveur
+──────────────────────────────────
+Ctrl+C pour arrêter
+npm run dev pour relancer
+
+Solution 2 : Nettoie le cache
+──────────────────────────────
+rm -rf .astro
+rm -rf node_modules/.vite
+npm run dev
+
+Solution 3 : Réinstalle tout
+─────────────────────────────
+rm -rf node_modules
+npm install
+npm run dev
+
+═══════════════════════════════════════════════════════════════
+📞 JE SUIS LÀ POUR T'AIDER !
+═══════════════════════════════════════════════════════════════
+
+Dès que tu me dis ce que tu vois, je pourrai :
+1. Identifier le problème exact
+2. Le corriger immédiatement
+3. Vérifier que tout fonctionne
+
+Vas-y, teste et dis-moi ! 🎯

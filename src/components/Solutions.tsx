@@ -1,6 +1,7 @@
 
 
 
+
 import React from 'react';
 import { Card } from './ui/card';
 import { ArrowRight, Target, Zap, Building, Briefcase, Smartphone, Heart, GraduationCap, ShoppingCart } from 'lucide-react';
@@ -222,23 +223,32 @@ const Solutions: React.FC = () => {
               'bg-violet-600',
               'bg-cyan-600'
             ];
-            const borderColors = [
-              'border-blue-600',
-              'border-violet-600',
-              'border-cyan-600',
-              'border-blue-600',
-              'border-violet-600',
-              'border-cyan-600'
+            const images = [
+              'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=300&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=300&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=300&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=300&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=300&fit=crop&q=80'
             ];
             return (
               <Card key={index} className="group relative overflow-hidden hover:shadow-xl hover:shadow-blue-600/10 transition-all duration-300 border-2 hover:border-blue-400/40">
                 <div className={`absolute top-0 left-0 right-0 h-1 ${solidColors[index % solidColors.length]}`}></div>
                 
-                <div className="p-6">
-                  <div className={`w-14 h-14 ${solidColors[index % solidColors.length]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition shadow-lg`}>
+                {/* Industry Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={images[index]} 
+                    alt={solution.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className={`absolute bottom-4 left-4 w-14 h-14 ${solidColors[index % solidColors.length]} rounded-xl flex items-center justify-center shadow-lg`}>
                     <Icon className="w-7 h-7 text-white" strokeWidth={2.5} />
                   </div>
-                  
+                </div>
+                
+                <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 font-heading">{solution.title}</h3>
                   <p className="text-sm font-semibold text-blue-600 mb-3">{solution.subtitle}</p>
                   
@@ -292,6 +302,7 @@ const Solutions: React.FC = () => {
 };
 
 export default Solutions;
+
 
 
 

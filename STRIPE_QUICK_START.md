@@ -1,158 +1,154 @@
-# ⚡ STRIPE - DÉMARRAGE RAPIDE (5 MINUTES)
+# ⚡ Stripe Quick Start - 5 Minutes
 
-Guide ultra-simplifié pour créer vos liens de paiement Stripe en 5 minutes chrono ! ⏱️
+## 🎯 Configuration Ultra-Rapide
 
----
+### 1️⃣ Vérifier le fichier `.env` (FAIT ✅)
 
-## 🎯 OBJECTIF
-
-Créer 2 liens de paiement :
-- ✅ **Starter Plan** : 49€/mois
-- ✅ **Business Plan** : 149€/mois
-
----
-
-## 📝 ÉTAPE 1 : STRIPE DASHBOARD (2 min)
-
-### 1.1 Connexion
-👉 **https://dashboard.stripe.com**
-
-### 1.2 Activer Mode Test
-En haut à gauche : **Toggle sur "Test mode"** 🔵
-
----
-
-## 🛍️ ÉTAPE 2 : CRÉER PRODUIT STARTER (1 min)
-
-1. Menu gauche → **Products**
-2. Bouton **"+ Add product"**
-3. Remplir :
-   ```
-   Name: Starter Plan
-   Price: 49
-   Currency: EUR €
-   Billing: Monthly (Recurring)
-   ```
-4. **Save product** ✅
-
----
-
-## 🛍️ ÉTAPE 3 : CRÉER PRODUIT BUSINESS (1 min)
-
-Même chose :
-```
-Name: Business Plan
-Price: 149
-Currency: EUR €
-Billing: Monthly (Recurring)
+Ton fichier `.env` contient déjà :
+```env
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
 ```
 
-**Save product** ✅
+### 2️⃣ Ajouter la clé publique dans `.env` pour le client
+
+**IMPORTANT** : Ajoute cette ligne dans ton `.env` :
+
+```env
+PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_COPIE_TA_CLE_PUBLIQUE_ICI
+```
+
+⚠️ **Note** : Le préfixe `PUBLIC_` est nécessaire pour que la clé soit accessible côté client dans Astro.
 
 ---
 
-## 🔗 ÉTAPE 4 : GÉNÉRER LES LIENS (1 min)
+## 🚀 Tester Immédiatement
 
-### Pour Starter :
-1. Cliquez sur **"Starter Plan"**
-2. Bouton **"Create payment link"** (en haut à droite)
-3. Configuration :
-   - ☑ Email address
-   - ☑ Name
-   - After payment: **Redirect to URL** → `https://votre-site.com/success`
-   - ☑ Allow promotion codes
-4. **Create link**
-5. **📋 COPIER LE LIEN**
+### Option 1 : Page de Démonstration (Recommandé)
 
-### Pour Business :
-Répéter exactement pareil.
+1. **Démarre le serveur** :
+   ```bash
+   npm run dev
+   ```
+
+2. **Ouvre** : http://localhost:4321/payment-demo
+
+3. **Clique** sur un plan
+
+4. **Utilise une carte de test** :
+   - **Numéro** : `4242 4242 4242 4242`
+   - **Date** : N'importe quelle date future (ex: 12/25)
+   - **CVC** : N'importe quel code (ex: 123)
+   - **Code postal** : N'importe lequel (ex: 12345)
+
+5. **Valide** le paiement
+
+6. **Tu seras redirigé** vers `/success` 🎉
 
 ---
 
-## 💾 ÉTAPE 5 : INTÉGRER DANS LE SITE (30 secondes)
+## 📝 Configurer tes vrais produits (Optionnel)
 
-Ouvrir le fichier : **`src/config/stripe-links.ts`**
+### Créer un Payment Link sur Stripe
 
-Remplacer les liens :
+1. **Va sur** : https://dashboard.stripe.com/test/payment-links
+
+2. **Clique** : `+ Nouveau lien de paiement`
+
+3. **Configure** :
+   - **Nom** : `Starter Plan`
+   - **Prix** : `99` EUR
+   - **Type** : `Paiement unique`
+
+4. **Copie l'URL** générée (ex: `https://buy.stripe.com/test_abc123`)
+
+5. **Remplace dans** `src/config/stripe-links.ts` :
+   ```typescript
+   starter: {
+     url: 'https://buy.stripe.com/test_abc123', // ← Colle ici
+   }
+   ```
+
+---
+
+## 🎨 Intégrer dans ta page Pricing
+
+### Utiliser les Payment Links
+
+**Dans** `src/components/Pricing.tsx` ou ta page de tarification :
 
 ```typescript
-export const STRIPE_TEST_LINKS = {
-  starter: {
-    eur: 'COLLEZ_VOTRE_LIEN_STARTER_ICI',
-    usd: 'COLLEZ_VOTRE_LIEN_STARTER_ICI',  // Même lien si une seule devise
-    cad: 'COLLEZ_VOTRE_LIEN_STARTER_ICI',
-  },
-  business: {
-    eur: 'COLLEZ_VOTRE_LIEN_BUSINESS_ICI',
-    usd: 'COLLEZ_VOTRE_LIEN_BUSINESS_ICI',
-    cad: 'COLLEZ_VOTRE_LIEN_BUSINESS_ICI',
-  },
-};
+import { stripePaymentLinks } from '../config/stripe-links';
+
+// Dans ton composant
+<Button 
+  onClick={() => window.location.href = stripePaymentLinks.starter.url}
+>
+  Acheter Starter
+</Button>
 ```
 
-**SAUVEGARDER** ✅
+### Utiliser l'API Checkout (Plus avancé)
+
+**Exemple déjà dans** `src/components/pages/PaymentDemoPage.tsx` :
+
+```typescript
+const response = await fetch('/api/create-checkout-session', {
+  method: 'POST',
+  body: JSON.stringify({ priceId: 'price_...' })
+});
+```
 
 ---
 
-## 🧪 ÉTAPE 6 : TESTER
+## ✅ Checklist Rapide
 
-1. Allez sur votre site → Section **Pricing**
-2. Cliquez sur **"Payer maintenant"**
-3. Utilisez la carte de test :
-   ```
-   Numéro : 4242 4242 4242 4242
-   Date : 12/25
-   CVC : 123
-   ```
-4. Validez
-
-✅ **Si ça marche, c'est parfait !**
+- [x] Clés Stripe dans `.env` ✅
+- [ ] Ajouter `PUBLIC_STRIPE_PUBLISHABLE_KEY` dans `.env`
+- [ ] Tester sur `/payment-demo`
+- [ ] Créer tes Payment Links sur Stripe
+- [ ] Mettre à jour `src/config/stripe-links.ts`
+- [ ] Intégrer dans ta page Pricing
 
 ---
 
-## 🚀 PASSAGE EN LIVE (Plus tard)
+## 🆘 Problèmes Courants
 
-Quand vous êtes prêt :
+### "Stripe n'a pas pu être chargé"
 
-1. **Désactiver Mode Test** dans Stripe
-2. **Recréer les produits** en mode LIVE
-3. **Générer de nouveaux liens** LIVE
-4. **Mettre à jour** `STRIPE_LIVE_LINKS` dans le code
-5. **Changer** `USE_TEST_MODE = false`
+**Solution** : Ajoute `PUBLIC_STRIPE_PUBLISHABLE_KEY` dans `.env`
 
----
+### "Price ID manquant"
 
-## 🆘 PROBLÈMES ?
+**Solution** : Remplace `price_XXXXXXXX` par ton vrai Price ID depuis Stripe
 
-| Problème | Solution |
-|----------|----------|
-| Lien ne fonctionne pas | Vérifier qu'il commence par `https://buy.stripe.com/` |
-| Page Stripe vide | Désactiver bloqueur de pub |
-| Paiement refusé en test | Utiliser carte `4242 4242 4242 4242` |
+### Console montre des erreurs
+
+**Solution** : Ouvre la console (F12) et vérifie les logs détaillés
 
 ---
 
-## 📚 DOCUMENTATION COMPLÈTE
+## 📚 Fichiers Créés
 
-Pour plus de détails, voir : **`GUIDE_STRIPE_PAYMENT_LINKS.md`**
-
----
-
-## ✅ CHECKLIST
-
-- [ ] Compte Stripe créé
-- [ ] Mode Test activé
-- [ ] 2 produits créés (Starter, Business)
-- [ ] 2 liens générés
-- [ ] Liens intégrés dans `stripe-links.ts`
-- [ ] Test réussi avec carte `4242...`
+- ✅ `src/pages/api/create-checkout-session.ts` - API Stripe
+- ✅ `src/pages/payment-demo.astro` - Page de démo
+- ✅ `src/components/pages/PaymentDemoPage.tsx` - Composant React
+- ✅ `src/pages/success.astro` - Page de succès
+- ✅ `src/config/stripe-links.ts` - Configuration
+- ✅ `GUIDE_STRIPE_PAYMENT_LINKS.md` - Guide complet
 
 ---
 
-**🎉 C'EST FAIT !**
+## 🎯 Prochaine Étape
 
-Vos clients peuvent maintenant payer directement sur votre site ! 💰
+**Teste maintenant** :
+
+```bash
+npm run dev
+```
+
+Puis ouvre : http://localhost:4321/payment-demo
 
 ---
 
-**⏱️ Temps total : ~5 minutes**
+**C'est tout ! Tu es prêt à accepter des paiements ! 🚀**

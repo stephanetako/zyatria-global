@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Language = 'en' | 'fr';
+type Language = 'en' | 'fr' | 'es' | 'pt';
 
 interface LanguageContextType {
   language: Language;
@@ -10,7 +10,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>('fr');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -18,8 +18,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     // Load language from localStorage only on client side
     if (typeof window !== 'undefined') {
       const savedLang = localStorage.getItem('language') as Language;
-      if (savedLang && (savedLang === 'en' || savedLang === 'fr')) {
+      if (savedLang && ['en', 'fr', 'es', 'pt'].includes(savedLang)) {
         setLanguageState(savedLang);
+      } else {
+        // Default to French
+        setLanguageState('fr');
       }
     }
   }, []);
@@ -44,18 +47,10 @@ export const useLanguage = (): LanguageContextType => {
   // Return default value if context is not available (SSR)
   if (context === undefined) {
     return {
-      language: 'en',
+      language: 'fr',
       setLanguage: () => {}, // No-op function for SSR
     };
   }
   
   return context;
 };
-
-
-
-
-
-
-
-

@@ -1,3 +1,4 @@
+
 import {defineConfig} from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
@@ -53,11 +54,10 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true, // Listen on all network interfaces (0.0.0.0)
-    strictPort: true,
   },
   adapter: cloudflare({
     platformProxy: {
-      enabled: false,
+      enabled: true,
     },
   }),
   integrations: [
@@ -91,3 +91,8 @@ export default defineConfig({
     },
   },
 });
+
+
+
+
+

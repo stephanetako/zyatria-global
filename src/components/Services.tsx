@@ -3,7 +3,6 @@
 
 
 
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Bot, Zap, Cog, Brain, Network, Sparkles, Workflow, CheckCircle2, ArrowRight } from 'lucide-react';
@@ -133,8 +132,8 @@ const Services: React.FC = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Services Grid with Images */}
+        <div className="space-y-16">
           {t.services.map((service: any, index: number) => {
             const Icon = service.icon;
             const solidColors = [
@@ -143,50 +142,76 @@ const Services: React.FC = () => {
               'bg-cyan-600'
             ];
             const delays = ['delay-200', 'delay-300', 'delay-400'];
+            const images = [
+              'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80',
+              'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop&q=80'
+            ];
             
             return (
-              <Card 
-                key={index}
-                className={`p-8 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group border-2 hover:border-blue-400/40 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm animate-fade-in-up ${delays[index]}`}
-              >
-                <div className={`w-16 h-16 ${solidColors[index]} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                  <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
-                </div>
+              <div key={index} className={`grid md:grid-cols-2 gap-8 items-center animate-fade-in-up ${delays[index]}`}>
+                {/* Image on left for even, right for odd */}
+                {index % 2 === 0 && (
+                  <div className="rounded-2xl overflow-hidden shadow-xl">
+                    <img 
+                      src={images[index]} 
+                      alt={service.title}
+                      className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                )}
                 
-                <div className="mb-2">
-                  <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
-                    {service.subtitle}
-                  </span>
-                </div>
-                
-                <h3 className="text-2xl md:text-3xl font-bold font-heading mb-4 group-hover:text-blue-600 transition-colors leading-tight">
-                  {service.title}
-                </h3>
-                
-                <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                
-                <ul className="space-y-3 mb-6">
-                  {service.features.map((feature: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-3 group/item">
-                      <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
-                      <span className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button 
-                  asChild
-                  variant="outline" 
-                  className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all"
-                >
-                  <a href={`${baseUrl}/demo`}>
-                    {t.cta}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </a>
-                </Button>
-              </Card>
+                <Card className="p-8 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group border-2 hover:border-blue-400/40 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm">
+                  <div className={`w-16 h-16 ${solidColors[index]} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                    <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
+                  </div>
+                  
+                  <div className="mb-2">
+                    <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
+                      {service.subtitle}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-2xl md:text-3xl font-bold font-heading mb-4 group-hover:text-blue-600 transition-colors leading-tight">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  <ul className="space-y-3 mb-6">
+                    {service.features.map((feature: string, idx: number) => (
+                      <li key={idx} className="flex items-start gap-3 group/item">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
+                        <span className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    asChild
+                    variant="outline" 
+                    className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all"
+                  >
+                    <a href={`${baseUrl}/demo`}>
+                      {t.cta}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </a>
+                  </Button>
+                </Card>
+
+                {/* Image on right for odd */}
+                {index % 2 !== 0 && (
+                  <div className="rounded-2xl overflow-hidden shadow-xl">
+                    <img 
+                      src={images[index]} 
+                      alt={service.title}
+                      className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -207,6 +232,7 @@ const Services: React.FC = () => {
 };
 
 export default Services;
+
 
 
 

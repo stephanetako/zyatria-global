@@ -8,7 +8,7 @@ import { useLanguage } from '../lib/language-context';
 export default function Newsletter() {
   const { language } = useLanguage();
   const [email, setEmail] = useState('');
-  const [state, handleSubmit] = useForm('newsletter-form');
+  const [state, handleSubmit] = useForm('xbdedonn');
 
   const content = {
     en: {
@@ -189,4 +189,5 @@ export default function Newsletter() {
     </section>
   );
 }
+
 

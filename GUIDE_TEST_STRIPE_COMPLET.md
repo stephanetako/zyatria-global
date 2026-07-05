@@ -1,264 +1,252 @@
-# 💳 GUIDE TEST STRIPE - COMPLET
+# 🧪 GUIDE DE TEST COMPLET - STRIPE PAYMENT LINKS
 
-## ✅ **CONFIGURATION ACTUELLE**
+## 📋 CHECKLIST DE TEST
 
-### **8 Produits Stripe Configurés**
+### ✅ ÉTAPE 1 : VÉRIFICATION DES FICHIERS
 
-| Produit | Type | Prix | Lien |
-|---------|------|------|------|
-| **Bot IA Starter** | One-time | 5,000 CAD | `9oc00` |
-| **Bot IA Starter** | Monthly | 299 CAD/mois | `9oc01` |
-| **Bot IA Professional** | One-time | 15,000 CAD | `9oc02` |
-| **Bot IA Professional** | Monthly | 799 CAD/mois | `9oc03` |
-| **Audit IA Complet** | One-time | 2,500 CAD | `9oc04` |
-| **Bot IA Enterprise** | One-time | 45,000 CAD | `9oc05` |
-| **Bot IA Enterprise** | Monthly | 2,499 CAD/mois | `9oc06` |
-| **Consultation Stratégique** | One-time | 500 CAD | `9oc07` |
-
----
-
-## 🧪 **TESTS À EFFECTUER**
-
-### **1. Test Page Pricing**
-
-#### **Accéder à la page:**
-```
-http://localhost:3000/pricing
-```
-
-#### **Vérifier:**
-- [ ] Les 3 plans s'affichent (Starter, Business, Enterprise)
-- [ ] Toggle "One-time / Monthly" fonctionne
-- [ ] Prix corrects affichés
-- [ ] Boutons "Commencer" visibles
-
-#### **Cliquer sur chaque bouton:**
-
-**STARTER - One-time (5,000 CAD):**
-1. Cliquer sur "Commencer" en mode "One-time"
-2. Vérifier redirection vers Stripe
-3. Vérifier montant: **5,000.00 CAD**
-4. **NE PAS PAYER** (juste vérifier)
-
-**STARTER - Monthly (299 CAD/mois):**
-1. Toggle vers "Monthly"
-2. Cliquer sur "Commencer"
-3. Vérifier montant: **299.00 CAD/month**
-
-**BUSINESS - One-time (15,000 CAD):**
-1. Mode "One-time"
-2. Vérifier montant: **15,000.00 CAD**
-
-**BUSINESS - Monthly (799 CAD/mois):**
-1. Mode "Monthly"
-2. Vérifier montant: **799.00 CAD/month**
-
-**ENTERPRISE - One-time (45,000 CAD):**
-1. Mode "One-time"
-2. Vérifier montant: **45,000.00 CAD**
-
-**ENTERPRISE - Monthly (2,499 CAD/mois):**
-1. Mode "Monthly"
-2. Vérifier montant: **2,499.00 CAD/month**
-
----
-
-### **2. Test Produits Additionnels**
-
-#### **Audit IA Complet - 2,500 CAD**
-
-**Où le trouver:**
-- Section "Services" sur la page d'accueil
-- Ou lien direct dans Hero/CTA
-
-**Test:**
-1. Cliquer sur le lien
-2. Vérifier redirection Stripe
-3. Vérifier montant: **2,500.00 CAD**
-
-#### **Consultation Stratégique - 500 CAD**
-
-**Où le trouver:**
-- Section "Contact" ou "Services"
-
-**Test:**
-1. Cliquer sur le lien
-2. Vérifier montant: **500.00 CAD**
-
----
-
-### **3. Vérification Stripe Checkout**
-
-#### **Sur la page de paiement Stripe:**
-
-**Vérifier:**
-- [ ] Logo/Nom: "ZyatrIA Global" ou ton nom de compte
-- [ ] Montant correct en CAD
-- [ ] Description du produit claire
-- [ ] Mode TEST visible (si en test mode)
-- [ ] Formulaire de paiement s'affiche
-
-**Informations à checker:**
-```
-✓ Nom du produit
-✓ Prix en CAD
-✓ Récurrence (one-time ou /month)
-✓ Taxes (si applicables)
-✓ Total
-```
-
----
-
-### **4. Test Simulation Paiement (Mode Test)**
-
-#### **Si Stripe est en MODE TEST:**
-
-**Utiliser carte de test:**
-```
-Numéro: 4242 4242 4242 4242
-Date: 12/34 (n'importe quelle date future)
-CVC: 123
-ZIP: 12345
-```
-
-**Tester le flow complet:**
-1. Cliquer sur un bouton
-2. Remplir les infos de test
-3. Valider
-4. Vérifier redirection vers `/success`
-
-**Page de succès doit afficher:**
-- ✅ Message "Paiement Réussi !"
-- ✅ Instructions "Prochaines étapes"
-- ✅ Email de confirmation mentionné
-
----
-
-## 🔍 **VÉRIFICATION CONSOLE STRIPE**
-
-### **Dashboard Stripe:**
-https://dashboard.stripe.com
-
-#### **Vérifier:**
-1. **Produits:**
-   - Aller dans "Products"
-   - Vérifier que les 8 produits existent
-   - Vérifier les prix
-
-2. **Payment Links:**
-   - Aller dans "Payment Links"
-   - Vérifier que tous les liens sont actifs
-   - Copier les vrais liens de production
-
-3. **Mode:**
-   - Vérifier si en "Test Mode" ou "Live Mode"
-   - Toggle visible en haut à droite
-
----
-
-## 🚨 **EN CAS DE PROBLÈME**
-
-### **Erreur: "Invalid payment link"**
-
-**Solution:**
-1. Vérifier que les liens sont corrects dans `src/config/stripe-links.ts`
-2. Copier les nouveaux liens depuis Stripe Dashboard
-3. Rebuild le site
-
-### **Erreur: "Payment not processed"**
-
-**Solution:**
-- Vérifier que Stripe est en Test Mode
-- Utiliser une carte de test valide
-- Vérifier la connexion Stripe
-
-### **Redirection incorrecte**
-
-**Solution:**
-1. Vérifier `successUrl` et `cancelUrl` dans le payment link
-2. Doit pointer vers ton domaine
-
----
-
-## 📊 **CHECKLIST FINALE**
-
-### **Page Pricing:**
-- [ ] Page s'affiche correctement
-- [ ] Toggle One-time/Monthly fonctionne
-- [ ] 3 plans visibles (Starter, Business, Enterprise)
-- [ ] Prix corrects affichés
-
-### **Liens Stripe:**
-- [ ] Starter One-time → 5,000 CAD ✓
-- [ ] Starter Monthly → 299 CAD/mois ✓
-- [ ] Business One-time → 15,000 CAD ✓
-- [ ] Business Monthly → 799 CAD/mois ✓
-- [ ] Enterprise One-time → 45,000 CAD ✓
-- [ ] Enterprise Monthly → 2,499 CAD/mois ✓
-- [ ] Audit IA → 2,500 CAD ✓
-- [ ] Consultation → 500 CAD ✓
-
-### **Checkout Stripe:**
-- [ ] Redirection fonctionne
-- [ ] Montants corrects
-- [ ] Formulaire de paiement s'affiche
-- [ ] Mode TEST/LIVE clairement visible
-
-### **Page Success:**
-- [ ] Redirection après paiement réussi
-- [ ] Message de confirmation affiché
-- [ ] Instructions "next steps" visibles
-
----
-
-## 🎯 **COMMANDES RAPIDES**
-
-### **Vérifier les liens (script Node):**
+#### 1.1 Vérifier `src/config/stripe-links.ts`
 ```bash
-node TEST_STRIPE_FINAL.md
+cat src/config/stripe-links.ts
 ```
 
-### **Ouvrir Stripe Dashboard:**
-```bash
-open https://dashboard.stripe.com/test/products
-```
-
-### **Tester un lien direct:**
-```bash
-# Remplacer XXX par le code du produit
-open https://buy.stripe.com/XXXXXXX
-```
+**À vérifier :**
+- ✅ Tous les liens commencent par `https://buy.stripe.com/test_`
+- ✅ Aucun lien vide (`''`)
+- ✅ 8 liens au total (6 plans + 2 services)
 
 ---
 
-## 💡 **NOTES IMPORTANTES**
+### ✅ ÉTAPE 2 : DÉMARRER LE SERVEUR
 
-### **Mode Test vs Live**
+```bash
+npm run dev
+```
 
-**Mode Test:**
-- Utiliser cartes de test
-- Aucun vrai paiement
-- Parfait pour tester
-
-**Mode Live:**
-- Vrais paiements
-- Vraies cartes bancaires
-- Activer UNIQUEMENT quand prêt
-
-### **Sécurité**
-
-⚠️ **JAMAIS exposer:**
-- Secret API keys
-- Webhook secrets
-- Identifiants Stripe
-
-✅ **OK d'exposer:**
-- Payment Links (publics par nature)
-- Publishable keys
-- Product IDs
+**Attendre que le serveur démarre sur** `http://localhost:4321`
 
 ---
 
-**Date:** $(date)
-**Status:** Prêt pour tests
-**Mode recommandé:** TEST
+### ✅ ÉTAPE 3 : TESTS VISUELS SUR LA PAGE PRICING
+
+#### 3.1 Ouvrir la page Pricing
+```
+http://localhost:4321/pricing
+```
+
+#### 3.2 Vérifier l'affichage des cartes
+- ✅ 3 cartes de pricing visibles (Starter, Professional, Enterprise)
+- ✅ Prix affichés correctement
+- ✅ Boutons "Mensuel" et "Paiement Unique" présents
+- ✅ Pas d'erreurs dans la console (F12)
+
+---
+
+### ✅ ÉTAPE 4 : TESTS DES BOUTONS (MODE TEST)
+
+#### 4.1 Plan STARTER
+
+**Test 1 : Starter - Mensuel (299$/mois)**
+1. Cliquer sur l'onglet "Mensuel"
+2. Cliquer sur le bouton du plan Starter
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 299$/mois
+4. **URL attendue :** `https://buy.stripe.com/test_aFa14fbGS0HL1xe02r`
+
+**Test 2 : Starter - Paiement Unique (5000$)**
+1. Cliquer sur l'onglet "Paiement Unique"
+2. Cliquer sur le bouton du plan Starter
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 5000$
+4. **URL attendue :** `https://buy.stripe.com/test_7sYaEP5iudux2BicPd`
+
+---
+
+#### 4.2 Plan PROFESSIONAL
+
+**Test 3 : Professional - Mensuel (799$/mois)**
+1. Cliquer sur l'onglet "Mensuel"
+2. Cliquer sur le bouton du plan Professional
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 799$/mois
+4. **URL attendue :** `https://buy.stripe.com/test_eVq5kv6my8ada3K7uT`
+
+**Test 4 : Professional - Paiement Unique (1500$)**
+1. Cliquer sur l'onglet "Paiement Unique"
+2. Cliquer sur le bouton du plan Professional
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 1500$
+4. **URL attendue :** `https://buy.stripe.com/test_28EdR17qC769a3KdTh`
+
+---
+
+#### 4.3 Plan ENTERPRISE
+
+**Test 5 : Enterprise - Mensuel (2499$/mois)**
+1. Cliquer sur l'onglet "Mensuel"
+2. Cliquer sur le bouton du plan Enterprise
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 2499$/mois
+4. **URL attendue :** `https://buy.stripe.com/test_9B6cMX4eq625b7OaH5`
+
+**Test 6 : Enterprise - Paiement Unique (45000$)**
+1. Cliquer sur l'onglet "Paiement Unique"
+2. Cliquer sur le bouton du plan Enterprise
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 45000$
+4. **URL attendue :** `https://buy.stripe.com/test_4gM00b6myeyB0ta16v`
+
+---
+
+### ✅ ÉTAPE 5 : TESTS DES SERVICES
+
+#### 5.1 Consultation Stratégique IA (500$)
+
+**Où trouver ce bouton :**
+- Page d'accueil (section Services)
+- Page Services
+- Page Contact
+
+**Test 7 : Consultation**
+1. Trouver le bouton "Réserver une Consultation"
+2. Cliquer dessus
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 500$
+4. **URL attendue :** `https://buy.stripe.com/test_aFafZ94eqeyBek09D1`
+
+---
+
+#### 5.2 Audit IA Complet (2500$)
+
+**Où trouver ce bouton :**
+- Page d'accueil (section Services)
+- Page Services
+
+**Test 8 : Audit IA**
+1. Trouver le bouton "Commander un Audit"
+2. Cliquer dessus
+3. **Résultat attendu :** Redirection vers Stripe avec le prix 2500$
+4. **URL attendue :** `https://buy.stripe.com/test_6oU14fdP08adgs8eXl`
+
+---
+
+### ✅ ÉTAPE 6 : VÉRIFICATION CONSOLE NAVIGATEUR
+
+#### 6.1 Ouvrir la Console (F12)
+- Onglet "Console"
+- **Vérifier qu'il n'y a pas d'erreurs rouges**
+
+#### 6.2 Erreurs courantes à surveiller
+❌ `Cannot read property 'oneTime' of undefined`
+❌ `stripeLinks is not defined`
+❌ `404 Not Found`
+❌ `TypeError: ...`
+
+**Si tu vois ces erreurs :** Copie-les et envoie-les moi !
+
+---
+
+### ✅ ÉTAPE 7 : TEST DE PAIEMENT COMPLET (OPTIONNEL)
+
+#### 7.1 Utiliser les cartes de test Stripe
+
+**Carte de test qui fonctionne :**
+```
+Numéro : 4242 4242 4242 4242
+Date : N'importe quelle date future (ex: 12/25)
+CVC : N'importe quel 3 chiffres (ex: 123)
+Code postal : N'importe quel code (ex: 12345)
+```
+
+**Carte de test qui échoue :**
+```
+Numéro : 4000 0000 0000 0002
+```
+
+#### 7.2 Processus de test
+1. Cliquer sur un bouton de pricing
+2. Remplir le formulaire Stripe avec la carte de test
+3. Valider le paiement
+4. **Résultat attendu :** Page de succès Stripe
+
+---
+
+## 📊 TABLEAU DE RÉSULTATS
+
+Remplis ce tableau pendant tes tests :
+
+| Test | Plan/Service | Type | Prix | ✅/❌ | Notes |
+|------|-------------|------|------|-------|-------|
+| 1 | Starter | Mensuel | 299$/mois | | |
+| 2 | Starter | Unique | 5000$ | | |
+| 3 | Professional | Mensuel | 799$/mois | | |
+| 4 | Professional | Unique | 1500$ | | |
+| 5 | Enterprise | Mensuel | 2499$/mois | | |
+| 6 | Enterprise | Unique | 45000$ | | |
+| 7 | Consultation | Service | 500$ | | |
+| 8 | Audit IA | Service | 2500$ | | |
+
+---
+
+## 🐛 PROBLÈMES COURANTS ET SOLUTIONS
+
+### Problème 1 : Bouton ne fait rien
+**Solution :**
+- Vérifier la console (F12)
+- Vérifier que `stripe-links.ts` est bien importé
+- Vérifier qu'il n'y a pas de fautes de frappe dans les liens
+
+### Problème 2 : Redirection vers mauvais prix
+**Solution :**
+- Vérifier que le bon lien est utilisé dans `stripe-links.ts`
+- Vérifier que l'onglet Mensuel/Unique est bien sélectionné
+
+### Problème 3 : Erreur 404
+**Solution :**
+- Vérifier que le lien Stripe est complet
+- Vérifier qu'il n'y a pas d'espaces dans le lien
+
+### Problème 4 : Page blanche après clic
+**Solution :**
+- Vérifier la console pour les erreurs JavaScript
+- Vérifier que `window.location.href` fonctionne
+
+---
+
+## ✅ VALIDATION FINALE
+
+**Tous les tests passent si :**
+- ✅ Aucune erreur dans la console
+- ✅ Tous les boutons redirigent vers Stripe
+- ✅ Les prix affichés sur Stripe correspondent
+- ✅ Les cartes de test fonctionnent
+- ✅ La navigation entre Mensuel/Unique fonctionne
+
+---
+
+## 📝 RAPPORT DE TEST
+
+**Une fois tous les tests terminés, note ici :**
+
+**Date du test :** _______________
+
+**Navigateur utilisé :** _______________
+
+**Résultat global :** ✅ SUCCÈS / ❌ ÉCHEC
+
+**Nombre de tests réussis :** _____ / 8
+
+**Problèmes rencontrés :**
+- 
+- 
+- 
+
+**Actions correctives nécessaires :**
+- 
+- 
+- 
+
+---
+
+## 🚀 PROCHAINES ÉTAPES APRÈS VALIDATION
+
+1. ✅ Tous les tests passent → Passer en mode PRODUCTION
+2. ❌ Des tests échouent → Corriger les erreurs et retester
+3. 📧 Configurer les emails de confirmation Stripe
+4. 🔔 Configurer les webhooks Stripe (optionnel)
+
+---
+
+**Commence les tests et dis-moi ce que tu trouves !** 🧪

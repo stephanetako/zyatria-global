@@ -1,0 +1,18 @@
+---
+import MainLayout from '../layouts/main.astro';
+import PaymentDemoPage from '../components/pages/PaymentDemoPage';
+
+const seoData = {
+  title: "Démonstration Stripe | ZyatrIA Global",
+  description: "Testez notre intégration de paiement Stripe avec des exemples de paiements uniques et d'abonnements.",
+  ogImage: "/og-image.png",
+};
+---
+
+<MainLayout 
+  title={seoData.title}
+  description={seoData.description}
+  ogImage={seoData.ogImage}
+>
+  <PaymentDemoPage client:only="react" />
+</MainLayout>
