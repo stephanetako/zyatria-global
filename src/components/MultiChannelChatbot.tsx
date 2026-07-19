@@ -1,5 +1,12 @@
+
+
+
+
+
+
 import { useState, useRef, useEffect } from 'react';
 import { baseUrl } from '../lib/base-url';
+import { MessageCircle, Mail, Phone, X, Send } from 'lucide-react';
 
 type Channel = 'chat' | 'email' | 'call';
 
@@ -17,7 +24,7 @@ export default function MultiChannelChatbot() {
     {
       id: '1',
       sender: 'bot',
-      text: 'Bonjour ! Je suis votre assistant multifonction. Comment puis-je vous aider ?',
+      text: 'Bienvenue chez ZyatrIA Global ! 👋 Je suis votre assistant IA intelligent. Comment puis-je vous aider aujourd\'hui ?',
       timestamp: new Date(),
     },
   ]);
@@ -49,7 +56,7 @@ export default function MultiChannelChatbot() {
       {
         id: '1',
         sender: 'bot',
-        text: 'Bonjour ! Je suis votre assistant multifonction. Comment puis-je vous aider ?',
+        text: 'Bienvenue chez ZyatrIA Global ! 👋 Je suis votre assistant IA intelligent. Comment puis-je vous aider aujourd\'hui ?',
         timestamp: new Date(),
       },
     ]);
@@ -154,7 +161,7 @@ export default function MultiChannelChatbot() {
               className="chat-close-btn"
               aria-label="Fermer le chat"
             >
-              ✕
+              <X size={20} />
             </button>
           </div>
 
@@ -164,19 +171,22 @@ export default function MultiChannelChatbot() {
               className={`chat-tab ${currentChannel === 'chat' ? 'active' : ''}`}
               onClick={() => switchTab('chat')}
             >
-              Chat
+              <MessageCircle size={18} className="tab-icon" />
+              <span className="tab-text">Chat</span>
             </div>
             <div
               className={`chat-tab ${currentChannel === 'email' ? 'active' : ''}`}
               onClick={() => switchTab('email')}
             >
-              Email
+              <Mail size={18} className="tab-icon" />
+              <span className="tab-text">Email</span>
             </div>
             <div
               className={`chat-tab ${currentChannel === 'call' ? 'active' : ''}`}
               onClick={() => switchTab('call')}
             >
-              Appel
+              <Phone size={18} className="tab-icon" />
+              <span className="tab-text">Appel</span>
             </div>
             <button
               onClick={resetConversation}
@@ -184,7 +194,7 @@ export default function MultiChannelChatbot() {
               aria-label="Terminer la conversation"
               title="Terminer la conversation"
             >
-              ✕
+              <X size={20} />
             </button>
           </div>
 
@@ -222,7 +232,7 @@ export default function MultiChannelChatbot() {
               onClick={sendMessage}
               disabled={!input.trim() || isLoading}
             >
-              Envoyer
+              <Send size={18} />
             </button>
           </div>
         </div>
@@ -236,22 +246,23 @@ export default function MultiChannelChatbot() {
           right: 20px;
           width: 60px;
           height: 60px;
-          background: #4CAF50;
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
           color: white;
           border-radius: 50%;
           display: flex;
           justify-content: center;
           align-items: center;
           cursor: pointer;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+          box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
           z-index: 1000;
-          font-size: 24px;
+          font-size: 28px;
           border: none;
-          transition: transform 0.2s;
+          transition: all 0.3s ease;
         }
 
         .chat-fab:hover {
           transform: scale(1.1);
+          box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
         }
 
         /* Fenêtre de chat */
@@ -259,108 +270,131 @@ export default function MultiChannelChatbot() {
           position: fixed;
           bottom: 90px;
           right: 20px;
-          width: 350px;
+          width: 380px;
           background: white;
-          border-radius: 10px;
-          box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+          border-radius: 16px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.15);
           flex-direction: column;
           z-index: 1000;
-          max-height: 500px;
+          max-height: 550px;
           overflow: hidden;
+          border: 1px solid rgba(0,0,0,0.08);
         }
 
         .chat-header {
-          background: #4CAF50;
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
           color: white;
-          padding: 10px 15px;
+          padding: 16px 20px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-weight: bold;
-          border-top-left-radius: 10px;
-          border-top-right-radius: 10px;
+          font-weight: 700;
+          font-size: 16px;
+          border-top-left-radius: 16px;
+          border-top-right-radius: 16px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .chat-close-btn {
-          background: transparent;
+          background: rgba(255, 255, 255, 0.2);
           border: none;
           color: white;
-          font-size: 24px;
           cursor: pointer;
-          padding: 0;
-          width: 30px;
-          height: 30px;
+          padding: 6px;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 50%;
-          transition: background 0.2s;
+          border-radius: 8px;
+          transition: all 0.2s;
         }
 
         .chat-close-btn:hover {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.3);
+          transform: scale(1.05);
         }
 
         .chat-messages {
           flex: 1;
-          padding: 10px;
+          padding: 16px;
           overflow-y: auto;
-          background: #f9f9f9;
+          background: #f8f9fa;
           min-height: 300px;
           max-height: 350px;
         }
 
         .message {
-          margin: 5px;
-          padding: 8px 12px;
-          border-radius: 18px;
+          margin: 8px 0;
+          padding: 12px 16px;
+          border-radius: 16px;
           max-width: 80%;
           word-wrap: break-word;
           display: block;
+          font-size: 14px;
+          line-height: 1.5;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .user-message {
-          background: #e3f2fd;
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+          color: white;
           margin-left: auto;
           text-align: right;
+          font-weight: 500;
         }
 
         .bot-message {
-          background: #f1f1f1;
+          background: white;
           margin-right: auto;
+          color: #1a1a1a;
+          border: 1px solid #e0e0e0;
         }
 
         .chat-input-container {
           display: flex;
-          padding: 10px;
-          border-top: 1px solid #ddd;
+          padding: 16px;
+          border-top: 1px solid #e0e0e0;
           background: white;
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
+          border-bottom-left-radius: 16px;
+          border-bottom-right-radius: 16px;
+          gap: 8px;
         }
 
         .chat-input {
           flex: 1;
-          padding: 8px;
-          border: 1px solid #ddd;
-          border-radius: 5px;
+          padding: 12px 16px;
+          border: 2px solid #e0e0e0;
+          border-radius: 12px;
           font-family: inherit;
+          font-size: 14px;
+          transition: all 0.2s;
+        }
+
+        .chat-input:focus {
+          outline: none;
+          border-color: #4CAF50;
+          box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
         }
 
         .chat-send {
-          margin-left: 5px;
-          padding: 8px 12px;
-          background: #4CAF50;
+          padding: 12px 16px;
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
           color: white;
           border: none;
-          border-radius: 5px;
+          border-radius: 12px;
           cursor: pointer;
           font-family: inherit;
-          transition: background 0.2s;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 48px;
         }
 
         .chat-send:hover:not(:disabled) {
-          background: #45a049;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
 
         .chat-send:disabled {
@@ -368,57 +402,126 @@ export default function MultiChannelChatbot() {
           cursor: not-allowed;
         }
 
-        /* Onglets pour changer de canal */
+        /* Onglets pour changer de canal - FORCER LA VISIBILITÉ */
         .chat-tabs {
-          display: flex;
-          background: #f1f1f1;
-          padding: 5px;
-          border-bottom: 1px solid #ddd;
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          background: #ffffff;
+          padding: 12px 12px 0 12px;
+          border-bottom: 2px solid #e0e0e0;
+          gap: 6px;
+          min-height: 90px;
+          position: relative;
+          z-index: 10;
         }
 
         .chat-tab {
           flex: 1;
           text-align: center;
-          padding: 10px 8px;
+          padding: 16px 12px;
           cursor: pointer;
-          border-radius: 0 0 5px 5px;
-          transition: all 0.2s;
+          border-radius: 12px 12px 0 0;
+          transition: all 0.3s ease;
           color: #1a1a1a;
-          font-weight: 600;
-          font-size: 14px;
+          font-weight: 700;
+          font-size: 15px;
+          background: #f5f5f5;
+          border: 2px solid #e0e0e0;
+          border-bottom: none;
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          position: relative;
+          min-height: 70px;
+          justify-content: center;
         }
 
         .chat-tab:hover {
-          background: #e0e0e0;
-          color: #000;
+          background: #e8f5e9;
+          border-color: #4CAF50;
+          transform: translateY(-2px);
         }
 
         .chat-tab.active {
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+          border-color: #4CAF50;
+          color: white;
+          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .tab-icon {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          margin: 0 auto 4px auto;
+          width: 22px;
+          height: 22px;
+          color: inherit;
+        }
+
+        .tab-text {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          font-size: 16px !important;
+          font-weight: 900 !important;
+          letter-spacing: 0.8px;
+          color: #000000 !important;
+          text-shadow: none !important;
+          text-transform: uppercase;
+        }
+
+        .chat-tab:hover .tab-text {
+          color: #1b5e20 !important;
+        }
+
+        .chat-tab.active .tab-text {
+          color: white !important;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+          font-size: 17px !important;
+        }
+
+        .chat-tab.active .tab-icon {
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+          color: white;
+        }
+
+        .chat-tab.active::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          right: 0;
+          height: 2px;
           background: white;
-          font-weight: bold;
-          color: #4CAF50;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .chat-reset-btn {
-          background: transparent;
-          border: none;
-          color: #d32f2f;
-          font-size: 24px;
+          background: #ff1744 !important;
+          border: 3px solid #d50000 !important;
+          color: white !important;
           cursor: pointer;
-          padding: 0 12px;
-          display: flex;
+          padding: 14px;
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
           align-items: center;
           justify-content: center;
           transition: all 0.2s;
-          border-radius: 0 0 5px 5px;
+          border-radius: 12px 12px 0 0;
+          min-width: 60px;
           font-weight: bold;
+          box-shadow: 0 4px 12px rgba(213, 0, 0, 0.4);
         }
 
         .chat-reset-btn:hover {
-          background: #ffebee;
-          color: #b71c1c;
-          transform: scale(1.1);
+          background: #ff5252 !important;
+          transform: scale(1.05);
+          box-shadow: 0 6px 16px rgba(213, 0, 0, 0.6);
         }
 
         /* Responsive */
@@ -428,11 +531,42 @@ export default function MultiChannelChatbot() {
             right: 20px;
             left: 20px;
           }
+
+          .chat-tab {
+            padding: 14px 8px;
+            font-size: 14px;
+            min-height: 66px;
+          }
+
+          .tab-text {
+            font-size: 15px !important;
+          }
+
+          .chat-tab.active .tab-text {
+            font-size: 16px !important;
+          }
+
+          .tab-icon {
+            width: 20px;
+            height: 20px;
+          }
         }
       `}</style>
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

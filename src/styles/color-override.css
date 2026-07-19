@@ -1,60 +1,168 @@
-
-
-
-
-
-
 /**
- * COLOR OVERRIDE - PALETTE PAISIBLE ET NATURELLE
+ * COLOR OVERRIDE - PALETTE PREMIUM NOIR PROFOND
  * 
- * Cette palette utilise des couleurs douces et apaisantes
- * inspirées de la nature : bleu ciel doux, vert sauge, tons terre.
+ * Fond : #0F172A (noir profond) pour un look premium
+ * Boutons : #1E40AF (bleu nuit) avec survol en #60A5FA
+ * Texte : #FFFFFF (blanc) sur fond sombre, #0F172A sur fond clair
  * 
- * Style: Calme, naturel, professionnel, apaisant
- * Parfait pour: Bien-être, IA éthique, services professionnels
+ * Style: Premium, élégant, moderne, professionnel
+ * Parfait pour: Tech, IA, services haut de gamme
  */
+
+:root {
+  /* === COULEURS PRINCIPALES === */
+  
+  /* Primary - Bleu nuit premium */
+  --_apps---colors--primary: #1E40AF;
+  --_apps---colors--primary-foreground: #FFFFFF;
+  --_apps---colors--ring: #1E40AF;
+  
+  /* Background & Foreground - Contraste maximal */
+  --_apps---colors--background: #FFFFFF;
+  --_apps---colors--foreground: #0F172A;
+  
+  /* Secondary - Gris clair élégant */
+  --_apps---colors--secondary: #F8FAFC;
+  --_apps---colors--secondary-foreground: #0F172A;
+  
+  /* Muted - Gris doux */
+  --_apps---colors--muted: #F1F5F9;
+  --_apps---colors--muted-foreground: #475569;
+  
+  /* Accent - Bleu clair */
+  --_apps---colors--accent: #EFF6FF;
+  --_apps---colors--accent-foreground: #1E40AF;
+  
+  /* Cards */
+  --_apps---colors--card: #FFFFFF;
+  --_apps---colors--card-foreground: #0F172A;
+  
+  /* Popover */
+  --_apps---colors--popover: #FFFFFF;
+  --_apps---colors--popover-foreground: #0F172A;
+  
+  /* Borders & Inputs */
+  --_apps---colors--border: #E2E8F0;
+  --_apps---colors--input: #E2E8F0;
+  
+  /* Destructive */
+  --_apps---colors--destructive: #DC2626;
+  
+  /* === CHARTS === */
+  --_apps---charts--chart-1: #1E40AF;
+  --_apps---charts--chart-2: #3B82F6;
+  --_apps---charts--chart-3: #60A5FA;
+  --_apps---charts--chart-4: #93C5FD;
+  --_apps---charts--chart-5: #DBEAFE;
+  
+  /* === SIDEBAR === */
+  --_apps---sidebar--sidebar: #F8FAFC;
+  --_apps---sidebar--sidebar-foreground: #0F172A;
+  --_apps---sidebar--sidebar-primary: #1E40AF;
+  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
+  --_apps---sidebar--sidebar-accent: #F1F5F9;
+  --_apps---sidebar--sidebar-accent-foreground: #0F172A;
+  --_apps---sidebar--sidebar-border: #E2E8F0;
+  --_apps---sidebar--sidebar-ring: #1E40AF;
+}
+
+/* === DARK MODE - NOIR PROFOND PREMIUM === */
+.dark {
+  /* Primary - Bleu clair lumineux */
+  --_apps---colors--primary: #60A5FA;
+  --_apps---colors--primary-foreground: #FFFFFF;
+  --_apps---colors--ring: #60A5FA;
+  
+  /* Background & Foreground - Noir profond premium */
+  --_apps---colors--background: #0F172A;
+  --_apps---colors--foreground: #FFFFFF;
+  
+  /* Secondary - Gris foncé élégant */
+  --_apps---colors--secondary: #1E293B;
+  --_apps---colors--secondary-foreground: #F1F5F9;
+  
+  /* Muted - Gris moyen */
+  --_apps---colors--muted: #334155;
+  --_apps---colors--muted-foreground: #CBD5E1;
+  
+  /* Accent - Bleu foncé */
+  --_apps---colors--accent: #1E3A8A;
+  --_apps---colors--accent-foreground: #DBEAFE;
+  
+  /* Cards */
+  --_apps---colors--card: #1E293B;
+  --_apps---colors--card-foreground: #FFFFFF;
+  
+  /* Popover */
+  --_apps---colors--popover: #1E293B;
+  --_apps---colors--popover-foreground: #FFFFFF;
+  
+  /* Borders & Inputs */
+  --_apps---colors--border: #334155;
+  --_apps---colors--input: #334155;
+  
+  /* Destructive */
+  --_apps---colors--destructive: #EF4444;
+  
+  /* Charts Dark */
+  --_apps---charts--chart-1: #60A5FA;
+  --_apps---charts--chart-2: #3B82F6;
+  --_apps---charts--chart-3: #2563EB;
+  --_apps---charts--chart-4: #1D4ED8;
+  --_apps---charts--chart-5: #1E40AF;
+  
+  /* Sidebar Dark */
+  --_apps---sidebar--sidebar: #0F172A;
+  --_apps---sidebar--sidebar-foreground: #FFFFFF;
+  --_apps---sidebar--sidebar-primary: #60A5FA;
+  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
+  --_apps---sidebar--sidebar-accent: #1E293B;
+  --_apps---sidebar--sidebar-accent-foreground: #F1F5F9;
+  --_apps---sidebar--sidebar-border: #334155;
+  --_apps---sidebar--sidebar-ring: #60A5FA;
+}
 
 /* === HIGH IMPACT GRADIENTS === */
 .gradient-primary,
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%) !important;
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%) !important;
 }
 
 .gradient-tech,
 .bg-gradient-tech {
-  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%) !important;
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%) !important;
 }
 
 .gradient-hero {
-  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 50%, #8B9D83 100%) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%) !important;
 }
 
 .gradient-violet,
 .bg-gradient-violet {
-  background: linear-gradient(135deg, #8B9D83 0%, #A8B5A1 100%) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
 }
 
 .gradient-cyan {
-  background: linear-gradient(135deg, #7BA8B8 0%, #9BC4D4 100%) !important;
+  background: linear-gradient(135deg, #60A5FA 0%, #93C5FD 100%) !important;
 }
 
 /* TEXT GRADIENTS - TRÈS VISIBLES */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%) !important;
+  background: linear-gradient(135deg, #1E40AF 0%, #60A5FA 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
 .text-gradient-tech {
-  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%) !important;
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
 .text-gradient-violet {
-  background: linear-gradient(135deg, #8B9D83 0%, #A8B5A1 100%) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -62,7 +170,7 @@
 
 /* BACKGROUND GRADIENTS POUR SECTIONS */
 .bg-gradient-to-br {
-  background: linear-gradient(to bottom right, var(--background), var(--muted), rgba(91, 143, 163, 0.05)) !important;
+  background: linear-gradient(to bottom right, var(--background), var(--muted), rgba(30, 64, 175, 0.05)) !important;
 }
 
 .from-background {
@@ -72,190 +180,76 @@
 /* FORCE PRIMARY COLOR */
 .text-primary,
 .text-primary * {
-  color: #4A7A8C !important;
+  color: #1E40AF !important;
+}
+
+.dark .text-primary,
+.dark .text-primary * {
+  color: #60A5FA !important;
 }
 
 .bg-primary,
 .bg-primary * {
-  background-color: #5B8FA3 !important;
+  background-color: #1E40AF !important;
+}
+
+.dark .bg-primary,
+.dark .bg-primary * {
+  background-color: #60A5FA !important;
 }
 
 .border-primary {
-  border-color: #5B8FA3 !important;
+  border-color: #1E40AF !important;
 }
 
-:root {
-  /* === COULEURS PRINCIPALES === */
-  
-  /* Primary - Bleu doux apaisant (confiance, calme, sérénité) */
-  --_apps---colors--primary: #5B8FA3;
-  --_apps---colors--primary-foreground: #FFFFFF;
-  --_apps---colors--ring: #5B8FA3;
-  
-  /* Background & Foreground - Contraste maximal */
-  --_apps---colors--background: #FFFFFF;
-  --_apps---colors--foreground: #09090B;
-  
-  /* Secondary - Vert sauge doux (nature, équilibre) */
-  --_apps---colors--secondary: #F5F7F4;
-  --_apps---colors--secondary-foreground: #18181B;
-  
-  /* Muted - Gris très foncé pour excellente lisibilité */
-  --_apps---colors--muted: #F4F4F5;
-  --_apps---colors--muted-foreground: #18181B;
-  
-  /* Accent - Vert sauge foncé pour bon contraste */
-  --_apps---colors--accent: #F0F4F0;
-  --_apps---colors--accent-foreground: #3D5A3D;
-  
-  /* Cards */
-  --_apps---colors--card: #FFFFFF;
-  --_apps---colors--card-foreground: #09090B;
-  
-  /* Popover */
-  --_apps---colors--popover: #FFFFFF;
-  --_apps---colors--popover-foreground: #09090B;
-  
-  /* Borders & Inputs - Plus visible */
-  --_apps---colors--border: #D4D4D8;
-  --_apps---colors--input: #D4D4D8;
-  
-  /* Destructive - Rouge doux */
-  --_apps---colors--destructive: #C85A54;
-  
-  /* === CHARTS === */
-  --_apps---charts--chart-1: #5B8FA3;
-  --_apps---charts--chart-2: #8B9D83;
-  --_apps---charts--chart-3: #7BA8B8;
-  --_apps---charts--chart-4: #A8B5A1;
-  --_apps---charts--chart-5: #D4A574;
-  
-  /* === SIDEBAR === */
-  --_apps---sidebar--sidebar: #FAFAFA;
-  --_apps---sidebar--sidebar-foreground: #09090B;
-  --_apps---sidebar--sidebar-primary: #5B8FA3;
-  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
-  --_apps---sidebar--sidebar-accent: #F4F4F5;
-  --_apps---sidebar--sidebar-accent-foreground: #18181B;
-  --_apps---sidebar--sidebar-border: #D4D4D8;
-  --_apps---sidebar--sidebar-ring: #5B8FA3;
-}
-
-/* === DARK MODE === */
-.dark {
-  /* Primary - Bleu doux plus lumineux en dark */
-  --_apps---colors--primary: #7BA8B8;
-  --_apps---colors--primary-foreground: #FFFFFF;
-  --_apps---colors--ring: #7BA8B8;
-  
-  /* Background & Foreground - Mode sombre élégant */
-  --_apps---colors--background: #09090B;
-  --_apps---colors--foreground: #FAFAFA;
-  
-  /* Secondary - Vert sauge doux */
-  --_apps---colors--secondary: #18181B;
-  --_apps---colors--secondary-foreground: #E4E4E7;
-  
-  /* Muted - Gris clair pour bonne lisibilité */
-  --_apps---colors--muted: #27272A;
-  --_apps---colors--muted-foreground: #D4D4D8;
-  
-  /* Accent - Vert sauge lumineux */
-  --_apps---colors--accent: #18181B;
-  --_apps---colors--accent-foreground: #A8B5A1;
-  
-  /* Cards */
-  --_apps---colors--card: #09090B;
-  --_apps---colors--card-foreground: #FAFAFA;
-  
-  /* Popover */
-  --_apps---colors--popover: #09090B;
-  --_apps---colors--popover-foreground: #FAFAFA;
-  
-  /* Borders & Inputs */
-  --_apps---colors--border: #27272A;
-  --_apps---colors--input: #27272A;
-  
-  /* Destructive - Rouge doux */
-  --_apps---colors--destructive: #E07A74;
-  
-  /* Charts Dark */
-  --_apps---charts--chart-1: #7BA8B8;
-  --_apps---charts--chart-2: #A8B5A1;
-  --_apps---charts--chart-3: #9BC4D4;
-  --_apps---charts--chart-4: #B8C9B0;
-  --_apps---charts--chart-5: #E5C29A;
-  
-  /* Sidebar Dark */
-  --_apps---sidebar--sidebar: #09090B;
-  --_apps---sidebar--sidebar-foreground: #FAFAFA;
-  --_apps---sidebar--sidebar-primary: #7BA8B8;
-  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
-  --_apps---sidebar--sidebar-accent: #18181B;
-  --_apps---sidebar--sidebar-accent-foreground: #D4D4D8;
-  --_apps---sidebar--sidebar-border: #27272A;
-  --_apps---sidebar--sidebar-ring: #7BA8B8;
-}
-
-/* === GRADIENTS PAISIBLES === */
-.gradient-primary {
-  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%);
-}
-
-.gradient-violet {
-  background: linear-gradient(135deg, #8B9D83 0%, #A8B5A1 100%);
-}
-
-.gradient-tech {
-  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%);
+.dark .border-primary {
+  border-color: #60A5FA !important;
 }
 
 /* === GLOWS & EFFECTS === */
 .glow-primary {
-  box-shadow: 0 0 30px rgba(91, 143, 163, 0.3);
+  box-shadow: 0 0 30px rgba(30, 64, 175, 0.4);
+}
+
+.dark .glow-primary {
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
 }
 
 .glow-violet {
-  box-shadow: 0 0 30px rgba(139, 157, 131, 0.3);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 30px rgba(123, 168, 184, 0.3);
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
 }
 
 /* === HOVER STATES === */
 .hover-primary:hover {
-  background-color: #4A7A8C;
+  background-color: #60A5FA !important;
   transition: background-color 0.2s ease;
 }
 
 .hover-violet:hover {
-  background-color: #7A8C72;
+  background-color: #3B82F6 !important;
   transition: background-color 0.2s ease;
-}
-
-/* === TEXT GRADIENTS === */
-.text-gradient-primary {
-  background: linear-gradient(135deg, #5B8FA3 0%, #7BA8B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-tech {
-  background: linear-gradient(135deg, #5B8FA3 0%, #8B9D83 50%, #A8B5A1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 /* === ANIMATIONS === */
 @keyframes pulse-blue {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(91, 143, 163, 0.4);
+    box-shadow: 0 0 20px rgba(30, 64, 175, 0.4);
   }
   50% {
-    box-shadow: 0 0 40px rgba(91, 143, 163, 0.6);
+    box-shadow: 0 0 40px rgba(30, 64, 175, 0.6);
+  }
+}
+
+.dark @keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(96, 165, 250, 0.6);
   }
 }
 
@@ -267,61 +261,34 @@
 .border-gradient {
   border: 1px solid transparent;
   background: linear-gradient(var(--_apps---colors--background), var(--_apps---colors--background)) padding-box,
-              linear-gradient(135deg, #5B8FA3, #8B9D83) border-box;
-}
-
-/* === ACCESSIBILITY === */
-/* Ensure all colors meet WCAG AA standards */
-*:focus-visible {
-  outline: 2px solid var(--_apps---colors--primary);
-  outline-offset: 2px;
-}
-
-/* Force high contrast for all text elements */
-p, span, div, li, a {
-  color: inherit;
-}
-
-/* Ensure muted text is still readable */
-.text-muted-foreground {
-  color: #18181B !important;
-}
-
-.dark .text-muted-foreground {
-  color: #D4D4D8 !important;
-}
-
-/* Ensure secondary text is readable */
-.text-secondary-foreground {
-  color: #18181B !important;
-}
-
-.dark .text-secondary-foreground {
-  color: #E4E4E7 !important;
-}
-
-/* Ensure accent text is readable */
-.text-accent-foreground {
-  color: #3D5A3D !important;
-}
-
-.dark .text-accent-foreground {
-  color: #A8B5A1 !important;
+              linear-gradient(135deg, #1E40AF, #60A5FA) border-box;
 }
 
 /* === BUTTON OVERRIDES === */
 button[class*="bg-primary"],
 a[class*="bg-primary"] {
-  background-color: var(--_apps---colors--primary) !important;
-  color: var(--_apps---colors--primary-foreground) !important;
+  background-color: #1E40AF !important;
+  color: #FFFFFF !important;
 }
 
 button[class*="bg-primary"]:hover,
 a[class*="bg-primary"]:hover {
-  background-color: #4A7A8C !important;
+  background-color: #60A5FA !important;
   transform: translateY(-1px);
-  box-shadow: 0 10px 30px rgba(91, 143, 163, 0.3);
+  box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
   transition: all 0.2s ease;
+}
+
+.dark button[class*="bg-primary"],
+.dark a[class*="bg-primary"] {
+  background-color: #60A5FA !important;
+  color: #FFFFFF !important;
+}
+
+.dark button[class*="bg-primary"]:hover,
+.dark a[class*="bg-primary"]:hover {
+  background-color: #3B82F6 !important;
+  box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
 }
 
 /* === CARD SHADOWS === */
@@ -331,7 +298,11 @@ a[class*="bg-primary"]:hover {
 }
 
 .card-tech:hover {
-  box-shadow: 0 14px 28px rgba(91, 143, 163, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 28px rgba(30, 64, 175, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+}
+
+.dark .card-tech:hover {
+  box-shadow: 0 14px 28px rgba(96, 165, 250, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
 }
 
 /* === GLASS MORPHISM === */
@@ -343,13 +314,60 @@ a[class*="bg-primary"]:hover {
 }
 
 .dark .glass {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(96, 165, 250, 0.2);
 }
 
+/* === ACCESSIBILITY === */
+*:focus-visible {
+  outline: 2px solid var(--_apps---colors--primary);
+  outline-offset: 2px;
+}
 
+/* Ensure high contrast text */
+p, span, div, li, a {
+  color: inherit;
+}
 
+/* Light mode text */
+.text-muted-foreground {
+  color: #475569 !important;
+}
 
+.text-secondary-foreground {
+  color: #0F172A !important;
+}
 
+.text-accent-foreground {
+  color: #1E40AF !important;
+}
 
+/* Dark mode text */
+.dark .text-muted-foreground {
+  color: #CBD5E1 !important;
+}
 
+.dark .text-secondary-foreground {
+  color: #F1F5F9 !important;
+}
+
+.dark .text-accent-foreground {
+  color: #DBEAFE !important;
+}
+
+/* === PREMIUM EFFECTS === */
+.premium-shadow {
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+}
+
+.dark .premium-shadow {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.premium-glow {
+  box-shadow: 0 0 50px rgba(30, 64, 175, 0.3);
+}
+
+.dark .premium-glow {
+  box-shadow: 0 0 50px rgba(96, 165, 250, 0.3);
+}

@@ -14,7 +14,7 @@ const translations = {
         title: 'Disponible Maintenant',
         status: 'active',
         icon: CheckCircle2,
-        color: 'from-green-500 to-emerald-500',
+        color: 'from-primary to-primary/80',
         items: [
           '✅ Consultations stratégiques IA',
           '✅ Audits de processus complets',
@@ -101,7 +101,7 @@ const translations = {
         title: 'Available Now',
         status: 'active',
         icon: CheckCircle2,
-        color: 'from-green-500 to-emerald-500',
+        color: 'from-primary to-primary/80',
         items: [
           '✅ Strategic AI consultations',
           '✅ Complete process audits',
@@ -209,7 +209,7 @@ const Roadmap: React.FC = () => {
               <Card
                 key={index}
                 className={`relative overflow-hidden p-8 transition-all duration-300 hover:shadow-2xl ${
-                  phase.status === 'active' ? 'border-green-500 border-2 shadow-xl' : 'border-border'
+                  phase.status === 'active' ? 'border-border border-2 shadow-xl' : 'border-border'
                 }`}
               >
                 {/* Status Badge */}
@@ -258,7 +258,7 @@ const Roadmap: React.FC = () => {
                 <ul className="space-y-4">
                   {t.earlyBird.benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-6 h-6 text-foreground flex-shrink-0 mt-0.5" />
                       <span className="text-lg">{benefit}</span>
                     </li>
                   ))}

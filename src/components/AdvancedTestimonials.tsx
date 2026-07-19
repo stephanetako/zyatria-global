@@ -44,7 +44,7 @@ const testimonials = [
       pt: "A ZyatrIA transformou nosso atendimento ao cliente. O tempo de resposta caiu de 4 horas para 2 minutos. Nossa equipe agora pode se concentrar em questões complexas enquanto a IA cuida das consultas rotineiras."
     },
     results: [
-      { icon: Clock, label: "Response Time", value: "-95%", color: "text-green-600" },
+      { icon: Clock, label: "Response Time", value: "-95%", color: "text-foreground" },
       { icon: TrendingUp, label: "Satisfaction", value: "+87%", color: "text-blue-600" },
       { icon: DollarSign, label: "Cost Saved", value: "$45k/mo", color: "text-purple-600" }
     ]
@@ -63,7 +63,7 @@ const testimonials = [
       pt: "Automatizamos 80% do nosso processamento de pedidos. O que levava 3 dias agora leva 3 horas. ROI alcançado em apenas 4 meses."
     },
     results: [
-      { icon: Clock, label: "Processing Time", value: "-92%", color: "text-green-600" },
+      { icon: Clock, label: "Processing Time", value: "-92%", color: "text-foreground" },
       { icon: TrendingUp, label: "Accuracy", value: "99.7%", color: "text-blue-600" },
       { icon: DollarSign, label: "ROI", value: "4 months", color: "text-purple-600" }
     ]
@@ -82,7 +82,7 @@ const testimonials = [
       pt: "Os agentes de IA lidam com todo o nosso processo de qualificação de leads. Passamos de 20% para 73% de taxa de conversão. Mudança de jogo."
     },
     results: [
-      { icon: TrendingUp, label: "Conversion", value: "+265%", color: "text-green-600" },
+      { icon: TrendingUp, label: "Conversion", value: "+265%", color: "text-foreground" },
       { icon: Clock, label: "Lead Response", value: "< 1 min", color: "text-blue-600" },
       { icon: DollarSign, label: "Revenue", value: "+$230k", color: "text-purple-600" }
     ]

@@ -26,7 +26,7 @@ const channelConfig = {
   email: {
     icon: Mail,
     label: 'Email',
-    color: 'bg-green-500',
+    color: 'bg-primary',
     placeholder: 'Écrivez votre email...',
     description: 'Réponse email professionnelle et structurée',
   },

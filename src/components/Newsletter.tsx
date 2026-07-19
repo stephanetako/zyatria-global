@@ -122,8 +122,8 @@ export default function Newsletter() {
           <div className="bg-card border border-border rounded-2xl p-8 shadow-lg hover-lift">
             {state.succeeded ? (
               <div className="text-center space-y-4 py-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-muted dark:bg-muted/20 rounded-full mb-4">
+                  <CheckCircle className="w-8 h-8 text-foreground dark:text-foreground" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-foreground">
                   {t.success.split('!')[0]}!

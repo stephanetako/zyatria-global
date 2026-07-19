@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Globe, Menu, X, Home, Briefcase, Bot, DollarSign } from 'lucide-react';
@@ -67,19 +68,19 @@ const Navigation: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href={`${baseUrl}/`} className="text-foreground/80 hover:text-foreground transition flex items-center gap-1.5">
+            <a href={`${baseUrl}/`} className="text-foreground hover:text-primary transition flex items-center gap-1.5">
               <Home className="w-4 h-4" />
               {t.home}
             </a>
-            <a href={`${baseUrl}/services`} className="text-foreground/80 hover:text-foreground transition flex items-center gap-1.5">
+            <a href={`${baseUrl}/services`} className="text-foreground hover:text-primary transition flex items-center gap-1.5">
               <Briefcase className="w-4 h-4" />
               {t.services}
             </a>
-            <a href={`${baseUrl}/micro-agents`} className="text-foreground/80 hover:text-foreground transition flex items-center gap-1.5">
+            <a href={`${baseUrl}/micro-agents`} className="text-foreground hover:text-primary transition flex items-center gap-1.5">
               <Bot className="w-4 h-4" />
               {t.microAgents}
             </a>
-            <a href={`${baseUrl}/pricing`} className="text-foreground/80 hover:text-foreground transition flex items-center gap-1.5">
+            <a href={`${baseUrl}/pricing`} className="text-foreground hover:text-primary transition flex items-center gap-1.5">
               <DollarSign className="w-4 h-4" />
               {t.pricing}
             </a>
@@ -87,7 +88,7 @@ const Navigation: React.FC = () => {
             {/* Resources Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="text-foreground/80 hover:text-foreground transition flex items-center gap-1">
+                <button className="text-foreground hover:text-primary transition flex items-center gap-1">
                   {t.resources}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -159,7 +160,7 @@ const Navigation: React.FC = () => {
           <div className="md:hidden py-4 space-y-4 border-t border-border">
             <a
               href={`${baseUrl}/`}
-              className="block text-foreground/80 hover:text-foreground transition flex items-center gap-2"
+              className="block text-foreground hover:text-primary transition flex items-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Home className="w-4 h-4" />
@@ -167,7 +168,7 @@ const Navigation: React.FC = () => {
             </a>
             <a
               href={`${baseUrl}/services`}
-              className="block text-foreground/80 hover:text-foreground transition flex items-center gap-2"
+              className="block text-foreground hover:text-primary transition flex items-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Briefcase className="w-4 h-4" />
@@ -175,7 +176,7 @@ const Navigation: React.FC = () => {
             </a>
             <a
               href={`${baseUrl}/micro-agents`}
-              className="block text-foreground/80 hover:text-foreground transition flex items-center gap-2"
+              className="block text-foreground hover:text-primary transition flex items-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Bot className="w-4 h-4" />
@@ -183,7 +184,7 @@ const Navigation: React.FC = () => {
             </a>
             <a
               href={`${baseUrl}/pricing`}
-              className="block text-foreground/80 hover:text-foreground transition flex items-center gap-2"
+              className="block text-foreground hover:text-primary transition flex items-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <DollarSign className="w-4 h-4" />
@@ -191,21 +192,21 @@ const Navigation: React.FC = () => {
             </a>
             <a
               href={`${baseUrl}/technology`}
-              className="block text-foreground/80 hover:text-foreground transition"
+              className="block text-foreground hover:text-primary transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.technology}
             </a>
             <a
               href={`${baseUrl}/docs`}
-              className="block text-foreground/80 hover:text-foreground transition"
+              className="block text-foreground hover:text-primary transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.docs}
             </a>
             <a
               href={`${baseUrl}/knowledge-base`}
-              className="block text-foreground/80 hover:text-foreground transition"
+              className="block text-foreground hover:text-primary transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.help}
@@ -221,6 +222,7 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
+
 
 
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button } from './ui/button';
-import { ArrowRight, Zap, Globe2, Sparkles, Calendar, Clock } from 'lucide-react';
+import { ArrowRight, Zap, Globe2, Calendar, Clock } from 'lucide-react';
 import { useLanguage } from '../lib/language-context';
 
 const translations = {
   fr: {
-    preLaunch: '🚀 Pré-Lancement - Réservez Votre Place',
     title1: 'Transformez Votre Entreprise',
     title2: "Avec L'IA Intelligente",
     description: "Des solutions d'automatisation IA qui travaillent 24/7 pour faire grandir votre entreprise. Déploiement en 10-15 jours. Résultats dès le premier jour.",
@@ -19,7 +18,6 @@ const translations = {
     }
   },
   en: {
-    preLaunch: '🚀 Pre-Launch - Reserve Your Spot',
     title1: 'Transform Your Business',
     title2: 'With Intelligent AI',
     description: 'AI automation solutions that work 24/7 to grow your business. Deployment in 10-15 days. Results from day one.',
@@ -49,12 +47,6 @@ const HeroSimple: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Badge Pré-lancement */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full mb-6 shadow-lg animate-pulse">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-bold">{t.preLaunch}</span>
-          </div>
-
           {/* Title */}
           <h1 className="text-5xl md:text-7xl font-bold font-heading mb-6 text-foreground">
             {t.title1}
@@ -121,6 +113,7 @@ const HeroSimple: React.FC = () => {
 };
 
 export default HeroSimple;
+
 
 
 

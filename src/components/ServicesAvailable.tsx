@@ -55,7 +55,7 @@ const translations = {
           'Documentation complète',
           'Support post-formation (30 jours)'
         ],
-        color: 'from-green-500 to-emerald-500',
+        color: 'from-primary to-primary/80',
         cta: 'Réserver une Formation'
       }
     ],
@@ -134,7 +134,7 @@ const translations = {
           'Complete documentation',
           'Post-training support (30 days)'
         ],
-        color: 'from-green-500 to-emerald-500',
+        color: 'from-primary to-primary/80',
         cta: 'Book Training'
       }
     ],
@@ -170,13 +170,13 @@ const ServicesAvailable: React.FC = () => {
   const t = translations[language];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-green-50/30 to-white dark:from-zinc-950 dark:via-green-950/10 dark:to-zinc-950">
+    <section className="py-24 bg-gradient-to-b from-white via-secondary/30 to-white dark:from-zinc-950 dark:via-muted/10 dark:to-zinc-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full mb-4">
-            <CheckCircle2 className="w-4 h-4 text-green-600" />
-            <span className="text-sm font-medium text-green-600">{t.badge}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-full mb-4">
+            <CheckCircle2 className="w-4 h-4 text-foreground" />
+            <span className="text-sm font-medium text-foreground">{t.badge}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">
             {t.title}
@@ -216,7 +216,7 @@ const ServicesAvailable: React.FC = () => {
                 <ul className="space-y-3 mb-8">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -244,7 +244,7 @@ const ServicesAvailable: React.FC = () => {
               const Icon = benefit.icon;
               return (
                 <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <h4 className="text-xl font-bold font-heading mb-2">{benefit.title}</h4>
@@ -256,7 +256,7 @@ const ServicesAvailable: React.FC = () => {
         </div>
 
         {/* Guarantee */}
-        <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-500 p-8 text-center">
+        <Card className="bg-gradient-to-br from-secondary to-muted dark:from-muted dark:to-muted border-2 border-border p-8 text-center">
           <h3 className="text-2xl font-bold font-heading mb-3">{t.guarantee.title}</h3>
           <p className="text-lg text-muted-foreground">{t.guarantee.description}</p>
         </Card>
