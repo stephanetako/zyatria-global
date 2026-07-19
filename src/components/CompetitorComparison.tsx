@@ -205,7 +205,7 @@ export default function CompetitorComparison() {
               {/* ZyatrIA */}
               <div className="p-4 text-center border-x border-border bg-blue-500/5">
                 {feature.zyatria ? (
-                  <Check className="w-6 h-6 text-green-600 mx-auto" />
+                  <Check className="w-6 h-6 text-foreground mx-auto" />
                 ) : (
                   <X className="w-6 h-6 text-red-500 mx-auto opacity-30" />
                 )}
@@ -214,7 +214,7 @@ export default function CompetitorComparison() {
               {/* Competitors */}
               <div className="p-4 text-center">
                 {feature.competitors ? (
-                  <Check className="w-6 h-6 text-green-600 mx-auto opacity-50" />
+                  <Check className="w-6 h-6 text-foreground mx-auto opacity-50" />
                 ) : (
                   <X className="w-6 h-6 text-red-500 mx-auto" />
                 )}
@@ -239,19 +239,19 @@ export default function CompetitorComparison() {
         {/* Trust badges */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <Check className="w-5 h-5 text-green-600" />
+            <Check className="w-5 h-5 text-foreground" />
             <span>SOC 2 Certified</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-5 h-5 text-green-600" />
+            <Check className="w-5 h-5 text-foreground" />
             <span>GDPR Compliant</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-5 h-5 text-green-600" />
+            <Check className="w-5 h-5 text-foreground" />
             <span>ISO 27001</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-5 h-5 text-green-600" />
+            <Check className="w-5 h-5 text-foreground" />
             <span>99.8% Uptime</span>
           </div>
         </div>

@@ -3,11 +3,12 @@
 
 
 
+
 import React, { useState } from 'react';
 import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
-import { stripeLinks, productDetails } from '../config/stripe-links';
+import { STRIPE_PAYMENT_LINKS, productDetails } from '../config/stripe-links';
 import { cn } from '../lib/utils';
 import { baseUrl } from '../lib/base-url';
 import { useLanguage } from '../lib/language-context';
@@ -70,7 +71,9 @@ const translations: Record<TranslationKey, any> = {
 
 const Pricing: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  // Map all languages to supported translation keys, default to 'fr'
+  const translationKey: TranslationKey = (language === 'en' || language === 'fr') ? language : 'fr';
+  const t = translations[translationKey];
   const [billingType, setBillingType] = useState<BillingType>('monthly');
 
   const plans: Array<{
@@ -85,7 +88,7 @@ const Pricing: React.FC = () => {
       key: 'starter',
       icon: Sparkles,
       badge: 'Meilleure valeur',
-      badgeColor: 'from-green-500 to-emerald-500',
+      badgeColor: 'from-primary to-primary/80',
       features: [
         "1 Bot IA spécialisé",
         "Déploiement en 7-15 jours",
@@ -128,64 +131,19 @@ const Pricing: React.FC = () => {
     }
   ];
 
-  const handlePurchase = (planKey: PlanKey, type: BillingType) => {
-    // Redirection vers le formulaire de contact pour pré-commande
-    console.log('🎯 Redirection vers formulaire de contact pour pré-commande:', {
-      planKey,
-      type
-    });
-    
-    // Scroll to contact form
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Optionnel: Pré-remplir le formulaire avec le plan sélectionné
-      setTimeout(() => {
-        const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-        if (messageField) {
-          const planName = productDetails[planKey].name;
-          const billingLabel = type === 'oneTime' ? 'Paiement Unique' : 'Abonnement Mensuel';
-          messageField.value = `Je suis intéressé par le plan ${planName} (${billingLabel}) avec l'offre de pré-lancement -30%.`;
-          messageField.focus();
-        }
-      }, 500);
-    }
-  };
-
-  const handleServicePurchase = (service: 'audit' | 'consultation') => {
-    console.log('🎯 Redirection vers formulaire de contact pour service:', service);
-    
-    // Scroll to contact form
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Pré-remplir le formulaire
-      setTimeout(() => {
-        const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-        if (messageField) {
-          const serviceName = productDetails[service].name;
-          messageField.value = `Je souhaite réserver: ${serviceName}`;
-          messageField.focus();
-        }
-      }, 500);
-    }
-  };
-
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-white via-amber-50/30 to-white dark:from-zinc-950 dark:via-amber-950/10 dark:to-zinc-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Info Banner */}
         <div className="mb-8 max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-500 rounded-lg p-6 text-center">
+          <div className="bg-gradient-to-r from-secondary to-muted dark:from-muted dark:to-muted border-2 border-border rounded-lg p-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Sparkles className="w-5 h-5 text-green-600" />
-              <span className="text-lg font-bold text-green-700 dark:text-green-300">
+              <Sparkles className="w-5 h-5 text-foreground" />
+              <span className="text-lg font-bold text-foreground dark:text-foreground">
                 🎁 Offre Pré-Lancement: -30% sur tous les plans
               </span>
             </div>
-            <p className="text-sm text-green-800 dark:text-green-200">
+            <p className="text-sm text-foreground dark:text-foreground">
               Réservez maintenant et bénéficiez de 30% de réduction + Formation gratuite (valeur 497$)
             </p>
           </div>
@@ -267,7 +225,7 @@ const Pricing: React.FC = () => {
                     )}>
                       {plan.badge}
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1.5 text-xs font-bold rounded-bl-lg shadow-lg">
+                    <div className="bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-1.5 text-xs font-bold rounded-bl-lg shadow-lg">
                       -30% 🎁
                     </div>
                   </div>
@@ -305,7 +263,7 @@ const Pricing: React.FC = () => {
                         <span className="text-muted-foreground text-lg">/mois</span>
                       )}
                     </div>
-                    <p className="text-xs text-green-600 dark:text-green-400 font-bold mb-2">
+                    <p className="text-xs text-foreground dark:text-foreground font-bold mb-2">
                       💰 Économisez {Math.round(pricing.price * 0.3).toLocaleString('fr-CA')} $ avec l'offre pré-lancement
                     </p>
                     <p className="text-xs text-muted-foreground font-medium">
@@ -331,21 +289,47 @@ const Pricing: React.FC = () => {
                   </ul>
 
                   {/* CTA Button */}
-                  <Button
-                    onClick={() => handlePurchase(plan.key, billingType)}
-                    className={cn(
-                      "w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-semibold transition-all hover:scale-105 hover:shadow-lg",
-                      plan.popular
-                        ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
-                        : "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
-                    )}
-                  >
-                    {plan.key === 'enterprise' 
-                      ? t.cta.enterprise 
-                      : (billingType === 'oneTime' ? t.cta.oneTime : t.cta.monthly)
+                  {(() => {
+                    const paymentLink = STRIPE_PAYMENT_LINKS[plan.key][billingType];
+                    const isDisabled = !paymentLink || paymentLink === '';
+                    
+                    // For Starter plan with oneTime billing, show a disabled button with message
+                    if (isDisabled && plan.key === 'starter' && billingType === 'oneTime') {
+                      return (
+                        <div>
+                          <button
+                            disabled
+                            className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium bg-muted text-muted-foreground cursor-not-allowed opacity-60"
+                          >
+                            Non disponible en paiement unique
+                          </button>
+                          <p className="text-xs text-center text-muted-foreground mt-2">
+                            💡 Disponible uniquement en abonnement mensuel
+                          </p>
+                        </div>
+                      );
                     }
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
+                    
+                    return (
+                      <a
+                        href={paymentLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(
+                          "w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                          plan.popular
+                            ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30"
+                            : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white"
+                        )}
+                      >
+                        {plan.key === 'enterprise' 
+                          ? t.cta.enterprise 
+                          : (billingType === 'oneTime' ? t.cta.oneTime : t.cta.monthly)
+                        }
+                        <ArrowRight className="w-5 h-5" />
+                      </a>
+                    );
+                  })()}
                 </div>
               </Card>
             );
@@ -391,13 +375,15 @@ const Pricing: React.FC = () => {
                 <span className="text-muted-foreground">CAD</span>
               </div>
 
-              <Button
-                onClick={() => handleServicePurchase('audit')}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
+              <a
+                href={STRIPE_PAYMENT_LINKS.services.audit}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg"
               >
                 <Sparkles className="w-4 h-4" />
                 {t.services.auditCta}
-              </Button>
+              </a>
             </Card>
 
             {/* Consultation */}
@@ -427,13 +413,15 @@ const Pricing: React.FC = () => {
                 <span className="text-muted-foreground">CAD</span>
               </div>
 
-              <Button
-                onClick={() => handleServicePurchase('consultation')}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
+              <a
+                href={STRIPE_PAYMENT_LINKS.services.consultation}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg"
               >
                 <Rocket className="w-4 h-4" />
                 {t.services.consultationCta}
-              </Button>
+              </a>
             </Card>
           </div>
         </div>
@@ -453,6 +441,17 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

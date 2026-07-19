@@ -165,10 +165,10 @@ const PaymentDemoPage: React.FC = () => {
 
       {success && (
         <div className="container-responsive mb-8">
-          <Card className="border-green-500 bg-green-50 dark:bg-green-950">
+          <Card className="border-border bg-muted dark:bg-muted">
             <CardContent className="flex items-center gap-3 p-4">
-              <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
-              <p className="text-sm text-green-600 dark:text-green-400">{success}</p>
+              <CheckCircle className="w-5 h-5 text-foreground dark:text-foreground flex-shrink-0" />
+              <p className="text-sm text-foreground dark:text-foreground">{success}</p>
             </CardContent>
           </Card>
         </div>

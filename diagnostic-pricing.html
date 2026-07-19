@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Pricing - ZyatrIA</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .link-test {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .status.ok { background: #4caf50; }
+        .status.error { background: #f44336; }
+        .status.warning { background: #ff9800; }
+        .btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Diagnostic Pricing ZyatrIA</h1>
+        <p>Vérification de tous les liens Stripe</p>
+    </div>
+
+    <div class="section">
+        <h2>📊 Liens Stripe - Mode LIVE</h2>
+        <div id="links-container"></div>
+    </div>
+
+    <div class="section">
+        <h2>🧪 Test des Boutons</h2>
+        <p>Cliquez sur les boutons ci-dessous pour tester les redirections Stripe :</p>
+        
+        <h3>Starter</h3>
+        <button class="btn" disabled>Paiement Unique (Non disponible)</button>
+        <a href="https://buy.stripe.com/9B6cMX6mPaTD5450VS" target="_blank" class="btn">Mensuel (68 $CA/mois)</a>
+        
+        <h3>Professional</h3>
+        <a href="https://buy.stripe.com/9B628jcLd4vfaop5c8" target="_blank" class="btn">Paiement Unique (697 $CA)</a>
+        <a href="https://buy.stripe.com/00waEPfXp0eZfIJ1ZW" target="_blank" class="btn">Mensuel (208 $CA/mois)</a>
+        
+        <h3>Enterprise</h3>
+        <a href="https://buy.stripe.com/5kQ8wHcLdaTD7cdbAw" target="_blank" class="btn">Paiement Unique (997 $CA)</a>
+        <a href="https://buy.stripe.com/6oU00b26zgdXeEFbAw" target="_blank" class="btn">Mensuel (698 $CA/mois)</a>
+        
+        <h3>Services</h3>
+        <a href="https://buy.stripe.com/00g28j9yX0eZ0XP1Zb" target="_blank" class="btn">Audit IA (497 $CA)</a>
+        <a href="https://buy.stripe.com/00g28j9yX0eZ0XP1Za" target="_blank" class="btn">Consultation (147 $CA)</a>
+    </div>
+
+    <div class="section">
+        <h2>📋 Instructions</h2>
+        <ol>
+            <li>Vérifiez que tous les liens ci-dessus ont un statut ✅ OK</li>
+            <li>Cliquez sur chaque bouton pour tester la redirection</li>
+            <li>Vérifiez que le bon prix s'affiche sur Stripe</li>
+            <li>Si un lien ne fonctionne pas, notez lequel et contactez le support</li>
+        </ol>
+    </div>
+
+    <script>
+        const links = {
+            'Starter - Paiement Unique': '',
+            'Starter - Mensuel': 'https://buy.stripe.com/9B6cMX6mPaTD5450VS',
+            'Professional - Paiement Unique': 'https://buy.stripe.com/9B628jcLd4vfaop5c8',
+            'Professional - Mensuel': 'https://buy.stripe.com/00waEPfXp0eZfIJ1ZW',
+            'Enterprise - Paiement Unique': 'https://buy.stripe.com/5kQ8wHcLdaTD7cdbAw',
+            'Enterprise - Mensuel': 'https://buy.stripe.com/6oU00b26zgdXeEFbAw',
+            'Audit IA': 'https://buy.stripe.com/00g28j9yX0eZ0XP1Zb',
+            'Consultation': 'https://buy.stripe.com/00g28j9yX0eZ0XP1Za'
+        };
+
+        const container = document.getElementById('links-container');
+
+        Object.entries(links).forEach(([name, url]) => {
+            const div = document.createElement('div');
+            div.className = 'link-test';
+            
+            const status = document.createElement('div');
+            status.className = 'status';
+            
+            if (!url || url === '') {
+                status.classList.add('warning');
+                div.innerHTML = `
+                    <div class="status warning"></div>
+                    <strong>${name}</strong>: 
+                    <span style="color: #ff9800;">⚠️ Non disponible (par design)</span>
+                `;
+            } else if (url.includes('test_')) {
+                status.classList.add('error');
+                div.innerHTML = `
+                    <div class="status error"></div>
+                    <strong>${name}</strong>: 
+                    <span style="color: #f44336;">❌ MODE TEST</span>
+                    <code>${url.substring(0, 50)}...</code>
+                `;
+            } else {
+                status.classList.add('ok');
+                div.innerHTML = `
+                    <div class="status ok"></div>
+                    <strong>${name}</strong>: 
+                    <span style="color: #4caf50;">✅ MODE LIVE</span>
+                    <code>${url.substring(0, 50)}...</code>
+                `;
+            }
+            
+            container.appendChild(div);
+        });
+    </script>
+</body>
+</html>

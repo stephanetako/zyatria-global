@@ -204,17 +204,17 @@ export default function ROICalculator() {
               </h3>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <Card className="p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/20 dark:to-green-900/20 border-green-200 dark:border-green-800">
+                <Card className="p-6 bg-gradient-to-br from-secondary to-muted dark:from-muted dark:to-muted border-border dark:border-border">
                   <div className="flex items-center gap-3 mb-2">
-                    <DollarSign className="w-6 h-6 text-green-600" />
-                    <div className="text-sm font-medium text-green-700 dark:text-green-400">
+                    <DollarSign className="w-6 h-6 text-foreground" />
+                    <div className="text-sm font-medium text-foreground dark:text-foreground">
                       {t.results.monthlySavings}
                     </div>
                   </div>
-                  <div className="text-3xl font-bold text-green-700 dark:text-green-300">
+                  <div className="text-3xl font-bold text-foreground dark:text-foreground">
                     ${Math.round(monthlySavings).toLocaleString()}
                   </div>
-                  <div className="text-xs text-green-600 dark:text-green-500 mt-1">
+                  <div className="text-xs text-foreground dark:text-foreground mt-1">
                     per month
                   </div>
                 </Card>

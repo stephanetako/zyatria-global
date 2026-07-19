@@ -213,7 +213,7 @@ export default function Contact() {
           <div className="max-w-2xl mx-auto">
             <Card className="p-8 border-2">
               <div className="text-center py-12">
-                <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <CheckCircle2 className="w-16 h-16 text-foreground mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-2">{t.successMessageTitle}</h3>
                 <p className="text-muted-foreground mb-6">
                   {t.successMessageDesc}

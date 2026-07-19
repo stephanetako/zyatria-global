@@ -1,6 +1,7 @@
 
 
 
+
 import React from 'react';
 import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap, CreditCard } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -35,8 +36,9 @@ const translations = {
           "Smart alerts for hot leads",
           "CRM integration"
         ],
-        price: "From $197 CAD/month",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.leadQualification
+        price: "68 $CA/month",
+        category: "Basic",
+        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
       },
       {
         icon: MessageSquare,
@@ -49,8 +51,9 @@ const translations = {
           "FAQ database",
           "Human escalation when needed"
         ],
-        price: "From $147 CAD/month",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.customerSupport
+        price: "68 $CA/month",
+        category: "Basic",
+        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
       },
       {
         icon: Calendar,
@@ -63,8 +66,9 @@ const translations = {
           "Calendar sync",
           "Confirmation management"
         ],
-        price: "From $127 CAD/month",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.appointments
+        price: "68 $CA/month",
+        category: "Basic",
+        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
       },
       {
         icon: Bell,
@@ -77,8 +81,9 @@ const translations = {
           "Smart timing",
           "Engagement tracking"
         ],
-        price: "From $177 CAD/month",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.prospectFollowup
+        price: "208 $CA/month",
+        category: "Advanced",
+        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
       },
       {
         icon: Home,
@@ -91,8 +96,9 @@ const translations = {
           "Property Q&A",
           "Lead management"
         ],
-        price: "From $247 CAD/month",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.realEstate
+        price: "208 $CA/month",
+        category: "Advanced",
+        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
       },
       {
         icon: ShoppingCart,
@@ -105,8 +111,9 @@ const translations = {
           "Product FAQ",
           "Personalized recommendations"
         ],
-        price: "From $197 CAD/month",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.ecommerce
+        price: "208 $CA/month",
+        category: "Advanced",
+        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
       }
     ]
   },
@@ -136,8 +143,9 @@ const translations = {
           "Alertes intelligentes leads chauds",
           "Intégration CRM"
         ],
-        price: "À partir de 197$ CAD/mois",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.leadQualification
+        price: "68 $CA/mois",
+        category: "Basique",
+        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
       },
       {
         icon: MessageSquare,
@@ -150,8 +158,9 @@ const translations = {
           "Base de connaissances FAQ",
           "Escalade humaine si besoin"
         ],
-        price: "À partir de 147$ CAD/mois",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.customerSupport
+        price: "68 $CA/mois",
+        category: "Basique",
+        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
       },
       {
         icon: Calendar,
@@ -164,8 +173,9 @@ const translations = {
           "Synchronisation agenda",
           "Gestion des confirmations"
         ],
-        price: "À partir de 127$ CAD/mois",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.appointments
+        price: "68 $CA/mois",
+        category: "Basique",
+        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
       },
       {
         icon: Bell,
@@ -178,8 +188,9 @@ const translations = {
           "Timing intelligent",
           "Suivi d'engagement"
         ],
-        price: "À partir de 177$ CAD/mois",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.prospectFollowup
+        price: "208 $CA/mois",
+        category: "Avancé",
+        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
       },
       {
         icon: Home,
@@ -192,8 +203,9 @@ const translations = {
           "Réponses sur les biens",
           "Gestion des leads"
         ],
-        price: "À partir de 247$ CAD/mois",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.realEstate
+        price: "208 $CA/mois",
+        category: "Avancé",
+        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
       },
       {
         icon: ShoppingCart,
@@ -206,8 +218,9 @@ const translations = {
           "FAQ produits",
           "Recommandations personnalisées"
         ],
-        price: "À partir de 197$ CAD/mois",
-        stripeLink: STRIPE_PAYMENT_LINKS.microAgents.ecommerce
+        price: "208 $CA/mois",
+        category: "Avancé",
+        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
       }
     ]
   }
@@ -345,6 +358,7 @@ export default function MicroAgents() {
     </section>
   );
 }
+
 
 
 

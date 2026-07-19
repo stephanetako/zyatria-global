@@ -153,7 +153,7 @@ export default function MistralChatBot() {
         aria-label="Open AI Chat"
       >
         <Sparkles className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></span>
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-muted rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></span>
       </button>
     );
   }
@@ -169,7 +169,7 @@ export default function MistralChatBot() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <Sparkles className="w-6 h-6" />
-            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-primary"></span>
+            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-muted rounded-full border-2 border-primary"></span>
           </div>
           <div>
             <h3 className="font-semibold text-sm">Assistant IA ZyatrIA</h3>
@@ -258,7 +258,7 @@ export default function MistralChatBot() {
             <div className="flex items-center gap-2 text-xs">
               {status === 'ready' && (
                 <>
-                  <CheckCircle2 className="w-3 h-3 text-green-500" />
+                  <CheckCircle2 className="w-3 h-3 text-foreground" />
                   <span className="text-muted-foreground">Prêt</span>
                 </>
               )}

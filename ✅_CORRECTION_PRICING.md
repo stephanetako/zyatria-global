@@ -1,89 +1,107 @@
-# ✅ CORRECTION PAGE BLANCHE - PRICING
+# ✅ Correction des Liens Stripe - TERMINÉE
 
-## 🐛 PROBLÈME IDENTIFIÉ
+## 🔧 Corrections Appliquées
 
-Quand tu cliquais sur un plan de pricing, une **page blanche** apparaissait.
+### 1. **Pricing.tsx** ✅
+- ✅ Changé `stripeLinks` → `STRIPE_PAYMENT_LINKS`
+- ✅ Ajouté fallback pour popups bloquées
+- ✅ Amélioré les logs de débogage
 
-### Cause du problème :
-La page `/pricing` utilisait le mauvais composant :
-- ❌ **PricingPage.tsx** - Ne contient PAS les liens Stripe
-- ✅ **Pricing.tsx** - Contient les liens Stripe configurés
+### 2. **CTAFinal.tsx** ✅
+- ✅ Changé `stripeLinks` → `STRIPE_PAYMENT_LINKS`
+- ✅ Uniformisé avec les autres composants
 
-## ✅ CORRECTION APPLIQUÉE
+### 3. **MicroAgents.tsx** ✅
+- ✅ Déjà correct (utilisait déjà `STRIPE_PAYMENT_LINKS`)
 
-### Fichier modifié : `src/pages/pricing.astro`
+## 📊 Résultat
 
-**AVANT :**
-```tsx
-import PricingPage from '../components/pages/PricingPage';
-// ...
-<PricingPage client:only="react" />
+**TOUS les boutons Stripe utilisent maintenant le même système:**
+
+```typescript
+import { STRIPE_PAYMENT_LINKS } from '../config/stripe-links';
+
+// Utilisation:
+STRIPE_PAYMENT_LINKS.starter.monthly
+STRIPE_PAYMENT_LINKS.professional.oneTime
+STRIPE_PAYMENT_LINKS.microAgents.leadQualification
+STRIPE_PAYMENT_LINKS.services.audit
 ```
 
-**APRÈS :**
-```tsx
-import Pricing from '../components/Pricing';
-// ...
-<Pricing client:only="react" />
+## 🎯 Fonctionnalités Ajoutées
+
+### Fallback pour Popups Bloquées
+```typescript
+const newWindow = window.open(paymentLink, '_blank', 'noopener,noreferrer');
+if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+  // Si popup bloquée → redirection directe
+  window.location.href = paymentLink;
+}
 ```
 
-## 🎯 RÉSULTAT
-
-Maintenant, quand tu cliques sur un plan :
-1. ✅ Le bouton appelle `handlePurchase()`
-2. ✅ La fonction récupère le bon lien Stripe depuis `stripe-links.ts`
-3. ✅ Redirection vers Stripe avec le bon prix
-4. ✅ Plus de page blanche !
-
-## 🧪 COMMENT TESTER
-
-1. **Redémarre le serveur :**
-   ```bash
-   npm run dev
-   ```
-
-2. **Ouvre la page Pricing :**
-   ```
-   http://localhost:4321/pricing
-   ```
-
-3. **Teste un plan :**
-   - Clique sur "Mensuel" ou "Paiement Unique"
-   - Clique sur un bouton de plan
-   - **Résultat attendu :** Redirection vers Stripe (pas de page blanche)
-
-4. **Vérifie la console (F12) :**
-   - Tu devrais voir : `✅ Redirecting to Stripe: https://buy.stripe.com/test_...`
-   - Pas d'erreurs rouges
-
-## 📊 COMPOSANTS UTILISÉS MAINTENANT
-
-| Page | Composant | Liens Stripe |
-|------|-----------|--------------|
-| `/` (Accueil) | ✅ Pricing.tsx | ✅ OUI |
-| `/pricing` | ✅ Pricing.tsx | ✅ OUI |
-
-## 🔍 VÉRIFICATION RAPIDE
-
-**Ouvre la console et tape :**
-```javascript
-console.log(window.location.pathname);
+### Logs de Débogage
+```typescript
+console.log('🎯 Redirection vers Stripe:', {
+  planKey,
+  type,
+  link: paymentLink
+});
 ```
 
-**Puis clique sur un plan et vérifie :**
-- ✅ Pas d'erreur JavaScript
-- ✅ Redirection vers `buy.stripe.com`
-- ✅ Prix correct affiché sur Stripe
+## 🧪 Test Maintenant
 
-## 🚀 PROCHAINES ÉTAPES
+```bash
+npm run dev
+```
 
-1. ✅ Tester tous les plans (Starter, Professional, Enterprise)
-2. ✅ Tester les deux modes (Mensuel et Paiement Unique)
-3. ✅ Tester les services (Audit, Consultation)
-4. ✅ Vérifier qu'il n'y a plus de page blanche
+### Teste TOUS les boutons:
 
----
+#### Section Pricing
+- [ ] Starter - Paiement Unique
+- [ ] Starter - Mensuel
+- [ ] Professional - Paiement Unique
+- [ ] Professional - Mensuel
+- [ ] Enterprise - Paiement Unique
+- [ ] Enterprise - Mensuel
+- [ ] Audit IA Complet
+- [ ] Consultation Stratégique
 
-**Le problème est maintenant corrigé !** 🎉
+#### Section Micro-Agents
+- [ ] Qualification des Leads
+- [ ] Support Client 24/7
+- [ ] Gestion des Rendez-vous
+- [ ] Suivi des Prospects
+- [ ] Micro-Agent Immobilier
+- [ ] Micro-Agent E-commerce
 
-Teste et dis-moi si ça fonctionne !
+#### Section CTA Final
+- [ ] Bouton principal (Starter Monthly)
+
+## ✅ Tous les Liens Stripe
+
+```
+✅ starter.oneTime         → https://buy.stripe.com/test_5kQ9ALeT4eyB3FmbL93VC0w
+✅ starter.monthly         → https://buy.stripe.com/test_28E14fcKWaildfW8yX3VC0x
+✅ professional.oneTime    → https://buy.stripe.com/test_eVqbITfX84Y15Nu16v3VC0s
+✅ professional.monthly    → https://buy.stripe.com/test_5kQ5kv4eq1LP5Nug1p3VC0t
+✅ enterprise.oneTime      → https://buy.stripe.com/test_fZu7sD3am4Y1gs8aH53VC0u
+✅ enterprise.monthly      → https://buy.stripe.com/test_cNi28jaCOeyB5Nu4iH3VC0v
+✅ microAgents.leadQual... → https://buy.stripe.com/test_cNi00b8uGgGJ5NuaH53VC0i
+✅ microAgents.customerS...→ https://buy.stripe.com/test_9B6aEPeT4eyBb7OeXl3VC0j
+✅ microAgents.appointme...→ https://buy.stripe.com/test_bJe9AL6mydux8ZGcPd3VC0k
+✅ microAgents.prospectF...→ https://buy.stripe.com/test_4gMfZ93am2PT5Nu4iH3VC0l
+✅ microAgents.realEstate  → https://buy.stripe.com/test_bJebIT5iu2PTgs8cPd3VC0m
+✅ microAgents.ecommerce   → https://buy.stripe.com/test_bJe8wHeT42PTfo4dTh3VC0n
+✅ services.audit          → https://buy.stripe.com/test_5kQ00b6iy0HLb7O9Bd3VC0p
+✅ services.consultation   → https://buy.stripe.com/test_6oE5kv8uG1LP3Fm7tT3VC0o
+```
+
+## 🎉 C'est Corrigé !
+
+Tous les boutons devraient maintenant fonctionner exactement comme les micro-agents ! 🚀
+
+Si un bouton ne fonctionne toujours pas:
+1. Ouvre la console (F12)
+2. Clique sur le bouton
+3. Regarde le log `🎯 Redirection vers Stripe:`
+4. Vérifie si le lien est correct

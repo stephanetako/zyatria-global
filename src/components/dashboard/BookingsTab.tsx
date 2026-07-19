@@ -71,7 +71,7 @@ export default function BookingsTab() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
+        return 'bg-muted text-foreground dark:bg-muted dark:text-foreground';
       case 'pending':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
       case 'cancelled':

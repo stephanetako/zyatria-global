@@ -34,9 +34,9 @@ export default function LeadQualificationForm() {
         <CardContent className="pt-6">
           <div className="text-center space-y-4">
             <div className="flex justify-center">
-              <CheckCircle2 className="h-16 w-16 text-green-500" />
+              <CheckCircle2 className="h-16 w-16 text-foreground" />
             </div>
-            <h3 className="text-2xl font-bold text-green-600">Merci !</h3>
+            <h3 className="text-2xl font-bold text-foreground">Merci !</h3>
             <p className="text-muted-foreground">
               Votre demande a été envoyée avec succès. Nous vous contacterons sous 24h.
             </p>

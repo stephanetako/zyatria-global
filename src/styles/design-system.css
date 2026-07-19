@@ -1,0 +1,340 @@
+/* ===== DESIGN SYSTEM ZYATRIA GLOBAL ===== */
+/* Police Inter (moderne et lisible) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ===== RESET ET BASE ===== */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #374151; /* Gris foncé pour le texte */
+  line-height: 1.6;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== TYPOGRAPHIE ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: #1E293B; /* Bleu très foncé */
+  line-height: 1.2;
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 36px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+
+p {
+  color: #64748B; /* Gris moyen */
+  font-size: 16px;
+}
+
+/* ===== LIENS ===== */
+a {
+  color: #3B82F6; /* Bleu électrique */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #2563EB; /* Bleu plus foncé au survol */
+}
+
+/* ===== BOUTONS ===== */
+.btn-primary {
+  padding: 12px 24px;
+  background: #3B82F6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: #2563EB;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary {
+  padding: 12px 24px;
+  background: white;
+  color: #3B82F6;
+  border: 2px solid #3B82F6;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #F1F5F9;
+  transform: translateY(-2px);
+}
+
+/* ===== CARTES (Tarifs, Témoignages, Micro-Agents) ===== */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E2E8F0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 60px 20px;
+}
+
+.section-gradient {
+  background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+}
+
+/* ===== STATS (Chiffres clés) ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.stat-card {
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1E293B;
+  margin: 0;
+}
+
+.stat-label {
+  color: #64748B;
+  margin: 5px 0 0 0;
+  font-size: 14px;
+}
+
+/* ===== ROADMAP ===== */
+.roadmap-phase {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E2E8F0;
+  margin-bottom: 20px;
+}
+
+.phase-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.phase-badge {
+  background: #3B82F6;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.phase-badge.developing {
+  background: #8B5CF6;
+}
+
+.phase-badge.coming {
+  background: #10B981;
+}
+
+/* ===== TÉMOIGNAGES ===== */
+.testimonial-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E2E8F0;
+  margin-bottom: 20px;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.testimonial-results {
+  background: #F1F5F9;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.testimonial-results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.testimonial-results li {
+  color: #10B981;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+/* ===== FAQ ===== */
+.faq-item {
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 18px 20px;
+  text-align: left;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1E293B;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  padding: 0 20px 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: #F8FAFC;
+}
+
+.faq-answer.open {
+  max-height: 500px; /* Ajuste selon la taille de tes réponses */
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #1E293B;
+  color: white;
+  padding: 60px 20px 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column h3 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  color: #CBD5E1;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #3B82F6;
+}
+
+.copyright {
+  border-top: 1px solid #334155;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  color: #94A3B8;
+  font-size: 14px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-image {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 20px; }
+
+  .section {
+    padding: 40px 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -27,8 +27,8 @@ const stats = [
     change: '+18%',
     trend: 'up',
     icon: TrendingUp,
-    color: 'text-green-600',
-    bgColor: 'bg-green-100 dark:bg-green-900/20'
+    color: 'text-foreground',
+    bgColor: 'bg-muted dark:bg-muted'
   },
   {
     title: 'Utilisateurs',
@@ -111,8 +111,8 @@ export default function OverviewTab() {
               <CardContent>
                 <div className="text-2xl font-bold">{stat.value}</div>
                 <div className="flex items-center gap-1 mt-1">
-                  <TrendIcon className={`h-4 w-4 ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`} />
-                  <span className={`text-sm font-medium ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                  <TrendIcon className={`h-4 w-4 ${stat.trend === 'up' ? 'text-foreground' : 'text-red-600'}`} />
+                  <span className={`text-sm font-medium ${stat.trend === 'up' ? 'text-foreground' : 'text-red-600'}`}>
                     {stat.change}
                   </span>
                   <span className="text-sm text-muted-foreground">vs mois dernier</span>
@@ -153,7 +153,7 @@ export default function OverviewTab() {
             <div className="space-y-4">
               {recentActivity.map((activity) => (
                 <div key={activity.id} className="flex items-start gap-3 pb-4 border-b border-border last:border-0 last:pb-0">
-                  <div className="w-2 h-2 mt-2 rounded-full bg-green-500 animate-pulse" />
+                  <div className="w-2 h-2 mt-2 rounded-full bg-primary animate-pulse" />
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">{activity.agent}</p>
                     <p className="text-sm text-muted-foreground">{activity.action}</p>

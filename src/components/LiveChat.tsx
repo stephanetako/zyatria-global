@@ -121,7 +121,7 @@ export default function LiveChat() {
         aria-label="Open live chat"
       >
         <MessageCircle className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></span>
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full border-2 border-white dark:border-gray-900"></span>
       </button>
     );
   }
@@ -137,7 +137,7 @@ export default function LiveChat() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <MessageCircle className="w-6 h-6" />
-            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-primary"></span>
+            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-primary rounded-full border-2 border-primary"></span>
           </div>
           <div>
             <h3 className="font-semibold text-sm">{t.title}</h3>

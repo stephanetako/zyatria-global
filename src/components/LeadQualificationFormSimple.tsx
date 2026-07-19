@@ -217,13 +217,13 @@ export default function LeadQualificationFormSimple() {
 
         {/* Messages de statut */}
         {status === 'success' && (
-          <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4 flex items-start gap-3">
-            <svg className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-muted border-2 border-border rounded-lg p-4 flex items-start gap-3">
+            <svg className="w-6 h-6 text-foreground flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
-              <h4 className="font-bold text-green-900">Merci !</h4>
-              <p className="text-green-800">Votre demande a été envoyée avec succès. Nous vous contacterons sous 24h.</p>
+              <h4 className="font-bold text-foreground">Merci !</h4>
+              <p className="text-foreground">Votre demande a été envoyée avec succès. Nous vous contacterons sous 24h.</p>
             </div>
           </div>
         )}
