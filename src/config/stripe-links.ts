@@ -1,58 +1,48 @@
 
 
-
-
-
-
-
-
 /**
- * Stripe Payment Links Configuration
+ * Stripe Payment Links Configuration - LIVE MODE
  * 
- * ⚠️ IMPORTANT: Remplacez ces liens de test par vos vrais liens Stripe
+ * ✅ TOUS LES LIENS SONT EN MODE PRODUCTION (LIVE)
  * 
- * Pour créer vos Payment Links:
- * 1. Allez sur https://dashboard.stripe.com/test/payment-links
- * 2. Cliquez sur "+ New" pour chaque produit
- * 3. Créez les produits avec les prix indiqués ci-dessous
- * 4. Copiez les liens générés et remplacez-les ici
- * 
- * Format attendu: https://buy.stripe.com/test_xxxxxxxxxxxxx
+ * Dernière mise à jour: 22 mars 2025
+ * Total: 14 produits configurés
  */
 
 export const STRIPE_PAYMENT_LINKS = {
   // 🟢 STARTER
   starter: {
-    oneTime: 'https://buy.stripe.com/test_5kQ9ALeT4eyB3FmbL93VC0w', // 997 CAD - Déploiement Complet
-    monthly: 'https://buy.stripe.com/test_28E14fcKWaildfW8yX3VC0x',  // 97 CAD/mois - Abonnement Mensuel
+    oneTime: '', // Pas de paiement unique pour Starter
+    monthly: 'https://buy.stripe.com/9B6cMX6mPaTD5450VS', // 68 CAD/mois
   },
   
   // 🔵 PROFESSIONAL
   professional: {
-    oneTime: 'https://buy.stripe.com/test_eVqbITfX84Y15Nu16v3VC0s', // 2997 CAD - Déploiement Complet
-    monthly: 'https://buy.stripe.com/test_5kQ5kv4eq1LP5Nug1p3VC0t',  // 297 CAD/mois - Abonnement Mensuel
+    oneTime: 'https://buy.stripe.com/9B628jcLd4vfaop5c8', // 697 CAD
+    monthly: 'https://buy.stripe.com/00waEPfXp0eZfIJ1ZW', // 208 CAD/mois
   },
   
   // 🟣 ENTERPRISE
   enterprise: {
-    oneTime: 'https://buy.stripe.com/test_fZu7sD3am4Y1gs8aH53VC0u', // 9997 CAD - Déploiement Complet
-    monthly: 'https://buy.stripe.com/test_cNi28jaCOeyB5Nu4iH3VC0v',  // 997 CAD/mois - Abonnement Mensuel
+    oneTime: 'https://buy.stripe.com/5kQ8wHcLdaTD7cdbAw', // 997 CAD
+    monthly: 'https://buy.stripe.com/6oU00b26zgdXeEFbAw', // 698 CAD/mois
   },
   
-  // 🤖 MICRO-AGENTS
+  // 🤖 MICRO-AGENTS (6 nouveaux produits indépendants)
   microAgents: {
-    leadQualification: 'https://buy.stripe.com/test_cNi00b8uGgGJ5NuaH53VC0i', // 197 CAD/mois - Qualification Automatique des Leads
-    customerSupport: 'https://buy.stripe.com/test_9B6aEPeT4eyBb7OeXl3VC0j',    // 147 CAD/mois - Réponses Clients 24/7
-    appointments: 'https://buy.stripe.com/test_bJe9AL6mydux8ZGcPd3VC0k',       // 127 CAD/mois - Gestion des Rendez-vous
-    prospectFollowup: 'https://buy.stripe.com/test_4gMfZ93am2PT5Nu4iH3VC0l',   // 177 CAD/mois - Suivi des Prospects
-    realEstate: 'https://buy.stripe.com/test_bJebIT5iu2PTgs8cPd3VC0m',         // 247 CAD/mois - Micro-Agent Immobilier
-    ecommerce: 'https://buy.stripe.com/test_bJe8wHeT42PTfo4dTh3VC0n',          // 197 CAD/mois - Micro-Agent Commerce
+    leadQualification: 'https://buy.stripe.com/fZu00bfXp2n7bst3409oc0v', // 69 CAD/mois
+    customerSupport: 'https://buy.stripe.com/00wdR13aDe5P7cd8ok9oc0w',    // 69 CAD/mois
+    appointments: 'https://buy.stripe.com/28E8wH8uXgdXgMNgUQ9oc0x',       // 68 CAD/mois
+    prospectFollowup: 'https://buy.stripe.com/5kQeV5cLdaTD2VXeMI9oc0y',   // 180 CAD/mois
+    realEstate: 'https://buy.stripe.com/6oUaEP9z14vf9kl6gc9oc0z',         // 208 CAD/mois
+    ecommerce: 'https://buy.stripe.com/aFa28j3aD6Dn4017kg9oc0A',          // 195 CAD/mois
   },
   
   // 🎯 SERVICES ADDITIONNELS
   services: {
-    audit: 'https://buy.stripe.com/test_5kQ00b6iy0HLb7O9Bd3VC0p',        // 497 CAD - Audit IA Complet
-    consultation: 'https://buy.stripe.com/test_6oE5kv8uG1LP3Fm7tT3VC0o', // 147 CAD - Consultation
+    audit: 'https://buy.stripe.com/fZubIT9z1d1L1RT7kg',        // 497 CAD
+    consultation: 'https://buy.stripe.com/dRm28j9z15zj9kl0VS9oc0B', // 149 CAD
+    formation: 'https://buy.stripe.com/00wfZ9eTle5P0NP9so',    // 995 CAD
   },
 } as const;
 
@@ -66,11 +56,11 @@ export const productDetails = {
     subtitle: 'Parfait pour démarrer',
     description: 'Idéal pour les petites entreprises qui veulent automatiser leurs processus de base.',
     oneTime: {
-      price: 997,
-      label: 'Paiement unique - Déploiement complet'
+      price: 0,
+      label: 'Non disponible en paiement unique'
     },
     monthly: {
-      price: 97,
+      price: 68,
       label: 'Par mois - Support et maintenance inclus'
     }
   },
@@ -79,11 +69,11 @@ export const productDetails = {
     subtitle: 'Le plus populaire',
     description: 'Pour les entreprises en croissance qui ont besoin d\'automatisation avancée et d\'intégrations.',
     oneTime: {
-      price: 2997,
+      price: 697,
       label: 'Paiement unique - Déploiement complet'
     },
     monthly: {
-      price: 297,
+      price: 208,
       label: 'Par mois - Support prioritaire inclus'
     }
   },
@@ -92,11 +82,11 @@ export const productDetails = {
     subtitle: 'Solution complète',
     description: 'Pour les grandes organisations qui nécessitent une solution IA complète et personnalisée.',
     oneTime: {
-      price: 9997,
+      price: 997,
       label: 'Paiement unique - Solution sur mesure'
     },
     monthly: {
-      price: 997,
+      price: 698,
       label: 'Par mois - Support 24/7 et SLA inclus'
     }
   },
@@ -110,7 +100,46 @@ export const productDetails = {
     name: 'Consultation Stratégique',
     subtitle: '60 minutes avec un expert',
     description: 'Session de conseil personnalisée pour définir votre stratégie d\'automatisation IA.',
-    price: 147
+    price: 149
+  },
+  formation: {
+    name: 'Formation IA pour Équipes',
+    subtitle: 'Formation complète',
+    description: 'Formation approfondie pour transformer vos équipes avec l\'IA.',
+    price: 995
+  },
+  // Détails des micro-agents
+  microAgents: {
+    leadQualification: {
+      name: 'Qualification Automatique des Leads',
+      price: 69,
+      description: 'Qualification intelligente 24/7, scoring automatique, routage vers les bonnes équipes.'
+    },
+    customerSupport: {
+      name: 'Réponses Clients 24/7',
+      price: 69,
+      description: 'Réponses instantanées 24/7, support multilingue, base de connaissances FAQ.'
+    },
+    appointments: {
+      name: 'Gestion des Rendez-vous',
+      price: 68,
+      description: 'Réservation en ligne directe, rappels automatiques, synchronisation agenda.'
+    },
+    prospectFollowup: {
+      name: 'Suivi des Prospects',
+      price: 180,
+      description: 'Séquences automatisées, multi-canal (email, SMS, WhatsApp), timing intelligent.'
+    },
+    realEstate: {
+      name: 'Micro-Agent Immobilier',
+      price: 208,
+      description: 'Planification des visites, qualification des acheteurs, réponses sur les biens.'
+    },
+    ecommerce: {
+      name: 'Micro-Agent E-commerce',
+      price: 195,
+      description: 'Récupération de paniers abandonnés, suivi de commandes, FAQ produits.'
+    }
   }
 } as const;
 
@@ -119,16 +148,10 @@ export const productDetails = {
  */
 export const STRIPE_PRODUCTS = {
   starter: {
-    oneTime: {
-      name: 'ZyatrIA Starter - Déploiement Complet',
-      price: 997.00,
-      currency: 'CAD',
-      type: 'one-time',
-      description: '1 agent IA intelligent, automatisation de base, déploiement en 7 jours',
-    },
+    oneTime: null,
     monthly: {
-      name: 'ZyatrIA Starter - Abonnement Mensuel',
-      price: 97.00,
+      name: 'Bot IA Starter - Déploiement Initial',
+      price: 68.00,
       currency: 'CAD',
       type: 'recurring',
       interval: 'month',
@@ -138,15 +161,15 @@ export const STRIPE_PRODUCTS = {
   
   professional: {
     oneTime: {
-      name: 'ZyatrIA Professional - Déploiement Complet',
-      price: 2997.00,
+      name: 'Bot IA Professional - Déploiement 3 Bots',
+      price: 697.00,
       currency: 'CAD',
       type: 'one-time',
-      description: '3 agents IA + 5 micro-agents, automatisation avancée, déploiement en 10 jours',
+      description: '3 agents IA, automatisation avancée, déploiement rapide',
     },
     monthly: {
-      name: 'ZyatrIA Professional - Abonnement Mensuel',
-      price: 297.00,
+      name: 'Bot IA Professional - Déploiement 3 Bots',
+      price: 208.00,
       currency: 'CAD',
       type: 'recurring',
       interval: 'month',
@@ -156,15 +179,15 @@ export const STRIPE_PRODUCTS = {
   
   enterprise: {
     oneTime: {
-      name: 'ZyatrIA Enterprise - Déploiement Complet',
-      price: 9997.00,
+      name: 'Bot IA Enterprise - Suite Complète 7 Bots',
+      price: 997.00,
       currency: 'CAD',
       type: 'one-time',
-      description: 'Solution complète sur mesure, agents illimités, déploiement en 15 jours',
+      description: 'Solution complète, 7 agents IA, déploiement rapide',
     },
     monthly: {
-      name: 'ZyatrIA Enterprise - Abonnement Mensuel',
-      price: 997.00,
+      name: 'Bot IA Enterprise - Suite Complète 7 Bots',
+      price: 698.00,
       currency: 'CAD',
       type: 'recurring',
       interval: 'month',
@@ -174,18 +197,76 @@ export const STRIPE_PRODUCTS = {
   
   services: {
     audit: {
-      name: 'Audit IA Complet',
+      name: 'Audit IA Complet + Plan d\'Action 90 jours',
       price: 497.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Analyse complète de vos processus, recommandations personnalisées',
     },
     consultation: {
-      name: 'Consultation Stratégique',
-      price: 147.00,
+      name: 'Consultation Stratégique IA',
+      price: 149.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Session de consultation avec nos experts IA',
+    },
+    formation: {
+      name: 'Formation IA pour Équipes',
+      price: 995.00,
+      currency: 'CAD',
+      type: 'one-time',
+      description: 'Formation complète pour transformer vos équipes avec l\'IA',
+    },
+  },
+  
+  microAgents: {
+    leadQualification: {
+      name: 'Micro-Agent - Qualification Automatique des Leads',
+      price: 69.00,
+      currency: 'CAD',
+      type: 'recurring',
+      interval: 'month',
+      description: 'Qualification intelligente 24/7, scoring automatique, routage vers les bonnes équipes',
+    },
+    customerSupport: {
+      name: 'Micro-Agent - Réponses Clients 24/7',
+      price: 69.00,
+      currency: 'CAD',
+      type: 'recurring',
+      interval: 'month',
+      description: 'Réponses instantanées 24/7, support multilingue, base de connaissances FAQ',
+    },
+    appointments: {
+      name: 'Micro-Agent - Gestion des Rendez-vous',
+      price: 68.00,
+      currency: 'CAD',
+      type: 'recurring',
+      interval: 'month',
+      description: 'Réservation en ligne directe, rappels automatiques, synchronisation agenda',
+    },
+    prospectFollowup: {
+      name: 'Micro-Agent - Suivi des Prospects',
+      price: 180.00,
+      currency: 'CAD',
+      type: 'recurring',
+      interval: 'month',
+      description: 'Séquences automatisées, multi-canal (email, SMS, WhatsApp), timing intelligent',
+    },
+    realEstate: {
+      name: 'Micro-Agent - Immobilier',
+      price: 208.00,
+      currency: 'CAD',
+      type: 'recurring',
+      interval: 'month',
+      description: 'Planification des visites, qualification des acheteurs, réponses sur les biens',
+    },
+    ecommerce: {
+      name: 'Micro-Agent - E-commerce',
+      price: 195.00,
+      currency: 'CAD',
+      type: 'recurring',
+      interval: 'month',
+      description: 'Récupération de paniers abandonnés, suivi de commandes, FAQ produits',
     },
   },
 } as const;
@@ -197,14 +278,28 @@ export function getPaymentLink(
   plan: 'starter' | 'professional' | 'enterprise',
   type: 'oneTime' | 'monthly'
 ): string {
-  return STRIPE_PAYMENT_LINKS[plan][type];
+  const link = STRIPE_PAYMENT_LINKS[plan][type];
+  if (!link) {
+    console.warn(`No payment link available for ${plan} ${type}`);
+    return '';
+  }
+  return link;
 }
 
 /**
  * Helper pour obtenir un lien de service
  */
-export function getServiceLink(service: 'audit' | 'consultation'): string {
+export function getServiceLink(service: 'audit' | 'consultation' | 'formation'): string {
   return STRIPE_PAYMENT_LINKS.services[service];
+}
+
+/**
+ * Helper pour obtenir un lien de micro-agent
+ */
+export function getMicroAgentLink(
+  agent: 'leadQualification' | 'customerSupport' | 'appointments' | 'prospectFollowup' | 'realEstate' | 'ecommerce'
+): string {
+  return STRIPE_PAYMENT_LINKS.microAgents[agent];
 }
 
 /**
@@ -217,17 +312,25 @@ export function validatePaymentLinks(): { valid: boolean; missing: string[] } {
   (['starter', 'professional', 'enterprise'] as const).forEach(plan => {
     (['oneTime', 'monthly'] as const).forEach(type => {
       const link = STRIPE_PAYMENT_LINKS[plan][type];
-      if (link.includes('VOTRE_LIEN_ICI')) {
+      if (!link && !(plan === 'starter' && type === 'oneTime')) {
         missing.push(`${plan}.${type}`);
       }
     });
   });
   
   // Vérifier les services
-  (['audit', 'consultation'] as const).forEach(service => {
+  (['audit', 'consultation', 'formation'] as const).forEach(service => {
     const link = STRIPE_PAYMENT_LINKS.services[service];
-    if (link.includes('VOTRE_LIEN_ICI')) {
+    if (!link) {
       missing.push(`services.${service}`);
+    }
+  });
+  
+  // Vérifier les micro-agents
+  (['leadQualification', 'customerSupport', 'appointments', 'prospectFollowup', 'realEstate', 'ecommerce'] as const).forEach(agent => {
+    const link = STRIPE_PAYMENT_LINKS.microAgents[agent];
+    if (!link) {
+      missing.push(`microAgents.${agent}`);
     }
   });
   
@@ -236,23 +339,5 @@ export function validatePaymentLinks(): { valid: boolean; missing: string[] } {
     missing,
   };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
