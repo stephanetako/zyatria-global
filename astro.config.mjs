@@ -1,6 +1,25 @@
 ﻿import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
+import react from '@astrojs/react';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  output: 'static',
-  site: 'https://zyatria.global'
+  base: '',
+  output: 'server',
+  devToolbar: {
+    enabled: false,
+  },
+  server: {
+    port: 3000,
+    host: true,
+  },
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
+  integrations: [react()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
