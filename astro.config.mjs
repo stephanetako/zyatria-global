@@ -1,4 +1,8 @@
 
+
+
+
+
 import {defineConfig} from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
@@ -56,8 +60,13 @@ export default defineConfig({
     host: true, // Listen on all network interfaces (0.0.0.0)
   },
   adapter: cloudflare({
+    mode: 'directory',
     platformProxy: {
-      enabled: true,
+      enabled: false,
+    },
+    wasmModuleImports: true,
+    cloudflareModules: {
+      name: 'zyatria-global',
     },
   }),
   integrations: [
@@ -91,6 +100,10 @@ export default defineConfig({
     },
   },
 });
+
+
+
+
 
 
 

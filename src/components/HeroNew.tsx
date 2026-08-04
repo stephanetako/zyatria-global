@@ -37,9 +37,10 @@ const translations = {
   }
 };
 
-const HeroNew: React.FC = () => {
+export default function HeroNew() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
 
   return (
     <section 
@@ -137,4 +138,3 @@ const HeroNew: React.FC = () => {
   );
 };
 
-export default HeroNew;

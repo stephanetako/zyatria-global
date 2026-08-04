@@ -139,7 +139,7 @@ const RoadmapPhase: React.FC<PhaseProps> = ({
 
 const RoadmapDesignSystem: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section className="section" id="roadmap">
@@ -197,3 +197,4 @@ const RoadmapDesignSystem: React.FC = () => {
 };
 
 export default RoadmapDesignSystem;
+

@@ -93,38 +93,22 @@ const PaymentDemoPage: React.FC = () => {
       // Créer la session de checkout
       const response = await fetch(`${baseUrl}/api/create-checkout-session`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          priceId: plan.priceId,
-          mode: plan.mode,
-          successUrl: `${window.location.origin}${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-          cancelUrl: `${window.location.origin}${baseUrl}/payment-demo`,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId: plan.priceId }),
       });
 
-      const data = await response.json();
-      console.log('📦 [Stripe] Réponse reçue:', data);
+      const data = await response.json() as { sessionId?: string; error?: string };
 
       if (!response.ok) {
         throw new Error(data.error || 'Erreur lors de la création de la session');
       }
 
       if (!data.sessionId) {
-        throw new Error('Session ID manquant dans la réponse');
+        throw new Error('Session ID manquant');
       }
 
-      console.log('✅ [Stripe] Session créée, redirection vers Stripe...');
-
-      // Rediriger vers Stripe Checkout
-      const { error: stripeError } = await stripe.redirectToCheckout({
-        sessionId: data.sessionId,
-      });
-
-      if (stripeError) {
-        throw stripeError;
-      }
+      // Redirect to Stripe Checkout
+      window.location.href = `https://checkout.stripe.com/pay/${data.sessionId}`;
 
     } catch (err: any) {
       console.error('❌ [Stripe] Erreur:', err);
@@ -294,3 +278,6 @@ const PaymentDemoPage: React.FC = () => {
 };
 
 export default PaymentDemoPage;
+
+
+

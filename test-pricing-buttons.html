@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Boutons Pricing - ZyatrIA</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8fafc;
+        }
+        h1 {
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .test-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .test-section h2 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .test-button {
+            padding: 12px 24px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .test-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+        }
+        .test-button.secondary {
+            background: white;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+        .test-button.secondary:hover {
+            background: #f1f5f9;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .status.live {
+            background: #10b981;
+            color: white;
+        }
+        .status.internal {
+            background: #f59e0b;
+            color: white;
+        }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .price {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        .success {
+            background: #d1fae5;
+            border-left-color: #10b981;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test des Boutons de Tarification</h1>
+
+    <div class="info-box success">
+        <strong>✅ Corrections appliquées !</strong><br>
+        Tous les boutons sont maintenant fonctionnels et redirigent vers les bonnes pages Stripe ou le formulaire de contact.
+    </div>
+
+    <!-- Plans Mensuels -->
+    <div class="test-section">
+        <h2>📦 Plans Mensuels</h2>
+        <div class="button-grid">
+            <div>
+                <a href="https://buy.stripe.com/9B6cMX6mPaTD5450VS9oc0n" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    💡 Starter - Démarrer
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">68 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/28E3cn5iL0eZ1RT1ZW9oc0C" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    ⭐ Professional - Démarrer
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">208 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/bJeeV57qT1j3eEFcEA9oc0E" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    🏆 Enterprise - Contacter
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">698 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="#contact" 
+                   class="test-button secondary"
+                   onclick="alert('✅ Scroll vers #contact (formulaire de contact)')">
+                    🆕 Essai Gratuit
+                    <span class="status internal">INTERNE</span>
+                </a>
+                <div class="price">Gratuit - 7 jours</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Professionnels -->
+    <div class="test-section">
+        <h2>🎓 Services Professionnels</h2>
+        <div class="button-grid">
+            <div>
+                <a href="https://buy.stripe.com/5kQeV5cLd2n76894849oc0G" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    📊 Audit IA Complet
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">497 $CA - Paiement unique</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/aFabIT9z10eZ7cd1ZW9oc0K" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    💬 Consultation Stratégique
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">149 $CA - 60 minutes</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/00wfZ9eTle5P0NP9so9oc0s" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    🎓 Formation IA pour Équipes
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">995 $CA - Demi-journée</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Micro-Agents -->
+    <div class="test-section">
+        <h2>🤖 Micro-Agents (Bonus)</h2>
+        <div class="button-grid">
+            <div>
+                <a href="https://buy.stripe.com/bJeaEPcLdaTD7cd1ZW9oc0H" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    🎯 Qualification Leads
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">69 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/00wdR13aDe5P7cd8ok9oc0w" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    💬 Support Client 24/7
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">69 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/8x228jbH9f9T545gUQ9oc0I" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    📅 Gestion Rendez-vous
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">68 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/5kQeV5cLdaTD2VXeMI9oc0y" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    🔔 Suivi Prospects
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">180 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/6oUaEP9z14vf9kl6gc9oc0z" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    🏠 Immobilier
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">208 $CA/mois</div>
+            </div>
+
+            <div>
+                <a href="https://buy.stripe.com/aFa28j3aD6Dn4017kg9oc0A" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="test-button">
+                    🛒 E-commerce
+                    <span class="status live">LIVE</span>
+                </a>
+                <div class="price">195 $CA/mois</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>📝 Instructions de test :</strong><br>
+        1. Clique sur chaque bouton avec badge <span class="status live">LIVE</span> → Devrait ouvrir Stripe dans un nouvel onglet<br>
+        2. Clique sur le bouton "Essai Gratuit" → Devrait afficher une alerte (simule le scroll vers #contact)<br>
+        3. Vérifie que tous les liens Stripe s'ouvrent correctement<br>
+        4. Vérifie que les prix affichés correspondent aux liens Stripe
+    </div>
+
+    <div class="info-box success">
+        <strong>✅ Checklist de vérification :</strong><br>
+        ☑️ Tous les boutons sont cliquables<br>
+        ☑️ Les liens Stripe s'ouvrent dans un nouvel onglet<br>
+        ☑️ Le bouton "Essai Gratuit" scroll vers #contact<br>
+        ☑️ Les prix sont corrects et en CAD<br>
+        ☑️ Les styles CSS sont appliqués correctement<br>
+        ☑️ Les effets hover fonctionnent
+    </div>
+
+    <script>
+        // Log des clics pour debug
+        document.querySelectorAll('.test-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                console.log('🔗 Clic sur bouton:', this.textContent.trim());
+                console.log('📍 Destination:', href);
+                
+                if (href.startsWith('#')) {
+                    console.log('✅ Lien interne - Scroll vers', href);
+                } else if (href.startsWith('https://buy.stripe.com')) {
+                    console.log('✅ Lien Stripe - Ouverture dans nouvel onglet');
+                }
+            });
+        });
+
+        console.log('🧪 Page de test chargée - Tous les boutons sont prêts à être testés !');
+    </script>
+</body>
+</html>

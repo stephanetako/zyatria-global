@@ -1,0 +1,88 @@
+╔════════════════════════════════════════════════════════╗
+║                                                        ║
+║     ⚡ DÉPLOYER MAINTENANT - 2 MINUTES                ║
+║                                                        ║
+╚════════════════════════════════════════════════════════╝
+
+
+🎯 VOUS VOULEZ JUSTE DÉPLOYER RAPIDEMENT ?
+
+
+═══════════════════════════════════════════════════════
+
+OPTION 1 : SCRIPT AUTOMATIQUE (LE PLUS SIMPLE)
+
+═══════════════════════════════════════════════════════
+
+Ouvrez le terminal et tapez :
+
+    cd /app
+    ./deploy-now.sh
+
+Puis suivez les instructions à l'écran.
+
+✅ Temps : 2-5 minutes
+✅ Tout est automatique
+
+
+═══════════════════════════════════════════════════════
+
+OPTION 2 : COMMANDES MANUELLES (SI VOUS PRÉFÉREZ)
+
+═══════════════════════════════════════════════════════
+
+Tapez ces 2 commandes :
+
+    npm run build
+    npx wrangler pages deploy dist --project-name=zyatria-global
+
+Si demandé, connectez-vous à Cloudflare :
+
+    npx wrangler login
+
+✅ Temps : 2-3 minutes
+✅ Votre site sera en ligne !
+
+
+═══════════════════════════════════════════════════════
+
+RÉSULTAT
+
+═══════════════════════════════════════════════════════
+
+Votre site sera accessible sur :
+
+    https://zyatria-global.pages.dev
+
+Vous pourrez ensuite configurer votre domaine personnalisé :
+
+    https://zyatria.global
+
+
+═══════════════════════════════════════════════════════
+
+BESOIN D'AIDE ?
+
+═══════════════════════════════════════════════════════
+
+Consultez les guides détaillés :
+
+    📖 👉_COMMENCER_ICI_DEPLOIEMENT.md
+    📖 🚀_GUIDE_DEPLOIEMENT_COMPLET.md
+    📖 🌐_GUIDE_DOMAINE_PERSONNALISE.md
+
+
+═══════════════════════════════════════════════════════
+
+PRÊT ? LANCEZ LA COMMANDE ! 🚀
+
+═══════════════════════════════════════════════════════
+
+    ./deploy-now.sh
+
+
+╔════════════════════════════════════════════════════════╗
+║                                                        ║
+║     🎉 BONNE CHANCE !                                 ║
+║                                                        ║
+╚════════════════════════════════════════════════════════╝

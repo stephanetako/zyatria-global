@@ -126,9 +126,10 @@ const FooterLink: React.FC<FooterLinkProps> = ({ href, children }) => {
   );
 };
 
-const FooterDesignSystem: React.FC = () => {
+export default function FooterDesignSystem() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
 
   return (
     <footer className="footer">
@@ -298,6 +299,5 @@ const FooterDesignSystem: React.FC = () => {
       </div>
     </footer>
   );
-};
+}
 
-export default FooterDesignSystem;

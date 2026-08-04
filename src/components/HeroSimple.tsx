@@ -32,9 +32,10 @@ const translations = {
   }
 };
 
-const HeroSimple: React.FC = () => {
+export default function HeroSimple() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
@@ -110,9 +111,9 @@ const HeroSimple: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
-export default HeroSimple;
+
 
 
 

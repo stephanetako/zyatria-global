@@ -182,7 +182,7 @@ const translations = {
 
 const Roadmap: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section id="roadmap" className="py-24 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-zinc-950 dark:via-blue-950/10 dark:to-zinc-950">
@@ -203,7 +203,7 @@ const Roadmap: React.FC = () => {
 
         {/* Timeline */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {t.phases.map((phase, index) => {
+          {t.phases.map((phase: any, index: number) => {
             const Icon = phase.icon;
             return (
               <Card
@@ -227,7 +227,7 @@ const Roadmap: React.FC = () => {
 
                 {/* Items */}
                 <ul className="space-y-3 mb-8">
-                  {phase.items.map((item, idx) => (
+                  {phase.items.map((item: string, idx: number) => (
                     <li key={idx} className="text-sm leading-relaxed">
                       {item}
                     </li>
@@ -256,7 +256,7 @@ const Roadmap: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <ul className="space-y-4">
-                  {t.earlyBird.benefits.map((benefit, index) => (
+                  {t.earlyBird.benefits.map((benefit: string, index: number) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-6 h-6 text-foreground flex-shrink-0 mt-0.5" />
                       <span className="text-lg">{benefit}</span>
@@ -284,7 +284,7 @@ const Roadmap: React.FC = () => {
         <div className="text-center mb-12">
           <h3 className="text-3xl font-bold font-heading mb-12">{t.commitment.title}</h3>
           <div className="grid md:grid-cols-3 gap-8">
-            {t.commitment.items.map((item, index) => {
+            {t.commitment.items.map((item: any, index: number) => {
               const Icon = item.icon;
               return (
                 <div key={index} className="text-center">
@@ -304,3 +304,4 @@ const Roadmap: React.FC = () => {
 };
 
 export default Roadmap;
+

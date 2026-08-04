@@ -150,7 +150,7 @@ const translations = {
 
 export default function PricingPage() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
   const [currency, setCurrency] = useState<Currency>('usd');
 
   const getCurrencySymbol = (curr: Currency) => {
@@ -199,7 +199,7 @@ export default function PricingPage() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
-            {t.plans.map((plan, index) => (
+            {t.plans.map((plan: any, index: number) => (
               <div
                 key={index}
                 className={`bg-card border rounded-2xl p-8 hover:shadow-xl transition-all duration-300 animate-fade-in-up relative ${
@@ -227,7 +227,7 @@ export default function PricingPage() {
                 </div>
 
                 <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, idx) => (
+                  {plan.features.map((feature: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
@@ -259,7 +259,7 @@ export default function PricingPage() {
           </h2>
 
           <div className="space-y-4">
-            {t.faq.items.map((item, index) => (
+            {t.faq.items.map((item: any, index: number) => (
               <div
                 key={index}
                 className="bg-card border border-border rounded-xl overflow-hidden animate-fade-in-up"
@@ -297,5 +297,9 @@ export default function PricingPage() {
     </div>
   );
 }
+
+
+
+
 
 

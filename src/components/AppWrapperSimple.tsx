@@ -1,7 +1,7 @@
 import React from 'react';
 import { LanguageProvider } from '../lib/language-context';
-import Navigation from './Navigation';
-import HeroSimple from './HeroSimple';
+import NavigationDesignSystem from './NavigationDesignSystem';
+import HeroDesignSystem from './HeroDesignSystem';
 import Roadmap from './Roadmap';
 import ServicesAvailable from './ServicesAvailable';
 import TrustStatsSimple from './TrustStatsSimple';
@@ -12,13 +12,14 @@ import Pricing from './Pricing';
 import FAQ from './FAQ';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
+import MistralChatBot from './MistralChatBot';
 
 const AppWrapperSimple: React.FC = () => {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-background">
-        <Navigation />
-        <HeroSimple />
+        <NavigationDesignSystem />
+        <HeroDesignSystem />
         <Roadmap />
         <ServicesAvailable />
         <TrustStatsSimple />
@@ -29,12 +30,19 @@ const AppWrapperSimple: React.FC = () => {
         <FAQ />
         <ContactSection />
         <Footer />
+        <MistralChatBot />
       </div>
     </LanguageProvider>
   );
 };
 
 export default AppWrapperSimple;
+
+
+
+
+
+
 
 
 

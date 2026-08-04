@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Zap, Globe2, Calendar, Clock } from 'lucide-react';
@@ -34,7 +35,7 @@ const translations = {
 
 const HeroSimple: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
@@ -113,6 +114,7 @@ const HeroSimple: React.FC = () => {
 };
 
 export default HeroSimple;
+
 
 
 

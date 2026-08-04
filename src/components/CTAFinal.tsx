@@ -3,9 +3,9 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { baseUrl } from '../lib/base-url';
 import { useLanguage } from '../lib/language-context';
-import { STRIPE_PAYMENT_LINKS } from '../config/stripe-links';
+import { stripeLinks } from '../config/stripe-links';
 
-const DEFAULT_STRIPE_LINK = STRIPE_PAYMENT_LINKS.starter.monthly;
+const DEFAULT_STRIPE_LINK = stripeLinks.starter.monthly;
 
 const translations = {
   en: {
@@ -139,6 +139,7 @@ export default function CTAFinal() {
     </section>
   );
 }
+
 
 
 

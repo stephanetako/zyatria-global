@@ -1,123 +1,70 @@
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║                    🚀 PUSH SUR GITHUB - COMMENCEZ ICI                        ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+🚀 PUSH VERS GITHUB - INSTRUCTIONS
 
-✅ STATUT : TOUT EST PRÊT !
+✅ LE REMOTE A ÉTÉ CORRIGÉ !
+   Ancien: https://github.com/stephanetako/-ZyatrIA-Global.git
+   Nouveau: https://github.com/stephanetako/zyatria-global.git
 
-📊 RÉSUMÉ :
-   • 3 commits prêts à être poussés
-   • 11 fichiers modifiés/ajoutés
-   • 1190 lignes de code ajoutées
-   • Chatbot Mistral AI 100% fonctionnel
-   • Documentation complète
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 MÉTHODE 1 : AVEC LE SCRIPT POWERSHELL (RECOMMANDÉ)
 
-🎯 MÉTHODE RAPIDE (3 ÉTAPES) :
+1. Ouvrez PowerShell
+2. Naviguez vers le projet:
+   cd "C:\Users\VotreNom\OneDrive\Bureau\zyatria-global"
 
-   1️⃣  Ouvrir PowerShell
-       → Clic droit sur le bouton Windows
-       → Sélectionner "Windows PowerShell"
+3. Si erreur "script non signé", exécutez:
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-   2️⃣  Naviguer vers le projet
-       → Copier-coller cette commande :
-       
-       cd "C:\Users\DELL\OneDrive\Bureau\zyatria-simple"
+4. Lancez le script:
+   .\push-to-github-now.ps1
 
-   3️⃣  Exécuter le script
-       → Copier-coller cette commande :
-       
-       .\push-chatbot-github.ps1
+5. Tapez "O" pour confirmer
 
-   ⏱️  Temps estimé : 2 minutes
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 MÉTHODE 2 : COMMANDE DIRECTE
 
-🔑 TOKEN GITHUB :
+1. Ouvrez PowerShell
+2. Naviguez vers le projet:
+   cd "C:\Users\VotreNom\OneDrive\Bureau\zyatria-global"
 
-   Le script vous demandera votre token GitHub.
-   
-   Si vous n'en avez pas :
-   → https://github.com/settings/tokens
-   → "Generate new token (classic)"
-   → Nom : "ZyatrIA Push Token"
-   → Permissions : ✅ repo
-   → Générer et copier
+3. Exécutez:
+   git push origin master
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📋 CE QUI SERA POUSSÉ :
+🔐 SI ON VOUS DEMANDE UN MOT DE PASSE :
 
-   Commit 1 : ✅ Chatbot Mistral AI fonctionnel
-   • MistralChatBot.tsx (composant chatbot)
-   • mistral-chat.ts (API endpoint)
-   • AppWrapper.tsx (intégration)
-   • Contact.tsx (corrections)
-   • push-manuel.ps1 (script)
-   • PUSH_POWERSHELL.md (doc)
+⚠️  N'UTILISEZ PAS votre mot de passe GitHub !
 
-   Commit 2 : 📚 Documentation complète
-   • CHATBOT_MISTRAL_COMPLETE.md (doc technique)
-   • PUSH_CHATBOT_GITHUB.md (guide push)
-   • push-chatbot-github.ps1 (script optimisé)
-   • 👉_PUSH_MAINTENANT.md (guide rapide)
+Créez un Personal Access Token:
 
-   Commit 3 : ✅ Guide final
-   • ✅_TOUT_PRET_POUR_GITHUB.md (récapitulatif)
+1. Allez sur: https://github.com/settings/tokens
+2. Cliquez "Generate new token (classic)"
+3. Nom: "zyatria-push"
+4. Cochez: "repo" (toutes les sous-options)
+5. Cliquez "Generate token"
+6. COPIEZ le token (vous ne le reverrez plus!)
+7. Utilisez-le comme mot de passe quand Git le demande
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✅ TESTS RÉUSSIS :
+✅ APRÈS LE PUSH RÉUSSI :
 
-   Test 1 : Salutation simple
-   Question : "Bonjour"
-   Résultat : ✅ Réponse en français, contexte ZyatrIA
+Vérifiez sur: https://github.com/stephanetako/zyatria-global
 
-   Test 2 : Question sur les tarifs
-   Question : "Quels sont vos tarifs pour les micro-agents ?"
-   Résultat : ✅ Réponse détaillée et structurée
+Vous devriez voir tous vos commits !
 
-   Temps de réponse : 1-2 secondes ⚡
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 ASTUCE : SAUVEGARDER VOS IDENTIFIANTS
 
-📚 GUIDES DE RÉFÉRENCE :
+Pour ne pas retaper vos identifiants à chaque fois:
 
-   • ✅_TOUT_PRET_POUR_GITHUB.md     → Récapitulatif complet
-   • 👉_PUSH_MAINTENANT.md           → Guide rapide
-   • PUSH_CHATBOT_GITHUB.md          → Guide détaillé
-   • CHATBOT_MISTRAL_COMPLETE.md     → Documentation technique
+git config --global credential.helper store
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Puis faites un push, entrez vos identifiants une fois, et ils seront sauvegardés.
 
-🚀 PRÊT ? LANCEZ LE SCRIPT !
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-   Ouvrez PowerShell et exécutez :
-   
-   cd "C:\Users\DELL\OneDrive\Bureau\zyatria-simple"
-   .\push-chatbot-github.ps1
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🎉 FÉLICITATIONS !
-
-   Votre chatbot Mistral AI est prêt à être partagé sur GitHub !
-   
-   Après le push, vous pourrez :
-   • Déployer sur Cloudflare Pages
-   • Configurer les variables d'environnement
-   • Tester en production
-   • Partager avec vos clients
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📞 BESOIN D'AIDE ?
-
-   Consultez les guides de référence ci-dessus ou relisez ce fichier.
-   Tout est documenté en détail !
-
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                         🚀 BONNE CHANCE !                                    ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+🚀 LANCEZ MAINTENANT !

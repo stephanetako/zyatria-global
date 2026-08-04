@@ -3,6 +3,7 @@ import { useLanguage } from '../lib/language-context';
 
 export default function FormspreeButton() {
   const { language } = useLanguage();
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
   
   useEffect(() => {
     // Check if script is already loaded
@@ -52,7 +53,7 @@ export default function FormspreeButton() {
             },
           };
 
-          const t = translations[language] || translations.en;
+          const t = translations[supportedLanguage];
 
           window.formbutton("create", {
             action: "https://formspree.io/f/xbdedonn",
@@ -116,6 +117,7 @@ declare global {
     formbutton: any;
   }
 }
+
 
 
 

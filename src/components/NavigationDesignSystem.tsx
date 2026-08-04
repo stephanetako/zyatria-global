@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../lib/language-context';
 import { baseUrl } from '../lib/base-url';
 
@@ -73,10 +73,11 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, mobile = false, onCli
 };
 
 const NavigationDesignSystem: React.FC = () => {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language as 'en' | 'fr'];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,6 +95,13 @@ const NavigationDesignSystem: React.FC = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  const languages = [
+    { code: 'fr' as const, name: 'Français', flag: '🇫🇷' },
+    { code: 'en' as const, name: 'English', flag: '🇬🇧' }
+  ];
+
+  const currentLang = languages.find(lang => lang.code === language);
 
   return (
     <nav style={{
@@ -138,11 +146,96 @@ const NavigationDesignSystem: React.FC = () => {
         }}
         className="desktop-menu"
         >
-          {t.links.map((link, index) => (
+          {t.links.map((link: { label: string; href: string }, index: number) => (
             <NavLink key={index} href={link.href}>
               {link.label}
             </NavLink>
           ))}
+          
+          {/* Language Selector */}
+          <div style={{ position: 'relative' }}>
+            <button
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '8px 12px',
+                background: 'white',
+                border: '1px solid #E5E7EB',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: 600,
+                color: '#374151',
+                transition: 'all 0.3s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#3B82F6';
+                e.currentTarget.style.color = '#3B82F6';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = '#E5E7EB';
+                e.currentTarget.style.color = '#374151';
+              }}
+            >
+              <Globe size={16} />
+              <span>{currentLang?.flag}</span>
+              <span style={{ display: typeof window !== 'undefined' && window.innerWidth > 1024 ? 'inline' : 'none' }}>
+                {currentLang?.name}
+              </span>
+            </button>
+            
+            {isLangMenuOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                right: 0,
+                marginTop: '8px',
+                background: 'white',
+                border: '1px solid #E5E7EB',
+                borderRadius: '6px',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                minWidth: '150px',
+                zIndex: 1000
+              }}>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setLanguage(lang.code);
+                      setIsLangMenuOpen(false);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      width: '100%',
+                      padding: '10px 16px',
+                      background: language === lang.code ? '#F3F4F6' : 'white',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      fontWeight: language === lang.code ? 600 : 400,
+                      color: '#374151',
+                      textAlign: 'left',
+                      transition: 'background 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#F3F4F6';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = language === lang.code ? '#F3F4F6' : 'white';
+                    }}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           <a 
             href={`${baseUrl}${t.ctaHref}`}
             className="btn-primary" 
@@ -187,11 +280,50 @@ const NavigationDesignSystem: React.FC = () => {
         }}
         className="mobile-menu"
       >
-        {t.links.map((link, index) => (
+        {t.links.map((link: { label: string; href: string }, index: number) => (
           <NavLink key={index} href={link.href} mobile onClick={closeMobileMenu}>
             {link.label}
           </NavLink>
         ))}
+        
+        {/* Language Selector Mobile */}
+        <div style={{
+          padding: '10px 0',
+          borderBottom: '1px solid #E5E7EB'
+        }}>
+          <div style={{
+            display: 'flex',
+            gap: '10px'
+          }}>
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => {
+                  setLanguage(lang.code);
+                  closeMobileMenu();
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 12px',
+                  background: language === lang.code ? '#3B82F6' : 'white',
+                  color: language === lang.code ? 'white' : '#374151',
+                  border: '1px solid #E5E7EB',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  flex: 1
+                }}
+              >
+                <span>{lang.flag}</span>
+                <span>{lang.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        
         <a 
           href={`${baseUrl}${t.ctaHref}`}
           onClick={closeMobileMenu}
@@ -228,3 +360,9 @@ const NavigationDesignSystem: React.FC = () => {
 };
 
 export default NavigationDesignSystem;
+
+
+
+
+
+

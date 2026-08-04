@@ -3,6 +3,7 @@
 
 
 
+
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Card } from './ui/card';
@@ -166,9 +167,16 @@ const content: Record<'en' | 'fr', any> = {
   },
 };
 
+const translations: Record<string, any> = {
+  en: content.en,
+  fr: content.fr,
+  // Add more translations for other languages if needed
+};
+
 export default function Contact() {
   const { language } = useLanguage();
-  const t = content[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
   const [state, handleSubmit] = useForm('xbdedonn');
 
   // Debug logging

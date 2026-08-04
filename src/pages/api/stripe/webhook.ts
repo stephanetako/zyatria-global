@@ -21,12 +21,12 @@ export const POST: APIRoute = async ({ request }) => {
   const webhookSecret = import.meta.env.STRIPE_WEBHOOK_SECRET;
 
   if (!sig) {
-    console.error('❌ Pas de signature Stripe');
+    console.error('[STRIPE] No signature');
     return new Response('No signature', { status: 400 });
   }
 
   if (!webhookSecret) {
-    console.error('❌ STRIPE_WEBHOOK_SECRET manquant');
+    console.error('[STRIPE] STRIPE_WEBHOOK_SECRET missing');
     return new Response('Webhook secret not configured', { status: 500 });
   }
 
@@ -36,29 +36,29 @@ export const POST: APIRoute = async ({ request }) => {
     const body = await request.text();
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err: any) {
-    console.error('❌ Erreur webhook:', err.message);
+    console.error('[STRIPE] Webhook error:', err.message);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  console.log(`\n🎯 Événement reçu: ${event.type}`);
-  console.log(`📅 ID: ${event.id}`);
-  console.log(`🧪 Mode test: ${isTestMode(event) ? 'OUI' : 'NON'}`);
+  console.log(`\n[STRIPE] Event received: ${event.type}`);
+  console.log(`[STRIPE] ID: ${event.id}`);
+  console.log(`[STRIPE] Test mode: ${isTestMode(event) ? 'YES' : 'NO'}`);
 
   try {
     switch (event.type) {
       case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        console.log('✅ Paiement réussi!');
-        console.log(`   💰 Montant: ${paymentIntent.amount / 100} ${paymentIntent.currency.toUpperCase()}`);
-        console.log(`   👤 Client: ${paymentIntent.customer || 'N/A'}`);
+        console.log('[STRIPE] Payment succeeded!');
+        console.log(`[STRIPE] Amount: ${paymentIntent.amount / 100} ${paymentIntent.currency.toUpperCase()}`);
+        console.log(`[STRIPE] Customer: ${paymentIntent.customer || 'N/A'}`);
         break;
       }
 
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        console.log('❌ Paiement échoué!');
-        console.log(`   💰 Montant: ${paymentIntent.amount / 100} ${paymentIntent.currency.toUpperCase()}`);
-        console.log(`   ⚠️  Raison: ${paymentIntent.last_payment_error?.message || 'Inconnue'}`);
+        console.log('[STRIPE] Payment failed!');
+        console.log(`[STRIPE] Amount: ${paymentIntent.amount / 100} ${paymentIntent.currency.toUpperCase()}`);
+        console.log(`[STRIPE] Reason: ${paymentIntent.last_payment_error?.message || 'Unknown'}`);
         break;
       }
 
@@ -66,12 +66,12 @@ export const POST: APIRoute = async ({ request }) => {
         const session = event.data.object as Stripe.Checkout.Session;
         const paymentData = formatPaymentData(session);
         
-        console.log('🎉 Checkout complété!');
-        console.log(`   💰 Montant: ${paymentData.amount} ${paymentData.currency}`);
-        console.log(`   📧 Email: ${paymentData.customer_email || 'N/A'}`);
-        console.log(`   🆔 Session: ${paymentData.session_id}`);
+        console.log('[STRIPE] Checkout completed!');
+        console.log(`[STRIPE] Amount: ${paymentData.amount} ${paymentData.currency}`);
+        console.log(`[STRIPE] Email: ${paymentData.customer_email || 'N/A'}`);
+        console.log(`[STRIPE] Session: ${paymentData.session_id}`);
 
-        // Actions automatiques
+        // Automatic actions
         if (paymentData.customer_email) {
           await sendPaymentConfirmationEmail(paymentData.customer_email, paymentData);
           await updateCRM(paymentData.customer_email, paymentData);
@@ -88,18 +88,18 @@ export const POST: APIRoute = async ({ request }) => {
         const subscription = event.data.object as Stripe.Subscription;
         const subData = formatSubscriptionData(subscription);
         
-        console.log(`📋 Abonnement ${event.type.split('.').pop()}!`);
-        console.log(`   🆔 ID: ${subData.subscription_id}`);
-        console.log(`   👤 Client: ${subData.customer_id}`);
-        console.log(`   📊 Statut: ${subData.status}`);
-        console.log(`   📅 Période: ${subData.current_period_start.toLocaleDateString()} → ${subData.current_period_end.toLocaleDateString()}`);
+        console.log(`[STRIPE] Subscription ${event.type.split('.').pop()}!`);
+        console.log(`[STRIPE] ID: ${subData.subscription_id}`);
+        console.log(`[STRIPE] Customer: ${subData.customer_id}`);
+        console.log(`[STRIPE] Status: ${subData.status}`);
+        console.log(`[STRIPE] Period: ${subData.current_period_start.toLocaleDateString()} -> ${subData.current_period_end.toLocaleDateString()}`);
         
         if (subData.trial_end) {
-          console.log(`   🎁 Essai jusqu'au: ${subData.trial_end.toLocaleDateString()}`);
+          console.log(`[STRIPE] Trial until: ${subData.trial_end.toLocaleDateString()}`);
         }
         
         if (subData.canceled_at) {
-          console.log(`   ⚠️  Annulé le: ${subData.canceled_at.toLocaleDateString()}`);
+          console.log(`[STRIPE] Canceled on: ${subData.canceled_at.toLocaleDateString()}`);
         }
 
         await notifyTeam(event.type, subData);
@@ -107,7 +107,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
 
       default:
-        console.log(`ℹ️  Événement non géré: ${event.type}`);
+        console.log(`[STRIPE] Unhandled event: ${event.type}`);
     }
 
     return new Response(JSON.stringify({ received: true }), {
@@ -115,7 +115,7 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error: any) {
-    console.error('❌ Erreur traitement webhook:', error);
+    console.error('[STRIPE] Webhook processing error:', error);
     return new Response(`Error: ${error.message}`, { status: 500 });
   }
 };

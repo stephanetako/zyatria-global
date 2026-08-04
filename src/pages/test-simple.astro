@@ -3,54 +3,59 @@
 import MainLayout from '../layouts/main.astro';
 ---
 
-<MainLayout title="Test Simple - ZyatrIA">
-  <div class="min-h-screen bg-gradient-to-br from-[#F5F1EB] via-[#E6DCD4] to-[#D9A88F] flex items-center justify-center p-8">
-    <div class="max-w-4xl mx-auto text-center text-[#373D36]">
-      <h1 class="text-6xl font-bold mb-6">
-        ✅ Ça Fonctionne !
-      </h1>
-      
-      <p class="text-2xl mb-8 opacity-90">
-        Si tu vois cette page, ton site Astro est opérationnel.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div class="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-[#C98769]/30">
-          <div class="text-4xl font-bold mb-2">✅</div>
-          <div class="text-lg">Astro OK</div>
-        </div>
-        <div class="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-[#C98769]/30">
-          <div class="text-4xl font-bold mb-2">✅</div>
-          <div class="text-lg">Tailwind OK</div>
-        </div>
-        <div class="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-[#C98769]/30">
-          <div class="text-4xl font-bold mb-2">✅</div>
-          <div class="text-lg">Layout OK</div>
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        <a 
-          href="/" 
-          class="inline-block px-8 py-4 bg-[#C98769] text-white font-semibold rounded-lg hover:bg-[#A86F53] transition shadow-lg shadow-[#C98769]/30"
-        >
-          Retour à l'accueil
-        </a>
-        <br />
-        <a 
-          href="/diagnostic" 
-          class="inline-block px-8 py-4 bg-white/30 backdrop-blur-sm text-[#373D36] font-semibold rounded-lg hover:bg-white/50 transition border border-[#C98769]/30"
-        >
-          Page de diagnostic
-        </a>
-      </div>
+<MainLayout title="Test Simple">
+  <div style="padding: 40px; text-align: center;">
+    <h1 style="font-size: 3rem; color: #667eea; margin-bottom: 20px;">
+      ✅ Le site fonctionne !
+    </h1>
+    <p style="font-size: 1.5rem; color: #333; margin-bottom: 30px;">
+      Si vous voyez ce texte avec des couleurs, le serveur Astro fonctionne parfaitement.
+    </p>
+    
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; max-width: 600px; margin: 0 auto;">
+      <h2 style="font-size: 2rem; margin-bottom: 15px;">🎯 Diagnostic</h2>
+      <ul style="text-align: left; font-size: 1.1rem; line-height: 2;">
+        <li>✓ Serveur Astro : OK</li>
+        <li>✓ HTML : OK</li>
+        <li>✓ CSS : OK</li>
+        <li id="react-status">⏳ React : Vérification...</li>
+      </ul>
     </div>
+    
+    <div id="react-test" style="margin-top: 30px;"></div>
   </div>
-
+  
   <script>
-    console.log('✅ Test simple page loaded!');
-    console.log('🎯 If you see this, JavaScript is working');
-    console.log('📍 Current URL:', window.location.href);
+    // Test React
+    const reactTest = document.getElementById('react-test');
+    const reactStatus = document.getElementById('react-status');
+    
+    setTimeout(() => {
+      const islands = document.querySelectorAll('astro-island');
+      if (islands.length > 0) {
+        if (reactStatus) {
+          reactStatus.textContent = '✓ React : ' + islands.length + ' composants détectés';
+          reactStatus.style.color = '#10b981';
+        }
+        
+        // Vérifier si les composants sont hydratés
+        setTimeout(() => {
+          const hasContent = Array.from(islands).some(island => island.innerHTML.trim().length > 100);
+          if (reactTest) {
+            if (hasContent) {
+              reactTest.innerHTML = '<p style="color: #10b981; font-size: 1.2rem;">✅ Les composants React sont chargés et fonctionnent !</p>';
+            } else {
+              reactTest.innerHTML = '<p style="color: #ef4444; font-size: 1.2rem;">❌ Les composants React ne s\'hydratent pas. Vérifiez la console du navigateur.</p>';
+            }
+          }
+        }, 2000);
+      } else {
+        if (reactStatus) {
+          reactStatus.textContent = '✗ React : Aucun composant détecté';
+          reactStatus.style.color = '#ef4444';
+        }
+      }
+    }, 500);
   </script>
 </MainLayout>
 

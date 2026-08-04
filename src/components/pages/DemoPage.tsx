@@ -142,10 +142,10 @@ export default function DemoPage() {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.content,
-        timestamp: new Date(data.timestamp),
+        content: (data as any).content || 'Désolé, une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
+        timestamp: new Date((data as any).timestamp),
         channel,
-        intent: data.intent,
+        intent: (data as any).intent,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -343,3 +343,4 @@ export default function DemoPage() {
     </div>
   );
 }
+

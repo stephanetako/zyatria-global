@@ -131,7 +131,7 @@ export default function EnhancedMultiChannelBot({
       }
 
       const data = await response.json();
-      const botResponse = data.response || data.message || data.reply || 'Désolé, je n\'ai pas compris.';
+      const botResponse = (data as any).response || (data as any).message || (data as any).reply || 'Désolé, je n\'ai pas compris.';
       
       addMessage('bot', botResponse);
     } catch (error) {
@@ -310,3 +310,4 @@ export default function EnhancedMultiChannelBot({
     </>
   );
 }
+
