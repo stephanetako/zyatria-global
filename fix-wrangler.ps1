@@ -1,58 +1,47 @@
-# Script pour corriger wrangler.jsonc (enlever le BOM)
-Write-Host "🔧 Correction du fichier wrangler.jsonc..." -ForegroundColor Cyan
+#!/usr/bin/env pwsh
+# Correction de la configuration Wrangler corrompue
 
-$content = @'
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "astro",
-  "main": "./dist/_worker.js/index.js",
-  "compatibility_date": "2025-04-15",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist"
-  },
-  "observability": {
-    "enabled": true
-  }
-}
-'@
-
-# Écrire le fichier en UTF-8 sans BOM
-$utf8NoBom = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText("$PSScriptRoot\wrangler.jsonc", $content, $utf8NoBom)
-
-Write-Host "✅ Fichier corrigé avec succès !" -ForegroundColor Green
 Write-Host ""
-Write-Host "📋 Maintenant, poussons sur GitHub..." -ForegroundColor Yellow
+Write-Host "🔧 CORRECTION CONFIGURATION WRANGLER" -ForegroundColor Cyan
+Write-Host "=====================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Git add, commit, push
-git add wrangler.jsonc
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "✅ Fichier ajouté à Git" -ForegroundColor Green
-    
-    git commit -m "Fix: Remove BOM character from wrangler.jsonc"
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "✅ Commit créé" -ForegroundColor Green
-        
-        git push origin master
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host ""
-            Write-Host "🎉 SUCCÈS ! Le fichier a été corrigé et poussé sur GitHub !" -ForegroundColor Green
-            Write-Host "🚀 Cloudflare va automatiquement redéployer votre site." -ForegroundColor Cyan
-        } else {
-            Write-Host "❌ Erreur lors du push" -ForegroundColor Red
-        }
-    } else {
-        Write-Host "⚠️  Aucun changement à commiter (le fichier est peut-être déjà correct)" -ForegroundColor Yellow
-    }
+# Supprimer le dossier .wrangler corrompu
+Write-Host "🗑️  Suppression de la configuration corrompue..." -ForegroundColor Yellow
+if (Test-Path ".wrangler") {
+    Remove-Item -Recurse -Force ".wrangler"
+    Write-Host "   ✅ Dossier .wrangler supprimé" -ForegroundColor Green
 } else {
-    Write-Host "❌ Erreur lors de l'ajout du fichier" -ForegroundColor Red
+    Write-Host "   ℹ️  Dossier .wrangler n'existe pas" -ForegroundColor Gray
 }
 
 Write-Host ""
-Write-Host "Appuyez sur une touche pour fermer..." -ForegroundColor Gray
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Write-Host "📦 Build du projet..." -ForegroundColor Yellow
+npm run build
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "❌ Erreur lors du build !" -ForegroundColor Red
+    exit 1
+}
+
+Write-Host ""
+Write-Host "✅ Build terminé avec succès !" -ForegroundColor Green
+Write-Host ""
+
+Write-Host "🌐 Déploiement sur Cloudflare..." -ForegroundColor Yellow
+npx wrangler pages deploy dist --project-name=zyatria --branch=main --commit-dirty=true
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "❌ Erreur lors du déploiement !" -ForegroundColor Red
+    exit 1
+}
+
+Write-Host ""
+Write-Host "🎉 DÉPLOIEMENT RÉUSSI !" -ForegroundColor Green
+Write-Host ""
+Write-Host "🌐 URLs du site :" -ForegroundColor Yellow
+Write-Host "   📍 https://zyatria.pages.dev" -ForegroundColor Cyan
+Write-Host "   📍 https://main.zyatria.pages.dev" -ForegroundColor Cyan
+Write-Host ""

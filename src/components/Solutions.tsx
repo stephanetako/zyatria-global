@@ -2,6 +2,7 @@
 
 
 
+
 import React from 'react';
 import { Card } from './ui/card';
 import { ArrowRight, Target, Zap, Building, Briefcase, Smartphone, Heart, GraduationCap, ShoppingCart } from 'lucide-react';
@@ -193,7 +194,7 @@ const content: Record<'en' | 'fr', any> = {
 
 const Solutions: React.FC = () => {
   const { language } = useLanguage();
-  const t = content[language];
+  const t = content[language as 'en' | 'fr'];
 
   return (
     <section id="solutions" className="py-24 bg-background">
@@ -302,6 +303,9 @@ const Solutions: React.FC = () => {
 };
 
 export default Solutions;
+
+
+
 
 
 

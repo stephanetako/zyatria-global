@@ -74,9 +74,15 @@ const content: Record<'en' | 'fr', any> = {
   },
 };
 
-const FAQ: React.FC = () => {
+const translations = {
+  en: content.en,
+  fr: content.fr,
+};
+
+export default function FAQ() {
   const { language } = useLanguage();
-  const t = content[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -146,9 +152,8 @@ const FAQ: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
-export default FAQ;
 
 
 

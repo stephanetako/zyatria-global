@@ -23,14 +23,14 @@ const translations = {
 
 const TrustStats: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section id="trust-stats" className="py-20 md:py-32 bg-muted/30">
       <div className="container">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {t.stats.map((stat, index) => {
+          {t.stats.map((stat: any, index: number) => {
             const Icon = stat.icon;
             return (
               <div
@@ -64,6 +64,7 @@ const TrustStats: React.FC = () => {
 }
 
 export default TrustStats;
+
 
 
 

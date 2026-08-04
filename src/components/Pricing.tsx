@@ -1,14 +1,11 @@
 
 
 
-
-
-
 import React, { useState } from 'react';
 import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
-import { STRIPE_PAYMENT_LINKS, productDetails } from '../config/stripe-links';
+import { stripeLinks, productDetails } from '../config/stripe-links';
 import { cn } from '../lib/utils';
 import { baseUrl } from '../lib/base-url';
 import { useLanguage } from '../lib/language-context';
@@ -290,8 +287,9 @@ const Pricing: React.FC = () => {
 
                   {/* CTA Button */}
                   {(() => {
-                    const paymentLink = STRIPE_PAYMENT_LINKS[plan.key][billingType];
-                    const isDisabled = !paymentLink || paymentLink === '';
+                    const paymentLink = stripeLinks[plan.key][billingType];
+                    const stripeLink = paymentLink || '';
+                    const isDisabled = !stripeLink;
                     
                     // For Starter plan with oneTime billing, show a disabled button with message
                     if (isDisabled && plan.key === 'starter' && billingType === 'oneTime') {
@@ -376,7 +374,7 @@ const Pricing: React.FC = () => {
               </div>
 
               <a
-                href={STRIPE_PAYMENT_LINKS.services.audit}
+                href={stripeLinks.services.audit}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg"
@@ -414,7 +412,7 @@ const Pricing: React.FC = () => {
               </div>
 
               <a
-                href={STRIPE_PAYMENT_LINKS.services.consultation}
+                href={stripeLinks.services.consultation}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg"
@@ -441,6 +439,11 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
+
+
+
+
 
 
 

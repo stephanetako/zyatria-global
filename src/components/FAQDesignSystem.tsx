@@ -163,9 +163,10 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, list, footer, isOpe
   );
 };
 
-const FAQDesignSystem: React.FC = () => {
+export default function FAQDesignSystem() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -198,4 +199,3 @@ const FAQDesignSystem: React.FC = () => {
   );
 };
 
-export default FAQDesignSystem;

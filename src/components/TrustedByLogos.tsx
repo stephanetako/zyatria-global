@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '../lib/language-context';
 
@@ -26,7 +27,7 @@ const companies = [
 
 export default function TrustedByLogos() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section className="py-16 bg-muted/30">
@@ -82,4 +83,5 @@ export default function TrustedByLogos() {
     </section>
   );
 }
+
 

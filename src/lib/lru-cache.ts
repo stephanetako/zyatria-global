@@ -1,3 +1,5 @@
+
+
 /**
  * 💾 LRU Cache pour l'API Mistral
  * 
@@ -88,8 +90,10 @@ class LRUCache<K, V> {
     // Si le cache est plein, supprimer l'entrée la plus ancienne (LRU)
     if (this.cache.size >= this.maxSize && !this.cache.has(normalizedKey)) {
       const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
-      console.log(`🗑️ Cache plein : Suppression de l'entrée la plus ancienne`);
+      if (firstKey !== undefined) {
+        this.cache.delete(firstKey);
+        console.log(`🗑️ Cache plein : Suppression de l'entrée la plus ancienne`);
+      }
     }
 
     // Ajouter la nouvelle entrée
@@ -350,3 +354,5 @@ export function resetMistralCache(): void {
 
 export { LRUCache, MistralCache };
 export default LRUCache;
+
+

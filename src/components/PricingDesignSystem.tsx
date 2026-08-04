@@ -1,6 +1,9 @@
+
+
 import React from 'react';
 import { Check, Shield } from 'lucide-react';
 import { useLanguage } from '../lib/language-context';
+import { stripeLinks } from '../config/stripe-links';
 
 const translations = {
   fr: {
@@ -18,7 +21,8 @@ const translations = {
           'Pas de carte bancaire requise'
         ],
         cta: 'Commencer l\'Essai Gratuit',
-        ctaClass: 'btn-primary'
+        ctaClass: 'btn-primary',
+        link: '#contact'
       },
       starter: {
         name: '💡 Starter',
@@ -32,7 +36,8 @@ const translations = {
           'Jusqu\'à 1 000 interactions/mois'
         ],
         cta: 'Démarrer Plan Mensuel',
-        ctaClass: 'btn-primary'
+        ctaClass: 'btn-primary',
+        link: stripeLinks.starter.monthly
       },
       professional: {
         name: '⭐ Professional',
@@ -50,7 +55,8 @@ const translations = {
         ],
         cta: 'Démarrer Plan Mensuel',
         ctaClass: 'btn-primary',
-        highlighted: true
+        highlighted: true,
+        link: stripeLinks.professional.monthly
       },
       enterprise: {
         name: '🏆 Enterprise',
@@ -65,7 +71,8 @@ const translations = {
           'Support 24/7'
         ],
         cta: 'Contacter les Ventes',
-        ctaClass: 'btn-secondary'
+        ctaClass: 'btn-secondary',
+        link: stripeLinks.enterprise.monthly
       }
     },
     services: {
@@ -77,21 +84,24 @@ const translations = {
           description: 'Analyse approfondie',
           price: '497 $ CAD',
           period: 'Paiement unique',
-          cta: 'Commander l\'Audit'
+          cta: 'Commander l\'Audit',
+          link: stripeLinks.services.audit
         },
         {
           name: 'Consultation Stratégique',
           description: '60 minutes avec un expert',
           price: '147 $ CAD',
           period: 'Paiement unique',
-          cta: 'Réserver une Consultation'
+          cta: 'Réserver une Consultation',
+          link: stripeLinks.services.consultation
         },
         {
           name: 'Formation IA pour Équipes',
           description: 'Demi-journée',
           price: '997 $ CAD',
           period: 'Paiement unique',
-          cta: 'Réserver une Formation'
+          cta: 'Réserver une Formation',
+          link: stripeLinks.services.formation
         }
       ]
     },
@@ -115,7 +125,8 @@ const translations = {
           'No credit card required'
         ],
         cta: 'Start Free Trial',
-        ctaClass: 'btn-primary'
+        ctaClass: 'btn-primary',
+        link: '#contact'
       },
       starter: {
         name: '💡 Starter',
@@ -129,7 +140,8 @@ const translations = {
           'Up to 1,000 interactions/month'
         ],
         cta: 'Start Monthly Plan',
-        ctaClass: 'btn-primary'
+        ctaClass: 'btn-primary',
+        link: stripeLinks.starter.monthly
       },
       professional: {
         name: '⭐ Professional',
@@ -147,7 +159,8 @@ const translations = {
         ],
         cta: 'Start Monthly Plan',
         ctaClass: 'btn-primary',
-        highlighted: true
+        highlighted: true,
+        link: stripeLinks.professional.monthly
       },
       enterprise: {
         name: '🏆 Enterprise',
@@ -162,7 +175,8 @@ const translations = {
           '24/7 support'
         ],
         cta: 'Contact Sales',
-        ctaClass: 'btn-secondary'
+        ctaClass: 'btn-secondary',
+        link: stripeLinks.enterprise.monthly
       }
     },
     services: {
@@ -174,21 +188,24 @@ const translations = {
           description: 'In-depth analysis',
           price: '$497 CAD',
           period: 'One-time payment',
-          cta: 'Order Audit'
+          cta: 'Order Audit',
+          link: stripeLinks.services.audit
         },
         {
           name: 'Strategic Consultation',
           description: '60 minutes with an expert',
           price: '$147 CAD',
           period: 'One-time payment',
-          cta: 'Book Consultation'
+          cta: 'Book Consultation',
+          link: stripeLinks.services.consultation
         },
         {
           name: 'AI Training for Teams',
           description: 'Half-day session',
           price: '$997 CAD',
           period: 'One-time payment',
-          cta: 'Book Training'
+          cta: 'Book Training',
+          link: stripeLinks.services.formation
         }
       ]
     },
@@ -207,6 +224,7 @@ interface PricingCardProps {
   features: string[];
   cta: string;
   ctaClass: string;
+  link: string;
   badge?: string;
   highlighted?: boolean;
 }
@@ -219,6 +237,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   features,
   cta,
   ctaClass,
+  link,
   badge,
   highlighted = false
 }) => {
@@ -229,6 +248,18 @@ const PricingCard: React.FC<PricingCardProps> = ({
   const ctaStyle = highlighted
     ? { width: '100%', background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)' }
     : { width: '100%' };
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Si c'est un lien interne (#contact), scroll smooth
+    if (link.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // Sinon, c'est un lien Stripe externe, laisse le comportement par défaut
+  };
 
   return (
     <div className="card" style={cardStyle}>
@@ -288,7 +319,14 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </li>
         ))}
       </ul>
-      <a href="#contact" className={ctaClass} style={ctaStyle}>
+      <a 
+        href={link} 
+        className={ctaClass} 
+        style={ctaStyle}
+        onClick={handleClick}
+        target={link.startsWith('#') ? '_self' : '_blank'}
+        rel={link.startsWith('#') ? undefined : 'noopener noreferrer'}
+      >
         {cta}
       </a>
     </div>
@@ -301,9 +339,22 @@ interface ServiceCardProps {
   price: string;
   period: string;
   cta: string;
+  link: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, period, cta }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, period, cta, link }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Si c'est un lien interne (#contact), scroll smooth
+    if (link.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // Sinon, c'est un lien Stripe externe, laisse le comportement par défaut
+  };
+
   return (
     <div className="card">
       <h4 style={{ textAlign: 'center', marginBottom: '10px' }}>{name}</h4>
@@ -322,7 +373,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, per
       <p style={{ textAlign: 'center', fontSize: '14px', color: '#64748B', marginBottom: '20px' }}>
         {period}
       </p>
-      <a href="#contact" className="btn-primary" style={{ width: '100%' }}>
+      <a 
+        href={link} 
+        className="btn-primary" 
+        style={{ width: '100%' }}
+        onClick={handleClick}
+        target={link.startsWith('#') ? '_self' : '_blank'}
+        rel={link.startsWith('#') ? undefined : 'noopener noreferrer'}
+      >
         {cta}
       </a>
     </div>
@@ -331,7 +389,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, per
 
 const PricingDesignSystem: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section className="section" id="tarifs">
@@ -379,7 +437,7 @@ const PricingDesignSystem: React.FC = () => {
           maxWidth: '1000px',
           margin: '0 auto'
         }}>
-          {t.services.items.map((service, index) => (
+          {t.services.items.map((service: any, index: number) => (
             <ServiceCard key={index} {...service} />
           ))}
         </div>
@@ -400,3 +458,6 @@ const PricingDesignSystem: React.FC = () => {
 };
 
 export default PricingDesignSystem;
+
+
+

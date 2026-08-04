@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Liens Stripe - Tarification</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #C98769;
+            padding-bottom: 10px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .link-test {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 4px solid #C98769;
+        }
+        .link-test a {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #C98769, #D9A88F);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .link-test a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(201, 135, 105, 0.3);
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.live {
+            background: #10b981;
+            color: white;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #C98769;
+        }
+        .label {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test des Liens Stripe - Tarification Transparente</h1>
+    
+    <div class="section">
+        <h2>📦 Plans Principaux</h2>
+        
+        <h3>Starter</h3>
+        <div class="link-test">
+            <div>
+                <div class="price">495 $CA</div>
+                <div class="label">Paiement Unique</div>
+            </div>
+            <a href="https://buy.stripe.com/fZufZ97qTgdX1RT9so9oc0L" target="_blank">
+                Tester Starter - One-Time
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <div class="link-test">
+            <div>
+                <div class="price">68 $CA/mois</div>
+                <div class="label">Abonnement Mensuel</div>
+            </div>
+            <a href="https://buy.stripe.com/9B6cMX6mPaTD5450VS9oc0n" target="_blank">
+                Tester Starter - Monthly
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <h3>Professional</h3>
+        <div class="link-test">
+            <div>
+                <div class="price">697 $CA</div>
+                <div class="label">Paiement Unique</div>
+            </div>
+            <a href="https://buy.stripe.com/dRmfZ9cLd9Pz7cd5c89oc0D" target="_blank">
+                Tester Professional - One-Time
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <div class="link-test">
+            <div>
+                <div class="price">208 $CA/mois</div>
+                <div class="label">Abonnement Mensuel</div>
+            </div>
+            <a href="https://buy.stripe.com/28E3cn5iL0eZ1RT1ZW9oc0C" target="_blank">
+                Tester Professional - Monthly
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <h3>Enterprise</h3>
+        <div class="link-test">
+            <div>
+                <div class="price">997 $CA</div>
+                <div class="label">Paiement Unique</div>
+            </div>
+            <a href="https://buy.stripe.com/aFa3cn3aDgdXbst6gc9oc0F" target="_blank">
+                Tester Enterprise - One-Time
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <div class="link-test">
+            <div>
+                <div class="price">698 $CA/mois</div>
+                <div class="label">Abonnement Mensuel</div>
+            </div>
+            <a href="https://buy.stripe.com/bJeeV57qT1j3eEFcEA9oc0E" target="_blank">
+                Tester Enterprise - Monthly
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>🎯 Services Professionnels</h2>
+        
+        <div class="link-test">
+            <div>
+                <div class="price">149 $CA</div>
+                <div class="label">Consultation Stratégique</div>
+            </div>
+            <a href="https://buy.stripe.com/aFabIT9z10eZ7cd1ZW9oc0K" target="_blank">
+                Tester Consultation
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <div class="link-test">
+            <div>
+                <div class="price">497 $CA</div>
+                <div class="label">Audit IA Complet</div>
+            </div>
+            <a href="https://buy.stripe.com/5kQeV5cLd2n76894849oc0G" target="_blank">
+                Tester Audit
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+        
+        <div class="link-test">
+            <div>
+                <div class="price">995 $CA</div>
+                <div class="label">Formation IA pour Équipes</div>
+            </div>
+            <a href="https://buy.stripe.com/00wfZ9eTle5P0NP9so9oc0s" target="_blank">
+                Tester Formation
+            </a>
+            <span class="status live">LIVE</span>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>✅ Instructions de Test</h2>
+        <ol>
+            <li>Cliquez sur chaque bouton "Tester..."</li>
+            <li>Vérifiez que vous êtes redirigé vers Stripe</li>
+            <li>Vérifiez que le prix affiché correspond</li>
+            <li>Vérifiez que c'est en mode LIVE (pas de bannière "Test mode")</li>
+            <li>NE COMPLÉTEZ PAS le paiement (sauf si vous voulez vraiment acheter!)</li>
+        </ol>
+        
+        <p><strong>Si tous les liens fonctionnent ici mais pas sur votre site:</strong></p>
+        <ul>
+            <li>Le problème est dans le composant React Pricing.tsx</li>
+            <li>Probablement un problème de rendu ou d'état</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log('🧪 Page de test chargée');
+        console.log('Tous les liens devraient ouvrir Stripe en mode LIVE');
+    </script>
+</body>
+</html>

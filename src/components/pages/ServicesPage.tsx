@@ -102,7 +102,7 @@ const translations = {
 
 export default function ServicesPage() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -125,7 +125,7 @@ export default function ServicesPage() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-1 gap-12">
-            {t.services.map((service, index) => {
+            {t.services.map((service: any, index: number) => {
               const Icon = service.icon;
               return (
                 <div
@@ -141,7 +141,7 @@ export default function ServicesPage() {
                       <h3 className="text-2xl font-bold mb-3 font-heading">{service.title}</h3>
                       <p className="text-muted-foreground mb-6">{service.description}</p>
                       <ul className="space-y-3">
-                        {service.features.map((feature, idx) => (
+                        {service.features.map((feature: string, idx: number) => (
                           <li key={idx} className="flex items-center gap-3">
                             <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                             <span>{feature}</span>
@@ -177,5 +177,7 @@ export default function ServicesPage() {
     </div>
   );
 }
+
+
 
 

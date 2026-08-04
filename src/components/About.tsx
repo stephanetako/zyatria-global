@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { Card } from './ui/card';
 import { Globe2, Users, Award, TrendingUp, Shield, Lightbulb, Globe, Zap, Lock } from 'lucide-react';
-import { useLanguage } from '../lib/language-context';
+import { useLanguage, type Language } from '../lib/language-context';
 
 const translations: Record<'en' | 'fr', any> = {
   en: {
@@ -178,7 +179,8 @@ const translations: Record<'en' | 'fr', any> = {
 
 export default function About() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
 
   return (
     <section id="about" className="py-24 bg-muted/30">
@@ -288,6 +290,8 @@ export default function About() {
     </section>
   );
 }
+
+
 
 
 

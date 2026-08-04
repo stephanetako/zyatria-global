@@ -2,12 +2,13 @@
 
 
 
+
 import React from 'react';
-import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap, CreditCard } from 'lucide-react';
+import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap, CreditCard, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { useLanguage } from '../lib/language-context';
 import { baseUrl } from '../lib/base-url';
-import { STRIPE_PAYMENT_LINKS } from '../config/stripe-links';
+import { stripeLinks } from '../config/stripe-links';
 
 const translations = {
   en: {
@@ -36,9 +37,9 @@ const translations = {
           "Smart alerts for hot leads",
           "CRM integration"
         ],
-        price: "68 $CA/month",
+        price: "69 $CA/month",
         category: "Basic",
-        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
+        stripeLink: stripeLinks.microAgents.leadQualification
       },
       {
         icon: MessageSquare,
@@ -51,9 +52,9 @@ const translations = {
           "FAQ database",
           "Human escalation when needed"
         ],
-        price: "68 $CA/month",
+        price: "69 $CA/month",
         category: "Basic",
-        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
+        stripeLink: stripeLinks.microAgents.customerSupport
       },
       {
         icon: Calendar,
@@ -68,7 +69,7 @@ const translations = {
         ],
         price: "68 $CA/month",
         category: "Basic",
-        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
+        stripeLink: stripeLinks.microAgents.appointments
       },
       {
         icon: Bell,
@@ -81,9 +82,9 @@ const translations = {
           "Smart timing",
           "Engagement tracking"
         ],
-        price: "208 $CA/month",
+        price: "180 $CA/month",
         category: "Advanced",
-        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
+        stripeLink: stripeLinks.microAgents.prospectFollowup
       },
       {
         icon: Home,
@@ -98,7 +99,7 @@ const translations = {
         ],
         price: "208 $CA/month",
         category: "Advanced",
-        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
+        stripeLink: stripeLinks.microAgents.realEstate
       },
       {
         icon: ShoppingCart,
@@ -111,9 +112,9 @@ const translations = {
           "Product FAQ",
           "Personalized recommendations"
         ],
-        price: "208 $CA/month",
+        price: "195 $CA/month",
         category: "Advanced",
-        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
+        stripeLink: stripeLinks.microAgents.ecommerce
       }
     ]
   },
@@ -143,9 +144,9 @@ const translations = {
           "Alertes intelligentes leads chauds",
           "Intégration CRM"
         ],
-        price: "68 $CA/mois",
+        price: "69 $CA/mois",
         category: "Basique",
-        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
+        stripeLink: stripeLinks.microAgents.leadQualification
       },
       {
         icon: MessageSquare,
@@ -158,9 +159,9 @@ const translations = {
           "Base de connaissances FAQ",
           "Escalade humaine si besoin"
         ],
-        price: "68 $CA/mois",
+        price: "69 $CA/mois",
         category: "Basique",
-        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
+        stripeLink: stripeLinks.microAgents.customerSupport
       },
       {
         icon: Calendar,
@@ -175,7 +176,7 @@ const translations = {
         ],
         price: "68 $CA/mois",
         category: "Basique",
-        stripeLink: STRIPE_PAYMENT_LINKS.starter.monthly
+        stripeLink: stripeLinks.microAgents.appointments
       },
       {
         icon: Bell,
@@ -188,9 +189,9 @@ const translations = {
           "Timing intelligent",
           "Suivi d'engagement"
         ],
-        price: "208 $CA/mois",
+        price: "180 $CA/mois",
         category: "Avancé",
-        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
+        stripeLink: stripeLinks.microAgents.prospectFollowup
       },
       {
         icon: Home,
@@ -205,7 +206,7 @@ const translations = {
         ],
         price: "208 $CA/mois",
         category: "Avancé",
-        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
+        stripeLink: stripeLinks.microAgents.realEstate
       },
       {
         icon: ShoppingCart,
@@ -218,9 +219,9 @@ const translations = {
           "FAQ produits",
           "Recommandations personnalisées"
         ],
-        price: "208 $CA/mois",
+        price: "195 $CA/mois",
         category: "Avancé",
-        stripeLink: STRIPE_PAYMENT_LINKS.professional.monthly
+        stripeLink: stripeLinks.microAgents.ecommerce
       }
     ]
   }
@@ -228,7 +229,7 @@ const translations = {
 
 export default function MicroAgents() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -358,6 +359,9 @@ export default function MicroAgents() {
     </section>
   );
 }
+
+
+
 
 
 

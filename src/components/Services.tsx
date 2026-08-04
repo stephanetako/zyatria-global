@@ -112,9 +112,7 @@ const translations = {
 
 const Services: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
-
-  const baseUrl = language === 'fr' ? '/fr' : '/';
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section id="services" className="py-24 bg-gradient-to-b from-white via-blue-50/20 to-white dark:from-zinc-950 dark:via-blue-950/10 dark:to-zinc-950">
@@ -194,7 +192,7 @@ const Services: React.FC = () => {
                     variant="outline" 
                     className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all"
                   >
-                    <a href={`${baseUrl}/demo`}>
+                    <a href="/demo">
                       {t.cta}
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </a>
@@ -232,6 +230,8 @@ const Services: React.FC = () => {
 };
 
 export default Services;
+
+
 
 
 

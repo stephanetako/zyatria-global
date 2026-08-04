@@ -39,9 +39,10 @@ const translations = {
   }
 };
 
-const HeroDesignSystem: React.FC = () => {
+export default function HeroDesignSystem() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
 
   const statsArray = [
     t.stats.companies,
@@ -91,7 +92,7 @@ const HeroDesignSystem: React.FC = () => {
       {/* Image flottante (à remplacer par une image réelle) */}
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         <img
-          src="https://via.placeholder.com/900x500/ffffff/3B82F6?text=Agents+IA+ZyatrIA"
+          src="/hero-dashboard.svg"
           alt={t.imageAlt}
           className="floating-image"
           style={{ width: '100%', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
@@ -109,6 +110,4 @@ const HeroDesignSystem: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default HeroDesignSystem;
+}

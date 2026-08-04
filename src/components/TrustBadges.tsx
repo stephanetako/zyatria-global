@@ -3,7 +3,6 @@
 
 
 
-
 import React from 'react';
 import { Shield, Lock, Award, CheckCircle2, Zap, Globe } from 'lucide-react';
 import { Card } from './ui/card';
@@ -90,7 +89,7 @@ const content: Record<'en' | 'fr', any> = {
 
 const TrustBadges: React.FC = () => {
   const { language } = useLanguage();
-  const t = content[language];
+  const t = content[language as 'en' | 'fr'];
 
   return (
     <section className="py-16 bg-gradient-to-b from-white to-blue-50/30 dark:from-zinc-950 dark:to-blue-950/10">
@@ -164,6 +163,9 @@ const TrustBadges: React.FC = () => {
 };
 
 export default TrustBadges;
+
+
+
 
 
 

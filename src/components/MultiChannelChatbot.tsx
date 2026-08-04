@@ -3,7 +3,6 @@
 
 
 
-
 import { useState, useRef, useEffect } from 'react';
 import { baseUrl } from '../lib/base-url';
 import { MessageCircle, Mail, Phone, X, Send } from 'lucide-react';
@@ -123,7 +122,7 @@ export default function MultiChannelChatbot() {
       }
 
       const data = await response.json();
-      addMessage('bot', data.content || data.response || "Désolé, je n'ai pas compris.");
+      addMessage('bot', (data as any).content || (data as any).response || "Désolé, je n'ai pas compris.");
     } catch (error) {
       console.error('Erreur:', error);
       addMessage('bot', 'Désolé, une erreur est survenue. Veuillez réessayer.');
@@ -555,6 +554,7 @@ export default function MultiChannelChatbot() {
     </>
   );
 }
+
 
 
 

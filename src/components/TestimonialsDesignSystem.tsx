@@ -170,7 +170,7 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
 
 const TestimonialsDesignSystem: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section className="section" id="temoignages">
@@ -188,7 +188,7 @@ const TestimonialsDesignSystem: React.FC = () => {
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-        {t.testimonials.map((testimonial, index) => (
+        {t.testimonials.map((testimonial: any, index: number) => (
           <TestimonialCard
             key={index}
             {...testimonial}
@@ -202,3 +202,4 @@ const TestimonialsDesignSystem: React.FC = () => {
 };
 
 export default TestimonialsDesignSystem;
+

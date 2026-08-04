@@ -3,6 +3,7 @@
 
 
 
+
 ---
 import '../../generated/fonts.css';
 import '../site-components/global.css';
@@ -152,7 +153,7 @@ const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astr
 <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 </head>
 <!-- Dark mode class injection point - will be replaced with `dark` class based on your site palette -->
-<body class="__DARK_MODE_CLASS__">
+<body class="">
 <slot />
 </body>
 </html>
@@ -169,6 +170,7 @@ padding-left: 0 !important;
 margin: 0 !important; 
 }
 </style>
+
 
 
 

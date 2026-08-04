@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { CheckCircle2, Calendar, FileText, GraduationCap, Target, TrendingUp, Users } from 'lucide-react';
 import { Card } from './ui/card';
@@ -167,7 +169,7 @@ const translations = {
 
 const ServicesAvailable: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as 'en' | 'fr'];
 
   return (
     <section className="py-24 bg-gradient-to-b from-white via-secondary/30 to-white dark:from-zinc-950 dark:via-muted/10 dark:to-zinc-950">
@@ -188,7 +190,7 @@ const ServicesAvailable: React.FC = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {t.services.map((service, index) => {
+          {t.services.map((service: any, index: number) => {
             const Icon = service.icon;
             return (
               <Card
@@ -214,7 +216,7 @@ const ServicesAvailable: React.FC = () => {
 
                 {/* Features */}
                 <ul className="space-y-3 mb-8">
-                  {service.features.map((feature, idx) => (
+                  {service.features.map((feature: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2 text-sm">
                       <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
@@ -240,18 +242,15 @@ const ServicesAvailable: React.FC = () => {
             {t.benefits.title}
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
-            {t.benefits.items.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold font-heading mb-2">{benefit.title}</h4>
-                  <p className="text-muted-foreground">{benefit.description}</p>
+            {t.benefits.items.map((benefit: { icon: any; title: string; description: string }, index: number) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <benefit.icon className="w-8 h-8 text-white" />
                 </div>
-              );
-            })}
+                <h4 className="text-xl font-bold font-heading mb-2">{benefit.title}</h4>
+                <p className="text-muted-foreground">{benefit.description}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -266,3 +265,6 @@ const ServicesAvailable: React.FC = () => {
 };
 
 export default ServicesAvailable;
+
+
+

@@ -1,127 +1,178 @@
-# 👉 DÉPLOIEMENT EN 5 ÉTAPES SIMPLES
+# 🚀 DÉPLOIEMENT CLOUDFLARE EN 5 ÉTAPES
 
-## 🎯 Objectif : Mettre votre site en ligne en 10 minutes
+## ✅ PRÉREQUIS (DÉJÀ FAIT)
+- ✅ Code sur GitHub
+- ✅ Liens Stripe en mode LIVE
+- ✅ Build réussi
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## ✅ ÉTAPE 1 : Ouvrir Cloudflare
-**Temps : 1 minute**
+## 📋 ÉTAPE 1 : CONNEXION À CLOUDFLARE
 
-1. Allez sur : **https://dash.cloudflare.com/**
-2. Connectez-vous (ou créez un compte gratuit)
-3. Cliquez sur **"Workers & Pages"** dans le menu de gauche
+1. **Allez sur :** https://dash.cloudflare.com/
+2. **Connectez-vous** avec votre compte
+3. **Cliquez sur "Workers & Pages"** dans le menu de gauche
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## ✅ ÉTAPE 2 : Créer le projet
-**Temps : 2 minutes**
+## 📋 ÉTAPE 2 : CRÉER UN NOUVEAU PROJET
 
-1. Cliquez sur **"Create application"**
-2. Cliquez sur l'onglet **"Pages"**
-3. Cliquez sur **"Connect to Git"**
-4. Cliquez sur **"Connect GitHub"**
-5. Autorisez Cloudflare
-6. Sélectionnez **"zyatria-global"**
-7. Cliquez sur **"Begin setup"**
+1. **Cliquez sur "Create application"**
+2. **Sélectionnez l'onglet "Pages"**
+3. **Cliquez sur "Connect to Git"**
+4. **Sélectionnez "GitHub"**
+5. **Autorisez Cloudflare** à accéder à votre GitHub
+6. **Sélectionnez le repository :** `stephanetako/zyatria-global`
+7. **Cliquez sur "Begin setup"**
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## ✅ ÉTAPE 3 : Configuration
-**Temps : 2 minutes**
+## 📋 ÉTAPE 3 : CONFIGURATION DU BUILD
 
-### Remplissez ces champs :
+### **Paramètres de build :**
+
+**Project name :** `zyatria-global` (ou ce que vous voulez)
+
+**Production branch :** `master`
+
+**Framework preset :** `Astro`
+
+**Build command :** `npm run build`
+
+**Build output directory :** `dist`
+
+**Root directory :** `/` (laisser vide)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📋 ÉTAPE 4 : VARIABLES D'ENVIRONNEMENT
+
+**⚠️ IMPORTANT : Ajoutez ces variables AVANT de déployer !**
+
+Cliquez sur **"Add environment variable"** et ajoutez :
+
+### **Variables Stripe (OBLIGATOIRES) :**
 
 ```
-Project name: zyatria-global
-Production branch: main
-Framework preset: Astro
-Build command: npm run build
-Build output directory: dist
+STRIPE_SECRET_KEY
+Valeur : sk_live_VOTRE_CLE_SECRETE_LIVE
 ```
 
----
-
-## ✅ ÉTAPE 4 : Variables d'environnement
-**Temps : 3 minutes**
-
-Cliquez sur **"Add environment variable"** et ajoutez ces 3 variables :
-
-### 1️⃣ MISTRAL_API_KEY
 ```
-Name: MISTRAL_API_KEY
-Value: [Votre clé API Mistral - celle que vous avez dans .env]
+STRIPE_PUBLISHABLE_KEY
+Valeur : pk_live_VOTRE_CLE_PUBLIQUE_LIVE
 ```
 
-### 2️⃣ FORMSPREE_ENDPOINT
 ```
-Name: FORMSPREE_ENDPOINT
-Value: https://formspree.io/f/xnnqnoqy
-```
-
-### 3️⃣ FORMSPREE_EMAIL
-```
-Name: FORMSPREE_EMAIL
-Value: contact@zyatria.global
+STRIPE_WEBHOOK_SECRET
+Valeur : whsec_VOTRE_SECRET_WEBHOOK
 ```
 
----
+### **Variables Formspree (OBLIGATOIRES) :**
 
-## ✅ ÉTAPE 5 : Déployer !
-**Temps : 2 minutes (+ 3-5 min de build)**
-
-1. Vérifiez que tout est correct
-2. Cliquez sur **"Save and Deploy"**
-3. ☕ Attendez 3-5 minutes pendant le build
-4. 🎉 Votre site est en ligne !
-
----
-
-## 🎊 RÉSULTAT
-
-Cloudflare vous donnera une URL comme :
 ```
-https://zyatria-global.pages.dev
+FORMSPREE_FORM_ID
+Valeur : VOTRE_FORM_ID
 ```
 
-**Testez votre site :**
-- ✅ Ouvrez l'URL
-- ✅ Testez le chatbot
-- ✅ Testez un formulaire
-- ✅ Naviguez sur les pages
+### **Variables Mistral AI (OPTIONNELLES) :**
 
----
-
-## 🔄 MISES À JOUR AUTOMATIQUES
-
-Maintenant, chaque fois que vous faites un push sur GitHub :
-```powershell
-.\push-manuel.ps1
+```
+MISTRAL_API_KEY
+Valeur : VOTRE_CLE_MISTRAL
 ```
 
-Cloudflare détecte automatiquement et redéploie ! 🚀
+### **Variables Twilio (OPTIONNELLES) :**
 
----
+```
+TWILIO_ACCOUNT_SID
+Valeur : VOTRE_ACCOUNT_SID
+```
 
-## 🆘 PROBLÈME ?
+```
+TWILIO_AUTH_TOKEN
+Valeur : VOTRE_AUTH_TOKEN
+```
 
-### Le build échoue ?
+```
+TWILIO_PHONE_NUMBER
+Valeur : VOTRE_NUMERO_TWILIO
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📋 ÉTAPE 5 : DÉPLOIEMENT
+
+1. **Vérifiez que toutes les variables sont ajoutées**
+2. **Cliquez sur "Save and Deploy"**
+3. **Attendez la fin du build** (2-5 minutes)
+4. **Cloudflare vous donnera une URL** : `https://zyatria-global.pages.dev`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━���━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🎯 APRÈS LE DÉPLOIEMENT
+
+### **1. Testez votre site :**
+- Ouvrez l'URL fournie par Cloudflare
+- Testez les boutons Stripe
+- Vérifiez les formulaires
+
+### **2. Configurez le webhook Stripe :**
+- Allez sur : https://dashboard.stripe.com/webhooks
+- Cliquez "Add endpoint"
+- URL : `https://VOTRE-URL.pages.dev/api/stripe/webhook`
+- Événements : `checkout.session.completed`, `payment_intent.succeeded`
+- Copiez le **Signing secret**
+- Ajoutez-le dans Cloudflare comme `STRIPE_WEBHOOK_SECRET`
+
+### **3. Domaine personnalisé (optionnel) :**
+- Dans Cloudflare Pages, allez dans "Custom domains"
+- Ajoutez votre domaine (ex: zyatria.global)
+- Suivez les instructions DNS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🔧 REDÉPLOIEMENT AUTOMATIQUE
+
+**Chaque fois que vous pushez sur GitHub, Cloudflare redéploie automatiquement !**
+
+Pour forcer un redéploiement :
+1. Allez dans votre projet Cloudflare
+2. Cliquez sur "Deployments"
+3. Cliquez sur "Retry deployment"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📊 CHECKLIST FINALE
+
+Avant de dire "C'EST EN LIGNE" :
+
+- [ ] Site accessible sur l'URL Cloudflare
+- [ ] Boutons Stripe fonctionnent (testez avec une vraie carte)
+- [ ] Formulaires Formspree fonctionnent
+- [ ] Webhook Stripe configuré
+- [ ] Pas d'erreurs dans les logs Cloudflare
+- [ ] Design correct sur mobile et desktop
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🆘 EN CAS DE PROBLÈME
+
+### **Build échoue :**
 - Vérifiez les logs dans Cloudflare
-- Assurez-vous que les 3 variables d'environnement sont définies
+- Assurez-vous que `npm run build` fonctionne localement
 
-### Le chatbot ne marche pas ?
-- Vérifiez que `MISTRAL_API_KEY` est correcte
-- Ouvrez la console du navigateur (F12) pour voir les erreurs
+### **Variables d'environnement manquantes :**
+- Allez dans Settings → Environment variables
+- Ajoutez les variables manquantes
+- Redéployez
 
-### Les formulaires ne marchent pas ?
-- Confirmez votre email sur Formspree
-- Vérifiez le dashboard Formspree : https://formspree.io/forms
+### **Erreur 500 :**
+- Vérifiez les logs dans Cloudflare
+- Vérifiez que toutes les clés API sont correctes
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 📞 BESOIN D'AIDE ?
+🚀 COMMENCEZ MAINTENANT !
 
-Dites-moi où vous êtes bloqué et je vous aide ! 😊
-
----
-
-**🎯 PRÊT ? Allez sur https://dash.cloudflare.com/ et commencez !**
+Allez sur : https://dash.cloudflare.com/

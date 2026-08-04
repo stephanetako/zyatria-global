@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test ZyatrIA Global - Déploiement Final</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .url {
+            text-align: center;
+            font-size: 18px;
+            color: #764ba2;
+            margin-bottom: 30px;
+            word-break: break-all;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .test-section h2 {
+            color: #667eea;
+            margin-top: 0;
+            font-size: 20px;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .checklist li:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+        .checklist li::before {
+            content: "☐ ";
+            font-size: 20px;
+            margin-right: 10px;
+            color: #667eea;
+        }
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .deployment-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        .info-card h3 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+            font-size: 16px;
+        }
+        .info-card p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 ZyatrIA Global - Déploiement Réussi !</h1>
+        <div class="url">
+            <strong>URL :</strong> https://zyatria-global.stephanechevry.workers.dev
+        </div>
+
+        <div class="success-box">
+            <strong>✅ Déploiement confirmé !</strong><br>
+            Ton site est maintenant en ligne avec toutes les configurations.
+        </div>
+
+        <div class="deployment-info">
+            <div class="info-card">
+                <h3>📦 Taille totale</h3>
+                <p><strong>1094.42 KiB</strong></p>
+                <p>Compressé : 252.46 KiB</p>
+            </div>
+            <div class="info-card">
+                <h3>⚡ Performance</h3>
+                <p><strong>10 ms</strong></p>
+                <p>Temps de démarrage</p>
+            </div>
+            <div class="info-card">
+                <h3>🔧 Modules</h3>
+                <p><strong>16 modules</strong></p>
+                <p>352.70 KiB JavaScript</p>
+            </div>
+            <div class="info-card">
+                <h3>🎨 Assets</h3>
+                <p><strong>4 fichiers</strong></p>
+                <p>CSS, images, fonts</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Tests à effectuer maintenant</h2>
+            <ul class="checklist">
+                <li>Vérifier que la page d'accueil s'affiche avec les styles terracotta/beige</li>
+                <li>Tester la navigation (menu, liens)</li>
+                <li>Vérifier que le design est responsive (mobile/desktop)</li>
+                <li>Tester le chatbot Mistral (ouvrir et envoyer un message)</li>
+                <li>Vérifier les formulaires de contact (Formspree)</li>
+                <li>Tester les boutons de paiement Stripe</li>
+                <li>Vérifier les animations et transitions</li>
+                <li>Tester la vitesse de chargement</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Variables configurées</h2>
+            <ul class="checklist">
+                <li>MISTRAL_API_KEY <span class="status success">Configuré</span></li>
+                <li>FORMSPREE_FORM_ID <span class="status success">Configuré</span></li>
+                <li>STRIPE_PUBLIC_KEY <span class="status success">Configuré</span></li>
+                <li>STRIPE_SECRET_KEY <span class="status success">Configuré</span></li>
+                <li>STRIPE_WEBHOOK_SECRET <span class="status success">Configuré</span></li>
+                <li>NODE_ENV = production <span class="status success">Configuré</span></li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Prochaines étapes :</strong><br>
+            1. Ouvre le site et vérifie que tout s'affiche correctement<br>
+            2. Teste chaque fonctionnalité (chatbot, formulaires, paiements)<br>
+            3. Si tout fonctionne, tu peux configurer un domaine personnalisé<br>
+            4. Optionnel : Supprimer l'ancien déploiement (compte de 26 jours)
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="https://zyatria-global.stephanechevry.workers.dev" target="_blank" class="btn">
+                🚀 Ouvrir le site
+            </a>
+            <a href="https://dash.cloudflare.com" target="_blank" class="btn">
+                📊 Dashboard Cloudflare
+            </a>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 Que vérifier en premier ?</h2>
+            <ol>
+                <li><strong>Design :</strong> Les couleurs terracotta (#C98769) et beige (#F5F1EB) sont-elles présentes ?</li>
+                <li><strong>Navigation :</strong> Le menu fonctionne-t-il correctement ?</li>
+                <li><strong>Responsive :</strong> Le site s'adapte-t-il bien sur mobile ?</li>
+                <li><strong>Chatbot :</strong> L'icône du chatbot apparaît-elle en bas à droite ?</li>
+                <li><strong>Performance :</strong> Le site charge-t-il rapidement ?</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Ajouter un effet de coche au clic
+        document.querySelectorAll('.checklist li').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.style.opacity === '0.5') {
+                    this.style.opacity = '1';
+                    this.style.textDecoration = 'none';
+                    this.querySelector('::before') ? this.querySelector('::before').textContent = '☐ ' : null;
+                } else {
+                    this.style.opacity = '0.5';
+                    this.style.textDecoration = 'line-through';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
