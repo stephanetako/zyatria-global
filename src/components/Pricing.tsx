@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useState } from 'react';
 import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
@@ -308,11 +309,14 @@ const Pricing: React.FC = () => {
                       );
                     }
                     
+                    // Si le lien est vide, rediriger vers contact au lieu de recharger la page
+                    const finalLink = paymentLink || '#contact';
+                    
                     return (
                       <a
-                        href={paymentLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={finalLink}
+                        target={paymentLink ? "_blank" : "_self"}
+                        rel={paymentLink ? "noopener noreferrer" : undefined}
                         className={cn(
                           "w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
                           plan.popular
@@ -439,6 +443,7 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
 
 
 
