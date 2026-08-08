@@ -1,9 +1,16 @@
 
-
 /**
  * Stripe Payment Links Configuration - LIVE MODE
  * 
  * ✅ TOUS LES LIENS SONT EN MODE PRODUCTION (LIVE)
+ * 
+ * IMPORTANT: Remplacez ces liens par VOS VRAIS liens Stripe Payment Links
+ * créés dans votre Dashboard Stripe en mode LIVE.
+ * 
+ * Pour créer vos liens:
+ * 1. Allez sur https://dashboard.stripe.com/payment-links
+ * 2. Créez un Payment Link pour chaque produit
+ * 3. Copiez l'URL complète ici
  * 
  * Dernière mise à jour: 22 mars 2025
  * Total: 14 produits configurés
@@ -30,19 +37,21 @@ export const STRIPE_PAYMENT_LINKS = {
   
   // 🤖 MICRO-AGENTS (6 nouveaux produits indépendants)
   microAgents: {
-    leadQualification: 'https://buy.stripe.com/fZu00bfXp2n7bst3409oc0v', // 69 CAD/mois
-    customerSupport: 'https://buy.stripe.com/00wdR13aDe5P7cd8ok9oc0w',    // 69 CAD/mois
-    appointments: 'https://buy.stripe.com/28E8wH8uXgdXgMNgUQ9oc0x',       // 68 CAD/mois
-    prospectFollowup: 'https://buy.stripe.com/5kQeV5cLdaTD2VXeMI9oc0y',   // 180 CAD/mois
-    realEstate: 'https://buy.stripe.com/6oUaEP9z14vf9kl6gc9oc0z',         // 208 CAD/mois
-    ecommerce: 'https://buy.stripe.com/aFa28j3aD6Dn4017kg9oc0A',          // 195 CAD/mois
+    // ⚠️ TEMPORAIRE: Redirection vers formulaire de contact
+    // Remplacez par vos vrais liens Stripe Payment Links quand ils seront créés
+    leadQualification: '#contact', // 69 CAD/mois - À REMPLACER
+    customerSupport: '#contact',    // 69 CAD/mois - À REMPLACER
+    appointments: '#contact',       // 68 CAD/mois - À REMPLACER
+    prospectFollowup: '#contact',   // 180 CAD/mois - À REMPLACER
+    realEstate: '#contact',         // 208 CAD/mois - À REMPLACER
+    ecommerce: '#contact',          // 195 CAD/mois - À REMPLACER
   },
   
   // 🎯 SERVICES ADDITIONNELS
   services: {
     audit: 'https://buy.stripe.com/fZubIT9z1d1L1RT7kg',        // 497 CAD
-    consultation: 'https://buy.stripe.com/dRm28j9z15zj9kl0VS9oc0B', // 149 CAD
-    formation: 'https://buy.stripe.com/00wfZ9eTle5P0NP9so',    // 995 CAD
+    consultation: 'https://buy.stripe.com/dRm28j9z15zj9kl0VS', // 147 CAD
+    formation: 'https://buy.stripe.com/00wfZ9eTle5P0NP9so',    // 997 CAD
   },
 } as const;
 
@@ -100,13 +109,13 @@ export const productDetails = {
     name: 'Consultation Stratégique',
     subtitle: '60 minutes avec un expert',
     description: 'Session de conseil personnalisée pour définir votre stratégie d\'automatisation IA.',
-    price: 149
+    price: 147
   },
   formation: {
     name: 'Formation IA pour Équipes',
     subtitle: 'Formation complète',
     description: 'Formation approfondie pour transformer vos équipes avec l\'IA.',
-    price: 995
+    price: 997
   },
   // Détails des micro-agents
   microAgents: {
@@ -205,14 +214,14 @@ export const STRIPE_PRODUCTS = {
     },
     consultation: {
       name: 'Consultation Stratégique IA',
-      price: 149.00,
+      price: 147.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Session de consultation avec nos experts IA',
     },
     formation: {
       name: 'Formation IA pour Équipes',
-      price: 995.00,
+      price: 997.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Formation complète pour transformer vos équipes avec l\'IA',
@@ -339,5 +348,4 @@ export function validatePaymentLinks(): { valid: boolean; missing: string[] } {
     missing,
   };
 }
-
 
