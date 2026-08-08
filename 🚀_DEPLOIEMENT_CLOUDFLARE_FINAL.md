@@ -1,162 +1,197 @@
-# 🚀 DÉPLOIEMENT CLOUDFLARE PAGES - GUIDE COMPLET
+# 🚀 DÉPLOIEMENT CLOUDFLARE - ÉTAPES FINALES
 
-## ✅ Prérequis
-- ✅ Projet sur GitHub : https://github.com/votre-username/zyatria-global
-- ✅ Compte Cloudflare (gratuit)
-- ✅ Clé API Mistral
-- ✅ Endpoint Formspree
+## ✅ CE QUI EST FAIT
+
+### 1. Build Réussi ✅
+```
+✓ Built in 8.30s
+✓ 57 files changed
+✓ Commit créé: "🚀 Deploy: Correction liens Stripe micro-agents"
+```
+
+### 2. Corrections Appliquées ✅
+- ✅ Liens Stripe micro-agents redirigent vers #contact
+- ✅ Plus d'erreur "Something went wrong"
+- ✅ Guide de création des liens Stripe créé
+- ✅ Tous les fichiers commités
 
 ---
 
-## 📝 ÉTAPE 1 : Connexion à Cloudflare
+## 🎯 ÉTAPES RESTANTES (À FAIRE MANUELLEMENT)
 
-1. Allez sur : https://dash.cloudflare.com/
-2. Connectez-vous ou créez un compte gratuit
-3. Dans le menu de gauche, cliquez sur **"Workers & Pages"**
-4. Cliquez sur **"Create application"**
-5. Sélectionnez l'onglet **"Pages"**
-6. Cliquez sur **"Connect to Git"**
+### Option 1 : Via GitHub (Recommandé)
+
+#### Étape 1 : Push vers GitHub
+```bash
+# Sur votre machine locale, dans le dossier du projet :
+git push origin master
+```
+
+#### Étape 2 : Cloudflare déploiera automatiquement
+- Cloudflare détecte le push
+- Build automatique
+- Déploiement en ~2-3 minutes
 
 ---
 
-## 📝 ÉTAPE 2 : Connecter GitHub
+### Option 2 : Via Wrangler (Direct)
 
-1. Cliquez sur **"Connect GitHub"**
-2. Autorisez Cloudflare à accéder à votre compte GitHub
-3. Sélectionnez le repository **"zyatria-global"**
-4. Cliquez sur **"Begin setup"**
-
----
-
-## 📝 ÉTAPE 3 : Configuration du Build
-
-### Paramètres de build :
-
-```
-Project name: zyatria-global
-Production branch: main
-Build command: npm run build
-Build output directory: dist
+#### Étape 1 : Installer Wrangler (si pas déjà fait)
+```bash
+npm install -g wrangler
 ```
 
-### Framework preset :
-Sélectionnez **"Astro"** dans la liste déroulante
-
----
-
-## 📝 ÉTAPE 4 : Variables d'environnement
-
-Cliquez sur **"Add environment variable"** et ajoutez :
-
-### Variable 1 : MISTRAL_API_KEY
-```
-Name: MISTRAL_API_KEY
-Value: [Votre clé API Mistral]
+#### Étape 2 : Login Cloudflare
+```bash
+wrangler login
 ```
 
-### Variable 2 : FORMSPREE_ENDPOINT
-```
-Name: FORMSPREE_ENDPOINT
-Value: https://formspree.io/f/xnnqnoqy
-```
-
-### Variable 3 : FORMSPREE_EMAIL
-```
-Name: FORMSPREE_EMAIL
-Value: contact@zyatria.global
+#### Étape 3 : Déployer
+```bash
+npx wrangler pages deploy dist
 ```
 
 ---
 
-## 📝 ÉTAPE 5 : Lancer le déploiement
+## 📊 VÉRIFICATION POST-DÉPLOIEMENT
 
-1. Vérifiez tous les paramètres
-2. Cliquez sur **"Save and Deploy"**
-3. Attendez 2-5 minutes (le build prend du temps)
+### 1. Vérifier le Site
+Allez sur votre URL Cloudflare et testez :
 
----
+✅ **Pages à vérifier :**
+- [ ] Page d'accueil
+- [ ] Section Pricing
+- [ ] Section Micro-Agents
+- [ ] Formulaire de contact
 
-## 📝 ÉTAPE 6 : Vérification
+✅ **Boutons Stripe à tester :**
+- [ ] Starter Monthly → Doit ouvrir Stripe
+- [ ] Professional → Doit ouvrir Stripe
+- [ ] Enterprise → Doit ouvrir Stripe
+- [ ] Audit → Doit ouvrir Stripe
+- [ ] Consultation → Doit ouvrir Stripe
+- [ ] Formation → Doit ouvrir Stripe
 
-Une fois le déploiement terminé :
-
-1. Cloudflare vous donnera une URL : `https://zyatria-global.pages.dev`
-2. Cliquez sur l'URL pour ouvrir votre site
-3. Testez :
-   - ✅ Navigation
-   - ✅ Formulaires
-   - ✅ Chatbot Mistral
-   - ✅ Responsive design
-
----
-
-## 🔧 ÉTAPE 7 : Configuration du domaine personnalisé (Optionnel)
-
-Si vous avez un domaine (ex: zyatria.global) :
-
-1. Dans Cloudflare Pages, allez dans **"Custom domains"**
-2. Cliquez sur **"Set up a custom domain"**
-3. Entrez votre domaine : `zyatria.global`
-4. Suivez les instructions pour configurer les DNS
+✅ **Boutons Micro-Agents à tester :**
+- [ ] Lead Qualification → Doit scroller vers #contact
+- [ ] Customer Support → Doit scroller vers #contact
+- [ ] Appointments → Doit scroller vers #contact
+- [ ] Prospect Followup → Doit scroller vers #contact
+- [ ] Real Estate → Doit scroller vers #contact
+- [ ] E-commerce → Doit scroller vers #contact
 
 ---
 
-## 🎯 DÉPLOIEMENTS AUTOMATIQUES
+## 🔧 SI PROBLÈME DE CACHE
 
-Maintenant, chaque fois que vous poussez sur GitHub :
-- ✅ Cloudflare détecte automatiquement les changements
-- ✅ Lance un nouveau build
-- ✅ Déploie la nouvelle version
-- ✅ Votre site est mis à jour en 2-5 minutes
+Si le site ne se met pas à jour :
 
----
+### 1. Purger le Cache Cloudflare
+```bash
+# Dans le Dashboard Cloudflare :
+Caching → Configuration → Purge Everything
+```
 
-## 🐛 DÉPANNAGE
-
-### Erreur de build ?
-1. Vérifiez les logs dans Cloudflare
-2. Assurez-vous que toutes les variables d'environnement sont définies
-3. Vérifiez que le build fonctionne localement : `npm run build`
-
-### Chatbot ne fonctionne pas ?
-1. Vérifiez que `MISTRAL_API_KEY` est bien définie
-2. Testez l'API localement
-3. Vérifiez les logs du navigateur (F12 > Console)
-
-### Formulaires ne fonctionnent pas ?
-1. Confirmez votre email sur Formspree
-2. Vérifiez que `FORMSPREE_ENDPOINT` est correct
-3. Testez en mode développement d'abord
+### 2. Forcer le Redéploiement
+```bash
+# Créer un commit vide et push
+git commit --allow-empty -m "Force redeploy"
+git push origin master
+```
 
 ---
 
-## 📊 MONITORING
+## 📝 VARIABLES D'ENVIRONNEMENT
 
-### Cloudflare Analytics
-- Visitez **"Analytics & Logs"** dans votre projet
-- Voyez le trafic, les erreurs, les performances
+### Vérifier dans Cloudflare Dashboard
 
-### Formspree Dashboard
-- https://formspree.io/forms
-- Voyez toutes les soumissions de formulaires
+Allez dans : **Workers & Pages → Votre projet → Settings → Environment Variables**
 
----
+✅ **Variables requises :**
+```
+FORMSPREE_FORM_ID=xdkooqpb
+MISTRAL_API_KEY=votre_clé_mistral
+STRIPE_SECRET_KEY=votre_clé_stripe
+STRIPE_PUBLISHABLE_KEY=votre_clé_publique_stripe
+STRIPE_WEBHOOK_SECRET=votre_webhook_secret
+```
 
-## 🎉 FÉLICITATIONS !
-
-Votre site est maintenant en ligne ! 🚀
-
-**URL de production :** `https://zyatria-global.pages.dev`
-
----
-
-## 📞 BESOIN D'AIDE ?
-
-- Documentation Cloudflare Pages : https://developers.cloudflare.com/pages/
-- Documentation Astro : https://docs.astro.build/
-- Support Formspree : https://help.formspree.io/
+⚠️ **Important :** Si ces variables ne sont pas définies, certaines fonctionnalités ne marcheront pas.
 
 ---
 
-**Créé le :** 2026-05-23
-**Dernière mise à jour :** 2026-05-23
+## 🎯 PROCHAINES ÉTAPES
+
+### Immédiat (Aujourd'hui)
+1. ✅ Push vers GitHub : `git push origin master`
+2. ✅ Attendre le déploiement Cloudflare (2-3 min)
+3. ✅ Tester le site
+
+### Court Terme (Cette Semaine)
+1. 📝 Créer les 6 Payment Links Stripe pour les micro-agents
+2. 📝 Mettre à jour `src/config/stripe-links.ts`
+3. 📝 Redéployer
+
+### Moyen Terme (Ce Mois)
+1. 🔑 Configurer les variables d'environnement Cloudflare
+2. 🤖 Activer le chatbot Mistral (si souhaité)
+3. 📧 Tester le formulaire Formspree
+
+---
+
+## 📖 GUIDES DISPONIBLES
+
+- ✅ `GUIDE_CREER_LIENS_STRIPE_MICRO_AGENTS.md` - Créer les liens Stripe
+- ✅ `GUIDE_DEPLOIEMENT_COMPLET_3_ETAPES.md` - Déploiement complet
+- ✅ `🔑_GUIDE_VARIABLES_CLOUDFLARE.md` - Variables d'environnement
+- ✅ `CHECKLIST_POST_DEPLOIEMENT.md` - Checklist complète
+
+---
+
+## 🆘 BESOIN D'AIDE ?
+
+### Problème de Push GitHub
+```bash
+# Si erreur d'authentification :
+git remote set-url origin https://VOTRE_TOKEN@github.com/VOTRE_USERNAME/VOTRE_REPO.git
+git push origin master
+```
+
+### Problème de Build Cloudflare
+1. Vérifier les logs dans Cloudflare Dashboard
+2. Vérifier que `wrangler.toml` est correct
+3. Vérifier que toutes les dépendances sont dans `package.json`
+
+### Problème de Variables d'Environnement
+1. Aller dans Cloudflare Dashboard
+2. Workers & Pages → Settings → Environment Variables
+3. Ajouter les variables manquantes
+4. Redéployer
+
+---
+
+## ✅ RÉSUMÉ
+
+**Ce qui fonctionne maintenant :**
+- ✅ Build réussi
+- ✅ Commit créé
+- ✅ Liens Stripe corrigés
+- ✅ Micro-agents redirigent vers contact
+- ✅ Plus d'erreur "Something went wrong"
+
+**Ce qu'il reste à faire :**
+- 🔄 Push vers GitHub (manuel)
+- 🔄 Attendre déploiement Cloudflare
+- 🔄 Tester le site
+- 📝 Créer les liens Stripe micro-agents (plus tard)
+
+---
+
+## 🎉 PRÊT À DÉPLOYER !
+
+**Commande à exécuter sur votre machine :**
+```bash
+git push origin master
+```
+
+Puis attendez 2-3 minutes et testez votre site ! 🚀
