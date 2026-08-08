@@ -1,89 +1,86 @@
-╔══════════════════════════════════════════════════════════════╗
-║                                                              ║
-║          🚀 DÉPLOYER VOTRE SITE EN 1 CLIC                   ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
+🚀 PUSH VERS GITHUB - MODE D'EMPLOI
+=====================================
+
+📁 FICHIER À EXÉCUTER:
+----------------------
+push-to-github.ps1
 
 
-📋 INSTRUCTIONS ULTRA-SIMPLES:
-
-1️⃣  Faites un clic droit sur le fichier:
-    
-    DEPLOYER-MAINTENANT.ps1
-
-2️⃣  Sélectionnez:
-    
-    "Exécuter avec PowerShell"
-
-3️⃣  Attendez 3-4 minutes
-
-4️⃣  C'est tout ! ✅
+⚡ MÉTHODE 1: DOUBLE-CLIC (RECOMMANDÉ)
+--------------------------------------
+1. Faites un clic droit sur: push-to-github.ps1
+2. Sélectionnez: "Exécuter avec PowerShell"
+3. Suivez les instructions à l'écran
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ MÉTHODE 2: POWERSHELL MANUEL
+-------------------------------
+1. Ouvrez PowerShell dans ce dossier:
+   - Shift + Clic droit dans le dossier
+   - Sélectionnez "Ouvrir PowerShell ici"
+
+2. Exécutez:
+   .\push-to-github.ps1
 
 
-⚠️  SI VOUS AVEZ UNE ERREUR "SCRIPT NON SIGNÉ":
+🔐 SI ERREUR "SCRIPT NON SIGNÉ"
+--------------------------------
+Exécutez cette commande UNE SEULE FOIS:
 
-Ouvrez PowerShell en tant qu'administrateur et tapez:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
-    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
-
-Puis appuyez sur Entrée et tapez "O" pour Oui.
-
-Ensuite, refaites un clic droit sur DEPLOYER-MAINTENANT.ps1
+Puis relancez le script.
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔑 SI GITHUB DEMANDE UN MOT DE PASSE
+-------------------------------------
+1. Créez un Personal Access Token:
+   https://github.com/settings/tokens
+
+2. Cliquez sur "Generate new token (classic)"
+
+3. Cochez "repo" (accès complet)
+
+4. Générez et COPIEZ LE TOKEN
+
+5. Utilisez-le comme mot de passe:
+   - Username: stephanetako
+   - Password: [VOTRE TOKEN]
 
 
-📊 CE QUI VA SE PASSER:
-
-✅ Le script va envoyer votre code vers GitHub
-✅ Cloudflare va détecter le changement
-✅ Cloudflare va construire votre site
-✅ Cloudflare va déployer votre site
-✅ Votre site sera en ligne en 3-4 minutes
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CE QUE LE SCRIPT FAIT
+-------------------------
+1. ✅ Vérifie que vous êtes dans le bon dossier
+2. ✅ Affiche le statut Git
+3. ✅ Récupère les derniers changements (pull)
+4. ✅ Push vers GitHub
+5. ✅ Affiche les prochaines étapes
 
 
-🎯 APRÈS LE DÉPLOIEMENT:
+📊 APRÈS LE PUSH
+-----------------
+1. Vérifiez sur GitHub:
+   https://github.com/stephanetako/zyatria-global
 
-1. Ouvrez votre dashboard Cloudflare
-2. Vérifiez que le déploiement est "Success"
-3. Testez votre site
-4. Vérifiez les boutons Stripe
-5. Testez le chatbot
+2. Cloudflare déploiera automatiquement (3-4 min)
+   https://dash.cloudflare.com
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-
-⚠️  IMPORTANT:
-
-Vous êtes en MODE LIVE Stripe !
-Les paiements seront RÉELS.
-
-Carte de test Stripe:
-4242 4242 4242 4242
-Date: N'importe quelle date future
-CVC: 123
+3. Testez votre site:
+   https://zyatria-global.pages.dev
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 PROCHAINES ÉTAPES
+--------------------
+Après le déploiement, configurez Stripe:
+Ouvrez: 🎯_CONFIGURER_STRIPE_MAINTENANT.md
 
 
-🆘 BESOIN D'AIDE ?
-
-Si le script ne fonctionne pas, ouvrez PowerShell et tapez:
-
-    cd "C:\chemin\vers\votre\projet"
-    git push origin master
+💡 BESOIN D'AIDE ?
+------------------
+Si vous avez une erreur, copiez le message
+et je vous aide immédiatement ! 😊
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-
-🎊 C'EST TOUT ! BONNE CHANCE ! 🎊
+🚀 ALLEZ-Y !
+------------
+Double-cliquez sur: push-to-github.ps1
