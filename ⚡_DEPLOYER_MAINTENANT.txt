@@ -1,88 +1,60 @@
-╔════════════════════════════════════════════════════════╗
-║                                                        ║
-║     ⚡ DÉPLOYER MAINTENANT - 2 MINUTES                ║
-║                                                        ║
-╚════════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║  ⚡ DÉPLOYER VOTRE SITE MAINTENANT                            ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
 
+🎯 VOTRE PROBLÈME:
+   Le site sur zyatria-global.zyatria-contact.workers.dev
+   ne ressemble pas à votre projet local.
 
-🎯 VOUS VOULEZ JUSTE DÉPLOYER RAPIDEMENT ?
+✅ LA SOLUTION EN 1 COMMANDE:
 
+   ./deploy-fix-cloudflare.sh
 
-═══════════════════════════════════════════════════════
+⏱️  DURÉE: 2-3 minutes
 
-OPTION 1 : SCRIPT AUTOMATIQUE (LE PLUS SIMPLE)
+📋 ÉTAPES APRÈS LE DÉPLOIEMENT:
 
-═══════════════════════════════════════════════════════
+   1. Attendre 2-3 minutes (propagation Cloudflare)
+   
+   2. Vider le cache du navigateur:
+      • Windows/Linux: Ctrl + Shift + R
+      • Mac: Cmd + Shift + R
+   
+   3. Ouvrir: https://zyatria-global.zyatria-contact.workers.dev
+   
+   4. Vérifier que vous voyez:
+      ✓ Logo ZyatrIA
+      ✓ "Transformez Votre Entreprise"
+      ✓ Nos Solutions
+      ✓ Micro-agents
+      ✓ Tarification
+      ✓ Chatbot (✨)
 
-Ouvrez le terminal et tapez :
+🔧 SI VOUS N'ÊTES PAS CONNECTÉ À CLOUDFLARE:
 
-    cd /app
-    ./deploy-now.sh
+   npx wrangler login
 
-Puis suivez les instructions à l'écran.
+🔍 POUR VÉRIFIER L'ÉTAT ACTUEL:
 
-✅ Temps : 2-5 minutes
-✅ Tout est automatique
+   ./check-cloudflare-deployment.sh
 
+📖 GUIDES COMPLETS:
 
-═══════════════════════════════════════════════════════
+   • 👉_COMMENCER_ICI_SITE_CLOUDFLARE.md (Guide débutant)
+   • 🎯_SOLUTION_RAPIDE_3_COMMANDES.md (Solution rapide)
+   • 🔍_DIAGNOSTIC_SITE_CLOUDFLARE.md (Diagnostic complet)
+   • 🔑_CONFIGURER_CLOUDFLARE_ENV.md (Variables d'environnement)
+   • 📊_RESUME_CORRECTION_SITE.md (Résumé complet)
 
-OPTION 2 : COMMANDES MANUELLES (SI VOUS PRÉFÉREZ)
+🚀 COMMANDE RAPIDE:
 
-═══════════════════════════════════════════════════════
+   ./deploy-fix-cloudflare.sh && echo "✅ Déploiement lancé! Attendez 2-3 minutes puis testez l'URL."
 
-Tapez ces 2 commandes :
+═══════════════════════════════════════════════════════════════
 
-    npm run build
-    npx wrangler pages deploy dist --project-name=zyatria-global
+💡 CONSEIL: Testez toujours en mode incognito après le déploiement
+           pour éviter les problèmes de cache du navigateur.
 
-Si demandé, connectez-vous à Cloudflare :
-
-    npx wrangler login
-
-✅ Temps : 2-3 minutes
-✅ Votre site sera en ligne !
-
-
-═══════════════════════════════════════════════════════
-
-RÉSULTAT
-
-═══════════════════════════════════════════════════════
-
-Votre site sera accessible sur :
-
-    https://zyatria-global.pages.dev
-
-Vous pourrez ensuite configurer votre domaine personnalisé :
-
-    https://zyatria.global
-
-
-═══════════════════════════════════════════════════════
-
-BESOIN D'AIDE ?
-
-═══════════════════════════════════════════════════════
-
-Consultez les guides détaillés :
-
-    📖 👉_COMMENCER_ICI_DEPLOIEMENT.md
-    📖 🚀_GUIDE_DEPLOIEMENT_COMPLET.md
-    📖 🌐_GUIDE_DOMAINE_PERSONNALISE.md
-
-
-═══════════════════════════════════════════════════════
-
-PRÊT ? LANCEZ LA COMMANDE ! 🚀
-
-═══════════════════════════════════════════════════════
-
-    ./deploy-now.sh
-
-
-╔════════════════════════════════════════════════════════╗
-║                                                        ║
-║     🎉 BONNE CHANCE !                                 ║
-║                                                        ║
-╚════════════════════════════════════════════════════════╝
+═══════════════════════════════════════════════════════════════

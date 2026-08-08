@@ -3,6 +3,7 @@
 
 
 
+
 import React from 'react';
 import { Headphones, Target, Users, Bell, ShoppingCart, ArrowRight, MessageSquare, Calendar, Home, CheckCircle2, Zap, CreditCard, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -317,9 +318,9 @@ export default function MicroAgents() {
                       href={agent.stripeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r ${solidColors[index % solidColors.length].replace('bg-', 'from-')} to-violet-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105`}
+                      className={`inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-zinc-900 to-zinc-800 dark:from-zinc-100 dark:to-zinc-200 text-white dark:text-zinc-900 rounded-lg font-bold text-base hover:shadow-xl hover:shadow-zinc-900/30 dark:hover:shadow-zinc-100/30 transition-all hover:scale-105`}
                     >
-                      <CreditCard className="w-4 h-4" />
+                      <CreditCard className="w-5 h-5" />
                       {t.buttons.buyNow}
                     </a>
                     <button
@@ -359,6 +360,7 @@ export default function MicroAgents() {
     </section>
   );
 }
+
 
 
 

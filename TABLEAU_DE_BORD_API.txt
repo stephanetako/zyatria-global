@@ -1,0 +1,237 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║                  🎯 TABLEAU DE BORD - CLÉS API                          ║
+║                      ZyatrIA Global                                      ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                         📊 STATUT GLOBAL                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    Services Actifs     : 3/5  (60%)
+    Services Inactifs   : 1/5  (20%)
+    Services Optionnels : 1/5  (20%)
+    
+    Statut Global       : ⚠️  ACTION REQUISE
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                      🔑 DÉTAILS PAR SERVICE                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+    ┌────────────────────────────────────────────────────────────────┐
+    │  1. FORMSPREE                                    ✅ ACTIF       │
+    ├────────────────────────────────────────────────────────────────┤
+    │  Variable      : FORMSPREE_FORM_ID                             │
+    │  Présente      : ✅ Oui (8 caractères)                         │
+    │  API Test      : ✅ Fonctionne (200 OK)                        │
+    │  Form ID       : xbdedonn                                      │
+    │                                                                │
+    │  Fonctionnalités :                                             │
+    │    • Formulaire de contact                                     │
+    │    • Formulaire de qualification de leads                      │
+    │    • Formulaire simple                                         │
+    │                                                                │
+    │  Action        : ✅ Aucune - Tout fonctionne                   │
+    └────────────────────────────────────────────────────────────────┘
+
+
+    ┌────────────────────────────────────────────────────────────────┐
+    │  2. MISTRAL AI                                   ❌ INVALIDE    │
+    ├────────────────────────────────────────────────────────────────┤
+    │  Variable      : MISTRAL_API_KEY                               │
+    │  Présente      : ✅ Oui (94 caractères)                        │
+    │  API Test      : ❌ Échec (401 Unauthorized)                   │
+    │  Erreur        : {"detail":"Unauthorized"}                     │
+    │                                                                │
+    │  Impact :                                                      │
+    │    ❌ Chatbot IA intelligent désactivé                         │
+    │    ✅ Fallback actif (réponses pré-programmées)                │
+    │    ✅ Le reste du site fonctionne                              │
+    │                                                                │
+    │  Cause Probable :                                              │
+    │    • Clé révoquée ou expirée                                   │
+    │    • Clé de test invalide                                      │
+    │    • Compte Mistral suspendu                                   │
+    │                                                                │
+    │  Action        : 🚨 CRITIQUE - Obtenir nouvelle clé            │
+    │                  👉 https://console.mistral.ai/api-keys/       │
+    │                  🧪 Test : bash test-mistral-quick.sh          │
+    └────────────────────────────────────────────────────────────────┘
+
+
+    ┌────────────────────────────────────────────────────────────────┐
+    │  3. STRIPE                                       ✅ ACTIF       │
+    ├────────────────────────────────────────────────────────────────┤
+    │  Variable (Public)  : STRIPE_PUBLIC_KEY                        │
+    │  Présente           : ✅ Oui (107 caractères)                  │
+    │                                                                │
+    │  Variable (Secret)  : STRIPE_SECRET_KEY                        │
+    │  Présente           : ✅ Oui (107 caractères)                  │
+    │  API Test           : ✅ Fonctionne (200 OK)                   │
+    │                                                                │
+    │  Variable (Webhook) : STRIPE_WEBHOOK_SECRET                    │
+    │  Présente           : ✅ Oui (70 caractères)                   │
+    │                                                                │
+    │  Mode               : 🧪 TEST                                  │
+    │  Balance            : Disponible                               │
+    │                                                                │
+    │  Fonctionnalités :                                             │
+    │    • Liens de paiement (Starter, Business, Enterprise)         │
+    │    • Services professionnels                                   │
+    │    • Webhooks configurés                                       │
+    │                                                                │
+    │  Action        : ✅ Aucune - Tout fonctionne                   │
+    │                  💡 Passer en mode LIVE quand prêt             │
+    └────────────────────────────────────────────────────────────────┘
+
+
+    ┌────────────────────────────────────────────────────────────────┐
+    │  4. CLAUDE AI                                    ⚠️ OPTIONNEL  │
+    ├────────────────────────────────────────────────────────────────┤
+    │  Variable      : CLAUDE_API_KEY                                │
+    │  Présente      : ✅ Oui (108 caractères)                       │
+    │  API Test      : ⚠️ Crédit insuffisant (400)                   │
+    │  Erreur        : "credit balance is too low"                   │
+    │                                                                │
+    │  Impact :                                                      │
+    │    ⚠️ Fallback Claude AI non disponible                        │
+    │    ✅ Mistral AI est le chatbot principal                      │
+    │    ✅ Le site fonctionne normalement                           │
+    │                                                                │
+    │  Options :                                                     │
+    │    A) Recharger le compte Claude                               │
+    │       👉 https://console.anthropic.com/settings/billing        │
+    │    B) Ignorer (recommandé)                                     │
+    │       💡 Mistral AI suffit pour le chatbot                     │
+    │                                                                │
+    │  Action        : ⚠️ OPTIONNEL - Recharger ou ignorer           │
+    └────────────────────────────────────────────────────────────────┘
+
+
+    ┌────────────────────────────────────────────────────────────────┐
+    │  5. WEBFLOW                                      ✅ ACTIF       │
+    ├────────────────────────────────────────────────────────────────┤
+    │  Variable (API Host) : WEBFLOW_API_HOST                        │
+    │  Présente            : ✅ Oui (30 caractères)                  │
+    │                                                                │
+    │  Variable (Site)     : WEBFLOW_SITE_API_TOKEN                  │
+    │  Présente            : ✅ Oui (64 caractères)                  │
+    │  API Test            : ✅ Fonctionne (200 OK)                  │
+    │                                                                │
+    │  Variable (CMS)      : WEBFLOW_CMS_SITE_API_TOKEN              │
+    │  Présente            : ✅ Oui (64 caractères)                  │
+    │                                                                │
+    │  Site Détecté        : zyatrIA global                          │
+    │  Site ID             : 697ec25bd0d133ec130fec11                │
+    │                                                                │
+    │  Fonctionnalités :                                             │
+    │    • Intégration Webflow                                       │
+    │    • Accès au CMS                                              │
+    │    • Synchronisation des données                               │
+    │                                                                │
+    │  Action        : ✅ Aucune - Tout fonctionne                   │
+    └────────────────────────────────────────────────────────────────┘
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                        🎯 PLAN D'ACTION                                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    PRIORITÉ 1 : MISTRAL AI (CRITIQUE)
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
+    ❌ Problème  : Clé invalide (401 Unauthorized)
+    ✅ Solution  : Obtenir nouvelle clé (2 minutes)
+    🔗 Lien      : https://console.mistral.ai/api-keys/
+    🧪 Test      : bash test-mistral-quick.sh
+    📄 Guide     : 👉_ACTION_IMMEDIATE_MISTRAL.md
+    
+    
+    PRIORITÉ 2 : CLAUDE AI (OPTIONNEL)
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
+    ⚠️ Problème  : Crédit épuisé
+    ✅ Solution  : Recharger ou ignorer
+    🔗 Lien      : https://console.anthropic.com/settings/billing
+    💡 Note      : Pas critique, Mistral AI suffit
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                    ✅ CE QUI FONCTIONNE DÉJÀ                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    ✅  Formulaires de contact (Formspree)
+    ✅  Paiements Stripe (mode test)
+    ✅  Intégration Webflow
+    ✅  Build et déploiement
+    ✅  Navigation et pages
+    ✅  Réponses de fallback du chatbot
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                   ❌ CE QUI NE FONCTIONNE PAS                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    ❌  Chatbot IA intelligent (Mistral invalide)
+    ⚠️  Fallback Claude AI (crédit épuisé - optionnel)
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                      📁 FICHIERS DE RÉFÉRENCE                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    📄  RESUME_VERIFICATION_API.txt
+        → Ce fichier (résumé visuel)
+
+    📄  RAPPORT_VERIFICATION_CLES_API.md
+        → Rapport détaillé complet
+
+    📄  👉_ACTION_IMMEDIATE_MISTRAL.md
+        → Guide d'action immédiate pour Mistral AI
+
+    📄  GUIDE_MISTRAL_API_KEY.md
+        → Guide complet pour obtenir une nouvelle clé
+
+    📄  test-mistral-quick.sh
+        → Script de test rapide de clé Mistral
+
+    📄  DESACTIVER_CHATBOT_TEMPORAIRE.md
+        → Options si vous voulez déployer sans chatbot
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                       🚀 COMMANDES UTILES                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    Tester nouvelle clé Mistral :
+    $ bash test-mistral-quick.sh
+
+    Vérifier toutes les clés :
+    $ bash /tmp/verify-all-keys.sh
+
+    Tester localement :
+    $ npm run dev
+
+    Builder le projet :
+    $ npm run build
+
+    Déployer sur Cloudflare :
+    $ wrangler pages deploy dist
+
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║                    🎯 PROCHAINE ÉTAPE RECOMMANDÉE                       ║
+║                                                                          ║
+║  1. Ouvrez : https://console.mistral.ai/api-keys/                       ║
+║  2. Créez une nouvelle clé API                                          ║
+║  3. Testez avec : bash test-mistral-quick.sh                            ║
+║  4. Déployez : npm run build && wrangler pages deploy dist              ║
+║                                                                          ║
+║  Temps estimé : 2-5 minutes                                             ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝

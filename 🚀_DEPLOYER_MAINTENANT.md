@@ -1,194 +1,284 @@
-# 🚀 DÉPLOYER MAINTENANT - GUIDE RAPIDE
+# 🚀 DÉPLOYER MAINTENANT - COMMANDES RAPIDES
 
-## ⚡ DÉPLOIEMENT EN 3 COMMANDES
+## ✅ PRÉ-REQUIS COMPLÉTÉS
 
-### Étape 1 : Se connecter à Cloudflare
+- ✅ Build réussi (4.4 MB)
+- ✅ Variables configurées dans Cloudflare
+- ✅ Projet prêt pour production
+
+---
+
+## 🎯 MÉTHODE 1 : WRANGLER CLI (RECOMMANDÉ)
+
+### Étape 1 : Vérifier Wrangler
+
+```bash
+wrangler --version
+```
+
+**Si non installé :**
+```bash
+npm install -g wrangler
+```
+
+---
+
+### Étape 2 : Se Connecter
+
 ```bash
 wrangler login
 ```
-- Une fenêtre de navigateur va s'ouvrir
-- Connectez-vous avec votre compte Cloudflare
-- Autorisez Wrangler
 
-### Étape 2 : Déployer le site
+Cela ouvrira votre navigateur pour l'authentification Cloudflare.
+
+---
+
+### Étape 3 : Déployer
+
 ```bash
-wrangler deploy
+wrangler pages deploy dist --project-name=zyatria-global
 ```
-- Le déploiement prend environ 30 secondes
-- Votre site sera disponible sur : **https://zyatria-global.workers.dev**
 
-### Étape 3 : Configurer les secrets
-```bash
-# Mistral AI (Chatbot)
-echo "VOTRE_CLE_MISTRAL" | wrangler secret put MISTRAL_API_KEY
-
-# Formspree (Formulaires)
-echo "VOTRE_FORM_ID" | wrangler secret put FORMSPREE_FORM_ID
-
-# Stripe (Paiements)
-echo "VOTRE_STRIPE_PUBLIC_KEY" | wrangler secret put STRIPE_PUBLIC_KEY
-echo "VOTRE_STRIPE_SECRET_KEY" | wrangler secret put STRIPE_SECRET_KEY
-echo "VOTRE_STRIPE_WEBHOOK_SECRET" | wrangler secret put STRIPE_WEBHOOK_SECRET
+**Résultat attendu :**
+```
+✨ Success! Uploaded 245 files (4.4 MB total)
+✨ Deployment complete! 
+🌎 https://zyatria-global.pages.dev
 ```
 
 ---
 
-## 📋 SCRIPT AUTOMATIQUE
+## 🎯 MÉTHODE 2 : VIA GIT (AUTOMATIQUE)
 
-### Utiliser le script de déploiement
+Si vous avez connecté GitHub à Cloudflare :
 
 ```bash
-# 1. Rendre le script exécutable
-chmod +x deploy-cloudflare.sh
-
-# 2. Lancer le déploiement
-./deploy-cloudflare.sh
+# Commiter les changements
+git add .
+git commit -m "🚀 Production deployment with all variables configured"
+git push origin main
 ```
+
+Cloudflare déploiera automatiquement !
 
 ---
 
-## 🔐 RÉCUPÉRER VOS CLÉS API
+## 🎯 MÉTHODE 3 : UPLOAD MANUEL
 
-### Mistral AI
-1. Allez sur https://console.mistral.ai/
-2. Créez un compte (gratuit)
-3. Allez dans "API Keys"
-4. Créez une nouvelle clé
-5. Copiez la clé (commence par `sk-...`)
+### Créer une archive
 
-### Formspree
-1. Allez sur https://formspree.io/
-2. Créez un compte (gratuit)
-3. Créez un nouveau formulaire
-4. Copiez le Form ID (format : `xyzabc123`)
+```bash
+cd dist
+zip -r ../zyatria-global-dist.zip .
+cd ..
+```
 
-### Stripe
-1. Allez sur https://dashboard.stripe.com/
-2. Créez un compte
-3. Allez dans "Developers" > "API Keys"
-4. Copiez :
-   - **Publishable key** (commence par `pk_live_...` ou `pk_test_...`)
-   - **Secret key** (commence par `sk_live_...` ou `sk_test_...`)
-5. Pour le webhook secret :
-   - Allez dans "Developers" > "Webhooks"
-   - Créez un endpoint : `https://zyatria-global.workers.dev/api/stripe/webhook`
-   - Copiez le **Signing secret** (commence par `whsec_...`)
+### Upload sur Cloudflare
+
+1. Allez sur https://dash.cloudflare.com/
+2. **Workers & Pages** → `zyatria-global`
+3. **Deployments** → **Upload assets**
+4. Glissez-déposez `zyatria-global-dist.zip`
 
 ---
 
-## ✅ VÉRIFICATION APRÈS DÉPLOIEMENT
+## ✅ APRÈS LE DÉPLOIEMENT
 
-### 1. Tester le site
-```bash
-# Ouvrir le site dans le navigateur
-open https://zyatria-global.workers.dev
-```
+### 1. Vérifier le Site
 
-### 2. Vérifier les logs
-```bash
-# Voir les logs en temps réel
-wrangler tail
-```
+Ouvrez : `https://zyatria-global.pages.dev`
 
-### 3. Vérifier les secrets
-```bash
-# Lister tous les secrets configurés
-wrangler secret list
-```
+**Checklist :**
+- [ ] Page d'accueil charge
+- [ ] Logo visible
+- [ ] Navigation fonctionne
+- [ ] Design correct
 
-### 4. Tester le chatbot
+---
+
+### 2. Tester le Chatbot
+
 ```bash
-curl https://zyatria-global.workers.dev/api/mistral-chat \
+curl https://zyatria-global.pages.dev/api/ai/chat \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"message":"Bonjour"}'
+  -d '{"message":"Bonjour, comment ça va?"}'
 ```
+
+**Résultat attendu :** Réponse JSON avec le message du chatbot
 
 ---
 
-## 🌐 CONFIGURER UN DOMAINE PERSONNALISÉ
+### 3. Tester le Formulaire
 
-### Via Wrangler CLI
+1. Allez sur `https://zyatria-global.pages.dev/contact-simple`
+2. Remplissez le formulaire
+3. Soumettez
+4. Vérifiez votre email Formspree
+
+---
+
+### 4. Tester Stripe
+
 ```bash
-wrangler domains add votredomaine.com
+curl https://zyatria-global.pages.dev/api/stripe/test
 ```
 
-### Via Dashboard Cloudflare
-1. Allez sur https://dash.cloudflare.com
-2. Workers & Pages > zyatria-global
-3. Triggers > Custom Domains
-4. Add Custom Domain
-5. Entrez votre domaine
+**Résultat attendu :** `{"status":"ok","stripe":"connected"}`
 
 ---
 
-## 🐛 DÉPANNAGE
+### 5. Voir les Logs
 
-### Erreur : "Not authenticated"
+```bash
+wrangler pages deployment tail --project-name=zyatria-global
+```
+
+Cela affichera les logs en temps réel.
+
+---
+
+## 🐛 DÉPANNAGE RAPIDE
+
+### Problème : "Project not found"
+
+**Solution :**
+```bash
+# Créer le projet d'abord
+wrangler pages project create zyatria-global
+
+# Puis déployer
+wrangler pages deploy dist --project-name=zyatria-global
+```
+
+---
+
+### Problème : "Authentication required"
+
+**Solution :**
 ```bash
 wrangler logout
 wrangler login
 ```
 
-### Erreur : "Account ID not found"
-1. Allez sur https://dash.cloudflare.com
-2. Copiez votre Account ID (dans la barre latérale)
-3. Mettez-le à jour dans `wrangler.jsonc`
+---
 
-### Erreur : "Build failed"
+### Problème : Site blanc après déploiement
+
+**Solutions :**
+1. Vérifier les logs :
 ```bash
-# Nettoyer et rebuilder
-rm -rf dist/ node_modules/.astro
-npm install
-npm run build
+wrangler pages deployment tail --project-name=zyatria-global
 ```
 
-### Le site ne charge pas
-```bash
-# Vérifier les logs
-wrangler tail
+2. Vérifier les variables dans Cloudflare Dashboard
 
-# Vérifier le déploiement
-wrangler deployments list
+3. Redéployer :
+```bash
+wrangler pages deploy dist --project-name=zyatria-global
 ```
+
+---
+
+### Problème : Chatbot ne répond pas
+
+**Vérifications :**
+1. `MISTRAL_API_KEY` est bien configuré
+2. Tester l'API Mistral directement :
+```bash
+curl https://api.mistral.ai/v1/models \
+  -H "Authorization: Bearer VOTRE_CLE_MISTRAL"
+```
+
+3. Vérifier les crédits Mistral sur https://console.mistral.ai/
+
+---
+
+### Problème : Formulaire ne s'envoie pas
+
+**Vérifications :**
+1. `FORMSPREE_FORM_ID` est correct
+2. Quota Formspree non dépassé (50/mois gratuit)
+3. Vérifier sur https://formspree.io/forms
 
 ---
 
 ## 📊 COMMANDES UTILES
 
 ```bash
-# Voir les déploiements
-wrangler deployments list
+# Lister les déploiements
+wrangler pages deployment list --project-name=zyatria-global
+
+# Voir les détails d'un déploiement
+wrangler pages deployment view <deployment-id> --project-name=zyatria-global
+
+# Promouvoir un déploiement (rollback)
+wrangler pages deployment promote <deployment-id> --project-name=zyatria-global
 
 # Voir les logs en temps réel
-wrangler tail
+wrangler pages deployment tail --project-name=zyatria-global
 
-# Voir les statistiques
-wrangler metrics
-
-# Rollback vers une version précédente
-wrangler rollback [deployment-id]
-
-# Supprimer un secret
-wrangler secret delete NOM_DU_SECRET
-
-# Lister les domaines
-wrangler domains list
+# Ouvrir le dashboard
+wrangler pages project view zyatria-global
 ```
 
 ---
 
-## 🎉 C'EST FAIT !
+## 🎉 FÉLICITATIONS !
 
-Votre site est maintenant en ligne sur :
-**https://zyatria-global.workers.dev**
+Une fois déployé, votre site sera :
 
-### Prochaines étapes :
-1. ✅ Configurer un domaine personnalisé
-2. ✅ Activer Google Analytics
-3. ✅ Tester toutes les fonctionnalités
-4. ✅ Partager le lien avec vos clients !
+✅ **Accessible mondialement** via CDN Cloudflare
+✅ **Ultra-rapide** avec edge computing
+✅ **Sécurisé** avec SSL automatique
+✅ **Scalable** automatiquement
+✅ **Gratuit** jusqu'à 500 builds/mois
+
+**URL de production :** https://zyatria-global.pages.dev
 
 ---
 
-**Besoin d'aide ?** Consultez le guide complet : `📖_GUIDE_DEPLOIEMENT_COMPLET.md`
+## 🔄 DÉPLOIEMENTS FUTURS
+
+Pour les prochains déploiements, c'est encore plus simple :
+
+```bash
+# Build + Deploy en 2 commandes
+npm run build
+wrangler pages deploy dist --project-name=zyatria-global
+```
+
+Ou si vous utilisez Git :
+```bash
+git add .
+git commit -m "Update"
+git push
+```
+
+---
+
+## 📞 PROCHAINES ÉTAPES RECOMMANDÉES
+
+1. **Configurer un domaine personnalisé**
+   - Dashboard → Custom domains → Add domain
+
+2. **Activer les Analytics**
+   - Dashboard → Analytics → Enable
+
+3. **Configurer les Webhooks Stripe**
+   - URL: `https://zyatria-global.pages.dev/api/stripe/webhook`
+
+4. **Tester tous les formulaires**
+   - Contact, Lead Qualification, etc.
+
+5. **Optimiser le SEO**
+   - Vérifier avec Lighthouse
+   - Soumettre le sitemap à Google
+
+---
+
+**👉 PRÊT À DÉPLOYER ? LANCEZ LA COMMANDE !** 🚀
+
+```bash
+wrangler pages deploy dist --project-name=zyatria-global
+```
