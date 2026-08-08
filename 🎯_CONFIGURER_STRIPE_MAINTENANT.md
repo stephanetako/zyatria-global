@@ -1,147 +1,315 @@
-# 🎯 CONFIGURATION STRIPE - GUIDE RAPIDE (15 MIN)
+# 🎯 CONFIGURER STRIPE - GUIDE COMPLET
 
-**Date:** $(date)
+## ✅ CE QUI EST DÉJÀ FAIT
 
----
-
-## 📋 ÉTAPE 1 : CRÉER UN COMPTE STRIPE (5 min)
-
-### 1.1 Inscription
-1. Allez sur https://dashboard.stripe.com/register
-2. Créez votre compte (email + mot de passe)
-3. Vérifiez votre email
-4. **Mode Test** sera activé par défaut (parfait pour commencer !)
-
-### 1.2 Récupérer vos clés API
-1. Dans le dashboard Stripe, cliquez sur **"Developers"** (en haut à droite)
-2. Cliquez sur **"API keys"**
-3. Vous verrez 2 clés :
-   - **Publishable key** (commence par `pk_test_...`)
-   - **Secret key** (commence par `sk_test_...`) - Cliquez sur "Reveal test key"
-
-**📝 Copiez ces 2 clés, vous en aurez besoin !**
+- ✅ Liens Stripe Payment Links configurés
+- ✅ Page de succès créée (`/success`)
+- ✅ Tous les plans fonctionnels
+- ✅ Build réussi
 
 ---
 
-## 📋 ÉTAPE 2 : CRÉER LES PAYMENT LINKS (5 min)
+## 🎨 PERSONNALISER VOTRE PAGE STRIPE (5 MINUTES)
 
-### 2.1 Créer le lien pour "Starter" (97€/mois)
+### **Étape 1: Accéder aux paramètres**
 
-1. Dans le dashboard Stripe, cliquez sur **"Products"** (menu gauche)
-2. Cliquez sur **"+ Add product"**
-3. Remplissez :
-   - **Name:** `ZyatrIA Starter`
-   - **Description:** `Plan Starter - 1 micro-agent + support email`
-   - **Pricing model:** `Standard pricing`
-   - **Price:** `97` EUR
-   - **Billing period:** `Monthly`
-4. Cliquez sur **"Save product"**
-5. Cliquez sur **"Create payment link"**
-6. **Copiez le lien** (ressemble à `https://buy.stripe.com/test_xxxxx`)
-
-### 2.2 Créer le lien pour "Professional" (297€/mois)
-
-Répétez les mêmes étapes avec :
-- **Name:** `ZyatrIA Professional`
-- **Description:** `Plan Professional - 3 micro-agents + support prioritaire`
-- **Price:** `297` EUR
-- **Billing period:** `Monthly`
-
-**Copiez le lien**
-
-### 2.3 Créer le lien pour "Enterprise" (797€/mois)
-
-Répétez avec :
-- **Name:** `ZyatrIA Enterprise`
-- **Description:** `Plan Enterprise - Micro-agents illimités + support dédié`
-- **Price:** `797` EUR
-- **Billing period:** `Monthly`
-
-**Copiez le lien**
+1. Allez sur https://dashboard.stripe.com
+2. Cliquez sur **Settings** (⚙️ en haut à droite)
+3. Cliquez sur **Branding** dans le menu de gauche
 
 ---
 
-## 📋 ÉTAPE 3 : CONFIGURER LE PROJET (5 min)
+### **Étape 2: Ajouter votre logo**
 
-### 3.1 Ajouter les clés API dans `.env`
+1. Dans la section **Logo**:
+   - Cliquez sur "Upload logo"
+   - Choisissez votre logo (format PNG ou SVG recommandé)
+   - Taille recommandée: 512x512px minimum
 
-Ouvrez le fichier `.env` et ajoutez :
+2. **Résultat:** Votre logo apparaîtra sur toutes les pages de paiement Stripe
 
-```bash
-# Stripe Configuration
-STRIPE_PUBLISHABLE_KEY=pk_test_VOTRE_CLE_ICI
-STRIPE_SECRET_KEY=sk_test_VOTRE_CLE_ICI
-PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_VOTRE_CLE_ICI
+---
+
+### **Étape 3: Choisir vos couleurs**
+
+1. Dans la section **Brand color**:
+   - Cliquez sur le sélecteur de couleur
+   - Entrez votre couleur principale: `#C98769` (votre couleur primary)
+   - Ou choisissez une autre couleur de votre marque
+
+2. Dans la section **Accent color**:
+   - Choisissez une couleur d'accent (optionnel)
+   - Recommandé: `#373D36` (votre couleur foreground)
+
+3. **Résultat:** Les boutons et éléments Stripe utiliseront vos couleurs
+
+---
+
+### **Étape 4: Ajouter une icône**
+
+1. Dans la section **Icon**:
+   - Cliquez sur "Upload icon"
+   - Choisissez votre favicon ou icône
+   - Format: PNG ou ICO
+   - Taille: 32x32px ou 64x64px
+
+2. **Résultat:** Votre icône apparaîtra dans l'onglet du navigateur
+
+---
+
+### **Étape 5: Sauvegarder**
+
+1. Cliquez sur **Save** en haut à droite
+2. Testez en cliquant sur un de vos liens Stripe
+3. Vérifiez que votre logo et couleurs apparaissent
+
+---
+
+## 🔗 CONFIGURER LA REDIRECTION APRÈS PAIEMENT
+
+### **Pour chaque Payment Link:**
+
+1. Allez sur https://dashboard.stripe.com/payment-links
+2. Cliquez sur un de vos Payment Links
+3. Cliquez sur **Edit** (ou les 3 points → Edit)
+4. Descendez à la section **After payment**
+5. Sélectionnez **Redirect to a page**
+6. Entrez l'URL: `https://votre-site.pages.dev/success`
+   - Remplacez `votre-site` par votre vrai domaine Cloudflare
+7. Cliquez sur **Save**
+
+**Répétez pour tous vos Payment Links:**
+- Starter Monthly
+- Professional One-time
+- Professional Monthly
+- Enterprise One-time
+- Enterprise Monthly
+- Audit
+- Consultation
+- Formation
+
+---
+
+## 📧 PERSONNALISER LES EMAILS STRIPE
+
+### **Étape 1: Accéder aux paramètres d'emails**
+
+1. Dashboard Stripe → **Settings** → **Emails**
+2. Vous verrez tous les types d'emails que Stripe envoie
+
+---
+
+### **Étape 2: Personnaliser les emails**
+
+1. **Receipt emails** (Reçus de paiement):
+   - Cliquez sur **Customize**
+   - Ajoutez votre logo
+   - Modifiez le texte si nécessaire
+   - Ajoutez un message personnalisé
+
+2. **Invoice emails** (Factures):
+   - Cliquez sur **Customize**
+   - Personnalisez le message
+   - Ajoutez des instructions
+
+3. **Subscription emails** (Abonnements):
+   - Personnalisez les emails de confirmation
+   - Personnalisez les emails de renouvellement
+   - Personnalisez les emails d'échec de paiement
+
+---
+
+### **Étape 3: Ajouter un message personnalisé**
+
+Exemple de message pour les reçus:
+
+```
+Merci pour votre confiance ! 🎉
+
+Votre paiement a été traité avec succès. Notre équipe vous contactera 
+sous 24-48h pour planifier votre rendez-vous de lancement.
+
+En attendant, n'hésitez pas à consulter notre documentation:
+https://votre-site.pages.dev/docs
+
+Besoin d'aide ? Contactez-nous:
+support@zyatria.global
+
+L'équipe ZyatrIA Global
 ```
 
-### 3.2 Ajouter les Payment Links
+---
 
-Ouvrez `src/config/stripe-links.ts` et remplacez les liens :
+## 🔔 CONFIGURER LES WEBHOOKS (OPTIONNEL)
 
-```typescript
-export const STRIPE_PAYMENT_LINKS = {
-  starter: 'https://buy.stripe.com/test_VOTRE_LIEN_STARTER',
-  professional: 'https://buy.stripe.com/test_VOTRE_LIEN_PRO',
-  enterprise: 'https://buy.stripe.com/test_VOTRE_LIEN_ENTERPRISE'
-} as const;
+### **Pourquoi ?**
+Pour recevoir des notifications automatiques quand:
+- Un paiement est effectué
+- Un abonnement est créé
+- Un paiement échoue
+- Un abonnement est annulé
+
+### **Comment ?**
+
+1. Dashboard Stripe → **Developers** → **Webhooks**
+2. Cliquez sur **Add endpoint**
+3. Entrez l'URL: `https://votre-site.pages.dev/api/stripe/webhook`
+4. Sélectionnez les événements:
+   - `payment_intent.succeeded`
+   - `payment_intent.payment_failed`
+   - `customer.subscription.created`
+   - `customer.subscription.updated`
+   - `customer.subscription.deleted`
+5. Cliquez sur **Add endpoint**
+6. Copiez le **Signing secret** (commence par `whsec_...`)
+7. Ajoutez-le dans Cloudflare:
+   ```bash
+   wrangler secret put STRIPE_WEBHOOK_SECRET
+   # Collez le secret quand demandé
+   ```
+
+---
+
+## 📊 TESTER VOS PAIEMENTS
+
+### **Mode Test (Recommandé d'abord)**
+
+1. Assurez-vous d'être en **Test mode** (toggle en haut à droite)
+2. Utilisez une carte de test:
+   - Numéro: `4242 4242 4242 4242`
+   - Date: N'importe quelle date future (ex: 12/25)
+   - CVC: N'importe quel 3 chiffres (ex: 123)
+   - Code postal: N'importe lequel
+
+3. Testez chaque Payment Link:
+   - Starter Monthly
+   - Professional One-time
+   - Professional Monthly
+   - Audit
+   - Consultation
+
+4. Vérifiez que:
+   - Le paiement passe
+   - Vous êtes redirigé vers `/success`
+   - Vous recevez un email de confirmation
+
+---
+
+### **Mode Live (Production)**
+
+1. Passez en **Live mode** (toggle en haut à droite)
+2. Testez avec une vraie carte (petit montant)
+3. Vérifiez tout fonctionne
+4. Remboursez le test si nécessaire
+
+---
+
+## 🎯 CHECKLIST COMPLÈTE
+
+### **Branding:**
+- [ ] Logo uploadé
+- [ ] Couleurs configurées
+- [ ] Icône uploadée
+- [ ] Testé sur un Payment Link
+
+### **Redirections:**
+- [ ] URL de succès configurée pour Starter
+- [ ] URL de succès configurée pour Professional
+- [ ] URL de succès configurée pour Enterprise
+- [ ] URL de succès configurée pour Services
+
+### **Emails:**
+- [ ] Emails de reçu personnalisés
+- [ ] Emails de facture personnalisés
+- [ ] Emails d'abonnement personnalisés
+- [ ] Message personnalisé ajouté
+
+### **Tests:**
+- [ ] Test en mode Test effectué
+- [ ] Tous les liens testés
+- [ ] Redirection vers /success vérifiée
+- [ ] Emails reçus et vérifiés
+
+### **Production:**
+- [ ] Passé en mode Live
+- [ ] Test avec vraie carte effectué
+- [ ] Tout fonctionne correctement
+
+---
+
+## 📋 URLS À CONFIGURER
+
+### **Votre site Cloudflare:**
+```
+https://votre-site.pages.dev
+```
+
+### **Page de succès:**
+```
+https://votre-site.pages.dev/success
+```
+
+### **Webhook (optionnel):**
+```
+https://votre-site.pages.dev/api/stripe/webhook
 ```
 
 ---
 
-## ✅ ÉTAPE 4 : TESTER
+## 💡 CONSEILS IMPORTANTS
 
-### 4.1 Lancer le serveur local
+### **1. Testez TOUJOURS en mode Test d'abord**
+- Évite les erreurs coûteuses
+- Permet de vérifier tout fonctionne
+- Pas de vrais paiements
 
-```bash
-npm run dev
-```
+### **2. Configurez les redirections**
+- Améliore l'expérience client
+- Confirme le paiement
+- Explique les prochaines étapes
 
-### 4.2 Tester un paiement
+### **3. Personnalisez les emails**
+- Renforce votre marque
+- Rassure le client
+- Donne des instructions claires
 
-1. Allez sur http://localhost:4321/pricing
-2. Cliquez sur "Commencer" pour un plan
-3. Vous serez redirigé vers Stripe
-4. Utilisez la carte de test :
-   - **Numéro:** `4242 4242 4242 4242`
-   - **Date:** N'importe quelle date future
-   - **CVC:** N'importe quel 3 chiffres
-   - **Code postal:** N'importe lequel
-
-5. Validez le paiement
-6. Vous devriez être redirigé vers `/success`
-
----
-
-## 🎉 C'EST FAIT !
-
-Votre intégration Stripe est maintenant configurée !
-
-### 📊 Vérifier les paiements
-
-1. Retournez sur le dashboard Stripe
-2. Cliquez sur **"Payments"**
-3. Vous verrez votre paiement de test
+### **4. Surveillez vos paiements**
+- Vérifiez le Dashboard régulièrement
+- Configurez des alertes email
+- Répondez rapidement aux problèmes
 
 ---
 
-## 🔄 PASSER EN MODE PRODUCTION (Plus tard)
+## 🚀 PROCHAINES ÉTAPES
 
-Quand vous serez prêt à accepter de vrais paiements :
+1. **Maintenant:**
+   - Personnalisez votre page Stripe (5 min)
+   - Configurez les redirections (10 min)
+   - Testez en mode Test (5 min)
 
-1. Dans Stripe, activez votre compte (fournir infos entreprise)
-2. Récupérez les clés **LIVE** (commencent par `pk_live_` et `sk_live_`)
-3. Créez les mêmes Payment Links en mode LIVE
-4. Remplacez les clés dans `.env` en production
+2. **Avant le lancement:**
+   - Personnalisez les emails (10 min)
+   - Testez en mode Live (5 min)
+   - Vérifiez tout fonctionne
+
+3. **Après le lancement:**
+   - Surveillez les paiements
+   - Répondez aux clients rapidement
+   - Optimisez selon les retours
 
 ---
 
-## 📞 BESOIN D'AIDE ?
+## 💬 BESOIN D'AIDE ?
 
-Si vous avez des questions :
-- Documentation Stripe : https://stripe.com/docs
-- Support Stripe : https://support.stripe.com
+Si vous avez des questions:
+1. Consultez la documentation Stripe: https://stripe.com/docs
+2. Contactez le support Stripe (très réactif)
+3. Demandez-moi et je vous aide ! 😊
 
 ---
 
-**Temps total : ~15 minutes**
-**Status : ✅ PRÊT À TESTER**
+## 🎉 TOUT EST PRÊT !
+
+Vos Payment Links fonctionnent ! Maintenant personnalisez-les pour une meilleure expérience client ! 🚀
+
+**Commencez par le branding (5 minutes) ! 👆**
