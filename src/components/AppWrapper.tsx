@@ -6,7 +6,7 @@ import TrustStatsSimple from './TrustStatsSimple';
 import Services from './Services';
 import MicroAgents from './MicroAgents';
 import RoadmapDesignSystem from './RoadmapDesignSystem';
-import PricingDesignSystem from './PricingDesignSystem';
+import Pricing from './Pricing';
 import TestimonialsDesignSystem from './TestimonialsDesignSystem';
 import FAQDesignSystem from './FAQDesignSystem';
 import CTAFinal from './CTAFinal';
@@ -24,7 +24,7 @@ const AppWrapper: React.FC = () => {
           <Services />
           <MicroAgents />
           <RoadmapDesignSystem />
-          <PricingDesignSystem />
+          <Pricing />
           <TestimonialsDesignSystem />
           <FAQDesignSystem />
           <CTAFinal />
@@ -37,6 +37,7 @@ const AppWrapper: React.FC = () => {
 };
 
 export default AppWrapper;
+
 
 
 
