@@ -1,4 +1,5 @@
 
+
 /**
  * Stripe Payment Links Configuration - LIVE MODE
  * 
@@ -16,47 +17,42 @@
  * Total: 14 produits configurés
  */
 
-export const STRIPE_PAYMENT_LINKS = {
-  // 🟢 STARTER
-  starter: {
-    oneTime: '', // Pas de paiement unique pour Starter
-    monthly: 'https://buy.stripe.com/9B6cMX6mPaTD5450VS', // 68 CAD/mois
+export const stripeLinks = {
+  // Plans principaux
+  plans: {
+    // Starter Plan
+    starterMonthly: 'https://buy.stripe.com/3cI4gr3aDbXH2VX9so',
+    starterOneTime: 'https://buy.stripe.com/fZufZ97qTgdX1RT9so',
+    
+    // Professional Plan
+    professionalMonthly: 'https://buy.stripe.com/bJedR19z1bXH2VXbAw',
+    professionalOneTime: 'https://buy.stripe.com/dRmfZ9cLd9Pz7cd5c8',
+    
+    // Enterprise Plan
+    enterpriseMonthly: 'https://buy.stripe.com/bJeeV57qT1j3eEFcEA',
+    enterpriseOneTime: 'https://buy.stripe.com/eVq28j26zbXH5455c8',
   },
-  
-  // 🔵 PROFESSIONAL
-  professional: {
-    oneTime: 'https://buy.stripe.com/9B628jcLd4vfaop5c8', // 697 CAD
-    monthly: 'https://buy.stripe.com/00waEPfXp0eZfIJ1ZW', // 208 CAD/mois
-  },
-  
-  // 🟣 ENTERPRISE
-  enterprise: {
-    oneTime: 'https://buy.stripe.com/5kQ8wHcLdaTD7cdbAw', // 997 CAD
-    monthly: 'https://buy.stripe.com/6oU00b26zgdXeEFbAw', // 698 CAD/mois
-  },
-  
-  // 🤖 MICRO-AGENTS (6 nouveaux produits indépendants)
-  microAgents: {
-    // ⚠️ TEMPORAIRE: Redirection vers formulaire de contact
-    // Remplacez par vos vrais liens Stripe Payment Links quand ils seront créés
-    leadQualification: '#contact', // 69 CAD/mois - À REMPLACER
-    customerSupport: '#contact',    // 69 CAD/mois - À REMPLACER
-    appointments: '#contact',       // 68 CAD/mois - À REMPLACER
-    prospectFollowup: '#contact',   // 180 CAD/mois - À REMPLACER
-    realEstate: '#contact',         // 208 CAD/mois - À REMPLACER
-    ecommerce: '#contact',          // 195 CAD/mois - À REMPLACER
-  },
-  
-  // 🎯 SERVICES ADDITIONNELS
+
+  // Services additionnels
   services: {
-    audit: 'https://buy.stripe.com/fZubIT9z1d1L1RT7kg',        // 497 CAD
-    consultation: 'https://buy.stripe.com/dRm28j9z15zj9kl0VS', // 147 CAD
-    formation: 'https://buy.stripe.com/00wfZ9eTle5P0NP9so',    // 997 CAD
+    audit: 'https://buy.stripe.com/9B600b9z11j3gMNbAw',
+    consultation: 'https://buy.stripe.com/aFabIT9z10eZ7cd1ZW',
+    formation: 'https://buy.stripe.com/00wfZ9eTle5P0NP9so',
   },
-} as const;
+
+  // Micro-agents
+  microAgents: {
+    leadQualification: 'https://buy.stripe.com/5kQeV59z1bXH4018ok',
+    customerSupport: 'https://buy.stripe.com/00wdR13aDe5P7cd8ok',
+    appointments: 'https://buy.stripe.com/28E9ALbH92n7gMN484',
+    prospectFollowup: 'https://buy.stripe.com/5kQeV5cLdaTD2VXeMI',
+    realEstate: 'https://buy.stripe.com/6oUaEP9z14vf9kl6gc',
+    ecommerce: 'https://buy.stripe.com/aFa28j3aD6Dn4017kg',
+  },
+};
 
 // Alias pour compatibilité avec Pricing.tsx
-export const stripeLinks = STRIPE_PAYMENT_LINKS;
+export const STRIPE_PAYMENT_LINKS = stripeLinks;
 
 // Détails des produits pour l'affichage
 export const productDetails = {
@@ -348,4 +344,5 @@ export function validatePaymentLinks(): { valid: boolean; missing: string[] } {
     missing,
   };
 }
+
 

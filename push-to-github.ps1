@@ -1,154 +1,96 @@
-# 🚀 Script de Push Automatique vers GitHub
-# ZyatrIA Global - Déploiement Automatisé
+# 🚀 Script PowerShell - Push vers GitHub
+# Auteur: ZyatrIA Global
+# Description: Push automatique vers GitHub avec gestion d'erreurs
 
-Write-Host "🚀 ==========================================" -ForegroundColor Cyan
-Write-Host "   PUSH AUTOMATIQUE VERS GITHUB" -ForegroundColor Cyan
-Write-Host "   ZyatrIA Global" -ForegroundColor Cyan
-Write-Host "==========================================" -ForegroundColor Cyan
+Write-Host "🚀 PUSH VERS GITHUB - ZYATRIA GLOBAL" -ForegroundColor Cyan
+Write-Host "=====================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Vérifier si git est installé
-try {
-    $null = git --version
-} catch {
-    Write-Host "❌ Git n'est pas installé" -ForegroundColor Red
+# Vérifier qu'on est dans le bon dossier
+if (-Not (Test-Path ".git")) {
+    Write-Host "❌ ERREUR: Pas de dossier .git trouvé" -ForegroundColor Red
+    Write-Host "Assurez-vous d'être dans le dossier du projet" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "Appuyez sur une touche pour quitter..."
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     exit 1
 }
 
-# Vérifier si on est dans un repo git
-if (-not (Test-Path .git)) {
-    Write-Host "❌ Ce n'est pas un dépôt Git" -ForegroundColor Red
-    exit 1
-}
-
-Write-Host "📊 Statut actuel du dépôt..." -ForegroundColor Blue
-git status --short
+# Afficher le statut actuel
+Write-Host "📊 Statut actuel:" -ForegroundColor Yellow
+git status
 Write-Host ""
 
-# Demander confirmation
-Write-Host "⚠️  Voulez-vous pousser tous ces changements vers GitHub ?" -ForegroundColor Yellow
-$confirmation = Read-Host "Continuer ? (o/n)"
+# Vérifier s'il y a des changements à push
+$branch = git rev-parse --abbrev-ref HEAD
+$ahead = git rev-list --count origin/$branch..$branch 2>$null
 
-if ($confirmation -notmatch '^[OoYy]$') {
-    Write-Host "❌ Opération annulée" -ForegroundColor Red
-    exit 1
+if ($ahead -eq 0) {
+    Write-Host "✅ Aucun changement à push" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "Appuyez sur une touche pour quitter..."
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    exit 0
 }
 
-# Ajouter tous les fichiers
-Write-Host "📦 Ajout de tous les fichiers..." -ForegroundColor Blue
-git add .
-
-# Demander le message de commit
+Write-Host "📤 $ahead commit(s) à push vers GitHub" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "💬 Message de commit (appuyez sur Entrée pour le message par défaut) :" -ForegroundColor Yellow
-$commitMsg = Read-Host
 
-if ([string]::IsNullOrWhiteSpace($commitMsg)) {
-    $commitMsg = "🚀 Mise à jour automatique - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-}
-
-# Créer le commit
-Write-Host "📝 Création du commit..." -ForegroundColor Blue
-git commit -m $commitMsg
+# Récupérer les derniers changements
+Write-Host "🔄 Récupération des derniers changements..." -ForegroundColor Yellow
+git pull origin master --rebase
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Erreur lors de la création du commit" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "⚠️  Conflit détecté ou erreur lors du pull" -ForegroundColor Yellow
+    Write-Host "Résolvez les conflits manuellement puis relancez le script" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "Appuyez sur une touche pour quitter..."
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    exit 1
+}
+
+Write-Host "✅ Pull réussi" -ForegroundColor Green
+Write-Host ""
+
+# Push vers GitHub
+Write-Host "🚀 Push vers GitHub..." -ForegroundColor Cyan
+git push origin master
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "❌ ERREUR lors du push" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Solutions possibles:" -ForegroundColor Yellow
+    Write-Host "1. Vérifiez votre connexion internet" -ForegroundColor White
+    Write-Host "2. Vérifiez vos identifiants GitHub" -ForegroundColor White
+    Write-Host "3. Créez un Personal Access Token:" -ForegroundColor White
+    Write-Host "   https://github.com/settings/tokens" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "Pour utiliser un token:" -ForegroundColor Yellow
+    Write-Host "git remote set-url origin https://[TOKEN]@github.com/stephanetako/zyatria-global.git" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Appuyez sur une touche pour quitter..."
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     exit 1
 }
 
 Write-Host ""
-Write-Host "✅ Commit créé avec succès !" -ForegroundColor Green
+Write-Host "✅ PUSH RÉUSSI !" -ForegroundColor Green
 Write-Host ""
-
-# Vérifier le remote
-$remoteUrl = git remote get-url origin
-Write-Host "🔗 Remote actuel : $remoteUrl" -ForegroundColor Blue
+Write-Host "🎉 Votre code est maintenant sur GitHub !" -ForegroundColor Cyan
 Write-Host ""
-
-# Méthode d'authentification
-Write-Host "🔐 Choisissez la méthode d'authentification :" -ForegroundColor Yellow
-Write-Host "1) Token GitHub (Recommandé)"
-Write-Host "2) SSH"
-Write-Host "3) Essayer le push direct (si déjà configuré)"
+Write-Host "📊 Prochaines étapes:" -ForegroundColor Yellow
+Write-Host "1. Vérifiez sur GitHub:" -ForegroundColor White
+Write-Host "   https://github.com/stephanetako/zyatria-global" -ForegroundColor Cyan
 Write-Host ""
-$authMethod = Read-Host "Votre choix (1/2/3)"
+Write-Host "2. Cloudflare déploiera automatiquement (3-4 min)" -ForegroundColor White
+Write-Host "   https://dash.cloudflare.com" -ForegroundColor Cyan
 Write-Host ""
-
-switch ($authMethod) {
-    "1" {
-        Write-Host "🔑 Configuration avec Token GitHub" -ForegroundColor Blue
-        Write-Host ""
-        Write-Host "📝 Entrez votre token GitHub :" -ForegroundColor Yellow
-        Write-Host "(Créez-en un sur : https://github.com/settings/tokens)"
-        $githubToken = Read-Host -AsSecureString
-        $githubTokenPlain = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
-            [Runtime.InteropServices.Marshal]::SecureStringToBSTR($githubToken)
-        )
-        Write-Host ""
-        
-        if ([string]::IsNullOrWhiteSpace($githubTokenPlain)) {
-            Write-Host "❌ Token vide, opération annulée" -ForegroundColor Red
-            exit 1
-        }
-        
-        # Extraire le chemin du repo
-        $repoPath = $remoteUrl -replace 'https://github.com/', ''
-        
-        # Configurer le remote avec le token
-        git remote set-url origin "https://$githubTokenPlain@github.com/$repoPath"
-        
-        Write-Host "✅ Token configuré" -ForegroundColor Green
-    }
-    
-    "2" {
-        Write-Host "🔑 Configuration avec SSH" -ForegroundColor Blue
-        
-        # Extraire le chemin du repo
-        $repoPath = $remoteUrl -replace 'https://github.com/', ''
-        
-        # Configurer le remote en SSH
-        git remote set-url origin "git@github.com:$repoPath"
-        
-        Write-Host "✅ Remote configuré en SSH" -ForegroundColor Green
-    }
-    
-    "3" {
-        Write-Host "🔄 Tentative de push direct..." -ForegroundColor Blue
-    }
-    
-    default {
-        Write-Host "❌ Choix invalide" -ForegroundColor Red
-        exit 1
-    }
-}
-
+Write-Host "3. Testez votre site:" -ForegroundColor White
+Write-Host "   https://zyatria-global.pages.dev" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "🚀 Push vers GitHub en cours..." -ForegroundColor Blue
+Write-Host "4. Configurez Stripe (voir: 🎯_CONFIGURER_STRIPE_MAINTENANT.md)" -ForegroundColor White
 Write-Host ""
-
-# Pousser vers GitHub
-git push origin main
-
-if ($LASTEXITCODE -eq 0) {
-    Write-Host ""
-    Write-Host "==========================================" -ForegroundColor Green
-    Write-Host "   ✅ PUSH RÉUSSI !" -ForegroundColor Green
-    Write-Host "==========================================" -ForegroundColor Green
-    Write-Host ""
-    Write-Host "🎉 Vos changements ont été poussés vers GitHub"
-    Write-Host "🔗 Voir sur : $remoteUrl"
-    Write-Host ""
-} else {
-    Write-Host ""
-    Write-Host "==========================================" -ForegroundColor Red
-    Write-Host "   ❌ ERREUR LORS DU PUSH" -ForegroundColor Red
-    Write-Host "==========================================" -ForegroundColor Red
-    Write-Host ""
-    Write-Host "💡 Solutions possibles :"
-    Write-Host "   1. Vérifiez votre token GitHub"
-    Write-Host "   2. Vérifiez vos clés SSH"
-    Write-Host "   3. Vérifiez votre connexion internet"
-    Write-Host "   4. Vérifiez les permissions du dépôt"
-    Write-Host ""
-    exit 1
-}
+Write-Host "Appuyez sur une touche pour quitter..."
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
