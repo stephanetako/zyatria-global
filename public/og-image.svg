@@ -1,12 +1,68 @@
-<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#C98769;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#A86F53;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#grad)"/>
-  <text x="600" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ZyatrIA Global</text>
-  <text x="600" y="360" font-family="Arial, sans-serif" font-size="36" fill="#F5F1EB" text-anchor="middle">AI Agents &amp; Automation Without Borders</text>
-  <text x="600" y="450" font-family="Arial, sans-serif" font-size="28" fill="#E6DCD4" text-anchor="middle">Deploy in 7-15 days | Multilingual Support</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Fond -->
+  <rect width="1200" height="630" fill="#F5F1EB"/>
+  
+  <!-- Motif de fond subtil -->
+  <g opacity="0.1">
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#C98769" stroke-width="2"/>
+    <circle cx="1100" cy="530" r="80" fill="none" stroke="#C98769" stroke-width="2"/>
+    <circle cx="200" cy="500" r="60" fill="none" stroke="#A86F53" stroke-width="2"/>
+    <circle cx="1000" cy="130" r="60" fill="none" stroke="#A86F53" stroke-width="2"/>
+  </g>
+  
+  <!-- Logo principal centré -->
+  <g transform="translate(300, 150)">
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#C98769" stroke-width="6" />
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#A86F53" stroke-width="4" />
+    <line x1="100" y1="20" x2="100" y2="180" stroke="#C98769" stroke-width="4" />
+    <line x1="20" y1="100" x2="180" y2="100" stroke="#C98769" stroke-width="4" />
+    <line x1="40" y1="40" x2="160" y2="160" stroke="#C98769" stroke-width="3" />
+    <line x1="160" y1="40" x2="40" y2="160" stroke="#C98769" stroke-width="3" />
+    <!-- Points -->
+    <circle cx="20" cy="20" r="10" fill="#C98769" />
+    <circle cx="180" cy="20" r="10" fill="#C98769" />
+    <circle cx="20" cy="180" r="10" fill="#C98769" />
+    <circle cx="180" cy="180" r="10" fill="#C98769" />
+    <circle cx="100" cy="20" r="10" fill="#A86F53" />
+    <circle cx="100" cy="180" r="10" fill="#A86F53" />
+    <circle cx="20" cy="100" r="10" fill="#A86F53" />
+    <circle cx="180" cy="100" r="10" fill="#A86F53" />
+  </g>
+
+  <!-- Texte principal -->
+  <text x="600" y="280" font-family="'Instrument Sans', Arial, sans-serif" font-size="72" font-weight="bold" fill="#373D36" text-anchor="middle">
+    Zyatr<tspan fill="#C98769">I</tspan><tspan fill="#A86F53">A</tspan> Global
+  </text>
+  
+  <!-- Sous-titre -->
+  <text x="600" y="350" font-family="'Instrument Sans', Arial, sans-serif" font-size="32" fill="#373D36" text-anchor="middle" opacity="0.8">
+    Agents IA Intelligents pour les Entreprises Modernes
+  </text>
+  
+  <!-- Tagline -->
+  <text x="600" y="420" font-family="'Instrument Sans', Arial, sans-serif" font-size="28" fill="#C98769" text-anchor="middle" font-weight="600">
+    Déploiement en 7-15 jours • Support Multilingue
+  </text>
+  
+  <!-- Badges de confiance -->
+  <g transform="translate(350, 480)">
+    <rect x="0" y="0" width="180" height="60" rx="30" fill="#E6DCD4"/>
+    <text x="90" y="40" font-family="'Instrument Sans', Arial, sans-serif" font-size="20" fill="#373D36" text-anchor="middle" font-weight="600">
+      ⚡ Rapide
+    </text>
+  </g>
+  
+  <g transform="translate(560, 480)">
+    <rect x="0" y="0" width="180" height="60" rx="30" fill="#E6DCD4"/>
+    <text x="90" y="40" font-family="'Instrument Sans', Arial, sans-serif" font-size="20" fill="#373D36" text-anchor="middle" font-weight="600">
+      🌍 Global
+    </text>
+  </g>
+  
+  <g transform="translate(770, 480)">
+    <rect x="0" y="0" width="180" height="60" rx="30" fill="#E6DCD4"/>
+    <text x="90" y="40" font-family="'Instrument Sans', Arial, sans-serif" font-size="20" fill="#373D36" text-anchor="middle" font-weight="600">
+      🤖 IA Avancée
+    </text>
+  </g>
 </svg>

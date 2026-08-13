@@ -1,61 +1,68 @@
-
 ---
 import MainLayout from '../layouts/main.astro';
+import MistralChatBot from '../components/MistralChatBot';
 ---
 
-<MainLayout title="Test Simple">
-  <div style="padding: 40px; text-align: center;">
-    <h1 style="font-size: 3rem; color: #667eea; margin-bottom: 20px;">
-      ✅ Le site fonctionne !
-    </h1>
-    <p style="font-size: 1.5rem; color: #333; margin-bottom: 30px;">
-      Si vous voyez ce texte avec des couleurs, le serveur Astro fonctionne parfaitement.
-    </p>
-    
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; max-width: 600px; margin: 0 auto;">
-      <h2 style="font-size: 2rem; margin-bottom: 15px;">🎯 Diagnostic</h2>
-      <ul style="text-align: left; font-size: 1.1rem; line-height: 2;">
-        <li>✓ Serveur Astro : OK</li>
-        <li>✓ HTML : OK</li>
-        <li>✓ CSS : OK</li>
-        <li id="react-status">⏳ React : Vérification...</li>
-      </ul>
-    </div>
-    
-    <div id="react-test" style="margin-top: 30px;"></div>
-  </div>
-  
-  <script>
-    // Test React
-    const reactTest = document.getElementById('react-test');
-    const reactStatus = document.getElementById('react-status');
-    
-    setTimeout(() => {
-      const islands = document.querySelectorAll('astro-island');
-      if (islands.length > 0) {
-        if (reactStatus) {
-          reactStatus.textContent = '✓ React : ' + islands.length + ' composants détectés';
-          reactStatus.style.color = '#10b981';
-        }
+<MainLayout title="Test Simple Chatbot">
+  <div class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-indigo-950 p-8">
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 mb-8">
+        <h1 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          🧪 Test du Chatbot
+        </h1>
         
-        // Vérifier si les composants sont hydratés
-        setTimeout(() => {
-          const hasContent = Array.from(islands).some(island => island.innerHTML.trim().length > 100);
-          if (reactTest) {
-            if (hasContent) {
-              reactTest.innerHTML = '<p style="color: #10b981; font-size: 1.2rem;">✅ Les composants React sont chargés et fonctionnent !</p>';
-            } else {
-              reactTest.innerHTML = '<p style="color: #ef4444; font-size: 1.2rem;">❌ Les composants React ne s\'hydratent pas. Vérifiez la console du navigateur.</p>';
-            }
-          }
-        }, 2000);
-      } else {
-        if (reactStatus) {
-          reactStatus.textContent = '✗ React : Aucun composant détecté';
-          reactStatus.style.color = '#ef4444';
-        }
-      }
-    }, 500);
-  </script>
+        <div class="space-y-6 mt-8">
+          <div class="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 rounded">
+            <h2 class="font-bold text-lg mb-2">📍 Où chercher ?</h2>
+            <p class="text-gray-700 dark:text-gray-300">
+              Regarde en <strong>BAS À DROITE</strong> de ton écran.<br/>
+              Tu devrais voir un <strong>bouton VIOLET ROND</strong> avec une étoile ✨
+            </p>
+          </div>
+
+          <div class="bg-blue-100 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
+            <h2 class="font-bold text-lg mb-2">🖱️ Que faire ?</h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Ouvre la console (appuie sur <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">F12</kbd>)</li>
+              <li>Clique sur le bouton violet ✨</li>
+              <li>Regarde si le chatbot s'ouvre</li>
+            </ol>
+          </div>
+
+          <div class="bg-green-100 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded">
+            <h2 class="font-bold text-lg mb-2">✅ Ce qui devrait se passer :</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Le bouton change de taille au survol</li>
+              <li>Au clic, une fenêtre de chat s'ouvre</li>
+              <li>Tu peux poser des questions</li>
+            </ul>
+          </div>
+
+          <div class="bg-red-100 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
+            <h2 class="font-bold text-lg mb-2">❌ Si rien ne se passe :</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-2">
+              Copie-colle ce qui s'affiche dans la console (F12) et envoie-le moi !
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicateur visuel -->
+      <div class="text-center">
+        <div class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-full shadow-lg animate-bounce">
+          👇 Le bouton chatbot est en bas à droite 👇
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Le chatbot -->
+  <MistralChatBot client:only="react" />
 </MainLayout>
 
+<style>
+  kbd {
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+</style>

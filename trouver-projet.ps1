@@ -1,68 +1,64 @@
-# 🔍 SCRIPT POUR TROUVER LE PROJET ZYATRIA
-
-Write-Host "🔍 RECHERCHE DU PROJET ZYATRIA..." -ForegroundColor Cyan
+# Script pour trouver le projet ZyatrIA
+Write-Host "🔍 Recherche du projet ZyatrIA..." -ForegroundColor Cyan
 Write-Host ""
 
-# Chemins possibles
-$possiblePaths = @(
-    "$env:USERPROFILE\Desktop\zyatria-global",
-    "$env:USERPROFILE\OneDrive\Desktop\zyatria-global",
-    "$env:USERPROFILE\OneDrive\Bureau\zyatria-global",
-    "$env:USERPROFILE\Documents\zyatria-global",
-    "$env:USERPROFILE\Downloads\zyatria-global",
-    "C:\zyatria-global",
-    "D:\zyatria-global"
+# Chemins communs à vérifier
+$commonPaths = @(
+    "$HOME\Desktop\zyatria-global",
+    "$HOME\Documents\zyatria-global",
+    "$HOME\Downloads\zyatria-global",
+    "$HOME\zyatria-global",
+    "C:\Users\$env:USERNAME\Desktop\zyatria-global",
+    "C:\Users\$env:USERNAME\Documents\zyatria-global",
+    "C:\Projects\zyatria-global",
+    "C:\Dev\zyatria-global"
 )
-
-Write-Host "📋 Vérification des emplacements courants..." -ForegroundColor Yellow
-Write-Host ""
 
 $found = $false
 
-foreach ($path in $possiblePaths) {
+foreach ($path in $commonPaths) {
     if (Test-Path $path) {
-        Write-Host "✅ TROUVÉ: $path" -ForegroundColor Green
+        Write-Host "✅ Projet trouvé !" -ForegroundColor Green
+        Write-Host "📁 Emplacement : $path" -ForegroundColor Yellow
+        Write-Host ""
+        Write-Host "Pour y accéder, copiez-collez cette commande :" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "cd `"$path`"" -ForegroundColor White
+        Write-Host ""
         $found = $true
-        
-        # Vérifier si c'est un repo Git
-        if (Test-Path "$path\.git") {
-            Write-Host "   ✅ C'est un repository Git valide!" -ForegroundColor Green
-            Write-Host ""
-            Write-Host "🎯 UTILISEZ CETTE COMMANDE:" -ForegroundColor Cyan
-            Write-Host "   cd `"$path`"" -ForegroundColor White
-            Write-Host ""
-        }
+        break
     }
 }
 
 if (-not $found) {
-    Write-Host "❌ Projet non trouvé dans les emplacements courants" -ForegroundColor Red
+    Write-Host "❌ Projet non trouvé dans les emplacements communs" -ForegroundColor Red
     Write-Host ""
-    Write-Host "🔍 RECHERCHE APPROFONDIE..." -ForegroundColor Yellow
-    Write-Host "   (Cela peut prendre quelques minutes)" -ForegroundColor Gray
+    Write-Host "🔍 Recherche dans tout le disque C:\ (peut prendre 1-2 minutes)..." -ForegroundColor Yellow
     Write-Host ""
     
-    # Recherche dans tout le profil utilisateur
-    $searchResult = Get-ChildItem -Path $env:USERPROFILE -Recurse -Directory -Filter "zyatria-global" -ErrorAction SilentlyContinue | Select-Object -First 1
+    $results = Get-ChildItem -Path "C:\" -Filter "package.json" -Recurse -ErrorAction SilentlyContinue | 
+               Where-Object { $_.Directory.Name -like "*zyatria*" } |
+               Select-Object -First 5
     
-    if ($searchResult) {
-        Write-Host "✅ TROUVÉ: $($searchResult.FullName)" -ForegroundColor Green
+    if ($results) {
+        Write-Host "✅ Projets trouvés :" -ForegroundColor Green
         Write-Host ""
-        Write-Host "🎯 UTILISEZ CETTE COMMANDE:" -ForegroundColor Cyan
-        Write-Host "   cd `"$($searchResult.FullName)`"" -ForegroundColor White
-        Write-Host ""
+        foreach ($result in $results) {
+            $projectPath = $result.Directory.FullName
+            Write-Host "📁 $projectPath" -ForegroundColor Yellow
+            Write-Host "   Commande : cd `"$projectPath`"" -ForegroundColor White
+            Write-Host ""
+        }
     } else {
-        Write-Host "❌ Projet introuvable" -ForegroundColor Red
+        Write-Host "❌ Aucun projet trouvé" -ForegroundColor Red
         Write-Host ""
-        Write-Host "💡 SOLUTIONS:" -ForegroundColor Cyan
-        Write-Host "   1. Vérifiez que vous avez bien cloné le projet" -ForegroundColor White
-        Write-Host "   2. Cherchez manuellement le dossier 'zyatria-global'" -ForegroundColor White
-        Write-Host "   3. Si vous ne l'avez pas encore, clonez-le:" -ForegroundColor White
-        Write-Host "      git clone https://github.com/stephanetako/zyatria-global.git" -ForegroundColor Gray
-        Write-Host ""
+        Write-Host "💡 Suggestions :" -ForegroundColor Cyan
+        Write-Host "  1. Vérifiez que vous avez bien téléchargé le projet" -ForegroundColor White
+        Write-Host "  2. Cherchez manuellement le dossier 'zyatria-global'" -ForegroundColor White
+        Write-Host "  3. Ouvrez PowerShell dans le dossier du projet (clic droit → Ouvrir dans Terminal)" -ForegroundColor White
     }
 }
 
 Write-Host ""
-Write-Host "Appuyez sur une touche pour fermer..." -ForegroundColor Gray
-pause
+Write-Host "Appuyez sur ENTRÉE pour fermer..." -ForegroundColor Gray
+Read-Host

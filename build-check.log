@@ -2,104 +2,134 @@
 > zyatria-global@1.0.0 build
 > astro build
 
-23:31:05 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
-23:31:05 [@astrojs/cloudflare] If you see the error "Invalid binding `SESSION`" in your build output, you need to add the binding to your wrangler config file.
-23:31:05 [WARN] [adapter] Cloudflare does not support sharp at runtime. However, you can configure `imageService: "compile"` to optimize images with sharp on prerendered pages during build time.
-23:31:05 [content] Syncing content
-23:31:05 [content] Synced content
-23:31:05 [types] Generated 72ms
-23:31:05 [build] output: "server"
-23:31:05 [build] mode: "server"
-23:31:05 [build] directory: /app/dist/
-23:31:05 [build] adapter: @astrojs/cloudflare
-23:31:05 [build] Collecting build info...
-23:31:05 [build] ✓ Completed in 166ms.
-23:31:05 [build] Building server entrypoints...
-23:31:11 [vite] ✓ built in 5.97s
-23:31:11 [build] ✓ Completed in 6.02s.
+03:51:38 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+03:51:38 [@astrojs/cloudflare] If you see the error "Invalid binding `SESSION`" in your build output, you need to add the binding to your wrangler config file.
+03:51:38 [WARN] [adapter] Cloudflare does not support sharp at runtime. However, you can configure `imageService: "compile"` to optimize images with sharp on prerendered pages during build time.
+03:51:39 [content] Syncing content
+03:51:39 [content] Synced content
+03:51:39 [types] Generated 63ms
+03:51:39 [build] output: "server"
+03:51:39 [build] mode: "server"
+03:51:39 [build] directory: /app/dist/
+03:51:39 [build] adapter: @astrojs/cloudflare
+03:51:39 [build] Collecting build info...
+03:51:39 [build] ✓ Completed in 145ms.
+03:51:39 [build] Building server entrypoints...
+03:51:45 [vite] ✓ built in 6.51s
+03:51:45 [build] ✓ Completed in 6.56s.
 
  building client (vite) 
-23:31:11 [vite] transforming...
-23:31:14 [vite] ✓ 2243 modules transformed.
-23:31:14 [WARN] [vite] Generated an empty chunk: "test.astro_astro_type_script_index_0_lang".
-23:31:14 [vite] rendering chunks...
-23:31:14 [vite] computing gzip size...
-23:31:14 [vite] dist/_astro/base-url.DVjYrgnb.js                                          0.05 kB │ gzip:  0.07 kB
-23:31:14 [vite] dist/_astro/check.ChBy7y0Z.js                                             0.30 kB │ gzip:  0.25 kB
-23:31:14 [vite] dist/_astro/chevron-down.DNZWfD6V.js                                      0.31 kB │ gzip:  0.25 kB
-23:31:14 [vite] dist/_astro/loader-circle.B2nJ7ggR.js                                     0.32 kB │ gzip:  0.26 kB
-23:31:14 [vite] dist/_astro/code.DVRaCuM1.js                                              0.35 kB │ gzip:  0.26 kB
-23:31:14 [vite] dist/_astro/arrow-right.CodxBfua.js                                       0.35 kB │ gzip:  0.27 kB
-23:31:14 [vite] dist/_astro/search.rMAH6lI6.js                                            0.35 kB │ gzip:  0.28 kB
-23:31:14 [vite] dist/_astro/circle-check.jshL4FZU.js                                      0.36 kB │ gzip:  0.28 kB
-23:31:14 [vite] dist/_astro/message-square.CXnfTWbq.js                                    0.36 kB │ gzip:  0.28 kB
-23:31:14 [vite] dist/_astro/circle-check-big.nDyomz6B.js                                  0.37 kB │ gzip:  0.29 kB
-23:31:14 [vite] dist/_astro/credit-card.Dua_DhT0.js                                       0.39 kB │ gzip:  0.30 kB
-23:31:14 [vite] dist/_astro/mail.CApxOwl3.js                                              0.40 kB │ gzip:  0.31 kB
-23:31:14 [vite] dist/_astro/dollar-sign.DDuLrG71.js                                       0.40 kB │ gzip:  0.30 kB
-23:31:14 [vite] dist/_astro/target.CYCcGlGK.js                                            0.41 kB │ gzip:  0.27 kB
-23:31:14 [vite] dist/_astro/globe.DcbSHBTb.js                                             0.42 kB │ gzip:  0.30 kB
-23:31:14 [vite] dist/_astro/eye.DiQ_SrXp.js                                               0.44 kB │ gzip:  0.31 kB
-23:31:14 [vite] dist/_astro/map-pin.CLN-x97Z.js                                           0.44 kB │ gzip:  0.33 kB
-23:31:14 [vite] dist/_astro/calendar.D4iXVNnh.js                                          0.44 kB │ gzip:  0.31 kB
-23:31:14 [vite] dist/_astro/zap.CphHfqNk.js                                               0.45 kB │ gzip:  0.32 kB
-23:31:14 [vite] dist/_astro/shield.CbgHtJXd.js                                            0.45 kB │ gzip:  0.33 kB
-23:31:14 [vite] dist/_astro/house.Dzfwy_f4.js                                             0.47 kB │ gzip:  0.33 kB
-23:31:14 [vite] dist/_astro/send.frMXlnk_.js                                              0.47 kB │ gzip:  0.34 kB
-23:31:14 [vite] dist/_astro/bell.rct9Fv04.js                                              0.47 kB │ gzip:  0.35 kB
-23:31:14 [vite] dist/_astro/Pricing.BaHWpxBv.js                                           0.51 kB │ gzip:  0.31 kB
-23:31:14 [vite] dist/_astro/bot.Dl7znvWL.js                                               0.51 kB │ gzip:  0.34 kB
-23:31:14 [vite] dist/_astro/language-context.DxGhI-jn.js                                  0.56 kB │ gzip:  0.36 kB
-23:31:14 [vite] dist/_astro/Navigation.C_NW6_OP.js                                        0.57 kB │ gzip:  0.32 kB
-23:31:14 [vite] dist/_astro/rocket.CYqvwSmU.js                                            0.64 kB │ gzip:  0.42 kB
-23:31:14 [vite] dist/_astro/index.B7Xb1fEU.js                                             0.64 kB │ gzip:  0.44 kB
-23:31:14 [vite] dist/_astro/textarea.C_eNndu9.js                                          0.66 kB │ gzip:  0.40 kB
-23:31:14 [vite] dist/_astro/sparkles.MrwbiY9l.js                                          0.68 kB │ gzip:  0.39 kB
-23:31:14 [vite] dist/_astro/label.IGjLqeTy.js                                             0.72 kB │ gzip:  0.45 kB
-23:31:14 [vite] dist/_astro/jsx-runtime.D_zvdyIk.js                                       0.73 kB │ gzip:  0.46 kB
-23:31:14 [vite] dist/_astro/users.DVkBwPip.js                                             0.79 kB │ gzip:  0.40 kB
-23:31:14 [vite] dist/_astro/input.Bb-2louV.js                                             0.85 kB │ gzip:  0.46 kB
-23:31:14 [vite] dist/_astro/card.BoDgFye4.js                                              0.93 kB │ gzip:  0.41 kB
-23:31:14 [vite] dist/_astro/star.BrQ0bMQ4.js                                              0.95 kB │ gzip:  0.48 kB
-23:31:14 [vite] dist/_astro/workflow.RThGaOqm.js                                          1.15 kB │ gzip:  0.52 kB
-23:31:14 [vite] dist/_astro/badge.C2-L2wzr.js                                             1.19 kB │ gzip:  0.58 kB
-23:31:14 [vite] dist/_astro/CompactContactForm.BT2nVTo_.js                                1.48 kB │ gzip:  0.68 kB
-23:31:14 [vite] dist/_astro/FormspreeButton.qMapE8IG.js                                   1.58 kB │ gzip:  0.74 kB
-23:31:14 [vite] dist/_astro/client.a-dVTLzK.js                                            1.77 kB │ gzip:  0.90 kB
-23:31:14 [vite] dist/_astro/createLucideIcon.B7uw3SI9.js                                  1.86 kB │ gzip:  0.80 kB
-23:31:14 [vite] dist/_astro/SimpleContactForm.BDrVnlG0.js                                 2.17 kB │ gzip:  0.86 kB
-23:31:14 [vite] dist/_astro/video.DQzkRHUK.js                                             2.75 kB │ gzip:  0.86 kB
-23:31:14 [vite] dist/_astro/tabs.DS-GBn7s.js                                              3.61 kB │ gzip:  1.54 kB
-23:31:14 [vite] dist/_astro/index.BvNfZMHe.js                                             3.89 kB │ gzip:  1.52 kB
-23:31:14 [vite] dist/_astro/index.Duqberm0.js                                             4.01 kB │ gzip:  1.74 kB
-23:31:14 [vite] dist/_astro/ServicesPage.DxA0RsW7.js                                      4.58 kB │ gzip:  1.84 kB
-23:31:14 [vite] dist/_astro/LeadQualificationForm.8SNg9eNS.js                             5.29 kB │ gzip:  1.76 kB
-23:31:14 [vite] dist/_astro/index.CaTgfzfL.js                                             5.56 kB │ gzip:  2.31 kB
-23:31:14 [vite] dist/_astro/DemoPage.BUz1j2ak.js                                          5.67 kB │ gzip:  2.10 kB
-23:31:14 [vite] dist/_astro/Navigation.Cb9p8x1n.js                                        5.80 kB │ gzip:  1.78 kB
-23:31:14 [vite] dist/_astro/AboutPage.BibU-ihG.js                                         6.55 kB │ gzip:  2.06 kB
-23:31:14 [vite] dist/_astro/MicroAgentsPage.CAqx2N-a.js                                   6.58 kB │ gzip:  2.34 kB
-23:31:14 [vite] dist/_astro/Footer.C9iUNXKS.js                                            6.62 kB │ gzip:  2.01 kB
-23:31:14 [vite] dist/_astro/index.CY-HDqYb.js                                             8.40 kB │ gzip:  3.28 kB
-23:31:14 [vite] dist/_astro/LeadQualificationFormSimple.DAi1s7PM.js                       8.78 kB │ gzip:  2.37 kB
-23:31:14 [vite] dist/_astro/PaymentDemoPage.cvin33mZ.js                                   9.27 kB │ gzip:  3.78 kB
-23:31:14 [vite] dist/_astro/Pricing.BxGDQ2IN.js                                          14.50 kB │ gzip:  4.72 kB
-23:31:14 [vite] dist/_astro/index.DqmQuXbV.js                                            16.71 kB │ gzip:  6.60 kB
-23:31:14 [vite] dist/_astro/KnowledgeBasePage.D86_WzIM.js                                17.19 kB │ gzip:  5.07 kB
-23:31:14 [vite] dist/_astro/TechnicalDocsPage.BwEcJky7.js                                18.03 kB │ gzip:  5.54 kB
-23:31:14 [vite] dist/_astro/dropdown-menu.0JBKilEp.js                                    19.75 kB │ gzip:  6.09 kB
-23:31:14 [vite] dist/_astro/select.DbJvsWZD.js                                           22.24 kB │ gzip:  7.84 kB
-23:31:14 [vite] dist/_astro/TechnologyPage.BoC7j9_a.js                                   26.04 kB │ gzip:  7.33 kB
-23:31:14 [vite] dist/_astro/button.Cghor3Ge.js                                           28.85 kB │ gzip:  9.52 kB
-23:31:14 [vite] dist/_astro/Combination.D2aiP5Qt.js                                      47.27 kB │ gzip: 17.24 kB
-23:31:14 [vite] dist/_astro/AppWrapper.m3HIigPU.js                                       79.91 kB │ gzip: 22.52 kB
-23:31:14 [vite] dist/_astro/dashboard.astro_astro_type_script_index_0_lang.DLaUazz-.js  106.74 kB │ gzip: 31.13 kB
-23:31:14 [vite] dist/_astro/client.B-2yCO62.js                                          173.81 kB │ gzip: 54.95 kB
-23:31:14 [vite] ✓ built in 3.38s
+03:51:45 [vite] transforming...
+03:51:49 [vite] ✓ 2255 modules transformed.
+03:51:49 [WARN] [vite] Generated an empty chunk: "test.astro_astro_type_script_index_0_lang".
+03:51:49 [vite] rendering chunks...
+03:51:49 [vite] computing gzip size...
+03:51:49 [vite] dist/_astro/base-url.DVjYrgnb.js                                          0.05 kB │ gzip:  0.07 kB
+03:51:49 [vite] dist/_astro/check.ChBy7y0Z.js                                             0.30 kB │ gzip:  0.25 kB
+03:51:49 [vite] dist/_astro/loader-circle.B2nJ7ggR.js                                     0.32 kB │ gzip:  0.26 kB
+03:51:49 [vite] dist/_astro/message-circle.Bwosc0xi.js                                    0.33 kB │ gzip:  0.27 kB
+03:51:49 [vite] dist/_astro/plus.B73BdIgM.js                                              0.34 kB │ gzip:  0.26 kB
+03:51:49 [vite] dist/_astro/x.D4eNesu9.js                                                 0.34 kB │ gzip:  0.26 kB
+03:51:49 [vite] dist/_astro/code.DVRaCuM1.js                                              0.35 kB │ gzip:  0.26 kB
+03:51:49 [vite] dist/_astro/clock.DXMWv4-b.js                                             0.35 kB │ gzip:  0.28 kB
+03:51:49 [vite] dist/_astro/arrow-right.CodxBfua.js                                       0.35 kB │ gzip:  0.27 kB
+03:51:49 [vite] dist/_astro/circle-check.jshL4FZU.js                                      0.36 kB │ gzip:  0.28 kB
+03:51:49 [vite] dist/_astro/trending-up.DtwXRsMy.js                                       0.36 kB │ gzip:  0.28 kB
+03:51:49 [vite] dist/_astro/message-square.CXnfTWbq.js                                    0.36 kB │ gzip:  0.28 kB
+03:51:49 [vite] dist/_astro/menu.8hiHUkPD.js                                              0.37 kB │ gzip:  0.27 kB
+03:51:49 [vite] dist/_astro/circle-check-big.nDyomz6B.js                                  0.37 kB │ gzip:  0.29 kB
+03:51:49 [vite] dist/_astro/credit-card.Dua_DhT0.js                                       0.39 kB │ gzip:  0.30 kB
+03:51:49 [vite] dist/_astro/mail.CApxOwl3.js                                              0.40 kB │ gzip:  0.31 kB
+03:51:49 [vite] dist/_astro/dollar-sign.DDuLrG71.js                                       0.40 kB │ gzip:  0.30 kB
+03:51:49 [vite] dist/_astro/target.CYCcGlGK.js                                            0.41 kB │ gzip:  0.27 kB
+03:51:49 [vite] dist/_astro/globe.DcbSHBTb.js                                             0.42 kB │ gzip:  0.30 kB
+03:51:49 [vite] dist/_astro/eye.DiQ_SrXp.js                                               0.44 kB │ gzip:  0.31 kB
+03:51:49 [vite] dist/_astro/map-pin.CLN-x97Z.js                                           0.44 kB │ gzip:  0.33 kB
+03:51:49 [vite] dist/_astro/calendar.D4iXVNnh.js                                          0.44 kB │ gzip:  0.31 kB
+03:51:49 [vite] dist/_astro/zap.CphHfqNk.js                                               0.45 kB │ gzip:  0.32 kB
+03:51:49 [vite] dist/_astro/shield.CbgHtJXd.js                                            0.45 kB │ gzip:  0.33 kB
+03:51:49 [vite] dist/_astro/house.Dzfwy_f4.js                                             0.47 kB │ gzip:  0.33 kB
+03:51:49 [vite] dist/_astro/bell.rct9Fv04.js                                              0.47 kB │ gzip:  0.35 kB
+03:51:49 [vite] dist/_astro/send.frMXlnk_.js                                              0.47 kB │ gzip:  0.34 kB
+03:51:49 [vite] dist/_astro/wrench.DQRg7Sfc.js                                            0.48 kB │ gzip:  0.35 kB
+03:51:49 [vite] dist/_astro/MistralChatBot.9OxGNT7H.js                                    0.49 kB │ gzip:  0.30 kB
+03:51:49 [vite] dist/_astro/users.D-3zIdpL.js                                             0.49 kB │ gzip:  0.33 kB
+03:51:49 [vite] dist/_astro/phone.BOKIVXRt.js                                             0.51 kB │ gzip:  0.34 kB
+03:51:49 [vite] dist/_astro/bot.Dl7znvWL.js                                               0.51 kB │ gzip:  0.34 kB
+03:51:49 [vite] dist/_astro/language-context.B0l1Ftcj.js                                  0.58 kB │ gzip:  0.37 kB
+03:51:49 [vite] dist/_astro/rocket.CYqvwSmU.js                                            0.64 kB │ gzip:  0.42 kB
+03:51:49 [vite] dist/_astro/index.BdyBDgr_.js                                             0.64 kB │ gzip:  0.44 kB
+03:51:49 [vite] dist/_astro/textarea.ByOQvpFi.js                                          0.66 kB │ gzip:  0.41 kB
+03:51:49 [vite] dist/_astro/sparkles.MrwbiY9l.js                                          0.68 kB │ gzip:  0.39 kB
+03:51:49 [vite] dist/_astro/label.D1xxUaEI.js                                             0.72 kB │ gzip:  0.45 kB
+03:51:49 [vite] dist/_astro/jsx-runtime.D_zvdyIk.js                                       0.73 kB │ gzip:  0.46 kB
+03:51:49 [vite] dist/_astro/lock.C-PgxVP_.js                                              0.76 kB │ gzip:  0.40 kB
+03:51:49 [vite] dist/_astro/TestSimple.DQL2ZyUg.js                                        0.76 kB │ gzip:  0.49 kB
+03:51:49 [vite] dist/_astro/search.BaG3jfaC.js                                            0.82 kB │ gzip:  0.40 kB
+03:51:49 [vite] dist/_astro/input.DSYrZDKv.js                                             0.85 kB │ gzip:  0.47 kB
+03:51:49 [vite] dist/_astro/card.rUXi4x01.js                                              0.93 kB │ gzip:  0.41 kB
+03:51:49 [vite] dist/_astro/twitter.CFz2sr5T.js                                           1.14 kB │ gzip:  0.53 kB
+03:51:49 [vite] dist/_astro/workflow.RThGaOqm.js                                          1.15 kB │ gzip:  0.52 kB
+03:51:49 [vite] dist/_astro/badge.BfH0aMSJ.js                                             1.22 kB │ gzip:  0.60 kB
+03:51:49 [vite] dist/_astro/CompactContactForm.CYGerBw_.js                                1.51 kB │ gzip:  0.69 kB
+03:51:49 [vite] dist/_astro/TrustStatsSimple.DSlTGMN7.js                                  1.54 kB │ gzip:  0.85 kB
+03:51:49 [vite] dist/_astro/FormspreeButton.DFhXNrcC.js                                   1.60 kB │ gzip:  0.76 kB
+03:51:49 [vite] dist/_astro/client.a-dVTLzK.js                                            1.77 kB │ gzip:  0.90 kB
+03:51:49 [vite] dist/_astro/createLucideIcon.B7uw3SI9.js                                  1.86 kB │ gzip:  0.80 kB
+03:51:49 [vite] dist/_astro/AppWrapper.DM_n23Fr.js                                        2.08 kB │ gzip:  0.98 kB
+03:51:49 [vite] dist/_astro/SimpleContactForm.Bssft2tV.js                                 2.20 kB │ gzip:  0.87 kB
+03:51:49 [vite] dist/_astro/video.BFoz3Awx.js                                             2.29 kB │ gzip:  0.77 kB
+03:51:49 [vite] dist/_astro/HeroDesignSystem.D2YrFYNw.js                                  3.33 kB │ gzip:  1.43 kB
+03:51:49 [vite] dist/_astro/stripe-links.zKo8gB0p.js                                      3.53 kB │ gzip:  1.35 kB
+03:51:49 [vite] dist/_astro/tabs.D5WaRt3n.js                                              3.61 kB │ gzip:  1.55 kB
+03:51:49 [vite] dist/_astro/RoadmapDesignSystem.gtzo1kAv.js                               3.65 kB │ gzip:  1.59 kB
+03:51:49 [vite] dist/_astro/index.BvNfZMHe.js                                             3.89 kB │ gzip:  1.52 kB
+03:51:49 [vite] dist/_astro/button.C3K10HyD.js                                            4.00 kB │ gzip:  1.78 kB
+03:51:49 [vite] dist/_astro/index.bMvqMXRi.js                                             4.01 kB │ gzip:  1.74 kB
+03:51:49 [vite] dist/_astro/ServicesPage.G7gil_lQ.js                                      4.61 kB │ gzip:  1.86 kB
+03:51:49 [vite] dist/_astro/TestimonialsDesignSystem.DA9gmKLi.js                          4.67 kB │ gzip:  1.97 kB
+03:51:49 [vite] dist/_astro/FooterModern.Dv7T5gKW.js                                      4.89 kB │ gzip:  1.86 kB
+03:51:49 [vite] dist/_astro/CTAFinal.Bnmwpmzl.js                                          4.99 kB │ gzip:  1.93 kB
+03:51:49 [vite] dist/_astro/LeadQualificationForm.GzwL9PxP.js                             5.28 kB │ gzip:  1.76 kB
+03:51:49 [vite] dist/_astro/index.9I3bWDMV.js                                             5.56 kB │ gzip:  2.31 kB
+03:51:49 [vite] dist/_astro/NavigationDesignSystem.r9uPtAQM.js                            5.73 kB │ gzip:  1.97 kB
+03:51:49 [vite] dist/_astro/Navigation.B-zh6u5e.js                                        6.05 kB │ gzip:  1.94 kB
+03:51:49 [vite] dist/_astro/FAQDesignSystem.Be2QjTHz.js                                   6.43 kB │ gzip:  2.81 kB
+03:51:49 [vite] dist/_astro/Footer.CRjDKkbN.js                                            6.49 kB │ gzip:  2.01 kB
+03:51:49 [vite] dist/_astro/MicroAgentsPage.DYyVFdPK.js                                   6.61 kB │ gzip:  2.35 kB
+03:51:49 [vite] dist/_astro/AboutPage.CS4J4TKN.js                                         6.62 kB │ gzip:  2.10 kB
+03:51:49 [vite] dist/_astro/FooterDesignSystem.DOSnGqL5.js                                6.63 kB │ gzip:  1.97 kB
+03:51:49 [vite] dist/_astro/Services.BseNUnNn.js                                          6.94 kB │ gzip:  2.86 kB
+03:51:49 [vite] dist/_astro/AppWrapperDiagnostic.bBxgyk2M.js                              7.20 kB │ gzip:  3.05 kB
+03:51:49 [vite] dist/_astro/demo.astro_astro_type_script_index_0_lang.BstDOkHX.js         8.20 kB │ gzip:  3.22 kB
+03:51:49 [vite] dist/_astro/index.CY-HDqYb.js                                             8.40 kB │ gzip:  3.28 kB
+03:51:49 [vite] dist/_astro/LeadQualificationFormSimple.DjMd_n9b.js                       8.78 kB │ gzip:  2.37 kB
+03:51:49 [vite] dist/_astro/PaymentDemoPage.hhJqA6H5.js                                   9.00 kB │ gzip:  3.65 kB
+03:51:49 [vite] dist/_astro/MistralChatBot.BKKLvg_F.js                                   10.72 kB │ gzip:  3.95 kB
+03:51:49 [vite] dist/_astro/MicroAgents.DsqSqEB2.js                                      11.35 kB │ gzip:  3.99 kB
+03:51:49 [vite] dist/_astro/Pricing.B5XYg4MP.js                                          12.48 kB │ gzip:  3.59 kB
+03:51:49 [vite] dist/_astro/index.DqmQuXbV.js                                            16.71 kB │ gzip:  6.60 kB
+03:51:49 [vite] dist/_astro/KnowledgeBasePage.C1QQN75W.js                                17.00 kB │ gzip:  5.06 kB
+03:51:49 [vite] dist/_astro/TechnicalDocsPage.Bmt5OOIV.js                                18.06 kB │ gzip:  5.56 kB
+03:51:49 [vite] dist/_astro/dropdown-menu.B-cfmBSR.js                                    19.13 kB │ gzip:  5.84 kB
+03:51:49 [vite] dist/_astro/select.DEXUd0W2.js                                           22.48 kB │ gzip:  7.87 kB
+03:51:49 [vite] dist/_astro/utils.CBfrqCZ4.js                                            24.86 kB │ gzip:  7.93 kB
+03:51:49 [vite] dist/_astro/TechnologyPage.BqjziS2K.js                                   25.43 kB │ gzip:  7.22 kB
+03:51:49 [vite] dist/_astro/AppWrapperDebug.DkyxDAhs.js                                  26.99 kB │ gzip:  8.64 kB
+03:51:49 [vite] dist/_astro/Combination.BrwIydAx.js                                      47.27 kB │ gzip: 17.24 kB
+03:51:49 [vite] dist/_astro/dashboard.astro_astro_type_script_index_0_lang.DS5NaXSG.js  107.16 kB │ gzip: 31.36 kB
+03:51:49 [vite] dist/_astro/client.B-2yCO62.js                                          173.81 kB │ gzip: 54.95 kB
+03:51:49 [vite] ✓ built in 3.98s
 
  prerendering static routes 
-23:31:14 ✓ Completed in 29ms.
+03:51:49 ✓ Completed in 44ms.
 
-23:31:14 [build] Rearranging server assets...
-23:31:14 [build] Server built in 9.70s
-23:31:14 [build] Complete!
+03:51:49 [build] Rearranging server assets...
+03:51:49 [build] Server built in 10.83s
+03:51:49 [build] Complete!
+
+> zyatria-global@1.0.0 postbuild
+> node fix-routes.js
+
+✅ Removed "/" from _routes.json exclude list
+✅ _routes.json fixed successfully!

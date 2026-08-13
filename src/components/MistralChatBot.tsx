@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Alert, AlertDescription } from './ui/alert';
 import { baseUrl } from '../lib/base-url';
+import { useLanguage } from '../lib/language-context';
 
 interface Message {
   id: string;
@@ -18,7 +19,56 @@ interface DebugLog {
   data?: any;
 }
 
+const translations = {
+  fr: {
+    title: 'Assistant IA ZyatrIA',
+    subtitle: 'Posez vos questions',
+    placeholder: 'Posez votre question...',
+    startConversation: 'Commencez une conversation...',
+    ready: 'Prêt',
+    sending: 'Envoi en cours...',
+    error: 'Erreur',
+    errorMessage: 'Désolé, une erreur s\'est produite',
+    tryAgain: 'Veuillez réessayer',
+  },
+  en: {
+    title: 'ZyatrIA AI Assistant',
+    subtitle: 'Ask your questions',
+    placeholder: 'Ask your question...',
+    startConversation: 'Start a conversation...',
+    ready: 'Ready',
+    sending: 'Sending...',
+    error: 'Error',
+    errorMessage: 'Sorry, an error occurred',
+    tryAgain: 'Please try again',
+  },
+  es: {
+    title: 'Asistente IA ZyatrIA',
+    subtitle: 'Haz tus preguntas',
+    placeholder: 'Haz tu pregunta...',
+    startConversation: 'Comienza una conversación...',
+    ready: 'Listo',
+    sending: 'Enviando...',
+    error: 'Error',
+    errorMessage: 'Lo siento, ocurrió un error',
+    tryAgain: 'Por favor, inténtalo de nuevo',
+  },
+  pt: {
+    title: 'Assistente IA ZyatrIA',
+    subtitle: 'Faça suas perguntas',
+    placeholder: 'Faça sua pergunta...',
+    startConversation: 'Comece uma conversa...',
+    ready: 'Pronto',
+    sending: 'Enviando...',
+    error: 'Erro',
+    errorMessage: 'Desculpe, ocorreu um erro',
+    tryAgain: 'Por favor, tente novamente',
+  },
+};
+
 export default function MistralChatBot() {
+  const { language } = useLanguage();
+  const t = translations[language] || translations.fr;
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -28,6 +78,16 @@ export default function MistralChatBot() {
   const [status, setStatus] = useState<'ready' | 'sending' | 'error'>('ready');
   const [debugLogs, setDebugLogs] = useState<DebugLog[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Debug: Vérifier que le composant est monté
+  useEffect(() => {
+    console.log('✅ MistralChatBot monté et prêt !');
+    console.log('📍 Position: fixed bottom-6 right-6');
+    console.log('🎨 Couleur: bg-primary (devrait être visible)');
+    return () => {
+      console.log('❌ MistralChatBot démonté');
+    };
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -128,7 +188,7 @@ export default function MistralChatBot() {
       const errorMsg: Message = {
         id: (Date.now() + 2).toString(),
         role: 'assistant',
-        content: `Désolé, une erreur s'est produite : ${errorMessage}. Veuillez réessayer.`,
+        content: `${t.errorMessage}: ${errorMessage}. ${t.tryAgain}.`,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMsg]);
@@ -148,9 +208,24 @@ export default function MistralChatBot() {
   if (!isOpen) {
     return (
       <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110 animate-pulse-glow"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('🖱️ CLIC DÉTECTÉ !');
+          console.log('📂 État actuel isOpen:', isOpen);
+          setIsOpen(true);
+          console.log('✅ setIsOpen(true) appelé - le chat devrait s\'ouvrir');
+        }}
+        className="fixed bottom-6 right-6 z-[9999] bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110 animate-pulse-glow"
         aria-label="Open AI Chat"
+        style={{ 
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 9999
+        }}
       >
         <Sparkles className="w-6 h-6" />
         <span className="absolute -top-1 -right-1 w-3 h-3 bg-muted rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></span>
@@ -160,7 +235,7 @@ export default function MistralChatBot() {
 
   return (
     <div 
-      className={`fixed bottom-6 right-6 z-50 bg-card border border-border rounded-2xl shadow-2xl transition-all flex flex-col ${
+      className={`fixed bottom-6 right-6 z-[9999] bg-card border border-border rounded-2xl shadow-2xl transition-all flex flex-col ${
         isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
       } max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)]`}
     >
@@ -172,9 +247,9 @@ export default function MistralChatBot() {
             <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-muted rounded-full border-2 border-primary"></span>
           </div>
           <div>
-            <h3 className="font-semibold text-sm">Assistant IA ZyatrIA</h3>
+            <h3 className="font-semibold text-sm">{t.title}</h3>
             {!isMinimized && (
-              <p className="text-xs opacity-90">Posez vos questions</p>
+              <p className="text-xs opacity-90">{t.subtitle}</p>
             )}
           </div>
         </div>
@@ -204,7 +279,7 @@ export default function MistralChatBot() {
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.length === 0 && (
               <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                Commencez une conversation...
+                {t.startConversation}
               </div>
             )}
             {messages.map((msg) => (
@@ -259,19 +334,19 @@ export default function MistralChatBot() {
               {status === 'ready' && (
                 <>
                   <CheckCircle2 className="w-3 h-3 text-foreground" />
-                  <span className="text-muted-foreground">Prêt</span>
+                  <span className="text-muted-foreground">{t.ready}</span>
                 </>
               )}
               {status === 'sending' && (
                 <>
                   <Loader2 className="w-3 h-3 animate-spin text-primary" />
-                  <span className="text-muted-foreground">Envoi en cours...</span>
+                  <span className="text-muted-foreground">{t.sending}</span>
                 </>
               )}
               {status === 'error' && (
                 <>
                   <AlertCircle className="w-3 h-3 text-destructive" />
-                  <span className="text-destructive">Erreur</span>
+                  <span className="text-destructive">{t.error}</span>
                 </>
               )}
             </div>
@@ -293,7 +368,7 @@ export default function MistralChatBot() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Posez votre question..."
+                placeholder={t.placeholder}
                 disabled={isLoading}
                 className="flex-1"
                 onKeyDown={handleKeyPress}
@@ -337,6 +412,12 @@ export default function MistralChatBot() {
     </div>
   );
 }
+
+
+
+
+
+
 
 
 

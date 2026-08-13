@@ -20,7 +20,7 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-<AppWrapper client:only="react" />
+  <AppWrapper client:load />
 </MainLayout>
 
 <style is:global>
@@ -220,6 +220,12 @@ height: 1px;
 overflow: hidden;
 }
 </style>
+
+
+
+
+
+
 
 
 

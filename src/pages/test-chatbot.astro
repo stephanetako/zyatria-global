@@ -1,0 +1,54 @@
+---
+import MainLayout from '../layouts/main.astro';
+import MistralChatBot from '../components/MistralChatBot';
+---
+
+<MainLayout title="Test Chatbot Mistral">
+  <div class="min-h-screen bg-background p-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Test du Chatbot Mistral</h1>
+      
+      <div class="bg-card p-6 rounded-lg border border-border mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Instructions de test :</h2>
+        <ol class="list-decimal list-inside space-y-2">
+          <li>Ouvre la console du navigateur (F12)</li>
+          <li>Cherche le bouton violet avec l'icône ✨ en bas à droite</li>
+          <li>Clique sur le bouton</li>
+          <li>Vérifie les logs dans la console</li>
+          <li>Le chatbot devrait s'ouvrir</li>
+        </ol>
+      </div>
+
+      <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg border border-yellow-200 dark:border-yellow-800">
+        <h3 class="text-xl font-semibold mb-2">🔍 Que vérifier :</h3>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Le bouton est-il visible en bas à droite ?</li>
+          <li>Le bouton a-t-il une couleur violette/indigo ?</li>
+          <li>Y a-t-il une animation de pulsation ?</li>
+          <li>Le clic fonctionne-t-il ?</li>
+          <li>Des erreurs dans la console ?</li>
+        </ul>
+      </div>
+
+      <div class="mt-8 bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 class="text-xl font-semibold mb-2">📊 Logs attendus dans la console :</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded mt-2 overflow-x-auto"><code>✅ MistralChatBot monté et prêt !
+📍 Position: fixed bottom-6 right-6
+🎨 Couleur: bg-primary (devrait être visible)
+🖱️ Clic sur le bouton chatbot détecté !
+📂 État actuel isOpen: false
+✅ setIsOpen(true) appelé</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Le chatbot devrait apparaître ici -->
+  <MistralChatBot client:only="react" />
+</MainLayout>
+
+<style>
+  /* S'assurer que le chatbot est au-dessus de tout */
+  :global(button[aria-label="Open AI Chat"]) {
+    z-index: 9999 !important;
+  }
+</style>

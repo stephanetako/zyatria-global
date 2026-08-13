@@ -1,8 +1,6 @@
-
-import React from 'react';
 import { Card } from './ui/card';
 import { Globe2, Users, Award, TrendingUp, Shield, Lightbulb, Globe, Zap, Lock } from 'lucide-react';
-import { useLanguage, type Language } from '../lib/language-context';
+import { useLanguage } from '../lib/language-context';
 
 const translations: Record<'en' | 'fr', any> = {
   en: {
@@ -290,6 +288,7 @@ export default function About() {
     </section>
   );
 }
+
 
 
 

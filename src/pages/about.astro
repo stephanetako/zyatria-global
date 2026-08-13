@@ -1,12 +1,14 @@
 
 
 
+
+
+
 ---
 import MainLayout from '../layouts/main.astro';
 import Navigation from '../components/Navigation';
 import AboutPage from '../components/pages/AboutPage';
 import Footer from '../components/Footer';
-import FormspreeButton from '../components/FormspreeButton';
 
 const seoData = {
   title: "À Propos de ZyatrIA Global | Agence IA Internationale | Entreprise Canadienne Québec",
@@ -21,13 +23,16 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-<div class="relative">
-<Navigation client:load />
 <AboutPage client:only="react" />
 <Footer client:only="react" />
-<FormspreeButton client:only="react" />
-</div>
 </MainLayout>
+
+
+
+
+
+
+
 
 
 

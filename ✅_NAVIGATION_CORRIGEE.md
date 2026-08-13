@@ -1,75 +1,193 @@
-# ✅ NAVIGATION CORRIGÉE - TEXTE EN NOIR
+# ✅ NAVIGATION CORRIGÉE - TEXTE NOIR AU LIEU DE BLEU
 
-## 🎨 Modification Effectuée
+## ❌ PROBLÈME
 
-### Avant
-```
-Accueil, Services, Micro-agents, Tarifs, Ressources
-→ Couleur: Gris transparent (text-foreground/80)
-→ Au survol: Noir (hover:text-foreground)
-```
+Les liens de navigation (Services, Micro-agents, Tarifs) apparaissaient en **bleu** au lieu de **noir**.
 
-### Après
 ```
-Accueil, Services, Micro-agents, Tarifs, Ressources
-→ Couleur: NOIR (text-foreground)
-→ Au survol: Terracotta (hover:text-primary)
+Accueil       ← Bleu
+Services      ← Bleu
+Micro-agents  ← Bleu
+Tarifs        ← Bleu
 ```
 
 ---
 
-## ✅ Résultat
+## 🔍 CAUSE
 
-Maintenant tous les liens de navigation sont:
-- **Toujours en NOIR** par défaut
-- **Terracotta** quand vous passez la souris dessus
-- Visible sur **desktop ET mobile**
+Le CSS global forçait **tous les liens `<a>`** à être bleus :
+
+```css
+/* src/styles/global.css */
+a {
+  color: var(--primary);  /* Bleu */
+}
+```
+
+Cela affectait aussi les liens de navigation.
 
 ---
 
-## 📱 Zones Modifiées
+## ✅ SOLUTION
 
-### Desktop (écran large)
+J'ai ajouté une règle CSS spécifique pour la navigation :
+
+```css
+/* Navigation links should use foreground color, not primary */
+nav a {
+  color: var(--foreground);  /* Noir/Couleur du texte */
+}
+
+nav a:hover {
+  color: var(--primary);     /* Bleu au survol */
+  opacity: 1;
+}
+```
+
+---
+
+## 📊 RÉSULTAT
+
+### AVANT
+```
+Accueil       ← Bleu (toujours)
+Services      ← Bleu (toujours)
+Micro-agents  ← Bleu (toujours)
+Tarifs        ← Bleu (toujours)
+```
+
+### APRÈS
+```
+Accueil       ← Noir (normal) → Bleu (survol)
+Services      ← Noir (normal) → Bleu (survol)
+Micro-agents  ← Noir (normal) → Bleu (survol)
+Tarifs        ← Noir (normal) → Bleu (survol)
+```
+
+---
+
+## 🎨 COMPORTEMENT
+
+| État | Couleur |
+|------|---------|
+| **Normal** | Noir (foreground) |
+| **Survol** | Bleu (primary) |
+| **Actif** | Bleu (primary) |
+
+---
+
+## 📁 FICHIER MODIFIÉ
+
+- **src/styles/global.css** - Ajout de règles CSS pour la navigation
+
+---
+
+## 🧪 VÉRIFICATION
+
+1. **Rechargez la page** (Ctrl+R ou F5)
+2. **Regardez la navigation** en haut
+3. **Les liens doivent être noirs**
+4. **Au survol, ils deviennent bleus**
+
+---
+
+## 💡 POURQUOI CETTE SOLUTION ?
+
+### Avantages
+- ✅ Meilleure lisibilité
+- ✅ Cohérence visuelle
+- ✅ Respect des standards UX
+- ✅ Distinction claire entre navigation et contenu
+
+### Spécificité CSS
+```
+a { ... }           ← Tous les liens (bleu)
+nav a { ... }       ← Liens dans la navigation (noir)
+```
+
+La règle `nav a` est plus spécifique, donc elle **surcharge** la règle générale `a`.
+
+---
+
+## 🎯 AUTRES LIENS AFFECTÉS
+
+Cette correction affecte **uniquement** les liens dans la navigation :
+
 - ✅ Accueil
 - ✅ Services
 - ✅ Micro-agents
 - ✅ Tarifs
-- ✅ Ressources (menu déroulant)
-
-### Mobile (petit écran)
-- ✅ Accueil
-- ✅ Services
-- ✅ Micro-agents
-- ✅ Tarifs
+- ✅ Ressources (dropdown)
 - ✅ Technologie
 - ✅ Documentation
 - ✅ Centre d'Aide
 
----
-
-## 🚀 Build
-
-```
-✅ Build réussi en 2.82s
-✅ Aucune erreur
-✅ Prêt pour le déploiement
-```
+**Les autres liens** (dans le contenu, footer, etc.) restent **bleus**.
 
 ---
 
-## 📤 Déployer Maintenant
+## 📝 NOTES TECHNIQUES
 
-Copiez-collez ces 3 commandes dans PowerShell:
+### CSS Appliqué
 
-```bash
-cd C:\Users\steph\zyatria-global
-git add .
-git commit -m "🎨 Navigation en noir au lieu de gris"
-git push origin master
+```css
+/* Règle générale pour tous les liens */
+a {
+  color: var(--primary);           /* Bleu */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+/* Règle spécifique pour la navigation */
+nav a {
+  color: var(--foreground);        /* Noir */
+}
+
+nav a:hover {
+  color: var(--primary);           /* Bleu au survol */
+  opacity: 1;
+}
 ```
 
-**Cloudflare déploiera automatiquement en 3-5 minutes.**
+### Variables CSS Utilisées
+
+```css
+--foreground: #373D36;  /* Noir/Gris foncé */
+--primary: #C98769;     /* Bleu/Couleur principale */
+```
 
 ---
 
-Est-ce que c'est bien ce que vous vouliez ? 😊
+## ✅ CHECKLIST
+
+- [x] CSS modifié dans `src/styles/global.css`
+- [x] Règle spécifique pour `nav a` ajoutée
+- [x] Couleur normale : `var(--foreground)` (noir)
+- [x] Couleur survol : `var(--primary)` (bleu)
+- [x] Transition fluide maintenue
+- [x] Documentation créée
+
+---
+
+## 🎉 RÉSULTAT FINAL
+
+**La navigation est maintenant noire avec un effet bleu au survol !**
+
+**Rechargez la page pour voir les changements.** 🔄
+
+---
+
+## 📞 BESOIN D'AIDE ?
+
+Si les liens sont toujours bleus :
+
+1. **Videz le cache** : Ctrl+Shift+R (Windows)
+2. **Vérifiez le CSS** : F12 → Onglet "Styles"
+3. **Redémarrez le serveur** : `npm run dev`
+
+**Email :** ZyatrIA.contact@gmail.com

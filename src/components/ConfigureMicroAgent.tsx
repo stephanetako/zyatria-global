@@ -1,17 +1,10 @@
-
-
-
 import React, { useState } from 'react';
 import { Sparkles, ArrowRight, CheckCircle2, Zap, Clock, Shield, Wrench } from 'lucide-react';
 import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
+import { Card } from './ui/card';
+import { Badge } from './ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { baseUrl } from '../lib/base-url';
 import { useLanguage } from '../lib/language-context';
-
-interface ConfigureMicroAgentProps {
-  lang?: string;
-}
 
 const translations = {
   en: {
@@ -290,6 +283,9 @@ const ConfigureMicroAgent: React.FC = () => {
 };
 
 export default ConfigureMicroAgent;
+
+
+
 
 
 

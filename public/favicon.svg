@@ -1,10 +1,18 @@
-<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#C98769;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#A86F53;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="32" height="32" rx="6" fill="url(#grad)"/>
-  <text x="16" y="23" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Z</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Symbole abstrait (réseau d'agents IA) simplifié pour favicon -->
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#C98769" stroke-width="4" />
+  <circle cx="50" cy="50" r="20" fill="none" stroke="#A86F53" stroke-width="3" />
+  <line x1="50" y1="10" x2="50" y2="90" stroke="#C98769" stroke-width="3" />
+  <line x1="10" y1="50" x2="90" y2="50" stroke="#C98769" stroke-width="3" />
+  <line x1="20" y1="20" x2="80" y2="80" stroke="#C98769" stroke-width="2" />
+  <line x1="80" y1="20" x2="20" y2="80" stroke="#C98769" stroke-width="2" />
+  <!-- Points autour du symbole -->
+  <circle cx="10" cy="10" r="6" fill="#C98769" />
+  <circle cx="90" cy="10" r="6" fill="#C98769" />
+  <circle cx="10" cy="90" r="6" fill="#C98769" />
+  <circle cx="90" cy="90" r="6" fill="#C98769" />
+  <circle cx="50" cy="10" r="6" fill="#A86F53" />
+  <circle cx="50" cy="90" r="6" fill="#A86F53" />
+  <circle cx="10" cy="50" r="6" fill="#A86F53" />
+  <circle cx="90" cy="50" r="6" fill="#A86F53" />
 </svg>

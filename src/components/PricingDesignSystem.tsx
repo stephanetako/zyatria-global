@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { Check, Shield } from 'lucide-react';
 import { useLanguage } from '../lib/language-context';
@@ -37,7 +38,7 @@ const translations = {
         ],
         cta: 'Démarrer Plan Mensuel',
         ctaClass: 'btn-primary',
-        link: stripeLinks.starter.monthly
+        link: stripeLinks.plans.starterMonthly
       },
       professional: {
         name: '⭐ Professional',
@@ -56,7 +57,7 @@ const translations = {
         cta: 'Démarrer Plan Mensuel',
         ctaClass: 'btn-primary',
         highlighted: true,
-        link: stripeLinks.professional.monthly
+        link: stripeLinks.plans.professionalMonthly
       },
       enterprise: {
         name: '🏆 Enterprise',
@@ -72,7 +73,7 @@ const translations = {
         ],
         cta: 'Contacter les Ventes',
         ctaClass: 'btn-secondary',
-        link: stripeLinks.enterprise.monthly
+        link: stripeLinks.plans.enterpriseMonthly
       }
     },
     services: {
@@ -141,7 +142,7 @@ const translations = {
         ],
         cta: 'Start Monthly Plan',
         ctaClass: 'btn-primary',
-        link: stripeLinks.starter.monthly
+        link: stripeLinks.plans.starterMonthly
       },
       professional: {
         name: '⭐ Professional',
@@ -160,7 +161,7 @@ const translations = {
         cta: 'Start Monthly Plan',
         ctaClass: 'btn-primary',
         highlighted: true,
-        link: stripeLinks.professional.monthly
+        link: stripeLinks.plans.professionalMonthly
       },
       enterprise: {
         name: '🏆 Enterprise',
@@ -176,7 +177,7 @@ const translations = {
         ],
         cta: 'Contact Sales',
         ctaClass: 'btn-secondary',
-        link: stripeLinks.enterprise.monthly
+        link: stripeLinks.plans.enterpriseMonthly
       }
     },
     services: {
@@ -458,6 +459,7 @@ const PricingDesignSystem: React.FC = () => {
 };
 
 export default PricingDesignSystem;
+
 
 
 
