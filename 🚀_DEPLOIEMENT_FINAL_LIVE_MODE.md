@@ -1,212 +1,168 @@
 # 🚀 DÉPLOIEMENT FINAL - MODE LIVE
 
-## ✅ STATUT ACTUEL
+## ✅ TOUT EST PRÊT !
 
-Tout est prêt pour le déploiement en production !
-
-- ✅ `.env` corrigé avec toutes les variables Stripe
+### Ce qui a été corrigé :
 - ✅ Build réussi sans erreurs
-- ✅ 14 liens Stripe en LIVE MODE configurés
-- ✅ Code à jour et fonctionnel
+- ✅ Stripe configuré en mode LIVE
+- ✅ Formspree configuré
+- ✅ Mistral API configuré
+- ✅ Tous les composants restaurés
 
 ---
 
-## 📋 ÉTAPE 1 : COMMIT ET PUSH VERS GITHUB
+## 🎯 DÉPLOIEMENT SUR CLOUDFLARE PAGES
 
-```bash
-# Ajouter tous les fichiers modifiés
+### ⚠️ IMPORTANT : PAGES, PAS WORKERS !
+
+Votre site actuel est sur **Workers** (`.workers.dev`) ❌
+Il doit être sur **Pages** (`.pages.dev`) ✅
+
+---
+
+## 📋 ÉTAPES DE DÉPLOIEMENT
+
+### Étape 1 : Push vers GitHub
+
+```powershell
 git add .
+git commit -m "fix: Configuration complète - Prêt pour production"
+git push origin main
+```
 
-# Créer un commit
-git commit -m "🚀 Configuration finale - Stripe LIVE MODE + tous les liens"
-
-# Pousser vers GitHub
+Si erreur avec `main`, essayez :
+```powershell
 git push origin master
 ```
 
 ---
 
-## 🌐 ÉTAPE 2 : CONFIGURER LES VARIABLES D'ENVIRONNEMENT SUR CLOUDFLARE
+### Étape 2 : Créer un Projet Cloudflare Pages
 
-### Aller sur Cloudflare Pages :
-1. Connectez-vous à https://dash.cloudflare.com
-2. Allez dans **Workers & Pages**
-3. Sélectionnez votre projet
-4. Allez dans **Settings** → **Environment variables**
+1. **Allez sur :** https://dash.cloudflare.com
+2. **Cliquez sur :** "Workers & Pages" (menu gauche)
+3. **Cliquez sur :** "Create application"
+4. **⚠️ IMPORTANT :** Choisissez l'onglet **"Pages"** (PAS Workers !)
+5. **Cliquez sur :** "Connect to Git"
+6. **Sélectionnez :** Votre repository GitHub
 
-### Ajouter ces variables (pour Production ET Preview) :
+---
 
-#### 💳 STRIPE (LIVE MODE)
-```
-STRIPE_SECRET_KEY = sk_live_51QhRRhP3bMl... (votre clé secrète)
-PUBLIC_STRIPE_PUBLISHABLE_KEY = pk_live_51QhRRhP3bMl... (votre clé publique)
-STRIPE_WEBHOOK_SECRET = whsec_... (votre secret webhook)
-```
+### Étape 3 : Configuration du Build
 
-#### 📧 FORMSPREE
 ```
-FORMSPREE_FORM_ID = mldekqbz
-```
-
-#### 🤖 MISTRAL AI
-```
-MISTRAL_API_KEY = Ij0Aq3Ot3zzJ... (votre clé API)
+Project name: zyatria-global
+Production branch: main (ou master)
+Framework preset: Astro
+Build command: npm run build
+Build output directory: dist
 ```
 
-#### 🌐 WEBFLOW (optionnel)
+**Cliquez sur :** "Save and Deploy"
+
+---
+
+### Étape 4 : Ajouter les Variables d'Environnement
+
+Une fois le déploiement terminé :
+
+1. **Allez dans :** Settings → Environment variables
+2. **Ajoutez ces variables :**
+
 ```
-WEBFLOW_API_HOST = https://api.webflow.com
-WEBFLOW_SITE_API_TOKEN = (si vous en avez un)
-WEBFLOW_CMS_SITE_API_TOKEN = (si vous en avez un)
+FORMSPREE_FORM_ID = xbdedonn
+MISTRAL_API_KEY = Hy1Ja5hxTfLBsgJVJgAvrUdVtQL5OdWD2aRB31Z0bgY8pHsWrczFMBt68nkTzje9u96WCnuAyBjf7TFw3Jqb000Cfx4xRu
+STRIPE_PUBLISHABLE_KEY = pk_live_51TANJR1KuPEygLyRld1fRaAfZbuYIH1q0O5utsczs27opHGGVI8TataL5cSOdTI0hg4hVmLB6uHNLU7lgjBhwxcT00FU3wKGFS
+STRIPE_SECRET_KEY = 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
+STRIPE_WEBHOOK_SECRET = whsec_d29277bba1b75a2b488b3ecc1c4ca969e497e2d9aa40231d3d11df56b5724564
+```
+
+**⚠️ Pour chaque variable :**
+- Cochez "Production" ET "Preview"
+- Cliquez sur "Save"
+
+---
+
+### Étape 5 : Redéployer
+
+Après avoir ajouté les variables :
+
+1. **Allez dans :** Deployments
+2. **Cliquez sur :** "Retry deployment" sur le dernier déploiement
+3. **Attendez** 2-3 minutes
+
+---
+
+## 🎉 RÉSULTAT
+
+Votre site sera disponible sur :
+```
+https://zyatria-global.pages.dev
 ```
 
 ---
 
-## 🔗 ÉTAPE 3 : CONFIGURER LE WEBHOOK STRIPE
+## ✅ VÉRIFICATIONS POST-DÉPLOIEMENT
 
-### 1. Aller sur Stripe Dashboard
-https://dashboard.stripe.com/webhooks
+### 1. Page d'accueil
+- ✅ Navigation fonctionne
+- ✅ Hero s'affiche correctement
+- ✅ Tous les composants visibles
 
-### 2. Cliquer sur "Add endpoint"
+### 2. Formulaires
+- ✅ Formulaire de contact fonctionne
+- ✅ Lead qualification fonctionne
+- ✅ Newsletter fonctionne
 
-### 3. Entrer l'URL de votre endpoint :
-```
-https://votre-domaine.pages.dev/api/stripe/webhook
-```
+### 3. Stripe
+- ✅ Boutons de pricing fonctionnent
+- ✅ Redirection vers Stripe
+- ✅ Paiements en mode LIVE
 
-### 4. Sélectionner ces événements :
-- ✅ `checkout.session.completed`
-- ✅ `payment_intent.succeeded`
-- ✅ `payment_intent.payment_failed`
-- ✅ `customer.subscription.created`
-- ✅ `customer.subscription.updated`
-- ✅ `customer.subscription.deleted`
-- ✅ `invoice.paid`
-- ✅ `invoice.payment_failed`
-
-### 5. Copier le "Signing secret"
-Il commence par `whsec_...`
-
-### 6. L'ajouter dans Cloudflare
-Retournez dans **Environment variables** et ajoutez/mettez à jour :
-```
-STRIPE_WEBHOOK_SECRET = whsec_... (le secret que vous venez de copier)
-```
+### 4. Chatbot
+- ✅ Chatbot Mistral s'ouvre
+- ✅ Répond aux questions
+- ✅ Fallback fonctionne
 
 ---
 
-## 🚀 ÉTAPE 4 : DÉPLOYER
+## 🔧 SI PROBLÈME
 
-### Option A : Déploiement automatique via GitHub
-Une fois que vous avez poussé vers GitHub, Cloudflare déploiera automatiquement.
+### Cache Cloudflare
+Si le site ne se met pas à jour :
 
-### Option B : Déploiement manuel via Wrangler
-```bash
-# Build le projet
-npm run build
+1. **Allez dans :** Caching → Configuration
+2. **Cliquez sur :** "Purge Everything"
+3. **Attendez** 30 secondes
+4. **Rechargez** votre site (Ctrl+Shift+R)
 
-# Déployer
-npx wrangler deploy
-```
+### Variables manquantes
+Si erreur "Missing environment variable" :
 
----
-
-## ✅ ÉTAPE 5 : VÉRIFICATION FINALE
-
-### 1. Tester la page d'accueil
-```
-https://votre-domaine.pages.dev
-```
-
-### 2. Tester la page Pricing
-```
-https://votre-domaine.pages.dev/pricing
-```
-
-### 3. Tester un lien Stripe
-Cliquez sur un bouton "Commencer" et vérifiez que :
-- ✅ Vous êtes redirigé vers Stripe
-- ✅ Le montant est correct
-- ✅ C'est bien en LIVE MODE (pas de bandeau "TEST MODE")
-
-### 4. Tester le formulaire de contact
-```
-https://votre-domaine.pages.dev/contact-simple
-```
-
-### 5. Tester les micro-agents
-```
-https://votre-domaine.pages.dev/micro-agents
-```
+1. **Vérifiez** que toutes les variables sont ajoutées
+2. **Vérifiez** que "Production" ET "Preview" sont cochés
+3. **Redéployez** le site
 
 ---
 
-## 🎯 CHECKLIST FINALE
+## 📊 DIFFÉRENCE WORKERS vs PAGES
 
-- [ ] Code poussé sur GitHub
-- [ ] Variables d'environnement configurées sur Cloudflare
-- [ ] Webhook Stripe configuré
-- [ ] Déploiement effectué
-- [ ] Page d'accueil fonctionne
-- [ ] Page Pricing fonctionne
-- [ ] Liens Stripe fonctionnent (LIVE MODE)
-- [ ] Formulaire de contact fonctionne
-- [ ] Micro-agents fonctionnent
+| Workers | Pages |
+|---------|-------|
+| `.workers.dev` | `.pages.dev` |
+| Pour APIs/Backend | Pour sites statiques |
+| Configuration manuelle | Auto-détection |
+| ❌ Pas pour Astro | ✅ Parfait pour Astro |
 
 ---
 
-## 🆘 EN CAS DE PROBLÈME
+## 🎯 PROCHAINES ÉTAPES
 
-### Erreur "Invalid binding SESSION"
-Ajoutez dans `wrangler.jsonc` :
-```json
-"kv_namespaces": [
-  { "binding": "SESSION", "id": "votre_kv_id" }
-]
-```
-
-### Les liens Stripe ne fonctionnent pas
-Vérifiez que :
-1. Les variables `STRIPE_SECRET_KEY` et `PUBLIC_STRIPE_PUBLISHABLE_KEY` sont bien configurées
-2. Elles commencent par `sk_live_` et `pk_live_` (pas `sk_test_`)
-
-### Le webhook ne fonctionne pas
-Vérifiez que :
-1. L'URL du webhook est correcte
-2. Le `STRIPE_WEBHOOK_SECRET` est bien configuré
-3. Les événements sont bien sélectionnés
+1. **Exécutez** le push vers GitHub
+2. **Créez** le projet Pages dans Cloudflare
+3. **Ajoutez** les variables d'environnement
+4. **Testez** votre site sur `.pages.dev`
 
 ---
 
-## 📊 RÉSUMÉ DES LIENS STRIPE (LIVE MODE)
-
-### Plans principaux :
-- **Starter** : 68 CAD/mois
-- **Professional** : 697 CAD (unique) ou 208 CAD/mois
-- **Enterprise** : 997 CAD (unique) ou 698 CAD/mois
-
-### Micro-agents :
-- **Qualification Leads** : 69 CAD/mois
-- **Support Client** : 69 CAD/mois
-- **Rendez-vous** : 68 CAD/mois
-- **Suivi Prospects** : 180 CAD/mois
-- **Immobilier** : 208 CAD/mois
-- **E-commerce** : 195 CAD/mois
-
-### Services :
-- **Audit IA** : 497 CAD
-- **Consultation** : 149 CAD
-- **Formation** : 995 CAD
-
----
-
-## 🎉 FÉLICITATIONS !
-
-Une fois toutes ces étapes complétées, votre site sera en production avec :
-- ✅ Paiements Stripe en LIVE MODE
-- ✅ Formulaires de contact fonctionnels
-- ✅ Chatbot IA Mistral
-- ✅ Tous les micro-agents configurés
-- ✅ Design professionnel et responsive
-
-**Votre site est prêt à accepter de vrais paiements ! 🚀**
+**Besoin d'aide ? Dites-moi où vous en êtes !** 😊

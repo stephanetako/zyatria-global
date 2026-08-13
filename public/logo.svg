@@ -5,5 +5,5 @@
       <stop offset="100%" style="stop-color:#A86F53;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <text x="10" y="45" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#grad)">ZyatrIA</text>
+  <text x="10" y="45" font-family="'Instrument Sans', Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#grad)">ZyatrIA</text>
 </svg>

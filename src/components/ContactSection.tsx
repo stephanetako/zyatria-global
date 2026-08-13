@@ -1,4 +1,4 @@
-import React from 'react';
+
 import SimpleContactForm from './SimpleContactForm';
 
 export default function ContactSection() {

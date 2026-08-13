@@ -1,3 +1,5 @@
+
+
 @import "tailwindcss";
 @import "../../generated/webflow.css";
 @import "./color-override.css";
@@ -624,6 +626,16 @@ color: var(--primary);
 opacity: 0.8;
 }
 
+/* Navigation links should use foreground color, not primary */
+nav a {
+color: var(--foreground);
+}
+
+nav a:hover {
+color: var(--primary);
+opacity: 1;
+}
+
 /* Assurer un bon contraste pour les éléments de liste */
 li {
 color: var(--foreground);
@@ -655,3 +667,14 @@ color: #A1A1AA;
 }
 
 /* === END ACCESSIBILITY === */
+
+/* Navigation links should use foreground color, not primary */
+nav a {
+color: var(--foreground);
+}
+
+nav a:hover {
+color: var(--primary);
+opacity: 1;
+}
+

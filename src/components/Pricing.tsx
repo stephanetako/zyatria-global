@@ -2,11 +2,13 @@
 
 
 
+
+
 import React, { useState } from 'react';
-import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar, Home, Briefcase, Bot } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
-import { stripeLinks, productDetails } from '../config/stripe-links';
+import { stripeLinks, getPaymentLink, productDetails } from '../config/stripe-links';
 import { cn } from '../lib/utils';
 import { baseUrl } from '../lib/base-url';
 import { useLanguage } from '../lib/language-context';
@@ -18,23 +20,32 @@ type TranslationKey = 'en' | 'fr';
 
 const translations: Record<TranslationKey, any> = {
   en: {
+    nav: {
+      home: "Home",
+      services: "Services",
+      microAgents: "Micro-agents",
+      pricing: "Pricing",
+      resources: "Resources",
+      demo: "Demo"
+    },
     badge: "Transparent Pricing",
     title: "Choose Your AI Solution",
     subtitle: "Flexible pricing. No hidden fees. Choose one-time or monthly.",
+    backHome: "Back to Home",
     billingToggle: {
       oneTime: "One-time Payment",
       monthly: "Monthly Subscription"
     },
     cta: {
-      oneTime: "Pay Once & Deploy",
-      monthly: "Start Monthly Plan",
-      enterprise: "Contact Sales"
+      oneTime: "Get Started Now",
+      monthly: "Start Free Trial",
+      enterprise: "Contact Our Team"
     },
     services: {
       title: "Professional Services",
       subtitle: "Expert consulting to maximize your AI ROI",
-      auditCta: "Order Audit",
-      consultationCta: "Book Consultation"
+      auditCta: "Order AI Audit",
+      consultationCta: "Book Strategy Call"
     },
     note: "All prices in Canadian Dollars (CAD). 30-day money-back guarantee.",
     paymentSecure: "🔒 Secure payments powered by Stripe",
@@ -42,23 +53,32 @@ const translations: Record<TranslationKey, any> = {
     savings: "Save"
   },
   fr: {
+    nav: {
+      home: "Accueil",
+      services: "Services",
+      microAgents: "Micro-agents",
+      pricing: "Tarifs",
+      resources: "Ressources",
+      demo: "Démo"
+    },
     badge: "Tarification Transparente",
     title: "Choisissez Votre Solution IA",
     subtitle: "Tarification flexible. Sans frais cachés. Choisissez paiement unique ou mensuel.",
+    backHome: "Retour à l'accueil",
     billingToggle: {
       oneTime: "Paiement Unique",
       monthly: "Abonnement Mensuel"
     },
     cta: {
-      oneTime: "Payer et Déployer",
-      monthly: "Démarrer Plan Mensuel",
-      enterprise: "Contacter les Ventes"
+      oneTime: "Commencer Maintenant",
+      monthly: "Démarrer Essai Gratuit",
+      enterprise: "Contacter Notre Équipe"
     },
     services: {
       title: "Services Professionnels",
       subtitle: "Conseil d'expert pour maximiser votre ROI IA",
-      auditCta: "Commander l'Audit",
-      consultationCta: "Réserver une Consultation"
+      auditCta: "Commander Audit IA",
+      consultationCta: "Réserver Appel Stratégique"
     },
     note: "Tous les prix en dollars canadiens (CAD). Garantie satisfait ou remboursé 30 jours.",
     paymentSecure: "🔒 Paiements sécurisés par Stripe",
@@ -288,7 +308,9 @@ const Pricing: React.FC = () => {
 
                   {/* CTA Button */}
                   {(() => {
-                    const paymentLink = stripeLinks[plan.key][billingType];
+                    // Utiliser la fonction helper pour obtenir le lien de paiement
+                    const planKey = plan.key as 'starter' | 'professional' | 'enterprise';
+                    const paymentLink = getPaymentLink(planKey, billingType);
                     const stripeLink = paymentLink || '';
                     const isDisabled = !stripeLink;
                     
@@ -318,10 +340,10 @@ const Pricing: React.FC = () => {
                         target={paymentLink ? "_blank" : "_self"}
                         rel={paymentLink ? "noopener noreferrer" : undefined}
                         className={cn(
-                          "w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                          "w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5",
                           plan.popular
-                            ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30"
-                            : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white"
+                            ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40"
+                            : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
                         )}
                       >
                         {plan.key === 'enterprise' 
@@ -381,7 +403,7 @@ const Pricing: React.FC = () => {
                 href={stripeLinks.services.audit}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg"
+                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5"
               >
                 <Sparkles className="w-4 h-4" />
                 {t.services.auditCta}
@@ -419,7 +441,7 @@ const Pricing: React.FC = () => {
                 href={stripeLinks.services.consultation}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg"
+                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5"
               >
                 <Rocket className="w-4 h-4" />
                 {t.services.consultationCta}
@@ -443,6 +465,12 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
+
+
+
+
+
 
 
 

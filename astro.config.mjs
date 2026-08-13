@@ -3,7 +3,6 @@
 
 
 
-
 import {defineConfig} from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
@@ -63,7 +62,7 @@ export default defineConfig({
   adapter: cloudflare({
     mode: 'directory',
     platformProxy: {
-      enabled: false,
+      enabled: true,
     },
     wasmModuleImports: true,
     cloudflareModules: {
@@ -101,6 +100,7 @@ export default defineConfig({
     },
   },
 });
+
 
 
 

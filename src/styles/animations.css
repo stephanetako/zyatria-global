@@ -1,3 +1,4 @@
+
 /* Advanced Animations for ZyatrIA */
 
 /* ============================================
@@ -235,12 +236,13 @@
    SHIMMER & SHINE EFFECTS
    ============================================ */
 
+/* Shimmer effect for pre-launch banner */
 @keyframes shimmer {
   0% {
-    background-position: -1000px 0;
+    transform: translateX(-100%);
   }
   100% {
-    background-position: 1000px 0;
+    transform: translateX(100%);
   }
 }
 
@@ -365,8 +367,7 @@
 }
 
 .animate-shimmer {
-  background-size: 1000px 100%;
-  animation: shimmer 2s infinite;
+  animation: shimmer 3s infinite;
 }
 
 .animate-loading-shimmer {
@@ -582,3 +583,4 @@
     scroll-behavior: auto !important;
   }
 }
+

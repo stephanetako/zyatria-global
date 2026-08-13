@@ -2,98 +2,151 @@ import type { APIRoute } from 'astro';
 import { getRateLimiter } from '../../lib/rate-limiter';
 import { getMistralCache } from '../../lib/lru-cache';
 
-// Réponses de fallback par défaut
-const FALLBACK_RESPONSES: Record<string, string> = {
-  'bonjour': '👋 Bonjour ! Je suis l\'assistant virtuel de ZyatrIA Global. Comment puis-je vous aider aujourd\'hui ?\n\n💡 Je peux vous renseigner sur :\n• Nos services d\'agents IA\n• Nos tarifs et plans\n• Réserver une démo gratuite\n• Nos micro-agents spécialisés',
-  
-  'services': '🤖 **Nos Services :**\n\n1. **Agents IA Intelligents** - Automatisation complète de vos processus métier\n2. **Micro-agents Spécialisés** - Support client 24/7, qualification de leads, gestion de RDV\n3. **Intégrations CRM** - Connexion avec vos outils existants (Salesforce, HubSpot, etc.)\n4. **Formation & Support** - Accompagnement complet de votre équipe\n\n⚡ Déploiement rapide en 7-15 jours\n🌍 Disponible en Amérique du Nord, Europe, Afrique et Amérique Latine\n\n📧 Questions ? ZyatrIA.contact@gmail.com',
-  
-  'prix': '💰 **Nos Plans Tarifaires :**\n\n🚀 **Starter** - 297$/mois\n   • 1 agent IA personnalisé\n   • 1000 conversations/mois\n   • Support email\n\n💼 **Business** - 697$/mois\n   • 3 agents IA\n   • 5000 conversations/mois\n   • Support prioritaire\n\n🏢 **Enterprise** - 1497$/mois\n   • Agents illimités\n   • Conversations illimitées\n   • Support dédié 24/7\n\n🎯 **Services Professionnels :**\n   • Audit IA : 497$\n   • Consultation stratégique : 997$\n   • Formation équipe : 1497$\n\n📧 Devis personnalisé : ZyatrIA.contact@gmail.com',
-  
-  'contact': '📞 **Contactez ZyatrIA Global :**\n\n• 📧 Email : ZyatrIA.contact@gmail.com\n• 🌍 Localisation : Québec, Canada\n• ⏰ Disponibilité : Lun-Ven, 9h-17h EST\n\nNous vous répondons généralement en moins de 24h !\n\n💬 Vous pouvez aussi continuer à me poser vos questions ici.',
-  
-  'demo': '🎯 **Réservez votre Démo Gratuite !**\n\nDécouvrez comment nos agents IA peuvent transformer votre entreprise en 30 minutes.\n\n✨ Au programme :\n• Démonstration en direct de nos agents IA\n• Analyse de vos besoins spécifiques\n• Proposition de solution personnalisée\n• Questions & réponses\n\n📧 Contactez-nous pour planifier : ZyatrIA.contact@gmail.com',
-  
-  'micro-agents': '🎯 **Nos Micro-Agents Spécialisés :**\n\n1. **Agent Support Client** - Réponses instantanées 24/7\n2. **Agent Qualification de Leads** - Identifie vos meilleurs prospects\n3. **Agent Prise de RDV** - Gestion automatique de votre agenda\n4. **Agent E-commerce** - Recommandations produits personnalisées\n5. **Agent Immobilier** - Gestion des visites et qualifications\n\n⚡ Déploiement en 7-15 jours\n🔧 Intégration avec vos outils existants\n\n📧 Intéressé ? ZyatrIA.contact@gmail.com',
-  
-  'automatisation': '⚙️ **Automatisation Intelligente :**\n\nNos agents IA automatisent :\n• Réponses aux questions fréquentes\n• Qualification et scoring de leads\n• Prise de rendez-vous\n• Suivi client personnalisé\n• Mise à jour CRM automatique\n• Rapports et analytics\n\n📊 Résultats moyens :\n• -60% temps de réponse\n• +40% taux de conversion\n• -70% coûts support\n\n📧 Audit gratuit : ZyatrIA.contact@gmail.com',
-  
-  'secteurs': '🏢 **Secteurs d\'Expertise :**\n\n• 🛒 E-commerce - Recommandations et support\n• 🏠 Immobilier - Gestion visites et qualifications\n• 💼 Coaching - Automatisation suivi clients\n• 💻 SaaS & Tech - Onboarding et support\n• 🏥 Santé & Bien-être - Prise de RDV\n• ⚖️ Services Professionnels - Qualification leads\n\nChaque solution est personnalisée selon votre secteur.\n\n📧 Parlons de votre projet : ZyatrIA.contact@gmail.com',
-  
-  'deploiement': '🚀 **Processus de Déploiement (7-15 jours) :**\n\n**Semaine 1 :**\n• Jour 1-2 : Audit et analyse de vos besoins\n• Jour 3-5 : Configuration et personnalisation\n• Jour 6-7 : Tests et ajustements\n\n**Semaine 2 :**\n• Jour 8-10 : Formation de votre équipe\n• Jour 11-12 : Déploiement progressif\n• Jour 13-15 : Optimisation et support\n\n✅ Accompagnement complet inclus\n\n📧 Commençons : ZyatrIA.contact@gmail.com',
-  
-  'avantages': '✨ **Pourquoi Choisir ZyatrIA Global ?**\n\n🚀 Déploiement ultra-rapide (7-15 jours)\n🌍 Expertise internationale (4 continents)\n🤖 Technologie de pointe (IA avancée)\n💰 ROI prouvé (retour sur investissement rapide)\n🔧 Intégrations complètes (tous vos outils)\n📚 Formation incluse (équipe autonome)\n🎯 Support dédié (disponible 24/7)\n\n📊 +127 clients satisfaits\n⭐ 4.9/5 de satisfaction\n\n📧 Rejoignez-nous : ZyatrIA.contact@gmail.com',
-  
-  'fonctionnement': '🔧 **Comment ça fonctionne ?**\n\nNos agents IA utilisent l\'intelligence artificielle avancée pour :\n\n**1. Comprendre** 🧠\n   • Analyse du langage naturel\n   • Détection des intentions\n   • Compréhension du contexte\n\n**2. Traiter** ⚙️\n   • Recherche d\'informations\n   • Prise de décisions intelligentes\n   • Intégration avec vos systèmes\n\n**3. Répondre** 💬\n   • Réponses personnalisées\n   • Actions automatiques\n   • Apprentissage continu\n\n**Exemple concret :**\nUn client demande un RDV → L\'agent vérifie votre agenda → Propose des créneaux → Confirme et envoie les invitations → Met à jour votre CRM\n\n✨ Tout cela en quelques secondes, 24/7 !\n\n📧 Vous voulez voir ça en action ? ZyatrIA.contact@gmail.com',
-  
-  'default': '💬 Je suis là pour vous aider ! Voici ce que je peux faire pour vous :\n\n• 🤖 Expliquer nos services d\'agents IA\n• 💰 Détailler nos tarifs et plans\n• 🎯 Vous aider à choisir le bon micro-agent\n• 📅 Organiser une démo gratuite\n• 🌍 Parler de nos secteurs d\'expertise\n\n❓ Posez-moi une question spécifique ou contactez-nous :\n📧 ZyatrIA.contact@gmail.com'
-};
-
-// Fonction pour trouver une réponse de fallback appropriée
-function getFallbackResponse(message: string): string {
+// Fonction pour détecter la langue du message
+function detectLanguage(message: string): 'fr' | 'en' | 'es' | 'pt' {
   const lowerMessage = message.toLowerCase();
   
-  // Salutations
-  if (lowerMessage.match(/\b(bonjour|salut|hello|hi|hey|bonsoir)\b/)) {
-    return FALLBACK_RESPONSES.bonjour;
+  // Mots-clés français (AMÉLIORÉ)
+  const frenchKeywords = [
+    'bonjour', 'salut', 'allo', 'allô', 'bonsoir', 'parlez français', 'pouvez', 'qu', 'comment', 'quand', 'où', 'pourquoi', 
+    'prix', 'service', 'aide', 's\'il vous plaît', 'merci', 'oui', 'non',
+    'je', 'j\'', 'veux', 'besoin', 'cherche', 'information', 'quelque', 'parlez', 'français',
+    'avoir', 'des', 'imformation', 'infomation', 'aimererai', 'aimerais', 'voudrais',
+    'svp', 'stp', 'merci', 'salutation', 'coucou', 'hey', 'yo'
+  ];
+  
+  // Mots-clés anglais (élargi)
+  const englishKeywords = [
+    'hello', 'hi', 'hey', 'you speak english', 'do you', 'can you', 'what', 'how', 'when', 'where', 'why', 
+    'price', 'cost', 'service', 'help', 'please', 'thank', 'yes', 'no',
+    'i', 'want', 'need', 'looking', 'for', 'about', 'tell', 'me', 'my', 'your', 'the', 'a', 'an',
+    'is', 'are', 'have', 'get', 'know', 'information', 'some', 'any', 'would', 'could', 'should',
+    'like', 'love', 'good', 'bad', 'best', 'more', 'less', 'much', 'many', 'speak english'
+  ];
+  
+  // Mots-clés espagnols
+  const spanishKeywords = [
+    'hola', 'buenos', 'hablas español', 'puedes', 'qué', 'cómo', 'cuándo', 'dónde', 'por qué', 
+    'precio', 'servicio', 'ayuda', 'por favor', 'gracias', 'sí', 'no',
+    'quiero', 'necesito', 'busco', 'información', 'algún', 'hablas', 'español'
+  ];
+  
+  // Mots-clés portugais
+  const portugueseKeywords = [
+    'olá', 'oi', 'fala português', 'pode', 'o que', 'como', 'quando', 'onde', 'por que',
+    'preço', 'serviço', 'ajuda', 'por favor', 'obrigado', 'sim', 'não',
+    'quero', 'preciso', 'procuro', 'informação', 'algum', 'fala', 'português'
+  ];
+  
+  // Compter les correspondances
+  const frenchMatches = frenchKeywords.filter(keyword => lowerMessage.includes(keyword)).length;
+  const englishMatches = englishKeywords.filter(keyword => lowerMessage.includes(keyword)).length;
+  const spanishMatches = spanishKeywords.filter(keyword => lowerMessage.includes(keyword)).length;
+  const portugueseMatches = portugueseKeywords.filter(keyword => lowerMessage.includes(keyword)).length;
+  
+  // Log pour debug
+  console.log('🔍 Language detection:', {
+    message: lowerMessage,
+    matches: { fr: frenchMatches, en: englishMatches, es: spanishMatches, pt: portugueseMatches }
+  });
+  
+  // Retourner la langue avec le plus de correspondances
+  const maxMatches = Math.max(frenchMatches, englishMatches, spanishMatches, portugueseMatches);
+  
+  if (maxMatches === 0) {
+    // Si aucune correspondance, détecter par défaut selon les caractères
+    if (lowerMessage.match(/[àâäéèêëïîôùûüÿœæç]/)) return 'fr';
+    if (lowerMessage.match(/[áéíóúñ¿¡]/)) return 'es';
+    if (lowerMessage.match(/[ãõâêôáéíóú]/)) return 'pt';
+    return 'en';
   }
   
-  // Fonctionnement
-  if (lowerMessage.match(/\b(comment|fonctionne|marche|ça marche|fonctionnement|processus|étape)\b/)) {
-    return FALLBACK_RESPONSES.fonctionnement;
+  if (frenchMatches === maxMatches) return 'fr';
+  if (spanishMatches === maxMatches) return 'es';
+  if (portugueseMatches === maxMatches) return 'pt';
+  return 'en';
+}
+
+// Réponses de fallback multilingues
+const FALLBACK_RESPONSES = {
+  fr: {
+    greeting: '👋 Bonjour ! Je suis l\'assistant virtuel de ZyatrIA Global. Ravi de vous rencontrer !\n\n💡 Je peux vous aider avec :\n• 🤖 Nos services d\'agents IA et micro-agents\n• 💰 Nos tarifs et plans personnalisés\n• 🎯 Choisir la solution adaptée à votre secteur\n• 📅 Réserver une démo gratuite de 30 minutes\n• ⚡ Notre processus de déploiement rapide (7-15 jours)\n\n❓ Quelle est votre principale question aujourd\'hui ?',
+    
+    default: '💬 **Bonjour ! Je suis là pour vous aider.**\n\nJe peux répondre à vos questions sur :\n\n**🤖 Nos Services**\n• Agents IA intelligents\n• Micro-agents spécialisés\n• Intégrations CRM et outils\n• Formation et support\n\n**💰 Tarifs & Plans**\n• Plans Starter, Business et Enterprise\n• Tarification flexible et transparente\n• Consultez notre page de tarification pour les détails\n• Services professionnels sur mesure\n\n**🎯 Cas d\'Usage**\n• E-commerce, Immobilier, Coaching\n• SaaS, Santé, Services Pro\n• Votre secteur spécifique\n\n**⚡ Déploiement**\n• Processus rapide (7-15 jours)\n• Formation incluse\n• Support dédié\n\n**📊 Résultats**\n• ROI et métriques\n• Témoignages clients\n• Études de cas\n\n**🎁 Démo Gratuite**\n• 30 minutes de démonstration\n• Analyse de vos besoins\n• Sans engagement\n\n❓ **Quelle est votre principale question ?**\n\nVous pouvez me demander :\n• "Quels sont vos tarifs ?"\n• "Comment ça fonctionne ?"\n• "Avez-vous des exemples pour [mon secteur] ?"\n• "Je veux une démo"\n• "Comment vous contacter ?"\n\nOu posez-moi n\'importe quelle question !\n\n📧 Contact direct : ZyatrIA.contact@gmail.com'
+  },
+  
+  en: {
+    greeting: '👋 Hello! I\'m the virtual assistant for ZyatrIA Global. Nice to meet you!\n\n💡 I can help you with:\n• 🤖 Our AI agents and micro-agents services\n• 💰 Our pricing and custom plans\n• 🎯 Choosing the right solution for your industry\n• 📅 Booking a free 30-minute demo\n• ⚡ Our fast deployment process (7-15 days)\n\n❓ What\'s your main question today?',
+    
+    default: '💬 **Hello! I\'m here to help.**\n\nI can answer your questions about:\n\n**🤖 Our Services**\n• Intelligent AI agents\n• Specialized micro-agents\n• CRM and tool integrations\n• Training and support\n\n**💰 Pricing & Plans**\n• Starter, Business and Enterprise plans\n• Flexible and transparent pricing\n• Check our pricing page for details\n• Custom professional services\n\n**🎯 Use Cases**\n• E-commerce, Real Estate, Coaching\n• SaaS, Healthcare, Professional Services\n• Your specific industry\n\n**⚡ Deployment**\n• Fast process (7-15 days)\n• Training included\n• Dedicated support\n\n**📊 Results**\n• ROI and metrics\n• Client testimonials\n• Case studies\n\n**🎁 Free Demo**\n• 30-minute demonstration\n• Analysis of your needs\n• No commitment\n\n❓ **What\'s your main question?**\n\nYou can ask me:\n• "What are your prices?"\n• "How does it work?"\n• "Do you have examples for [my industry]?"\n• "I want a demo"\n• "How can I contact you?"\n\nOr ask me anything!\n\n📧 Direct contact: ZyatrIA.contact@gmail.com'
+  },
+  
+  es: {
+    greeting: '👋 ¡Hola! Soy el asistente virtual de ZyatrIA Global. ¡Encantado de conocerte!\n\n💡 Puedo ayudarte con:\n• 🤖 Nuestros servicios de agentes IA y micro-agentes\n• 💰 Nuestros precios y planes personalizados\n• 🎯 Elegir la solución adecuada para tu sector\n• 📅 Reservar una demo gratuita de 30 minutos\n• ⚡ Nuestro proceso de implementación rápida (7-15 días)\n\n❓ ¿Cuál es tu pregunta principal hoy?',
+    
+    default: '💬 **¡Hola! Estoy aquí para ayudarte.**\n\nPuedo responder tus preguntas sobre:\n\n**🤖 Nuestros Servicios**\n• Agentes IA inteligentes\n• Micro-agentes especializados\n• Integraciones CRM y herramientas\n• Formación y soporte\n\n**💰 Precios y Planes**\n• Planes Starter, Business y Enterprise\n• Precios flexibles y transparentes\n• Consulta nuestra página de precios para detalles\n• Servicios profesionales personalizados\n\n**🎯 Casos de Uso**\n• E-commerce, Inmobiliaria, Coaching\n• SaaS, Salud, Servicios Profesionales\n• Tu sector específico\n\n**⚡ Implementación**\n• Proceso rápido (7-15 días)\n• Formación incluida\n• Soporte dedicado\n\n**📊 Resultados**\n• ROI y métricas\n• Testimonios de clientes\n• Casos de estudio\n\n**🎁 Demo Gratuita**\n• 30 minutos de demostración\n• Análisis de tus necesidades\n• Sin compromiso\n\n❓ **¿Cuál es tu pregunta principal?**\n\nPuedes preguntarme:\n• "¿Cuáles son sus precios?"\n• "¿Cómo funciona?"\n• "¿Tienen ejemplos para [mi sector]?"\n• "Quiero una demo"\n• "¿Cómo puedo contactarlos?"\n\n¡O pregúntame lo que quieras!\n\n📧 Contacto directo: ZyatrIA.contact@gmail.com'
+  },
+  
+  pt: {
+    greeting: '👋 Olá! Sou o assistente virtual da ZyatrIA Global. Prazer em conhecê-lo!\n\n💡 Posso ajudá-lo com:\n• 🤖 Nossos serviços de agentes IA e micro-agentes\n• 💰 Nossos preços e planos personalizados\n• 🎯 Escolher a solução certa para seu setor\n• 📅 Agendar uma demo gratuita de 30 minutos\n• ⚡ Nosso processo de implementação rápida (7-15 dias)\n\n❓ Qual é sua principal pergunta hoje?',
+    
+    default: '💬 **Olá! Estou aqui para ajudar.**\n\nPosso responder suas perguntas sobre:\n\n**🤖 Nossos Serviços**\n• Agentes IA inteligentes\n• Micro-agentes especializados\n• Integrações CRM e ferramentas\n• Treinamento e suporte\n\n**💰 Preços e Planos**\n• Planos Starter, Business e Enterprise\n• Preços flexíveis e transparentes\n• Consulte nossa página de preços para detalhes\n• Serviços profissionais personalizados\n\n**🎯 Casos de Uso**\n• E-commerce, Imobiliário, Coaching\n• SaaS, Saúde, Serviços Profissionais\n• Seu setor específico\n\n**⚡ Implementação**\n• Processo rápido (7-15 dias)\n• Treinamento incluído\n• Suporte dedicado\n\n**📊 Resultados**\n• ROI e métricas\n• Depoimentos de clientes\n• Estudos de caso\n\n**🎁 Demo Gratuita**\n• 30 minutos de demonstração\n• Análise de suas necessidades\n• Sem compromisso\n\n❓ **Qual é sua principal pergunta?**\n\nVocê pode me perguntar:\n• "Quais são os preços?"\n• "Como funciona?"\n• "Vocês têm exemplos para [meu setor]?"\n• "Quero uma demo"\n• "Como posso entrar em contato?"\n\nOu me pergunte qualquer coisa!\n\n📧 Contato direto: ZyatrIA.contact@gmail.com'
+  }
+};
+
+// Fonction pour obtenir la réponse de fallback appropriée
+function getFallbackResponse(message: string): string {
+  const language = detectLanguage(message);
+  const lowerMessage = message.toLowerCase();
+  
+  console.log(`🌍 Langue détectée: ${language.toUpperCase()}`);
+  console.log(`📝 Message reçu: "${message}"`);
+  
+  // 1. Salutations (priorité haute)
+  if (lowerMessage.match(/^(bonjour|salut|hello|hi|hey|hola|olá|oi|bonsoir|buenos|bom dia|good morning|good evening)/)) {
+    console.log('👋 Intention: Salutation');
+    return FALLBACK_RESPONSES[language].greeting;
   }
   
-  // Services
-  if (lowerMessage.match(/\b(service|offre|proposez|faites|solution|produit)\b/)) {
-    return FALLBACK_RESPONSES.services;
+  // 2. Questions sur les prix (priorité haute - AVANT info générale)
+  if (lowerMessage.match(/\b(prix|price|precio|preço|cost|coût|costo|custo|tarif|plan|combien|how much|cuánto|quanto|pricing|rates|fees)\b/)) {
+    console.log('💰 Intention: Question sur les prix');
+    const responses = {
+      fr: "💰 **Nos Plans & Tarifs**\n\nNous proposons 3 plans principaux adaptés à différents besoins :\n\n🚀 **STARTER**\n   • Parfait pour : Solopreneurs, petites entreprises (1-5 employés)\n   • 1 agent IA spécialisé\n   • Déploiement en 7 jours\n   • Support email\n\n💼 **BUSINESS** ⭐ PLUS POPULAIRE\n   • Parfait pour : PME en croissance (5-50 employés)\n   • 3 agents IA spécialisés\n   • Déploiement en 10 jours\n   • Support prioritaire + Manager de succès\n\n🏢 **ENTERPRISE**\n   • Parfait pour : Grandes entreprises (50+ employés)\n   • Agents illimités\n   • Déploiement personnalisé\n   • Support 24/7 + Formation personnalisée\n\n📊 **Pour connaître les prix exacts et choisir le plan adapté à votre entreprise :**\n\n1️⃣ Consultez notre page de tarification complète\n2️⃣ Réservez une démo gratuite de 30 minutes\n3️⃣ Contactez-nous directement : ZyatrIA.contact@gmail.com\n\n💡 Nous proposons également des services professionnels (Audit IA, Consultation stratégique, Formation).\n\n❓ Voulez-vous que je vous aide à choisir le plan adapté à votre situation ?",
+      en: "💰 **Our Plans & Pricing**\n\nWe offer 3 main plans tailored to different needs:\n\n🚀 **STARTER**\n   • Perfect for: Solopreneurs, small businesses (1-5 employees)\n   • 1 specialized AI agent\n   • 7-day deployment\n   • Email support\n\n💼 **BUSINESS** ⭐ MOST POPULAR\n   • Perfect for: Growing SMEs (5-50 employees)\n   • 3 specialized AI agents\n   • 10-day deployment\n   • Priority support + Success manager\n\n🏢 **ENTERPRISE**\n   • Perfect for: Large companies (50+ employees)\n   • Unlimited agents\n   • Custom deployment\n   • 24/7 support + Custom training\n\n📊 **To see exact pricing and choose the right plan for your business:**\n\n1️⃣ Check our complete pricing page\n2️⃣ Book a free 30-minute demo\n3️⃣ Contact us directly: ZyatrIA.contact@gmail.com\n\n💡 We also offer professional services (AI Audit, Strategic Consultation, Training).\n\n❓ Would you like me to help you choose the right plan for your situation?",
+      es: "💰 **Nuestros Planes y Precios**\n\nOfrecemos 3 planes principales adaptados a diferentes necesidades:\n\n🚀 **STARTER**\n   • Perfecto para: Solopreneurs, pequeñas empresas (1-5 empleados)\n   • 1 agente IA especializado\n   • Implementación en 7 días\n   • Soporte email\n\n💼 **BUSINESS** ⭐ MÁS POPULAR\n   • Perfecto para: PYMEs en crecimiento (5-50 empleados)\n   • 3 agentes IA especializados\n   • Implementación en 10 días\n   • Soporte prioritario + Manager de éxito\n\n🏢 **ENTERPRISE**\n   • Perfecto para: Grandes empresas (50+ empleados)\n   • Agentes ilimitados\n   • Implementación personalizada\n   • Soporte 24/7 + Formación personalizada\n\n📊 **Para conocer los precios exactos y elegir el plan adecuado:**\n\n1️⃣ Consulta nuestra página de precios completa\n2️⃣ Reserva una demo gratuita de 30 minutos\n3️⃣ Contáctanos directamente: ZyatrIA.contact@gmail.com\n\n💡 También ofrecemos servicios profesionales (Auditoría IA, Consultoría estratégica, Formación).\n\n❓ ¿Quieres que te ayude a elegir el plan adecuado para tu situación?",
+      pt: "💰 **Nossos Planos e Preços**\n\nOferecemos 3 planos principais adaptados a diferentes necessidades:\n\n🚀 **STARTER**\n   • Perfeito para: Solopreneurs, pequenas empresas (1-5 funcionários)\n   • 1 agente IA especializado\n   • Implementação em 7 dias\n   • Suporte email\n\n💼 **BUSINESS** ⭐ MAIS POPULAR\n   • Perfeito para: PMEs em crescimento (5-50 funcionários)\n   • 3 agentes IA especializados\n   • Implementação em 10 dias\n   • Suporte prioritário + Gerente de sucesso\n\n🏢 **ENTERPRISE**\n   • Perfeito para: Grandes empresas (50+ funcionários)\n   • Agentes ilimitados\n   • Implementação personalizada\n   • Suporte 24/7 + Treinamento personalizado\n\n📊 **Para conhecer os preços exatos e escolher o plano adequado:**\n\n1️⃣ Consulte nossa página de preços completa\n2️⃣ Agende uma demo gratuita de 30 minutos\n3️⃣ Entre em contato diretamente: ZyatrIA.contact@gmail.com\n\n💡 Também oferecemos serviços profissionais (Auditoria IA, Consultoria estratégica, Treinamento).\n\n❓ Quer que eu ajude a escolher o plano adequado para sua situação?",
+    };
+    return responses[language];
   }
   
-  // Prix et tarifs
-  if (lowerMessage.match(/\b(prix|coût|tarif|plan|abonnement|combien|€|\$)\b/)) {
-    return FALLBACK_RESPONSES.prix;
+  // 3. Questions sur l'achat / aide pour acheter (priorité haute)
+  if (lowerMessage.match(/\b(buy|purchase|acheter|comprar|want|veux|quiero|quero|interested|intéressé|interesado|interessado|get started|commencer|empezar|começar|help)\b/)) {
+    console.log('🛒 Intention: Aide pour acheter');
+    const responses = {
+      fr: "🎯 **Excellent ! Je vais vous aider à choisir le bon plan.**\n\nPour vous recommander la meilleure solution, j'ai besoin de quelques informations :\n\n1️⃣ **Quelle est la taille de votre entreprise ?**\n   • Solopreneur / Freelance\n   • Petite entreprise (1-5 employés)\n   • PME (5-50 employés)\n   • Grande entreprise (50+ employés)\n\n2️⃣ **Quel est votre secteur d'activité ?**\n   • E-commerce\n   • Immobilier\n   • Coaching / Consulting\n   • SaaS / Tech\n   • Santé\n   • Services professionnels\n   • Autre\n\n3️⃣ **Quel est votre principal défi ?**\n   • Trop de tickets de support\n   • Qualification des leads\n   • Prise de rendez-vous\n   • Onboarding clients\n   • Autre\n\n📧 **Ou contactez-nous directement :** ZyatrIA.contact@gmail.com\n📅 **Ou réservez une démo gratuite de 30 minutes**\n\nRépondez à ces questions et je vous recommanderai le plan parfait ! 🚀",
+      en: "🎯 **Excellent! I'll help you choose the right plan.**\n\nTo recommend the best solution, I need some information:\n\n1️⃣ **What's your company size?**\n   • Solopreneur / Freelance\n   • Small business (1-5 employees)\n   • SME (5-50 employees)\n   • Large company (50+ employees)\n\n2️⃣ **What's your industry?**\n   • E-commerce\n   • Real Estate\n   • Coaching / Consulting\n   • SaaS / Tech\n   • Healthcare\n   • Professional Services\n   • Other\n\n3️⃣ **What's your main challenge?**\n   • Too many support tickets\n   • Lead qualification\n   • Appointment booking\n   • Client onboarding\n   • Other\n\n📧 **Or contact us directly:** ZyatrIA.contact@gmail.com\n📅 **Or book a free 30-minute demo**\n\nAnswer these questions and I'll recommend the perfect plan! 🚀",
+      es: "🎯 **¡Excelente! Te ayudaré a elegir el plan correcto.**\n\nPara recomendarte la mejor solución, necesito algo de información:\n\n1️⃣ **¿Cuál es el tamaño de tu empresa?**\n   • Solopreneur / Freelance\n   • Pequeña empresa (1-5 empleados)\n   • PYME (5-50 empleados)\n   • Gran empresa (50+ empleados)\n\n2️⃣ **¿Cuál es tu sector?**\n   • E-commerce\n   • Inmobiliaria\n   • Coaching / Consultoría\n   • SaaS / Tech\n   • Salud\n   • Servicios Profesionales\n   • Otro\n\n3️⃣ **¿Cuál es tu principal desafío?**\n   • Demasiados tickets de soporte\n   • Calificación de leads\n   • Reserva de citas\n   • Onboarding de clientes\n   • Otro\n\n📧 **O contáctanos directamente:** ZyatrIA.contact@gmail.com\n📅 **O reserva una demo gratuita de 30 minutos**\n\n¡Responde estas preguntas y te recomendaré el plan perfecto! 🚀",
+      pt: "🎯 **Excelente! Vou ajudá-lo a escolher o plano certo.**\n\nPara recomendar a melhor solução, preciso de algumas informações:\n\n1️⃣ **Qual é o tamanho da sua empresa?**\n   • Solopreneur / Freelance\n   • Pequena empresa (1-5 funcionários)\n   • PME (5-50 funcionários)\n   • Grande empresa (50+ funcionários)\n\n2️⃣ **Qual é o seu setor?**\n   • E-commerce\n   • Imobiliário\n   • Coaching / Consultoria\n   • SaaS / Tech\n   • Saúde\n   • Serviços Profissionais\n   • Outro\n\n3️⃣ **Qual é o seu principal desafio?**\n   • Muitos tickets de suporte\n   • Qualificação de leads\n   • Agendamento de consultas\n   • Onboarding de clientes\n   • Outro\n\n📧 **Ou entre em contato diretamente:** ZyatrIA.contact@gmail.com\n📅 **Ou agende uma demo gratuita de 30 minutos**\n\nResponda essas perguntas e recomendarei o plano perfeito! 🚀",
+    };
+    return responses[language];
   }
   
-  // Contact
-  if (lowerMessage.match(/\b(contact|joindre|appeler|téléphone|email|parler)\b/)) {
-    return FALLBACK_RESPONSES.contact;
+  // 4. Questions sur les langues
+  if (lowerMessage.match(/\b(langue|language|idioma|língua|speak|habla|fala|parle)\b/)) {
+    console.log('🌍 Intention: Question sur les langues');
+    const responses = {
+      fr: "🌍 **Je parle 4 langues couramment !**\n\n✅ Français 🇫🇷\n✅ English 🇬🇧🇺🇸\n✅ Español 🇪🇸\n✅ Português 🇵🇹\n\nJe détecte automatiquement votre langue et m'adapte. Vous pouvez me parler dans n'importe laquelle de ces langues !\n\n💡 Quelle est votre question sur nos services ?",
+      en: "🌍 **I speak 4 languages fluently!**\n\n✅ English 🇬🇧🇺🇸\n✅ Français 🇫🇷\n✅ Español 🇪🇸\n✅ Português 🇵🇹\n\nI automatically detect your language and adapt. You can talk to me in any of these languages!\n\n💡 What's your question about our services?",
+      es: "🌍 **¡Hablo 4 idiomas con fluidez!**\n\n✅ Español 🇪🇸\n✅ English 🇬🇧🇺🇸\n✅ Français 🇫🇷\n✅ Português 🇵🇹\n\n¡Detecto automáticamente tu idioma y me adapto. Puedes hablarme en cualquiera de estos idiomas!\n\n💡 ¿Cuál es tu pregunta sobre nuestros servicios?",
+      pt: "🌍 **Eu falo 4 idiomas fluentemente!**\n\n✅ Português 🇵🇹\n✅ English 🇬🇧🇺🇸\n✅ Français 🇫🇷\n✅ Español 🇪🇸\n\nDetecto automaticamente seu idioma e me adapto. Você pode falar comigo em qualquer um desses idiomas!\n\n💡 Qual é sua pergunta sobre nossos serviços?",
+    };
+    return responses[language];
   }
   
-  // Démo
-  if (lowerMessage.match(/\b(démo|demo|essai|test|essayer|tester)\b/)) {
-    return FALLBACK_RESPONSES.demo;
-  }
-  
-  // Micro-agents
-  if (lowerMessage.match(/\b(micro.?agent|agent|bot|chatbot|assistant)\b/)) {
-    return FALLBACK_RESPONSES['micro-agents'];
-  }
-  
-  // Automatisation
-  if (lowerMessage.match(/\b(automatisation|automatiser|automation|workflow|processus)\b/)) {
-    return FALLBACK_RESPONSES.automatisation;
-  }
-  
-  // Secteurs
-  if (lowerMessage.match(/\b(secteur|industrie|domaine|e.?commerce|immobilier|santé)\b/)) {
-    return FALLBACK_RESPONSES.secteurs;
-  }
-  
-  // Déploiement
-  if (lowerMessage.match(/\b(déploiement|déployer|installation|installer|mise en place|combien de temps)\b/)) {
-    return FALLBACK_RESPONSES.deploiement;
-  }
-  
-  // Avantages
-  if (lowerMessage.match(/\b(avantage|pourquoi|bénéfice|différence|meilleur|choisir)\b/)) {
-    return FALLBACK_RESPONSES.avantages;
-  }
-  
-  // Questions générales
-  if (lowerMessage.match(/\b(qui|quoi|comment|où|quand|pourquoi|quel)\b/)) {
-    return FALLBACK_RESPONSES.default;
-  }
-  
-  return FALLBACK_RESPONSES.default;
+  // 5. Questions sur les informations / services (priorité basse - catch-all)
+  console.log('📋 Intention: Générique - Retour réponse par défaut');
+  return FALLBACK_RESPONSES[language].default;
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -143,14 +196,63 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Vérifier si on peut faire une requête
+    // Récupérer la clé API Mistral depuis les variables d'environnement
+    // Support pour Cloudflare Pages et Workers
+    let apiKey: string | undefined;
+    
+    // Méthode 1 : import.meta.env (développement local Astro - PRIORITÉ)
+    if (import.meta.env.MISTRAL_API_KEY) {
+      apiKey = import.meta.env.MISTRAL_API_KEY;
+      console.log('🔑 Clé API trouvée via import.meta.env (développement local)');
+    }
+    // Méthode 2 : Cloudflare Workers (locals.runtime.env)
+    else if (locals?.runtime?.env?.MISTRAL_API_KEY) {
+      apiKey = locals.runtime.env.MISTRAL_API_KEY;
+      console.log('🔑 Clé API trouvée via locals.runtime.env (Cloudflare Workers)');
+    }
+    // Méthode 3 : Cloudflare Pages (process.env)
+    else if (typeof process !== 'undefined' && process.env?.MISTRAL_API_KEY) {
+      apiKey = process.env.MISTRAL_API_KEY;
+      console.log('🔑 Clé API trouvée via process.env (Cloudflare Pages)');
+    }
+    
+    // Debug : afficher les sources disponibles
+    console.log('🔍 Debug - Sources de variables disponibles:', {
+      hasImportMetaEnv: !!import.meta.env.MISTRAL_API_KEY,
+      hasLocalsRuntime: !!locals?.runtime,
+      hasLocalsRuntimeEnv: !!locals?.runtime?.env,
+      hasProcessEnv: typeof process !== 'undefined' && !!process.env,
+      apiKeyFound: !!apiKey,
+      apiKeyLength: apiKey ? apiKey.length : 0,
+      apiKeyPreview: apiKey ? `${apiKey.substring(0, 8)}...` : 'none'
+    });
+
+    if (!apiKey) {
+      console.error('❌ Configuration manquante : MISTRAL_API_KEY non définie');
+      console.error('💡 Vérifiez que la variable est bien configurée sur Cloudflare Pages');
+      
+      // Fallback : réponse par défaut SEULEMENT si pas de clé API
+      const lastMessage = messages[messages.length - 1]?.content || '';
+      const fallbackResponse = getFallbackResponse(lastMessage);
+      
+      return new Response(
+        JSON.stringify({ 
+          response: fallbackResponse,
+          fallback: true,
+          reason: 'API key not configured'
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Vérifier si on peut faire une requête (rate limiting)
     const canRequest = rateLimiter.canMakeRequest();
     
     if (!canRequest.allowed) {
       console.warn(`⏱️ Rate limit atteint : ${canRequest.reason}`);
       console.warn(`⏱️ Réessayer dans ${canRequest.retryAfter} secondes`);
       
-      // Fallback : réponse par défaut avec information sur le délai
+      // Fallback SEULEMENT si rate limit atteint
       const lastMessage = messages[messages.length - 1]?.content || '';
       const fallbackResponse = getFallbackResponse(lastMessage);
       
@@ -162,7 +264,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
           retryAfter: canRequest.retryAfter
         }),
         { 
-          status: 429, // Too Many Requests
+          status: 429,
           headers: { 
             'Content-Type': 'application/json',
             'Retry-After': String(canRequest.retryAfter || 60)
@@ -174,28 +276,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Attendre le délai nécessaire (1 seconde minimum entre les requêtes)
     await rateLimiter.waitIfNeeded();
 
-    // Récupérer la clé API Mistral depuis les variables d'environnement
-    const apiKey = locals?.runtime?.env?.MISTRAL_API_KEY || import.meta.env.MISTRAL_API_KEY;
-
-    if (!apiKey) {
-      console.error('❌ Configuration manquante : MISTRAL_API_KEY non définie');
-      
-      // Enregistrer l'échec
-      rateLimiter.recordRequest(false);
-      
-      // Fallback : réponse par défaut
-      const lastMessage = messages[messages.length - 1]?.content || '';
-      const fallbackResponse = getFallbackResponse(lastMessage);
-      
-      return new Response(
-        JSON.stringify({ 
-          response: fallbackResponse,
-          fallback: true
-        }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
     // Log des statistiques avant la requête
     const stats = rateLimiter.getStats();
     console.log('📊 Rate limiter stats:', {
@@ -205,7 +285,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       timeSinceLastRequest: `${stats.timeSinceLastRequest}ms`
     });
 
-    console.log('🚀 Appel API Mistral (pas de cache disponible)');
+    console.log('🚀 Appel API Mistral - Détection automatique de la langue');
 
     // Appel à l'API Mistral avec la configuration optimale
     const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
@@ -215,72 +295,164 @@ export const POST: APIRoute = async ({ request, locals }) => {
         'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'mistral-medium', // Modèle plus performant
+        model: 'mistral-medium',
         messages: [
           {
             role: 'system',
-            content: `You are a professional AI assistant for ZyatrIA Global, a Canadian company specializing in AI agents and automation.
+            content: `You are a SALES CONSULTANT for ZyatrIA Global, NOT an information bot.
 
-**IMPORTANT - MULTILINGUAL SUPPORT:**
-You MUST detect the user's language and respond in the SAME language (French, English, Spanish, or Portuguese).
-- If user writes in French → respond in French
-- If user writes in English → respond in English  
-- If user writes in Spanish → respond in Spanish
-- If user writes in Portuguese → respond in Portuguese
+**🎯 YOUR MISSION: GUIDE CUSTOMERS TO PURCHASE**
 
-**About ZyatrIA Global:**
-- 🌍 Canadian company based in Quebec
-- 🤖 Specialized in AI agents, automation and micro-agents
-- ⚡ Fast deployment: 7-15 days
-- 🌐 Operating in North America, Europe, French-speaking Africa and Latin America
-- 📧 Contact: ZyatrIA.contact@gmail.com
+You must ALWAYS:
+1. Ask qualifying questions
+2. Understand their specific problem
+3. Recommend a SPECIFIC solution with price
+4. Explain WHY it's perfect for them
+5. Give a clear next step (demo, pricing page, or buy)
 
-**Our Services:**
-1. **Intelligent AI Agents** - Complete process automation
-2. **Specialized Micro-agents** - Customer support, lead qualification, appointment management
-3. **CRM Integrations** - Connection with your existing tools
-4. **Training & Support** - Complete team support
+**CRITICAL RULES:**
+- NEVER give generic information dumps
+- ALWAYS recommend a specific product after understanding their need
+- ALWAYS mention the price and value
+- ALWAYS end with a clear call-to-action
 
-**Our Plans:**
-- 🚀 Starter: $297/month - 1 AI agent, 1000 conversations/month
-- 💼 Business: $697/month - 3 AI agents, 5000 conversations/month
-- 🏢 Enterprise: $1497/month - Unlimited agents, unlimited conversations
-- 🎯 Professional Services: AI Audit ($497), Consultation ($997), Training ($1497)
+**🏢 ABOUT ZYATRIA GLOBAL:**
+- Canadian AI automation company (Quebec)
+- 127+ clients, 4.9/5 rating, 95% retention
+- Ultra-fast deployment: 7-15 days
+- Contact: ZyatrIA.contact@gmail.com
 
-**Sectors of expertise:**
-E-commerce, Real Estate, Coaching, SaaS & Tech, Health & Wellness, Professional Services
+**💰 PRODUCTS & PRICING:**
 
-**How our AI agents work:**
-Our agents use advanced AI to understand requests, process information and respond in a personalized way. They integrate with your existing systems (CRM, calendars, etc.) and continuously learn to improve.
+**MAIN PLANS:**
+🚀 **STARTER** - Best for: 1-5 employees, testing AI
+   • 1 AI agent, email support, 7-day deployment
+   • Visit pricing page for exact price
+   
+💼 **BUSINESS** ⭐ MOST POPULAR - Best for: 5-50 employees
+   • 3 AI agents, priority support, success manager, 10-day deployment
+   • Visit pricing page for exact price
+   
+🏢 **ENTERPRISE** - Best for: 50+ employees
+   • Unlimited agents, 24/7 support, custom training, 15-day deployment
+   • Visit pricing page for exact price
 
-**Your role:**
-- Respond in a conversational and natural way
-- Help customers understand our services clearly
-- Be courteous, professional and concise
-- Adapt your responses to the conversation context
-- Suggest a free demo when relevant
-- Use emojis to make the conversation engaging
-- Don't repeat the same information if it has already been given
-- Answer questions directly without listing all options every time
-- ALWAYS respond in the user's language (FR/EN/ES/PT)
+**MICRO-AGENTS (Monthly subscription):**
+• 🎯 Lead Qualification: $69/month - Automatic scoring, 24/7 qualification, smart routing
+• 💬 Customer Support: $69/month - 24/7 instant responses, multilingual, FAQ knowledge base
+• 📅 Appointments: $68/month - Online booking, automatic reminders, calendar sync
+• 🔄 Prospect Followup: $180/month - Automated sequences, multi-channel, intelligent timing
+• 🏠 Real Estate: $208/month - Visit scheduling, buyer qualification, property Q&A
+• 🛒 E-commerce: $195/month - Cart recovery, order tracking, product FAQ
 
-**MULTILINGUAL CAPABILITIES:**
-Our AI agents support multiple languages including:
-- 🇫🇷 French (Français)
-- 🇬🇧 English (Anglais)
-- 🇪🇸 Spanish (Español)
-- 🇵🇹 Portuguese (Português)
+**SERVICES:**
+• AI Audit: $147 - Identify opportunities
+• Strategy Consultation: $149 - Custom roadmap
+• Team Training: $147 - Certification program
 
-They can understand and respond naturally in all these languages, making them perfect for international businesses.`
+**🎯 CONVERSATION EXAMPLES:**
+
+**Example 1 - Lead Qualification:**
+User: "I need help with lead qualification"
+You: "Perfect! Lead qualification is exactly what we specialize in. 
+
+Based on what you've told me, I recommend our **Lead Qualification Micro-Agent** at **$69/month**.
+
+Here's what it does for you:
+✅ Qualifies leads 24/7 automatically
+✅ Scores each lead based on your criteria
+✅ Routes qualified leads to the right team member
+✅ Saves you 10+ hours per week
+
+**ROI:** Our clients see +50% more qualified leads and save significant time on manual qualification.
+
+**Next steps - Choose one:**
+1️⃣ See our pricing page for all details
+2️⃣ Book a free 30-min demo to see it in action
+3️⃣ Start now - I can send you the payment link
+
+Which option works best for you?"
+
+**Example 2 - E-commerce:**
+User: "I have an e-commerce store"
+You: "Great! E-commerce is one of our specialties.
+
+Quick question: What's your biggest challenge right now?
+• Cart abandonment?
+• Too many support tickets?
+• Product questions?
+• Order tracking inquiries?
+
+This will help me recommend the perfect solution for you."
+
+**Example 3 - Small Business:**
+User: "I have a small business with 3 employees"
+You: "Perfect! For a team of 3, I'd recommend our **STARTER plan**.
+
+Here's what you get:
+✅ 1 specialized AI agent (you choose: support, booking, or qualification)
+✅ Deployed in just 7 days
+✅ Email support included
+✅ Visit our pricing page for exact pricing
+
+**What would you like your AI agent to do?**
+• Handle customer support?
+• Qualify leads?
+• Book appointments?
+• Something else?
+
+Tell me and I'll show you exactly how it works!"
+
+**🎯 INDUSTRY-SPECIFIC RECOMMENDATIONS:**
+
+**E-commerce:** → E-commerce Micro-Agent ($195/month) or Business plan
+**Real Estate:** → Real Estate Micro-Agent ($208/month) or Starter plan
+**Coaching/Consulting:** → Appointments Micro-Agent ($68/month) or Starter plan
+**SaaS:** → Customer Support Micro-Agent ($69/month) or Business plan
+**Healthcare:** → Appointments Micro-Agent ($68/month) or Business plan
+**High lead volume:** → Lead Qualification Micro-Agent ($69/month)
+
+**🎯 RESPONSE STRUCTURE - FOLLOW THIS:**
+
+1. **Acknowledge** their need
+2. **Recommend** a SPECIFIC product with price
+3. **Explain** the value (3-4 benefits)
+4. **Show** ROI or results
+5. **Call-to-Action** - Give 2-3 clear options
+
+**NEVER:**
+❌ Give generic information without recommendation
+❌ List all products without recommending one
+❌ End without a clear next step
+❌ Forget to mention pricing or value
+
+**ALWAYS:**
+✅ Recommend a specific solution
+✅ Mention the price or direct to pricing page
+✅ Explain WHY it's perfect for them
+✅ Give clear next steps
+✅ Create urgency when appropriate
+
+**DETECT LANGUAGE:**
+Respond in the user's language (French, English, Spanish, Portuguese).
+
+**YOUR GOAL:**
+Get them to:
+1. Visit pricing page
+2. Book a demo
+3. Ask for payment link
+4. Request a quote
+
+**BE A CONSULTANT, NOT A BROCHURE. GUIDE THEM TO THE RIGHT SOLUTION.** 🎯`
           },
           ...messages
         ],
         temperature: 0.7,
-        max_tokens: 800 // Augmenté pour des réponses plus complètes
+        max_tokens: 1000
       })
     });
 
-    // Vérifier le statut de la réponse (équivalent de raise_for_status)
+    // Vérifier le statut de la réponse
     if (!response.ok) {
       const statusCode = response.status;
       let errorMessage = `Erreur API Mistral: ${statusCode}`;
@@ -308,7 +480,7 @@ They can understand and respond naturally in all these languages, making them pe
         console.error('🔧 Erreur serveur Mistral : Service temporairement indisponible');
       }
 
-      // Fallback : réponse par défaut basée sur le message
+      // Fallback SEULEMENT en cas d'erreur API
       const lastMessage = messages[messages.length - 1]?.content || '';
       const fallbackResponse = getFallbackResponse(lastMessage);
       
@@ -319,7 +491,7 @@ They can understand and respond naturally in all these languages, making them pe
           error: errorMessage
         }),
         { 
-          status: 200, // On retourne 200 pour ne pas casser l'UX
+          status: 200,
           headers: { 'Content-Type': 'application/json' } 
         }
       );
@@ -341,7 +513,7 @@ They can understand and respond naturally in all these languages, making them pe
       // Enregistrer l'échec
       rateLimiter.recordRequest(false);
       
-      // Fallback : réponse par défaut
+      // Fallback SEULEMENT si réponse vide
       const lastMessage = messages[messages.length - 1]?.content || '';
       const fallbackResponse = getFallbackResponse(lastMessage);
       
@@ -399,7 +571,7 @@ They can understand and respond naturally in all these languages, making them pe
       errorMessage = error.message;
     }
 
-    // Fallback : réponse par défaut
+    // Fallback SEULEMENT en cas d'erreur critique
     try {
       const body = await request.json() as { 
         message?: string;
@@ -430,7 +602,7 @@ They can understand and respond naturally in all these languages, making them pe
       // Si même le fallback échoue, retourner une réponse générique
       return new Response(
         JSON.stringify({ 
-          response: FALLBACK_RESPONSES.default,
+          response: FALLBACK_RESPONSES.fr.default,
           fallback: true,
           error: errorMessage
         }),
@@ -442,7 +614,6 @@ They can understand and respond naturally in all these languages, making them pe
     }
   }
 };
-
 
 
 

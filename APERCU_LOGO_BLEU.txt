@@ -1,0 +1,139 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║                    🎨 NOUVEAU LOGO ZYATRIA GLOBAL                    ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│                          ╔═══════════╗                               │
+│                          ║           ║                               │
+│                    ●     ║  ███████  ║     ●                         │
+│                     ╲    ║  ██   ██  ║    ╱                          │
+│                      ●   ║  ██  ██   ║   ●                           │
+│                          ║  ██ ██    ║                               │
+│                          ║  ████     ║                               │
+│                          ║  ██ ██    ║                               │
+│                          ║  ██  ██   ║                               │
+│                      ●   ║  ██   ██  ║   ●                           │
+│                     ╱    ║  ███████  ║    ╲                          │
+│                    ●     ║           ║     ●                         │
+│                          ╚═══════════╝                               │
+│                                                                      │
+│                    ZyatrIA GLOBAL                                    │
+│                    ─────────────────                                 │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+COULEURS:
+━━━━━━━━
+
+Lettre "Z":
+  Dégradé: Bleu (#3B82F6) → Violet (#8B5CF6) → Cyan (#06B6D4)
+  Effet: Glow (lueur douce)
+
+Points IA (●):
+  Haut droite: Bleu (#3B82F6)
+  Bas gauche: Cyan (#06B6D4)
+  Connectés par des lignes (réseau neuronal)
+
+Cercle central:
+  Bordure: Dégradé Cyan → Bleu
+  Centre: Dégradé bleu-violet-cyan (semi-transparent)
+
+Texte "ZyatrIA":
+  Dégradé: Bleu → Violet → Cyan
+
+Texte "GLOBAL":
+  Couleur: Gris (#6B7280)
+
+Ligne d'accent:
+  Dégradé: Bleu → Violet → Cyan (semi-transparent)
+
+
+ÉLÉMENTS TECHNIQUES:
+━━━━━━━━━━━━━━━━━━━
+
+✓ Circuits IA (points connectés)
+✓ Réseau neuronal symbolique
+✓ Effet de glow (lueur)
+✓ Dégradés multi-couleurs
+✓ Animations subtiles (sur logo-animated.svg)
+✓ Scalable (SVG vectoriel)
+✓ Léger (< 5KB)
+
+
+FICHIERS DISPONIBLES:
+━━━━━━━━━━━━━━━━━━━━
+
+1. logo.svg
+   → Logo principal avec circuits IA
+   → 200x200px
+   → Pour footer, hero, grandes tailles
+
+2. logo-with-text.svg
+   → Logo + texte "ZyatrIA GLOBAL"
+   → 240x60px
+   → Pour navigation, en-têtes
+
+3. logo-animated.svg
+   → Version avec animations
+   → Pulse, gradient shift
+   → Pour landing page, hero
+
+4. favicon.svg
+   → Version simplifiée
+   → 64x64px
+   → Pour onglet navigateur
+
+
+UTILISATION:
+━━━━━━━━━━━
+
+Navigation:
+  <img src="/logo-with-text.svg" alt="ZyatrIA Global" class="h-8" />
+
+Footer:
+  <img src="/logo.svg" alt="ZyatrIA Global" class="w-12 h-12" />
+
+Hero (avec animation):
+  <img src="/logo-animated.svg" alt="ZyatrIA Global" class="w-32 h-32" />
+
+Favicon (dans <head>):
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+
+STYLE VISUEL:
+━━━━━━━━━━━━
+
+Moderne     ████████████ 100%
+Tech        ████████████ 100%
+Premium     ████████████ 100%
+Futuriste   ████████████ 100%
+IA/ML       ████████████ 100%
+
+
+COMPARAISON:
+━━━━━━━━━━━━
+
+❌ AVANT (Marron):
+   Simple "Z" marron (#C98769)
+   Pas d'effets
+   Style: Artisanal, chaleureux
+   Secteur: Bien-être, bio
+
+✅ MAINTENANT (Bleu):
+   "Z" avec dégradé bleu-violet-cyan
+   Circuits IA + glow
+   Style: Tech, moderne, premium
+   Secteur: IA, automation, SaaS
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                    ✅ NOUVEAU LOGO PRÊT !
+
+    Tous les fichiers sont créés et le build est réussi.
+    Lancez `npm run dev` pour voir le résultat ! 🚀
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

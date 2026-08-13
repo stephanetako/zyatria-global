@@ -3,9 +3,10 @@
 
 
 
+
 import { useState, useRef, useEffect } from 'react';
 import { baseUrl } from '../lib/base-url';
-import { MessageCircle, Mail, Phone, X, Send } from 'lucide-react';
+import { MessageCircle, Mail, Phone, X, Send, Sparkles } from 'lucide-react';
 
 type Channel = 'chat' | 'email' | 'call';
 
@@ -146,7 +147,7 @@ export default function MultiChannelChatbot() {
         className="chat-fab"
         aria-label="Ouvrir le chat"
       >
-        🤖
+        <Sparkles size={28} />
       </button>
 
       {/* Fenêtre de chat */}
@@ -245,14 +246,14 @@ export default function MultiChannelChatbot() {
           right: 20px;
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+          background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
           color: white;
           border-radius: 50%;
           display: flex;
           justify-content: center;
           align-items: center;
           cursor: pointer;
-          box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+          box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
           z-index: 1000;
           font-size: 28px;
           border: none;
@@ -261,7 +262,7 @@ export default function MultiChannelChatbot() {
 
         .chat-fab:hover {
           transform: scale(1.1);
-          box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+          box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
         }
 
         /* Fenêtre de chat */
@@ -281,7 +282,7 @@ export default function MultiChannelChatbot() {
         }
 
         .chat-header {
-          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+          background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
           color: white;
           padding: 16px 20px;
           display: flex;
@@ -336,7 +337,7 @@ export default function MultiChannelChatbot() {
         }
 
         .user-message {
-          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+          background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
           color: white;
           margin-left: auto;
           text-align: right;
@@ -372,13 +373,13 @@ export default function MultiChannelChatbot() {
 
         .chat-input:focus {
           outline: none;
-          border-color: #4CAF50;
-          box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+          border-color: #3B82F6;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .chat-send {
           padding: 12px 16px;
-          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+          background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
           color: white;
           border: none;
           border-radius: 12px;
@@ -393,7 +394,7 @@ export default function MultiChannelChatbot() {
 
         .chat-send:hover:not(:disabled) {
           transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .chat-send:disabled {
@@ -440,16 +441,16 @@ export default function MultiChannelChatbot() {
         }
 
         .chat-tab:hover {
-          background: #e8f5e9;
-          border-color: #4CAF50;
+          background: #EFF6FF;
+          border-color: #3B82F6;
           transform: translateY(-2px);
         }
 
         .chat-tab.active {
-          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-          border-color: #4CAF50;
+          background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+          border-color: #3B82F6;
           color: white;
-          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .tab-icon {
@@ -475,7 +476,7 @@ export default function MultiChannelChatbot() {
         }
 
         .chat-tab:hover .tab-text {
-          color: #1b5e20 !important;
+          color: #1E40AF !important;
         }
 
         .chat-tab.active .tab-text {
@@ -554,6 +555,9 @@ export default function MultiChannelChatbot() {
     </>
   );
 }
+
+
+
 
 
 

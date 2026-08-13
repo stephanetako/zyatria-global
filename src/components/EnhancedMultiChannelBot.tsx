@@ -3,7 +3,7 @@ import { MessageCircle, Mail, Phone, Send, X, Minimize2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card } from './ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
 import { baseUrl } from '../lib/base-url';
 
 type Channel = 'chat' | 'email' | 'call';
@@ -22,7 +22,6 @@ interface EnhancedMultiChannelBotProps {
 }
 
 export default function EnhancedMultiChannelBot({ 
-  mistralApiKey,
   backendUrl = baseUrl 
 }: EnhancedMultiChannelBotProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,7 +82,7 @@ export default function EnhancedMultiChannelBot({
 
       switch (currentChannel) {
         case 'chat':
-          response = await fetch(`${backendUrl}/api/mistral-chat`, {
+          response = await fetch(`${backendUrl}/api/claude-chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -285,7 +284,11 @@ export default function EnhancedMultiChannelBot({
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleSendMessage();
+                      }
+                    }}
                     placeholder={`Écrivez votre message...`}
                     disabled={isLoading}
                     className="flex-1"
@@ -310,4 +313,6 @@ export default function EnhancedMultiChannelBot({
     </>
   );
 }
+
+
 

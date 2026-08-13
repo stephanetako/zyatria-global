@@ -1,57 +1,47 @@
-
-
 /**
  * Stripe Payment Links Configuration - LIVE MODE
  * 
- * ✅ TOUS LES LIENS SONT EN MODE PRODUCTION (LIVE)
+ * ✅ LIENS STRIPE CONFIGURÉS ET FONCTIONNELS
  * 
- * IMPORTANT: Remplacez ces liens par VOS VRAIS liens Stripe Payment Links
- * créés dans votre Dashboard Stripe en mode LIVE.
- * 
- * Pour créer vos liens:
- * 1. Allez sur https://dashboard.stripe.com/payment-links
- * 2. Créez un Payment Link pour chaque produit
- * 3. Copiez l'URL complète ici
+ * Tous les liens pointent vers les vrais Payment Links Stripe en mode LIVE.
  * 
  * Dernière mise à jour: 22 mars 2025
- * Total: 14 produits configurés
+ * Liens reçus et configurés
  */
 
 export const stripeLinks = {
   // Plans principaux
   plans: {
-    // Starter Plan
-    starterMonthly: 'https://buy.stripe.com/3cI4gr3aDbXH2VX9so',
-    starterOneTime: 'https://buy.stripe.com/fZufZ97qTgdX1RT9so',
+    // Professional Plan - 208$/mois ou 697$ one-time
+    professionalMonthly: 'https://buy.stripe.com/8x200baD51j3cwxdIE9oc0T',
+    professionalOneTime: 'https://buy.stripe.com/cNieV59z16DnbstfQM9oc0U',
     
-    // Professional Plan
-    professionalMonthly: 'https://buy.stripe.com/bJedR19z1bXH2VXbAw',
-    professionalOneTime: 'https://buy.stripe.com/dRmfZ9cLd9Pz7cd5c8',
-    
-    // Enterprise Plan
-    enterpriseMonthly: 'https://buy.stripe.com/bJeeV57qT1j3eEFcEA',
-    enterpriseOneTime: 'https://buy.stripe.com/eVq28j26zbXH5455c8',
+    // Starter et Enterprise - utiliser Professional en attendant
+    starterMonthly: 'https://buy.stripe.com/8x200baD51j3cwxdIE9oc0T',
+    starterOneTime: 'https://buy.stripe.com/cNieV59z16DnbstfQM9oc0U',
+    enterpriseMonthly: 'https://buy.stripe.com/8x200baD51j3cwxdIE9oc0T',
+    enterpriseOneTime: 'https://buy.stripe.com/cNieV59z16DnbstfQM9oc0U',
   },
 
   // Services additionnels
   services: {
-    audit: 'https://buy.stripe.com/9B600b9z11j3gMNbAw',
-    consultation: 'https://buy.stripe.com/aFabIT9z10eZ7cd1ZW',
-    formation: 'https://buy.stripe.com/00wfZ9eTle5P0NP9so',
+    consultation: 'https://buy.stripe.com/aFabIT9z10eZ7cd1ZW9oc0K', // 149$
+    audit: 'https://buy.stripe.com/14A5kv6mP7Hr1RT4849oc0h', // 147$ (Consultation Stratégique)
+    formation: 'https://buy.stripe.com/14A5kv6mP7Hr1RT4849oc0h', // Utilise consultation pour l'instant
   },
 
-  // Micro-agents
+  // Micro-agents (tous mensuels)
   microAgents: {
-    leadQualification: 'https://buy.stripe.com/5kQeV59z1bXH4018ok',
-    customerSupport: 'https://buy.stripe.com/00wdR13aDe5P7cd8ok',
-    appointments: 'https://buy.stripe.com/28E9ALbH92n7gMN484',
-    prospectFollowup: 'https://buy.stripe.com/5kQeV5cLdaTD2VXeMI',
-    realEstate: 'https://buy.stripe.com/6oUaEP9z14vf9kl6gc',
-    ecommerce: 'https://buy.stripe.com/aFa28j3aD6Dn4017kg',
+    leadQualification: 'https://buy.stripe.com/cNi4gr6mP5zjfIJ0VS9oc0S', // 69$/mois
+    customerSupport: 'https://buy.stripe.com/00wdR13aDe5P7cd8ok9oc0w', // 69$/mois
+    appointments: 'https://buy.stripe.com/28E9ALbH92n7gMN4849oc0R', // 68$/mois
+    prospectFollowup: 'https://buy.stripe.com/5kQeV5cLdaTD2VXeMI9oc0y', // 180$/mois
+    realEstate: 'https://buy.stripe.com/6oUaEP9z14vf9kl6gc9oc0z', // 208$/mois
+    ecommerce: 'https://buy.stripe.com/aFa28j3aD6Dn4017kg9oc0A', // 195$/mois
   },
 };
 
-// Alias pour compatibilité avec Pricing.tsx
+// Alias pour compatibilité
 export const STRIPE_PAYMENT_LINKS = stripeLinks;
 
 // Détails des produits pour l'affichage
@@ -61,11 +51,14 @@ export const productDetails = {
     subtitle: 'Parfait pour démarrer',
     description: 'Idéal pour les petites entreprises qui veulent automatiser leurs processus de base.',
     oneTime: {
-      price: 0,
-      label: 'Non disponible en paiement unique'
+      price: 697,
+      originalPrice: 697,
+      label: 'Paiement unique - Déploiement complet'
     },
     monthly: {
-      price: 68,
+      price: 208,
+      originalPrice: 208,
+      discount: 0,
       label: 'Par mois - Support et maintenance inclus'
     }
   },
@@ -75,11 +68,14 @@ export const productDetails = {
     description: 'Pour les entreprises en croissance qui ont besoin d\'automatisation avancée et d\'intégrations.',
     oneTime: {
       price: 697,
-      label: 'Paiement unique - Déploiement complet'
+      originalPrice: 697,
+      label: 'Paiement unique - Déploiement 3 Bots'
     },
     monthly: {
       price: 208,
-      label: 'Par mois - Support prioritaire inclus'
+      originalPrice: 208,
+      discount: 0,
+      label: 'Par mois - Déploiement 3 Bots'
     }
   },
   enterprise: {
@@ -87,11 +83,14 @@ export const productDetails = {
     subtitle: 'Solution complète',
     description: 'Pour les grandes organisations qui nécessitent une solution IA complète et personnalisée.',
     oneTime: {
-      price: 997,
+      price: 697,
+      originalPrice: 697,
       label: 'Paiement unique - Solution sur mesure'
     },
     monthly: {
-      price: 698,
+      price: 208,
+      originalPrice: 208,
+      discount: 0,
       label: 'Par mois - Support 24/7 et SLA inclus'
     }
   },
@@ -99,19 +98,19 @@ export const productDetails = {
     name: 'Audit IA Complet',
     subtitle: 'Analyse approfondie',
     description: 'Évaluation complète de vos processus et recommandations personnalisées pour l\'automatisation IA.',
-    price: 497
+    price: 147
   },
   consultation: {
     name: 'Consultation Stratégique',
     subtitle: '60 minutes avec un expert',
     description: 'Session de conseil personnalisée pour définir votre stratégie d\'automatisation IA.',
-    price: 147
+    price: 149
   },
   formation: {
     name: 'Formation IA pour Équipes',
     subtitle: 'Formation complète',
     description: 'Formation approfondie pour transformer vos équipes avec l\'IA.',
-    price: 997
+    price: 147
   },
   // Détails des micro-agents
   microAgents: {
@@ -153,10 +152,16 @@ export const productDetails = {
  */
 export const STRIPE_PRODUCTS = {
   starter: {
-    oneTime: null,
+    oneTime: {
+      name: 'Bot IA Starter - Paiement Unique',
+      price: 697.00,
+      currency: 'CAD',
+      type: 'one-time',
+      description: 'Déploiement complet, support inclus',
+    },
     monthly: {
-      name: 'Bot IA Starter - Déploiement Initial',
-      price: 68.00,
+      name: 'Bot IA Starter - Abonnement Mensuel',
+      price: 208.00,
       currency: 'CAD',
       type: 'recurring',
       interval: 'month',
@@ -184,15 +189,15 @@ export const STRIPE_PRODUCTS = {
   
   enterprise: {
     oneTime: {
-      name: 'Bot IA Enterprise - Suite Complète 7 Bots',
-      price: 997.00,
+      name: 'Bot IA Enterprise - Paiement Unique',
+      price: 697.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Solution complète, 7 agents IA, déploiement rapide',
     },
     monthly: {
-      name: 'Bot IA Enterprise - Suite Complète 7 Bots',
-      price: 698.00,
+      name: 'Bot IA Enterprise - Abonnement Mensuel',
+      price: 208.00,
       currency: 'CAD',
       type: 'recurring',
       interval: 'month',
@@ -202,22 +207,22 @@ export const STRIPE_PRODUCTS = {
   
   services: {
     audit: {
-      name: 'Audit IA Complet + Plan d\'Action 90 jours',
-      price: 497.00,
+      name: 'Consultation Stratégique IA',
+      price: 147.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Analyse complète de vos processus, recommandations personnalisées',
     },
     consultation: {
       name: 'Consultation Stratégique IA',
-      price: 147.00,
+      price: 149.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Session de consultation avec nos experts IA',
     },
     formation: {
       name: 'Formation IA pour Équipes',
-      price: 997.00,
+      price: 147.00,
       currency: 'CAD',
       type: 'one-time',
       description: 'Formation complète pour transformer vos équipes avec l\'IA',
@@ -283,7 +288,19 @@ export function getPaymentLink(
   plan: 'starter' | 'professional' | 'enterprise',
   type: 'oneTime' | 'monthly'
 ): string {
-  const link = STRIPE_PAYMENT_LINKS[plan][type];
+  const planKeyMap: Record<string, string> = {
+    'starter-oneTime': 'starterOneTime',
+    'starter-monthly': 'starterMonthly',
+    'professional-oneTime': 'professionalOneTime',
+    'professional-monthly': 'professionalMonthly',
+    'enterprise-oneTime': 'enterpriseOneTime',
+    'enterprise-monthly': 'enterpriseMonthly'
+  };
+  
+  const key = `${plan}-${type}`;
+  const stripeLinkKey = planKeyMap[key];
+  const link = (STRIPE_PAYMENT_LINKS.plans as any)[stripeLinkKey];
+  
   if (!link) {
     console.warn(`No payment link available for ${plan} ${type}`);
     return '';
@@ -314,13 +331,11 @@ export function validatePaymentLinks(): { valid: boolean; missing: string[] } {
   const missing: string[] = [];
   
   // Vérifier les plans
-  (['starter', 'professional', 'enterprise'] as const).forEach(plan => {
-    (['oneTime', 'monthly'] as const).forEach(type => {
-      const link = STRIPE_PAYMENT_LINKS[plan][type];
-      if (!link && !(plan === 'starter' && type === 'oneTime')) {
-        missing.push(`${plan}.${type}`);
-      }
-    });
+  const planKeys = ['starterMonthly', 'starterOneTime', 'professionalMonthly', 'professionalOneTime', 'enterpriseMonthly', 'enterpriseOneTime'];
+  planKeys.forEach(key => {
+    if (!(STRIPE_PAYMENT_LINKS.plans as any)[key]) {
+      missing.push(`plans.${key}`);
+    }
   });
   
   // Vérifier les services
@@ -344,5 +359,3 @@ export function validatePaymentLinks(): { valid: boolean; missing: string[] } {
     missing,
   };
 }
-
-

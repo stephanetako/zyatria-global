@@ -1,9 +1,10 @@
 
+
+
 ---
 import MainLayout from '../layouts/main.astro';
-import Navigation from '../components/Navigation';
 import TechnicalDocsPage from '../components/pages/TechnicalDocsPage';
-import Footer from '../components/Footer';
+import FooterModern from '../components/FooterModern';
 
 const seoData = {
   title: "Documentation Technique | API & Intégrations Agents IA | ZyatrIA Global",
@@ -19,9 +20,10 @@ const seoData = {
   ogImage={seoData.ogImage}
 >
   <div class="relative">
-    <Navigation client:load />
     <TechnicalDocsPage client:only="react" />
-    <Footer client:only="react" />
+    <FooterModern client:only="react" />
   </div>
 </MainLayout>
+
+
 

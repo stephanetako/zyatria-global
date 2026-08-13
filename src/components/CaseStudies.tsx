@@ -1,9 +1,4 @@
-import React from 'react';
-import { ShoppingBag, Building2, HeartHandshake, ArrowRight, TrendingUp, Clock, Users, DollarSign } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { baseUrl } from '../lib/base-url';
-import { useLanguage } from '../lib/language-context';
+import { ShoppingBag, Building2, HeartHandshake, ArrowRight, TrendingUp, Clock, Users } from 'lucide-react';
 
 const translations = {
   en: {
@@ -472,6 +467,8 @@ export default function CaseStudies() {
     </section>
   );
 }
+
+
 
 
 

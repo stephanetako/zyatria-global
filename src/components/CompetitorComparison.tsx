@@ -1,7 +1,4 @@
-import React from 'react';
-import { Check, X, Zap } from 'lucide-react';
-import { Button } from './ui/button';
-import { baseUrl } from '../lib/base-url';
+import { Check, X } from 'lucide-react';
 import { useLanguage } from '../lib/language-context';
 
 const translations = {
@@ -259,6 +256,7 @@ export default function CompetitorComparison() {
     </section>
   );
 }
+
 
 
 

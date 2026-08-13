@@ -2,6 +2,8 @@
 
 
 
+
+
 import React, { useState } from 'react';
 import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
@@ -288,7 +290,15 @@ const Pricing: React.FC = () => {
 
                   {/* CTA Button */}
                   {(() => {
-                    const paymentLink = stripeLinks[plan.key][billingType];
+                    // Map plan key to stripe links structure
+                    const planKeyMap: Record<PlanKey, string> = {
+                      'starter': billingType === 'monthly' ? 'starterMonthly' : 'starterOneTime',
+                      'professional': billingType === 'monthly' ? 'professionalMonthly' : 'professionalOneTime',
+                      'enterprise': billingType === 'monthly' ? 'enterpriseMonthly' : 'enterpriseOneTime'
+                    };
+                    
+                    const stripeLinkKey = planKeyMap[plan.key];
+                    const paymentLink = (stripeLinks.plans as any)[stripeLinkKey];
                     const stripeLink = paymentLink || '';
                     const isDisabled = !stripeLink;
                     
@@ -443,6 +453,8 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
+
 
 
 

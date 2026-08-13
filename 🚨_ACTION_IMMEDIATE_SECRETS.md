@@ -1,336 +1,198 @@
-# 🚨 ACTION IMMÉDIATE - SECRETS DÉTECTÉS
+# 🚨 ALERTE SÉCURITÉ CRITIQUE - TOUTES VOS CLÉS SONT EXPOSÉES
 
-## ⚠️ **SITUATION ACTUELLE**
+## ⚠️ DANGER IMMÉDIAT
 
-Des **secrets réels** ont été détectés dans vos fichiers de documentation :
-
-| Type | Fichier | Secret |
-|------|---------|--------|
-| 🔑 Webflow Site API | `FORMSPREE_CONFIGURATION.md` | `8160da8f...` |
-| 🔑 Webflow CMS API | `FORMSPREE_CONFIGURATION.md` | `177d18c2...` |
-| 🔐 Stripe Webhook | `📋_CONFIGURATION_ETAPE_PAR_ETAPE.md` | `whsec_d292...` |
+Vous avez exposé **TOUTES vos clés API** dans le chat, y compris vos **clés Stripe LIVE** qui donnent accès à vos paiements réels !
 
 ---
 
-## 🎯 **ACTIONS SELON VOTRE SITUATION**
+## 🔥 RÉVOQUEZ IMMÉDIATEMENT (DANS L'ORDRE) :
 
-### ❓ **Avez-vous déjà pushé sur GitHub/GitLab ?**
+### 1️⃣ **STRIPE (PRIORITÉ MAXIMALE - ARGENT RÉEL)** ⚠️
 
-#### ✅ **NON - Projet local uniquement**
+**Clés exposées :**
+- Secret Key LIVE : `sk_live_51TANJR1...`
+- Webhook Secret : `whsec_d29277bb...`
+- Public Key : `pk_live_51TANJR1...`
 
-**Vous avez de la chance ! 🎉**
+**Actions URGENTES :**
 
-Nettoyez simplement les fichiers avant le premier push :
-
-```bash
-# Nettoyer automatiquement
-./clean-secrets-from-docs.sh
-
-# Vérifier les changements
-git diff
-
-# Commiter
-git add .
-git commit -m "docs: remove secrets from documentation"
-
-# Maintenant vous pouvez push en toute sécurité
-git push
+```
+1. Allez sur https://dashboard.stripe.com/
+2. Connectez-vous IMMÉDIATEMENT
+3. Allez dans "Developers" > "API keys"
+4. Cliquez sur "Reveal live key token"
+5. Cliquez sur "Roll key" (regénérer)
+6. Copiez la NOUVELLE clé secrète
+7. Allez dans "Developers" > "Webhooks"
+8. Supprimez l'ancien webhook
+9. Créez un nouveau webhook
+10. Copiez le nouveau secret
 ```
 
-**✅ TERMINÉ ! Vos secrets sont protégés.**
+⏰ **TEMPS : 5 minutes - FAITES-LE MAINTENANT !**
 
 ---
 
-#### 🚨 **OUI - Déjà pushé sur GitHub/GitLab**
+### 2️⃣ **MISTRAL AI**
 
-**⚠️ VOS SECRETS SONT EXPOSÉS PUBLIQUEMENT !**
+**Clé exposée :** `Hy1Ja5hxTfLBsgJVJgAvrUdVtQL5OdWD...`
 
-**Actions IMMÉDIATES requises :**
-
----
-
-### 🔄 **ÉTAPE 1 : ROTATION DES CLÉS (URGENT)**
-
-#### **1.1 Webflow Site API Token**
-
-1. Allez sur https://webflow.com/dashboard/account/api
-2. Trouvez le token qui commence par `8160da8f`
-3. Cliquez sur **"Revoke"** ou **"Delete"**
-4. Créez un **nouveau token**
-5. Copiez le nouveau token
-
-```bash
-# Mettre à jour .env
-WEBFLOW_SITE_API_TOKEN="NOUVEAU_TOKEN_ICI"
+**Actions :**
 ```
-
-#### **1.2 Webflow CMS API Token**
-
-1. Sur la même page https://webflow.com/dashboard/account/api
-2. Trouvez le token qui commence par `177d18c2`
-3. Cliquez sur **"Revoke"** ou **"Delete"**
-4. Créez un **nouveau token**
-5. Copiez le nouveau token
-
-```bash
-# Mettre à jour .env
-WEBFLOW_CMS_SITE_API_TOKEN="NOUVEAU_TOKEN_ICI"
-```
-
-#### **1.3 Stripe Webhook Secret**
-
-1. Allez sur https://dashboard.stripe.com/webhooks
-2. Trouvez le webhook avec le secret `whsec_d292...`
-3. Cliquez sur **"Delete"** ou créez un nouveau webhook
-4. Configurez l'URL : `https://votre-domaine.pages.dev/api/stripe/webhook`
-5. Sélectionnez les événements :
-   - `checkout.session.completed`
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
-   - `invoice.payment_succeeded`
-   - `invoice.payment_failed`
-6. Copiez le nouveau **Signing secret**
-
-```bash
-# Mettre à jour .env
-STRIPE_WEBHOOK_SECRET="whsec_NOUVEAU_SECRET_ICI"
+1. https://console.mistral.ai/
+2. API Keys
+3. Supprimez la clé exposée
+4. Créez une nouvelle clé
+5. Copiez-la
 ```
 
 ---
 
-### 🧹 **ÉTAPE 2 : NETTOYER LA DOCUMENTATION**
+### 3️⃣ **WEBFLOW**
 
-```bash
-# Nettoyer les fichiers
-./clean-secrets-from-docs.sh
+**Tokens exposés :**
+- Site API Token : `8160da8face945f9...`
+- CMS Site API Token : `177d18c2c624850e...`
 
-# Vérifier
-git diff
-
-# Commiter
-git add .
-git commit -m "docs: remove exposed secrets from documentation"
-git push
+**Actions :**
+```
+1. https://webflow.com/dashboard
+2. Site Settings > Integrations > API Access
+3. Révoquez les tokens exposés
+4. Générez de nouveaux tokens
+5. Copiez-les
 ```
 
 ---
 
-### 🗑️ **ÉTAPE 3 : NETTOYER L'HISTORIQUE GIT (OPTIONNEL)**
+### 4️⃣ **CLAUDE AI (Anthropic)**
 
-**⚠️ ATTENTION : Ceci réécrit l'historique Git !**
+**Clé exposée :** `sk-ant-api03-HpyDgtsDY1u92b6CVxgKF...`
 
-Si vous voulez supprimer complètement les secrets de l'historique :
-
-#### **Option A : BFG Repo-Cleaner (Recommandé)**
-
-```bash
-# Installer BFG
-brew install bfg  # macOS
-# ou télécharger depuis https://rtyley.github.io/bfg-repo-cleaner/
-
-# Créer un fichier avec les secrets à supprimer
-cat > secrets.txt << 'EOF'
-8160da8face945f9fb1e1515f445592076f5481aabc0aeb7a7a11e9fdb118ed0
-177d18c2c624850e2dd7deb5c159dc319b90ef7c9cad86464217b2346a6f3c64
-whsec_d29277bba1b75a2b488b3ecc1c4ca969e497e2d9aa40231d3d11df56b5724564
-EOF
-
-# Nettoyer
-bfg --replace-text secrets.txt
-
-# Finaliser
-git reflog expire --expire=now --all
-git gc --prune=now --aggressive
-
-# Forcer le push
-git push --force --all
+**Actions :**
 ```
-
-#### **Option B : git filter-branch**
-
-```bash
-# Supprimer les secrets de l'historique
-git filter-branch --force --index-filter \
-  "git rm --cached --ignore-unmatch FORMSPREE_CONFIGURATION.md '📋_CONFIGURATION_ETAPE_PAR_ETAPE.md'" \
-  --prune-empty --tag-name-filter cat -- --all
-
-# Forcer le push
-git push --force --all
+1. https://console.anthropic.com/
+2. API Keys
+3. Supprimez la clé exposée
+4. Créez une nouvelle clé
+5. Copiez-la
 ```
 
 ---
 
-### ☁️ **ÉTAPE 4 : METTRE À JOUR CLOUDFLARE PAGES**
+## 📝 APRÈS AVOIR RÉVOQUÉ TOUTES LES CLÉS :
+
+### Mettre à jour le fichier .env local :
 
 ```bash
-# Mettre à jour les variables d'environnement
-wrangler pages secret put WEBFLOW_SITE_API_TOKEN
-# Entrer le nouveau token
+# Éditez .env avec vos NOUVELLES clés
+nano .env
+# ou
+code .env
+```
 
-wrangler pages secret put WEBFLOW_CMS_SITE_API_TOKEN
-# Entrer le nouveau token
+```env
+# Webflow API
+WEBFLOW_API_HOST="https://api-cdn.webflow.com/v2"
+WEBFLOW_SITE_API_TOKEN="VOTRE_NOUVEAU_TOKEN_WEBFLOW"
+WEBFLOW_CMS_SITE_API_TOKEN="VOTRE_NOUVEAU_TOKEN_CMS"
 
+# Formspree (pas compromis)
+FORMSPREE_FORM_ID="xbdedonn"
+
+# Mistral AI
+MISTRAL_API_KEY="VOTRE_NOUVELLE_CLE_MISTRAL"
+
+# Stripe LIVE
+STRIPE_PUBLIC_KEY="VOTRE_NOUVELLE_CLE_PUBLIQUE"
+STRIPE_SECRET_KEY="VOTRE_NOUVELLE_CLE_SECRETE"
+STRIPE_WEBHOOK_SECRET="VOTRE_NOUVEAU_SECRET_WEBHOOK"
+
+# Claude AI
+CLAUDE_API_KEY="VOTRE_NOUVELLE_CLE_CLAUDE"
+```
+
+---
+
+### Configurer sur Cloudflare Pages :
+
+```bash
+# Via Dashboard (RECOMMANDÉ)
+1. https://dash.cloudflare.com/
+2. Workers & Pages > zyatria-global
+3. Settings > Environment variables
+4. Mettez à jour TOUTES les variables
+5. Sauvegardez
+6. Redéployez
+
+# Via CLI
+wrangler pages secret put MISTRAL_API_KEY
+wrangler pages secret put STRIPE_SECRET_KEY
 wrangler pages secret put STRIPE_WEBHOOK_SECRET
-# Entrer le nouveau secret
-```
-
-Ou via l'interface Cloudflare :
-1. Allez sur https://dash.cloudflare.com
-2. Sélectionnez votre projet **zyatria-global**
-3. Allez dans **Settings** > **Environment variables**
-4. Mettez à jour les 3 variables
-
----
-
-## ✅ **VÉRIFICATION FINALE**
-
-```bash
-# Vérifier qu'aucun secret n'est dans Git
-git grep -E "(8160da8f|177d18c2|whsec_d292)" || echo "✅ Aucun secret trouvé"
-
-# Vérifier le .env local
-cat .env | grep -E "(WEBFLOW|STRIPE_WEBHOOK)"
-
-# Tester le site
-npm run build
-npm run dev
+wrangler pages secret put WEBFLOW_SITE_API_TOKEN
+wrangler pages secret put WEBFLOW_CMS_SITE_API_TOKEN
+wrangler pages secret put CLAUDE_API_KEY
 ```
 
 ---
 
-## 📋 **CHECKLIST**
+## 🔒 RÈGLES DE SÉCURITÉ À SUIVRE :
 
-- [ ] Tokens Webflow révoqués et régénérés
-- [ ] Webhook Stripe supprimé et recréé
-- [ ] Nouveau webhook secret Stripe obtenu
-- [ ] `.env` local mis à jour
-- [ ] Cloudflare Pages variables mises à jour
-- [ ] Documentation nettoyée
-- [ ] Changements commités et pushés
-- [ ] (Optionnel) Historique Git nettoyé
-- [ ] Site testé et fonctionnel
+### ❌ NE JAMAIS :
+- Partager vos clés API dans un chat
+- Commiter le fichier .env dans Git
+- Copier-coller vos clés dans des emails
+- Prendre des screenshots avec vos clés visibles
+- Utiliser les mêmes clés en dev et prod
 
----
-
-## 🆘 **BESOIN D'AIDE ?**
-
-### **Vérifier si vos secrets sont exposés publiquement :**
-
-1. Allez sur votre repo GitHub/GitLab
-2. Utilisez la recherche : `8160da8f` ou `177d18c2` ou `whsec_d292`
-3. Si vous trouvez des résultats → **ROTATION IMMÉDIATE**
-
-### **Vérifier l'historique :**
-
-```bash
-# Chercher dans l'historique
-git log --all --full-history --source -- FORMSPREE_CONFIGURATION.md
-git log --all --full-history --source -- "📋_CONFIGURATION_ETAPE_PAR_ETAPE.md"
-```
+### ✅ TOUJOURS :
+- Utiliser des variables d'environnement
+- Révoquer immédiatement toute clé exposée
+- Utiliser des clés différentes pour dev/prod
+- Activer les alertes de sécurité
+- Vérifier le .gitignore
 
 ---
 
-## 🔐 **PRÉVENTION FUTURE**
+## 📊 CHECKLIST DE SÉCURISATION :
 
-### **1. Créer un pre-commit hook**
-
-```bash
-cat > .git/hooks/pre-commit << 'HOOK'
-#!/bin/bash
-
-# Vérifier les secrets avant commit
-if git diff --cached --name-only | xargs grep -l -E "(sk_live_|pk_live_|whsec_|[0-9a-f]{64})" 2>/dev/null; then
-    echo "❌ ERREUR: Secrets détectés dans les fichiers à commiter"
-    echo "Vérifiez les fichiers ci-dessus et supprimez les secrets."
-    exit 1
-fi
-HOOK
-
-chmod +x .git/hooks/pre-commit
-```
-
-### **2. Utiliser git-secrets**
-
-```bash
-# Installer
-brew install git-secrets  # macOS
-
-# Configurer
-git secrets --install
-git secrets --register-aws
-
-# Ajouter des patterns personnalisés
-git secrets --add 'whsec_[a-zA-Z0-9]+'
-git secrets --add '[0-9a-f]{64}'
-```
-
-### **3. Scanner régulièrement**
-
-```bash
-# Installer gitleaks
-brew install gitleaks  # macOS
-
-# Scanner
-gitleaks detect --source . --verbose
-```
+- [ ] Stripe Secret Key révoquée et régénérée
+- [ ] Stripe Webhook Secret régénéré
+- [ ] Mistral API Key révoquée et régénérée
+- [ ] Webflow Site Token révoqué et régénéré
+- [ ] Webflow CMS Token révoqué et régénéré
+- [ ] Claude API Key révoquée et régénérée
+- [ ] Fichier .env local mis à jour
+- [ ] Variables Cloudflare mises à jour
+- [ ] Site redéployé
+- [ ] Tests effectués
 
 ---
 
-## 📊 **IMPACT DE L'EXPOSITION**
+## ⏰ TEMPS TOTAL ESTIMÉ : 20-30 minutes
 
-### **Webflow Tokens :**
-- ✅ **Faible risque** si site non publié
-- ⚠️ **Risque moyen** si site publié
-- 🚨 **Risque élevé** si CMS avec données sensibles
-
-**Actions possibles par un attaquant :**
-- Lire les données du site
-- Modifier le contenu CMS
-- Accéder aux collections
-
-### **Stripe Webhook Secret :**
-- ⚠️ **Risque moyen** en général
-- 🚨 **Risque élevé** si paiements actifs
-
-**Actions possibles par un attaquant :**
-- Envoyer de faux événements webhook
-- Simuler des paiements réussis
-- Créer de faux abonnements
+## 🎯 PRIORITÉ : **CRITIQUE - ARRÊTEZ TOUT ET FAITES-LE MAINTENANT**
 
 ---
 
-## 🎯 **RÉSUMÉ**
+## 💡 APRÈS LA SÉCURISATION :
 
-| Situation | Action | Urgence |
-|-----------|--------|---------|
-| Pas encore pushé | Nettoyer avant push | ⚠️ Moyen |
-| Pushé sur repo privé | Rotation + nettoyage | 🚨 Élevé |
-| Pushé sur repo public | **ROTATION IMMÉDIATE** | 🔥 CRITIQUE |
+Une fois toutes les clés révoquées et régénérées :
 
----
-
-## ✅ **APRÈS LA ROTATION**
-
-Une fois tous les secrets régénérés :
-
-```bash
-# Tester localement
-npm run build
-npm run dev
-
-# Tester Stripe
-npm run test:stripe
-
-# Déployer
-git push
-
-# Vérifier le déploiement
-curl https://votre-domaine.pages.dev/api/stripe/webhook
-```
+1. Le chatbot Mistral fonctionnera avec la nouvelle clé
+2. Stripe continuera à fonctionner avec les nouvelles clés
+3. Webflow continuera à fonctionner avec les nouveaux tokens
+4. Tout sera sécurisé
 
 ---
 
-**🔒 La sécurité est une priorité ! Ne prenez aucun risque avec vos secrets.**
+## 📞 BESOIN D'AIDE ?
 
-**📞 En cas de doute, contactez immédiatement le support de chaque service.**
+Après avoir sécurisé vos clés, je peux vous aider à :
+- Vérifier que tout fonctionne
+- Tester le chatbot
+- Configurer Cloudflare
+- Redéployer le site
+
+**MAIS D'ABORD : SÉCURISEZ VOS CLÉS ! 🔒**

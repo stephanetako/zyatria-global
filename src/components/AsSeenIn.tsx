@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLanguage } from '../lib/language-context';
 import { Newspaper, Trophy } from 'lucide-react';
 
@@ -145,4 +144,5 @@ export default function AsSeenIn() {
     </section>
   );
 }
+
 

@@ -1,56 +1,11 @@
 ---
 import MainLayout from '../layouts/main.astro';
+import AppWrapperDiagnostic from '../components/AppWrapperDiagnostic';
 ---
 
-<MainLayout title="Diagnostic - ZyatrIA">
-  <div class="min-h-screen bg-background text-foreground p-8">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">🔍 Page de Diagnostic</h1>
-      
-      <div class="space-y-4">
-        <div class="p-6 bg-card border border-border rounded-lg">
-          <h2 class="text-2xl font-semibold mb-4">✅ Si tu vois cette page, Astro fonctionne !</h2>
-          <p class="text-muted-foreground">Le problème vient probablement d'un composant React.</p>
-        </div>
-
-        <div class="p-6 bg-card border border-border rounded-lg">
-          <h3 class="text-xl font-semibold mb-2">📋 Checklist:</h3>
-          <ul class="list-disc list-inside space-y-2 text-muted-foreground">
-            <li>Astro: ✅ Fonctionne</li>
-            <li>Layout: ✅ Fonctionne</li>
-            <li>Styles: ✅ Chargés</li>
-            <li>Composants React: ❓ À tester</li>
-          </ul>
-        </div>
-
-        <div class="p-6 bg-card border border-border rounded-lg">
-          <h3 class="text-xl font-semibold mb-2">🔧 Prochaines étapes:</h3>
-          <ol class="list-decimal list-inside space-y-2 text-muted-foreground">
-            <li>Ouvre la console du navigateur (F12)</li>
-            <li>Regarde s'il y a des erreurs en rouge</li>
-            <li>Vérifie l'onglet "Network" pour voir si des fichiers ne se chargent pas</li>
-            <li>Retourne sur la page d'accueil et vérifie les logs</li>
-          </ol>
-        </div>
-
-        <div class="p-6 bg-card border border-border rounded-lg">
-          <h3 class="text-xl font-semibold mb-2">🏠 Navigation:</h3>
-          <div class="flex gap-4 mt-4">
-            <a href="/" class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition">
-              Retour à l'accueil
-            </a>
-            <a href="/test" class="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:opacity-90 transition">
-              Page de test
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    console.log('🎯 Page de diagnostic chargée avec succès !');
-    console.log('📍 URL actuelle:', window.location.href);
-    console.log('🌐 User Agent:', navigator.userAgent);
-  </script>
+<MainLayout 
+  title="🔍 Diagnostic - ZyatrIA Global"
+  description="Page de diagnostic pour identifier les problèmes"
+>
+  <AppWrapperDiagnostic client:only="react" />
 </MainLayout>

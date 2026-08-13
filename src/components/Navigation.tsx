@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Globe, Menu, X, Home, Briefcase, Bot, DollarSign } from 'lucide-react';
@@ -211,7 +212,7 @@ const Navigation: React.FC = () => {
             >
               {t.help}
             </a>
-            <Button asChild className="w-full bg-gradient-to-r from-blue-500 to-violet-500 text-white hover:from-blue-600 hover:to-violet-600 shadow-lg shadow-blue-500/30 hover:shadow-xl">
+            <Button asChild className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 shadow-lg shadow-amber-500/30 hover:shadow-xl">
               <a href={`${baseUrl}/demo`}>{t.demo}</a>
             </Button>
           </div>
@@ -222,6 +223,7 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
+
 
 
 

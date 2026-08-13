@@ -3,12 +3,10 @@
 
 
 
+
 ---
 import MainLayout from '../layouts/main.astro';
-import Navigation from '../components/Navigation';
-import PricingComponent from '../components/Pricing';
-import Footer from '../components/Footer';
-import FormspreeButton from '../components/FormspreeButton';
+import PricingPage from '../components/pages/PricingPage';
 
 const seoData = {
   title: "Tarifs Agents IA | Plans Starter, Business & Enterprise | À partir de 49€/mois | ZyatrIA",
@@ -23,13 +21,15 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-<div class="relative">
-<Navigation client:load />
-<PricingComponent client:only="react" />
-<Footer client:only="react" />
-<FormspreeButton client:only="react" />
-</div>
+<PricingPage client:load />
 </MainLayout>
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✅ Test Final - ZyatrIA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+        .success {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .test-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f9fafb;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .badge.ok {
+            background: #dcfce7;
+            color: #166534;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .info {
+            background: #fffbeb;
+            border: 2px solid #fbbf24;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Test Réussi !</h1>
+        
+        <div class="success">
+            <h3>🎉 Cloudflare Workers fonctionne !</h3>
+            <p>Si vous voyez cette page, le serveur répond correctement.</p>
+        </div>
+        
+        <div class="test-item">
+            <span>📦 HTML chargé</span>
+            <span class="badge ok">OK</span>
+        </div>
+        
+        <div class="test-item">
+            <span>🎨 CSS appliqué</span>
+            <span class="badge ok">OK</span>
+        </div>
+        
+        <div class="test-item">
+            <span>🌐 JavaScript actif</span>
+            <span class="badge ok" id="js-test">OK</span>
+        </div>
+        
+        <div class="info">
+            <h4 style="margin-bottom: 10px;">📋 Prochaines étapes</h4>
+            <p style="line-height: 1.6;">
+                1. Testez la page d'accueil<br>
+                2. Si elle est blanche, ouvrez F12<br>
+                3. Vérifiez les erreurs dans la console
+            </p>
+        </div>
+        
+        <button onclick="window.location.href='/'">
+            🏠 Tester la page d'accueil
+        </button>
+        
+        <button onclick="window.location.href='/diagnostic'" style="background: #6b7280; margin-top: 10px;">
+            🔍 Page de diagnostic
+        </button>
+    </div>
+    
+    <script>
+        console.log('✅ JavaScript fonctionne !');
+        document.getElementById('js-test').textContent = 'OK';
+    </script>
+</body>
+</html>

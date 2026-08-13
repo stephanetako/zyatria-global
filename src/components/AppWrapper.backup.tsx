@@ -1,4 +1,3 @@
-import React from 'react';
 import { LanguageProvider } from '../lib/language-context';
 import Navigation from './Navigation';
 import HeroSimple from './HeroSimple';
@@ -79,3 +78,4 @@ export default function AppWrapper() {
     </LanguageProvider>
   );
 }
+
