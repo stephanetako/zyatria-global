@@ -1,0 +1,303 @@
+﻿---
+import MainLayout from '../layouts/main.astro';
+---
+
+<MainLayout>
+  <div class="container">
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">ZyatrIA Global</div>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>AI Agents & Automation Without Borders</h1>
+        <p class="hero-subtitle">Transform your business with intelligent AI agents. Deploy in 7-15 days.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+          <a href="#services" class="btn btn-secondary">Learn More</a>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>🤖 AI Agents</h3>
+            <p>Intelligent agents that automate your business processes</p>
+          </div>
+          <div class="service-card">
+            <h3>⚡ Automation</h3>
+            <p>Advanced workflow automation for maximum efficiency</p>
+          </div>
+          <div class="service-card">
+            <h3>🌍 Global Support</h3>
+            <p>Available in North America, Europe, Africa, and Latin America</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <h2>Pricing Plans</h2>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Starter</h3>
+            <p class="price">$5,000 CAD</p>
+            <p>Initial deployment + $299/month</p>
+            <a href="https://buy.stripe.com/test_28o5lq0Hy0Hy0RW000" class="btn btn-primary">Choose Plan</a>
+          </div>
+          <div class="pricing-card featured">
+            <h3>Professional</h3>
+            <p class="price">$15,000 CAD</p>
+            <p>3 Bots deployment + $799/month</p>
+            <a href="https://buy.stripe.com/test_5kA15a0Hy7a0bwA3cd" class="btn btn-primary">Choose Plan</a>
+          </div>
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <p class="price">$45,000 CAD</p>
+            <p>Complete suite 7 Bots + $2,499/month</p>
+            <a href="https://buy.stripe.com/test_6oE8xC5XS0Hy0RW8wy" class="btn btn-primary">Choose Plan</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <form action="https://formspree.io/f/xeelvrdl" method="POST" class="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2024 ZyatrIA Global. All rights reserved.</p>
+    </footer>
+  </div>
+</MainLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .header {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #C98769;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #373D36;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #C98769;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 100px 0;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #373D36;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 40px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: #C98769;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #A86F53;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: #E6DCD4;
+    color: #373D36;
+  }
+
+  .btn-secondary:hover {
+    background: #D9CFC7;
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .section h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #373D36;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .service-card {
+    padding: 40px;
+    background: #F5F1EB;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .service-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    padding: 40px;
+    background: #F5F1EB;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .pricing-card.featured {
+    border-color: #C98769;
+    transform: scale(1.05);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .pricing-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .price {
+    font-size: 32px;
+    font-weight: bold;
+    color: #C98769;
+    margin: 20px 0;
+  }
+
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #C98769;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid #eee;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nav-links {
+      gap: 15px;
+      font-size: 14px;
+    }
+
+    .pricing-card.featured {
+      transform: scale(1);
+    }
+  }
+</style>
