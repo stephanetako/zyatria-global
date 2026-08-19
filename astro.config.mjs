@@ -4,8 +4,13 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  base: '',
+  base: '/',
   output: 'server',
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
   devToolbar: {
     enabled: false,
   },
@@ -13,11 +18,6 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
