@@ -7,7 +7,9 @@ export default defineConfig({
   base: '/',
   output: 'server',
   adapter: cloudflare({
-    mode: 'advanced'
+    platformProxy: {
+      enabled: true,
+    },
   }),
   devToolbar: {
     enabled: false,
