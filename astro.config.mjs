@@ -1,16 +1,9 @@
 ﻿import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   base: '/',
-  output: 'server',
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
   devToolbar: {
     enabled: false,
   },
