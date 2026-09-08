@@ -1,9 +1,15 @@
 ﻿import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   base: '/',
+  output: 'static',
+  adapter: cloudflare({
+    mode: 'advanced',
+    functionPerRoute: false
+  }),
   devToolbar: {
     enabled: false,
   },
@@ -14,5 +20,13 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        external: []
+      }
+    },
+    ssr: {
+      noExternal: ['lucide-react']
+    }
   },
 });
