@@ -5,7 +5,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   base: '/',
-  output: 'static',
+  output: 'server',
   adapter: cloudflare({
     mode: 'advanced',
     functionPerRoute: false
