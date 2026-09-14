@@ -1,5 +1,6 @@
 ﻿{
   "name": "zyatria-global",
-  "compatibility_date": "2024-08-21",
-  "pages_build_output_dir": "dist"
+  "compatibility_date": "2024-09-23",
+  "pages_build_output_dir": "dist",
+  "compatibility_flags": ["nodejs_compat_v2"]
 }

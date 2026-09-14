@@ -7,7 +7,7 @@ export default defineConfig({
   base: '/',
   output: 'server',
   adapter: cloudflare({
-    mode: 'advanced'
+    mode: 'directory'
   }),
   devToolbar: {
     enabled: false,
