@@ -65,8 +65,8 @@ export default defineConfig({
       enabled: true,
     },
     wasmModuleImports: true,
-    cloudflareModules: {
-      name: 'zyatria-global',
+    routes: {
+      strategy: 'include',
     },
   }),
   integrations: [
@@ -100,6 +100,8 @@ export default defineConfig({
     },
   },
 });
+
+
 
 
 
