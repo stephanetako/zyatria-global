@@ -1,0 +1,23 @@
+﻿# Configuration Cloudflare Pages pour zyatria-global
+name = "zyatria-global"
+compatibility_date = "2024-08-21"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
+
+# Build configuration
+[build]
+command = "npm run build"
+
+[observability]
+enabled = true
+
+[vars]
+ENVIRONMENT = "production"
+
+# Les secrets sont configurés via le dashboard Cloudflare:
+# - CLAUDE_API_KEY
+# - FORMSPREE_FORM_ID
+# - MISTRAL_API_KEY
+# - STRIPE_PUBLIC_KEY
+# - STRIPE_SECRET_KEY
+# - STRIPE_WEBHOOK_SECRET
