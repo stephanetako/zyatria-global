@@ -1,44 +1,15 @@
-@"
-import {defineConfig} from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
+﻿import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
-
-function patchViteErrorOverlay() {
-  return {
-    name: 'patch-vite-error-overlay',
-    transform(code, id) {
-      if (id.includes('vite/dist/client/client.mjs')) {
-        return code.replace(
-          /const editorLink = this\.createLink\(\`Open in editor\$\{[^}]*}\`, void 0\);[\s\S]*?codeHeader\.appendChild\(editorLink\);/g,
-          ''
-        );
-      }
-    },
-  };
-}
-
-function injectDevScript(options = {}) {
-  const {scriptPath} = options;
-  if (!scriptPath) {
-    throw new Error('injectDevScript requires a scriptPath');
-  }
-  return {
-    name: 'inject-dev-script',
-    hooks: {
-      'astro:config:setup': ({injectScript, command, logger}) => {
-        if (command === 'dev') {
-          logger.info(\`Injecting dev script: \${scriptPath}\`);
-          injectScript('page', \`import "\${scriptPath}";\`);
-        }
-      },
-    },
-  };
-}
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  base: '',
-  output: 'server',
+  base: '/',
+  output: 'static',
+  adapter: cloudflare({
+    mode: 'advanced',
+    functionPerRoute: false
+  }),
   devToolbar: {
     enabled: false,
   },
@@ -46,43 +17,16 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-  adapter: cloudflare({
-    mode: 'directory',
-    platformProxy: {
-      enabled: true,
-    },
-    wasmModuleImports: true,
-    routes: {
-      strategy: 'include',
-    },
-  }),
-  integrations: [
-    react(),
-    injectDevScript({scriptPath: '/generated/dev-only.js'}),
-  ],
+  integrations: [react()],
   vite: {
-    plugins: [tailwindcss(), patchViteErrorOverlay()],
-    server: {
-      watch: {
-        usePolling: true,
-        interval: 1000,
-        ignored: [
-          '**/lost+found/**',
-          '**/dist/**',
-          '**/node_modules/**',
-          '**/src/site-components/**',
-          '**/*.md',
-          /[/\\]webflow\.json$/
-        ],
-      },
+    plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        external: []
+      }
     },
-    resolve: {
-      alias: import.meta.env.PROD
-        ? {
-            'react-dom/server': 'react-dom/server.edge',
-          }
-        : undefined,
-    },
+    ssr: {
+      noExternal: ['lucide-react']
+    }
   },
 });
-"@ | Out-File -FilePath astro.config.mjs -Encoding UTF8 -NoNewline
