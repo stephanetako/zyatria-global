@@ -19,9 +19,11 @@ function patchViteErrorOverlay() {
 
 function injectDevScript(options = {}) {
   const {scriptPath} = options;
+
   if (!scriptPath) {
     throw new Error('injectDevScript requires a scriptPath');
   }
+
   return {
     name: 'inject-dev-script',
     hooks: {
@@ -51,9 +53,6 @@ export default defineConfig({
       enabled: true,
     },
     wasmModuleImports: true,
-    routes: {
-      strategy: 'include',
-    },
   }),
   integrations: [
     react(),
