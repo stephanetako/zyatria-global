@@ -1,14 +1,8 @@
-
-
-
-
-
 import {defineConfig} from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
-// Patches node_modules/vite/dist/client/client.mjs
 function patchViteErrorOverlay() {
   return {
     name: 'patch-vite-error-overlay',
@@ -23,24 +17,17 @@ function patchViteErrorOverlay() {
   };
 }
 
-/**
- * Astro integration to inject development-only scripts
- */
 function injectDevScript(options = {}) {
   const {scriptPath} = options;
-
   if (!scriptPath) {
     throw new Error('injectDevScript requires a scriptPath');
   }
-
   return {
     name: 'inject-dev-script',
     hooks: {
       'astro:config:setup': ({injectScript, command, logger}) => {
         if (command === 'dev') {
           logger.info(`Injecting dev script: ${scriptPath}`);
-
-          // Inject as ES module
           injectScript('page', `import "${scriptPath}";`);
         }
       },
@@ -48,7 +35,6 @@ function injectDevScript(options = {}) {
   };
 }
 
-// https://astro.build/config
 export default defineConfig({
   base: '',
   output: 'server',
@@ -57,7 +43,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    host: true, // Listen on all network interfaces (0.0.0.0)
+    host: true,
   },
   adapter: cloudflare({
     mode: 'directory',
@@ -77,7 +63,7 @@ export default defineConfig({
     plugins: [tailwindcss(), patchViteErrorOverlay()],
     server: {
       watch: {
-        usePolling: true, // Enable polling for file watching in Docker
+        usePolling: true,
         interval: 1000,
         ignored: [
           '**/lost+found/**',
@@ -90,8 +76,6 @@ export default defineConfig({
       },
     },
     resolve: {
-      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
-      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
       alias: import.meta.env.PROD
         ? {
             'react-dom/server': 'react-dom/server.edge',
@@ -100,18 +84,3 @@ export default defineConfig({
     },
   },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

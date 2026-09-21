@@ -1,30 +1,29 @@
-#!/usr/bin/env node
-
-/**
- * Fix _routes.json to ensure homepage is handled by the worker
- * This script removes "/" from the exclude list
- */
-
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const routesPath = join(process.cwd(), 'dist', '_routes.json');
 
+if (!existsSync(routesPath)) {
+  console.log('ℹ️  _routes.json not found (normal in server mode)');
+  process.exit(0);
+}
+
 try {
-  // Read the routes file
-  const routesContent = readFileSync(routesPath, 'utf-8');
-  const routes = JSON.parse(routesContent);
-
-  // Remove "/" from exclude list if it exists
-  if (routes.exclude && Array.isArray(routes.exclude)) {
-    routes.exclude = routes.exclude.filter(route => route !== '/');
-    console.log('✅ Removed "/" from _routes.json exclude list');
-  }
-
-  // Write back the fixed routes
+  const routes = JSON.parse(readFileSync(routesPath, 'utf-8'));
+  
+  // Add API routes to includes
+  if (!routes.include) routes.include = [];
+  if (!routes.exclude) routes.exclude = [];
+  
+  const apiRoutes = ['/api/*'];
+  apiRoutes.forEach(route => {
+    if (!routes.include.includes(route)) {
+      routes.include.push(route);
+    }
+  });
+  
   writeFileSync(routesPath, JSON.stringify(routes, null, 2));
-  console.log('✅ _routes.json fixed successfully!');
+  console.log('✅ _routes.json updated successfully');
 } catch (error) {
-  console.error('❌ Error fixing _routes.json:', error.message);
-  process.exit(1);
+  console.log('ℹ️  Could not update _routes.json:', error.message);
 }

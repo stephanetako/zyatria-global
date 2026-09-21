@@ -1,0 +1,76 @@
+╔══════════════════════════════════════════════════════════════╗
+║          INSTRUCTIONS POUR DÉPLOYER DEPUIS WINDOWS           ║
+╚══════════════════════════════════════════════════════════════╝
+
+🎯 MÉTHODE 1: COPIER LE SCRIPT (RECOMMANDÉ)
+═══════════════════════════════════════════════════════════════
+
+1️⃣  Ouvrez ce fichier dans le sandbox:
+    DEPLOYER_SIMPLE.ps1
+
+2️⃣  Copiez TOUT le contenu (Ctrl+A puis Ctrl+C)
+
+3️⃣  Sur votre PC Windows:
+    - Ouvrez Notepad
+    - Collez le contenu (Ctrl+V)
+    - Enregistrez sous: DEPLOYER_SIMPLE.ps1
+    - Dans le dossier: C:\Users\steph\OneDrive\Bureau\zyatria-global
+
+4️⃣  Double-cliquez sur DEPLOYER_SIMPLE.ps1
+
+    OU en PowerShell:
+    cd C:\Users\steph\OneDrive\Bureau\zyatria-global
+    .\DEPLOYER_SIMPLE.ps1
+
+═══════════════════════════════════════════════════════════════
+
+🎯 MÉTHODE 2: COMMANDES MANUELLES (SI MÉTHODE 1 NE MARCHE PAS)
+═══════════════════════════════════════════════════════════════
+
+Ouvrez PowerShell et tapez ces commandes UNE PAR UNE:
+
+1️⃣  Aller dans le dossier:
+    cd C:\Users\steph\OneDrive\Bureau\zyatria-global
+
+2️⃣  Installer les dépendances:
+    npm install
+
+3️⃣  Builder le projet:
+    npm run build
+
+4️⃣  Se connecter à Cloudflare (si pas déjà fait):
+    npx wrangler login
+
+5️⃣  Déployer:
+    npx wrangler pages deploy dist --project-name=zyatria-global
+
+═══════════════════════════════════════════════════════════════
+
+⚠️  SI VOUS VOYEZ UNE ERREUR "EXECUTION POLICY"
+═══════���═══════════════════════════════════════════════════════
+
+Tapez d'abord:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+Puis réessayez.
+
+═══════════════════════════════════════════════════════════════
+
+✅ RÉSULTAT ATTENDU
+═══════════════════════════════════════════════════════════════
+
+Après 2-3 minutes, vous verrez:
+
+✨ Success! Uploaded 15 files (2.34 sec)
+
+✨ Deployment complete! Take a peek over at
+   https://zyatria-global.pages.dev
+
+═══════════════════════════════════════════════════════════════
+
+💡 BESOIN D'AIDE?
+═══════════════════════════════════════════════════════════════
+
+Si ça ne marche pas, copiez-collez l'erreur exacte que vous voyez.
+
+══════════════════════════════════���════════════════════════════

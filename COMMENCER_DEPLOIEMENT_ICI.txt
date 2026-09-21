@@ -1,0 +1,34 @@
+═══════════════════════════════════════════════════════════════════════════════
+
+                    🎯 DÉPLOIEMENT EN 2 ÉTAPES SIMPLES
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
+ÉTAPE 1: CONSTRUIRE LE PROJET
+══════════════════════════════
+
+Ouvrez PowerShell dans ce dossier et tapez:
+
+npm run build
+
+
+ÉTAPE 2: DÉPLOYER
+══════════════════
+
+Ensuite tapez:
+
+npx wrangler deploy dist/server/entry.mjs --name zyatria-global --compatibility-date 2024-01-01
+
+
+OU PLUS SIMPLE:
+═══════════════
+
+Double-cliquez sur: DEPLOYER_CORRECTEMENT.bat
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+C'est tout. Votre site sera en ligne en 2 minutes.
+
+═══════════════════════════════════════════════════════════════════════════════
