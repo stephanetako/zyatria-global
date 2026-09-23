@@ -1,11 +1,7 @@
 {
   "version": 1,
-  "include": ["/*"],
-  "exclude": [
-    "/favicon.svg",
-    "/og-image.svg",
-    "/robots.txt",
-    "/sitemap.xml",
-    "/_astro/*"
-  ]
+  "include": [
+    "/*"
+  ],
+  "exclude": []
 }
