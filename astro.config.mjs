@@ -1,4 +1,5 @@
-﻿import {defineConfig} from 'astro/config';
+@"
+import {defineConfig} from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
@@ -9,7 +10,7 @@ function patchViteErrorOverlay() {
     transform(code, id) {
       if (id.includes('vite/dist/client/client.mjs')) {
         return code.replace(
-          /const editorLink = this\.createLink\(`Open in editor\${[^}]*}\`, void 0\);[\s\S]*?codeHeader\.appendChild\(editorLink\);/g,
+          /const editorLink = this\.createLink\(\`Open in editor\$\{[^}]*}\`, void 0\);[\s\S]*?codeHeader\.appendChild\(editorLink\);/g,
           ''
         );
       }
@@ -27,8 +28,8 @@ function injectDevScript(options = {}) {
     hooks: {
       'astro:config:setup': ({injectScript, command, logger}) => {
         if (command === 'dev') {
-          logger.info(`Injecting dev script: ${scriptPath}`);
-          injectScript('page', `import "${scriptPath}";`);
+          logger.info(\`Injecting dev script: \${scriptPath}\`);
+          injectScript('page', \`import "\${scriptPath}";\`);
         }
       },
     },
@@ -84,3 +85,4 @@ export default defineConfig({
     },
   },
 });
+"@ | Out-File -FilePath astro.config.mjs -Encoding UTF8 -NoNewline
