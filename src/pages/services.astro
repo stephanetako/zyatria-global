@@ -14,5 +14,5 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-  <ServicesPage client:load />
+  <ServicesPage client:only="react" />
 </MainLayout>

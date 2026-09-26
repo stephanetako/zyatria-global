@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "include": [
-    "/*"
-  ],
-  "exclude": []
+  "include": ["/*"],
+  "exclude": [
+    "/_astro/*",
+    "/backend-integration.js",
+    "/example-integration.html",
+    "/index-test.html",
+    "/logo-placeholder.html",
+    "/test-*.html",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/favicon.svg",
+    "/og-image.svg"
+  ]
 }

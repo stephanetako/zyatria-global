@@ -1,4 +1,5 @@
 
+
 /**
  * COLOR OVERRIDE - PALETTE PREMIUM NOIR PROFOND
  * 
@@ -251,7 +252,7 @@
   }
 }
 
-.dark @keyframes pulse-blue {
+@keyframes pulse-blue-dark {
   0%, 100% {
     box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
   }
@@ -262,6 +263,10 @@
 
 .animate-pulse-blue {
   animation: pulse-blue 3s ease-in-out infinite;
+}
+
+.dark .animate-pulse-blue {
+  animation: pulse-blue-dark 3s ease-in-out infinite;
 }
 
 /* === BORDERS TECH === */
@@ -378,4 +383,5 @@ p, span, div, li, a {
 .dark .premium-glow {
   box-shadow: 0 0 50px rgba(96, 165, 250, 0.3);
 }
+
 
