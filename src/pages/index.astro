@@ -3,7 +3,6 @@
 
 
 
-
 ---
 import MainLayout from '../layouts/main.astro';
 import AppWrapper from '../components/AppWrapper';
@@ -21,7 +20,7 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-  <AppWrapper client:load />
+  <AppWrapper client:only="react" />
 </MainLayout>
 
 <style is:global>
@@ -221,6 +220,7 @@ height: 1px;
 overflow: hidden;
 }
 </style>
+
 
 
 
