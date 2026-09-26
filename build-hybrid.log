@@ -1,0 +1,10 @@
+
+> zyatria-global@1.0.0 build
+> astro build
+
+(node:14675) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[config] Astro found issue(s) with your configuration:
+
+! The output: "hybrid" option has been removed. Use output: "static" (the default) instead, which now behaves the same way.
+

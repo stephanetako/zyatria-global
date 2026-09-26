@@ -1,20 +1,11 @@
-
-
-
-
-
-
 ---
 import MainLayout from '../layouts/main.astro';
-import Navigation from '../components/Navigation';
 import AboutPage from '../components/pages/AboutPage';
-import Footer from '../components/Footer';
 
 const seoData = {
-  title: "À Propos de ZyatrIA Global | Agence IA Internationale | Entreprise Canadienne Québec",
-  description: "ZyatrIA Global est une agence d'intelligence artificielle internationale basée au Québec, Canada. Nous développons des agents IA intelligents et des micro-agents spécialisés pour les entreprises en Amérique du Nord, Europe, Afrique francophone et Amérique Latine. L'IA sans frontières.",
-  ogImage: "/og-image-about.jpg",
-  keywords: "ZyatrIA Global, agence IA internationale, entreprise canadienne IA, Québec IA, IA sans frontières, agence intelligence artificielle, équipe IA multilingue"
+  title: "About ZyatrIA Global | AI Agents & Automation Experts",
+  description: "Learn about ZyatrIA Global's mission to democratize AI automation worldwide. Expert team, proven results, global reach.",
+  ogImage: "/og-image.svg"
 };
 ---
 
@@ -23,18 +14,5 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-<AboutPage client:only="react" />
-<Footer client:only="react" />
+  <AboutPage client:load />
 </MainLayout>
-
-
-
-
-
-
-
-
-
-
-
-
