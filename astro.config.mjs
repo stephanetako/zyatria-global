@@ -37,7 +37,12 @@ function injectDevScript(options = {}) {
 
 export default defineConfig({
   base: '',
-  output: 'server',
+  output: 'static',
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
   devToolbar: {
     enabled: false,
   },
@@ -45,16 +50,6 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-  adapter: cloudflare({
-    mode: 'directory',
-    platformProxy: {
-      enabled: true,
-    },
-    wasmModuleImports: true,
-    routes: {
-      strategy: 'include',
-    },
-  }),
   integrations: [
     react(),
     injectDevScript({scriptPath: '/generated/dev-only.js'}),
@@ -84,3 +79,8 @@ export default defineConfig({
     },
   },
 });
+
+
+
+
+

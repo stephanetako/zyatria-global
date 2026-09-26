@@ -1,18 +1,11 @@
-
-
-
-
-
-
 ---
 import MainLayout from '../layouts/main.astro';
 import PricingPage from '../components/pages/PricingPage';
 
 const seoData = {
-  title: "Tarifs Agents IA | Plans Starter, Business & Enterprise | À partir de 49€/mois | ZyatrIA",
-  description: "Découvrez nos forfaits d'agents IA : Starter à 49€/mois (1 micro-agent), Business à 149€/mois (3 micro-agents + automatisations), Enterprise sur-mesure. Support multilingue, déploiement en 7-15 jours. Tarification transparente en EUR, USD, CAD.",
-  ogImage: "/og-image-pricing.jpg",
-  keywords: "tarifs agents IA, prix micro-agents, forfait IA entreprise, abonnement agent intelligent, coût automatisation IA, pricing transparent"
+  title: "Pricing | ZyatrIA Global - AI Agents & Automation",
+  description: "Transparent pricing for AI agents and automation solutions. Choose the plan that fits your business needs. Deploy in 7-15 days.",
+  ogImage: "/og-image.svg"
 };
 ---
 
@@ -21,17 +14,5 @@ const seoData = {
   description={seoData.description}
   ogImage={seoData.ogImage}
 >
-<PricingPage client:load />
+  <PricingPage client:load />
 </MainLayout>
-
-
-
-
-
-
-
-
-
-
-
-
