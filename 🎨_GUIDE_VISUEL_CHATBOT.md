@@ -1,383 +1,794 @@
-# 🎨 GUIDE VISUEL - CONFIGURER LE CHATBOT CLAUDE
+# 🎨 GUIDE VISUEL DU CHATBOT HYBRIDE
 
-## 📊 FLUX ACTUEL (PROBLÈME)
+## 📱 VUE D'ENSEMBLE
+
+Voici à quoi ressemble votre chatbot hybride intelligent !
+
+---
+
+## 🔵 BOUTON FLOTTANT (FERMÉ)
+
+### **Position sur la page :**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    UTILISATEUR                              │
-│                         ↓                                   │
-│                  "salut"                                    │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│              EnhancedMultiChannelBot.tsx                    │
-│                         ↓                                   │
-│          fetch('/api/claude-chat')                          │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                 claude-chat.ts                              │
-│                         ↓                                   │
-│         Vérifier MISTRAL_API_KEY                            │
-│                         ↓                                   │
-│              ❌ MANQUANTE                                   │
-│                         ↓                                   │
-│         getFallbackResponse()                               │
-│                         ↓                                   │
-│    "👋 Bonjour ! Je suis l'assistant..."                   │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    UTILISATEUR                              │
-│                         ↓                                   │
-│    "oui est ce que vos chatbots sont intelligents"         │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│              EnhancedMultiChannelBot.tsx                    │
-│                         ↓                                   │
-│          fetch('/api/claude-chat')                          │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                 claude-chat.ts                              │
-│                         ↓                                   │
-│         Vérifier MISTRAL_API_KEY                            │
-│                         ↓                                   │
-│              ❌ MANQUANTE                                   │
-│                         ↓                                   │
-│         getFallbackResponse()                               │
-│                         ↓                                   │
-│    "💬 **Hello! I'm here to help.**"                       │
-│         (MÊME RÉPONSE)                                      │
-└─────────────────────────────────────────────────────────────┘
+│                                                             │
+│  VOTRE SITE WEB                                             │
+│                                                             │
+│  [Navigation]  [Services]  [Tarifs]  [Contact]             │
+│                                                             │
+│                                                             │
+│  ┌──────────────────────────────────────────────┐          │
+│  │                                              │          │
+│  │         CONTENU DE VOTRE PAGE                │          │
+│  │                                              │          │
+│  │                                              │          │
+│  └──────────────────────────────────────────────┘          │
+│                                                             │
+│                                                             │
+│                                                             │
+│                                              ┌────────┐    │
+│                                              │        │    │
+│                                              │   💬   │ ← CHATBOT
+│                                              │  🟢AI  │    ICI !
+│                                              │        │    │
+│                                              └────────┘    │
+│                                                             │
+└──────────────────────────────────────────────────────────���──┘
 ```
 
 ---
 
-## ✅ FLUX CORRIGÉ (SOLUTION)
+## 🎨 DÉTAILS DU BOUTON
+
+### **Vue rapprochée :**
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    UTILISATEUR                              │
-│                         ↓                                   │
-│                  "salut"                                    │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│              EnhancedMultiChannelBot.tsx                    │
-│                         ↓                                   │
-│          fetch('/api/claude-chat')                          │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                 claude-chat.ts                              │
-│                         ↓                                   │
-│         Vérifier MISTRAL_API_KEY                            │
-│                         ↓                                   │
-│              ✅ TROUVÉE                                     │
-│                         ↓                                   │
-│         Appeler API Claude                                  │
-│                         ↓                                   │
-│    "👋 Bonjour ! Ravi de vous rencontrer !"                │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    UTILISATEUR                              │
-│                         ↓                                   │
-│    "oui est ce que vos chatbots sont intelligents"         │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│              EnhancedMultiChannelBot.tsx                    │
-│                         ↓                                   │
-│          fetch('/api/claude-chat')                          │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                 claude-chat.ts                              │
-│                         ↓                                   │
-│         Vérifier MISTRAL_API_KEY                            │
-│                         ↓                                   │
-│              ✅ TROUVÉE                                     │
-│                         ↓                                   │
-│         Appeler API Claude                                  │
-│                         ↓                                   │
-│    "Excellente question ! Nos chatbots utilisent            │
-│     Claude 3.5 Sonnet, l'un des modèles d'IA               │
-│     les plus avancés. Ils peuvent :                         │
-│     • Comprendre le contexte                                │
-│     • Qualifier vos leads automatiquement                   │
-│     • Recommander les bonnes solutions                      │
-│     • Répondre en 4 langues                                 │
-│                                                              │
-│     Pour votre entreprise, je recommanderais..."            │
-│         (RÉPONSE UNIQUE ET INTELLIGENTE)                    │
-└─────────────────────────────────────────────────────────────┘
+        ┌─────────────────────────────┐
+        │                             │
+        │    ╔═══════════════╗        │
+        │    ║               ║        │
+        │    ║   ┌───────┐   ║        │  ← Glow effect
+        │    ║   │       │   ║        │     (animé)
+        │    ║   │  💬   │   ║        │
+        │    ║   │       │   ║        │
+        │    ║   └───────┘   ║        │
+        │    ║      🟢AI     ║        │  ← Badge "AI"
+        │    ╚═══════════════╝        │     (rebondit)
+        │                             │
+        └─────────────────────────────┘
 ```
 
----
-
-## 🔧 ÉTAPES DE CONFIGURATION
+### **Couleurs :**
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  ÉTAPE 1 : Obtenir une clé API Claude                      │
-│                                                              │
-│  1. Allez sur https://console.anthropic.com/                │
-│  2. Créez un compte (gratuit)                               │
-│  3. Settings → API Keys → Create Key                        │
-│  4. Copiez la clé (sk-ant-api03-...)                        │
-│                                                              │
-│  ⏱️ Temps : 2 minutes                                       │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│  ÉTAPE 2 : Créer le fichier .env.local                     │
-│                                                              │
-│  Dans le dossier racine du projet :                         │
-│                                                              │
-│  MISTRAL_API_KEY=sk-ant-api03-VOTRE_CLE_ICI                 │
-│                                                              │
-│  ⏱️ Temps : 30 secondes                                     │
-└────────────────────────────────���────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│  ÉTAPE 3 : Redémarrer le serveur                           │
-│                                                              │
-│  1. Arrêtez le serveur (Ctrl+C)                             │
-│  2. Relancez : npm run dev                                  │
-│                                                              │
-│  ⏱️ Temps : 30 secondes                                     │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│  ÉTAPE 4 : Vérifier dans la console (F12)                  │
-│                                                              │
-│  AVANT :                                                     │
-│  ❌ Configuration manquante : MISTRAL_API_KEY               │
-│                                                              │
-│  APRÈS :                                                     │
-│  ✅ Clé API trouvée via import.meta.env                     │
-│  🚀 Appel API Claude                                        │
-│  ✅ Requête réussie                                         │
-│                                                              │
-│  ⏱️ Temps : 10 secondes                                     │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│  ÉTAPE 5 : Tester le chatbot                               │
-│                                                              │
-│  User: "Bonjour, j'ai besoin d'aide"                        │
-│  Bot: [Réponse intelligente et personnalisée]               │
-│                                                              │
-│  ⏱️ Temps : 10 secondes                                     │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    ✅ TERMINÉ !                             │
-│                                                              │
-│  Votre chatbot est maintenant 10x plus intelligent !        │
-│                                                              │
-│  ⏱️ Temps total : 3 minutes                                 │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────┐
+│                                      │
+│  Gradient du bouton :                │
+│                                      │
+│  🟣 Violet (#9333EA)                 │
+│      ↓                               │
+│  🔵 Bleu (#3B82F6)                   │
+│      ↓                               │
+│  🟠 Orange (#F97316)                 │
+│                                      │
+│  Badge "AI" :                        │
+│  🟢 Vert (#10B981 → #059669)         │
+│                                      │
+│  Glow :                              │
+│  ✨ Violet-Bleu-Orange (opacity 75%) │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+### **Animations :**
+
+```
+┌──────────────────────────────────────┐
+│                                      │
+│  1. GLOW EFFECT (pulse)              │
+│     ╔═══╗  →  ╔════╗  →  ╔═══╗      │
+│     ║   ║      ║    ║      ║   ║      │
+│     ╚═══╝      ╚════╝      ╚═══╝      │
+│     (2s loop)                        │
+│                                      │
+│  2. BADGE "AI" (bounce)              │
+│     🟢AI  →  🟢AI  →  🟢AI           │
+│      ↓       ↑       ↓               │
+│     (0.5s loop)                      │
+│                                      │
+│  3. HOVER (scale)                    │
+│     [💬]  →  [💬]                    │
+│     100%     110%                    │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+### **Tooltip au survol :**
+
+```
+                    ┌─────────────────────────────────┐
+                    │ 🤖 Agent IA Hybride             │
+                    │    (Claude + Mistral)           │
+                    └─────────────────────────────────┘
+                                  ▼
+                            ┌──────────┐
+                            │          │
+                            │    💬    │
+                            │   🟢AI   │
+                            │          │
+                            └──────────┘
 ```
 
 ---
 
-## 📊 COMPARAISON VISUELLE
+## 💬 FENÊTRE DE CHAT (OUVERTE)
 
-### AVANT (Fallback)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  User: "salut"                                              │
-│  Bot: 👋 Bonjour ! Je suis l'assistant virtuel...          │
-│                                                              │
-│  User: "oui est ce que vos chatbots sont intelligents"     │
-│  Bot: 💬 **Hello! I'm here to help.**                      │
-│       I can answer your questions about:                    │
-│       • Our Services                                        │
-│       • Pricing & Plans                                     │
-│       • Use Cases                                           │
-│       ...                                                    │
-│                                                              │
-│  ❌ Réponse générique                                       │
-│  ❌ Pas de personnalisation                                 │
-│  ❌ Pas de recommandation                                   │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### APRÈS (Claude)
+### **Vue complète :**
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  User: "salut"                                              │
-│  Bot: 👋 Bonjour ! Ravi de vous rencontrer !               │
-│                                                              │
-│  User: "oui est ce que vos chatbots sont intelligents"     │
-│  Bot: Excellente question ! Nos chatbots utilisent          │
-│       Claude 3.5 Sonnet, l'un des modèles d'IA             │
-│       les plus avancés du marché.                           │
-│                                                              │
-│       Ils peuvent :                                         │
-│       ✅ Comprendre le contexte de vos conversations        │
-│       ✅ Qualifier vos leads automatiquement                │
-│       ✅ Recommander les bonnes solutions                   │
-│       ✅ Répondre en français, anglais, espagnol,           │
-│          portugais                                          │
-│                                                              │
-│       Pour votre entreprise, je recommanderais              │
-│       notre plan Business à $697/mois qui inclut :          │
-│       • 3 agents IA spécialisés                             │
-│       • Support prioritaire                                 │
-│       • Déploiement en 10 jours                             │
-│                                                              │
-│       Voulez-vous que je vous montre comment ça             │
-│       fonctionne avec une démo gratuite ?                   │
-│                                                              │
-│  ✅ Réponse personnalisée                                   │
-│  ✅ Recommandation précise                                  │
-│  ✅ Appel à l'action clair                                  │
-└─────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────┐
+│ ✨ Agent IA Hybride                                ❌ │ ← HEADER
+│ Claude + Mistral • En ligne                           │   (Gradient)
+��────────────────────────────────────────────────────────┤
+│ 🧠 Claude 3.5 ● ⚡ Mistral ● 🎯 Routeur IA ● 📊 350ms │ ← STATUS IA
+├────────────────────────────────────────────────────────┤
+│                                                        │
+│  ┌──────────────────────────────────────────────┐    │
+│  │ 👋 Salut ! Moi c'est Marc, consultant        │    │ ← MESSAGE BOT
+│  │ chez ZyatrIA.                                 │    │   (Fond coloré)
+│  │                                               │    │
+│  │ Je suis propulsé par un système hybride...   │    │
+│  │                                               │    │
+│  │ 10:30                          🛡️ Local | 5ms │    │
+│  └──────────────────────────────────────────────┘    │
+│                                                        │
+│  ┌────────────────────────────────┐                   │ ← SUGGESTIONS
+│  │ 🖥️ Quels sont vos micro-agents? │                   │
+│  └────────────────────────────────┘                   │
+│  ┌────────────────────────────────┐                   │
+│  │ 💰 Combien ça coûte?            │                   │
+│  └────────────────────────────────┘                   │
+│                                                        │
+│                    ┌──────────────────────────┐       │
+│                    │ Bonjour ! Je voudrais... │       │ ← MESSAGE USER
+│                    │                          │       │   (Fond bleu)
+│                    │ 10:31                    │       │
+│                    └──────────────────────────┘       │
+│                                                        │
+│  ┌──────────────────────────────────────────────┐    │
+│  │ Excellent ! Je peux vous aider avec...       │    │ ← RÉPONSE BOT
+│  │                                               │    │   (Badge IA)
+│  │ 10:31                      ⚡ Mistral | 120ms │    │
+│  └──────────────────────────────────────────────┘    │
+│                                                        │
+├────────────────────────────────────────────────────────┤
+│ 🎤 [_____________________________] 📤                │ ← INPUT
+│ 🤖 Routage intelligent • Claude 3.5 + Mistral         │
+└────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🔍 LOGS DE LA CONSOLE
+## 🎨 DÉTAILS DES SECTIONS
 
-### AVANT (Fallback)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  🔍 Debug - Sources de variables disponibles:              │
-│  {                                                           │
-│    hasImportMetaEnv: false,                                 │
-│    hasLocalsRuntime: false,                                 │
-│    apiKeyFound: false,                                      │
-│    apiKeyLength: 0,                                         │
-│    apiKeyPreview: 'none'                                    │
-│  }                                                           │
-│                                                              │
-│  ❌ Configuration manquante : MISTRAL_API_KEY               │
-│  💡 Vérifiez que la variable est bien configurée           │
-│                                                              │
-│  🌍 Langue détectée: FR                                     │
-│  📝 Message reçu: "salut"                                   │
-│  👋 Intention: Salutation                                   │
-│  📋 Intention: Générique - Retour réponse par défaut        │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### APRÈS (Claude)
+### **1. HEADER (En-tête)**
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  🔍 Debug - Sources de variables disponibles:              │
-│  {                                                           │
-│    hasImportMetaEnv: true,                                  │
-│    apiKeyFound: true,                                       │
-│    apiKeyLength: 108,                                       │
-│    apiKeyPreview: 'sk-ant-a...'                             │
-│  }                                                           │
-│                                                              │
-│  🔑 Clé API trouvée via import.meta.env                     │
-│  🚀 Appel API Claude (Anthropic)                            │
-│                                                              │
-│  📊 Rate limiter stats: {                                   │
-│    requestsLastMinute: 1,                                   │
-│    requestsLastHour: 1,                                     │
-│    successRate: '100.0%',                                   │
-│    timeSinceLastRequest: '1234ms'                           │
-│  }                                                           │
-│                                                              │
-│  ✅ Requête réussie - Stats: {                              │
-│    requestsLastMinute: 1,                                   │
-│    requestsLastHour: 1,                                     │
-│    successRate: '100.0%'                                    │
-│  }                                                           │
-│                                                              │
-│  💾 Réponse mise en cache pour les prochaines fois          │
-│  💾 Cache stats: {                                          │
-│    size: '1/100',                                           │
-│    hitRate: '0%'                                            │
-│  }                                                           │
-└─────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  ✨ Agent IA Hybride                              ❌  │
+│  Claude + Mistral • En ligne                          │
+│                                                        │
+│  ┌────┐                                               ��
+│  │ ✨ │ ← Avatar (icône Sparkles)                     │
+│  └────┘                                               │
+│    🟢 ← Indicateur "En ligne"                         │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+
+Couleurs :
+- Fond : Gradient 🟣 Violet → 🔵 Bleu → 🟠 Orange
+- Texte : Blanc
+- Bouton fermer : Blanc avec fond semi-transparent
 ```
 
 ---
 
-## 📁 STRUCTURE DES FICHIERS
+### **2. STATUS IA (Badges)**
 
 ```
-zyatria-global/
-├── .env.local                    ← CRÉER CE FICHIER
-│   └── MISTRAL_API_KEY=sk-ant-api03-...
-│
-├── src/
-│   ├── components/
-│   │   └── EnhancedMultiChannelBot.tsx
-│   │
-│   └── pages/
-│       └── api/
-│           └── claude-chat.ts    ← UTILISE LA CLÉ API
-│
-├── configure-claude.sh           ← SCRIPT AUTOMATIQUE
-├── configure-claude.ps1          ← SCRIPT WINDOWS
-└── test-claude-api.sh            ← TEST DE LA CLÉ
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐  │
+│  │ 🧠 Claude 3.5│ │ ⚡ Mistral   │ │ 🎯 Routeur IA│  │
+│  │      ●       │ │      ●       │ │      ●       │  │
+│  └──────────────┘ └──────────────┘ └──────────────┘  │
+│                                                        │
+��  ┌──────────────┐                                     │
+│  │ 📊 350ms avg │ ← Stats en temps réel               │
+│  └──────────────┘                                     │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+
+Couleurs :
+- Claude : 🟣 Violet (#A855F7)
+- Mistral : 🟠 Orange (#FB923C)
+- Routeur : 🔵 Bleu (#3B82F6)
+- Stats : 🔵 Bleu (#3B82F6)
+- Point vert : 🟢 (#10B981) = Actif
 ```
 
 ---
 
-## 🎯 RÉSUMÉ VISUEL
+### **3. MESSAGES BOT**
 
 ```
-┌─────────────────────────────────────────��───────────────────┐
-│                    PROBLÈME                                 │
-│                                                              │
-│  Pas de clé API → Fallback → Réponses identiques           │
-│                                                              │
-│  ❌ Pas d'intelligence                                      │
-│  ❌ Pas de personnalisation                                 │
-│  ❌ Pas de recommandations                                  │
-└───────────────────────────────────────────────────���─────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    SOLUTION                                 │
-│                                                              │
-│  Clé API configurée → Claude → Réponses intelligentes      │
-│                                                              │
-│  ✅ Intelligence avancée                                    │
-│  ✅ Personnalisation complète                               │
-│  ✅ Recommandations précises                                │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    RÉSULTAT                                 │
-│                                                              │
-│  +30% de conversions                                        │
-│  +50% de leads qualifiés                                    │
-│  +10% de satisfaction client                                │
-│                                                              │
-│  ⏱️ Temps de configuration : 3 minutes                      │
-│  💰 ROI : 1000x+                                            │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│                                                      │
+│  👋 Salut ! Moi c'est Marc, consultant chez        │
+│  ZyatrIA.                                           │
+│                                                      │
+│  Je suis propulsé par un système hybride           │
+│  intelligent qui combine **Claude 3.5 Sonnet**     │
+│  et **Mistral** pour vous offrir les meilleures    │
+│  réponses !                                         │
+│                                                      │
+│  **Dis-moi, c'est quoi ton plus gros défi en       │
+│  ce moment ?**                                      │
+│                                                      │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ 10:30                                        │  │
+│  │                    🛡️ Local | 5ms            │  │
+│  └──────────────────────────────────────────────┘  │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+
+Couleurs selon l'IA :
+- Claude : Fond violet clair (#F3E8FF), Bordure violet (#C084FC)
+- Mistral : Fond orange clair (#FED7AA), Bordure orange (#FB923C)
+- Local : Fond gris clair (#F3F4F6), Bordure gris (#D1D5DB)
 ```
+
+---
+
+### **4. BADGES IA DANS LES MESSAGES**
+
+```
+┌─────────────────────────────────────────┐
+│                                         │
+│  CLAUDE :                               │
+│  ┌────────────���─────┐                   │
+│  │ 🧠 Claude | 850ms │                   │
+│  └──────────────────┘                   │
+│  Couleur : 🟣 Violet (#A855F7)          │
+│                                         │
+│  MISTRAL :                              │
+│  ┌──────────────────┐                   │
+│  │ ⚡ Mistral | 120ms│                   │
+│  └──────────────────┘                   │
+│  Couleur : 🟠 Orange (#FB923C)          │
+│                                         │
+│  LOCAL :                                │
+│  ┌──────────────────┐                   │
+│  │ 🛡️ Local | 5ms   │                   │
+│  └──────────────────┘                   │
+│  Couleur : ⚫ Gris (#6B7280)            │
+│                                         │
+│  CACHED :                               │
+│  ┌──────────────────┐                   │
+│  │ ⚡ Cached         │                   │
+│  └──────────────────┘                   │
+│  Couleur : 🟢 Vert (#10B981)            │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+---
+
+### **5. SUGGESTIONS RAPIDES**
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  ┌──────────────────────────────────────────────┐    │
+│  │ 🖥️ Quels sont vos micro-agents?              │    │
+│  └──────────────────────────────────────────────┘    │
+│                                                        │
+│  ┌──────────────────────────────────────────────┐    │
+│  │ 💰 Combien ça coûte?                          │    │
+│  └──────────────────────────────────────────────┘    │
+│                                                        │
+│  ┌──────────────────────────────────────────────┐    │
+│  │ 🧮 Calculer mon ROI                           │    │
+│  └──────────────────────────────────────────────┘    │
+│                                                        │
+│  ┌──────────────────────────────────────────────┐    │
+│  │ 📅 Réserver une consultation                  │    │
+│  └──────────────────────────────────────────────┘    │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+
+Style :
+- Fond : Blanc
+- Bordure : 🔵 Bleu (#3B82F6) - 2px
+- Texte : Noir (#111827)
+- Icône : 🔵 Bleu (#3B82F6)
+- Hover : Fond bleu clair (#EFF6FF)
+- Effet : Scale 105% au survol
+```
+
+---
+
+### **6. MESSAGES UTILISATEUR**
+
+```
+                    ┌──────────────────────────┐
+                    │ Bonjour ! Je voudrais    │
+                    │ en savoir plus sur vos   │
+                    │ micro-agents.            │
+                    │                          │
+                    │ 10:31                    │
+                    └──────────────────────────┘
+
+Couleurs :
+- Fond : 🔵 Bleu clair (#DBEAFE)
+- Bordure : 🔵 Bleu (#3B82F6)
+- Texte : Noir (#111827)
+- Alignement : Droite
+```
+
+---
+
+### **7. INPUT (Zone de saisie)**
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  ┌──┐ ┌────────────────────────────────────────┐ ┌──┐│
+│  │🎤│ │ Posez votre question...                │ │📤││
+│  └──┘ └────────────────────────────────────────┘ └──┘│
+│                                                        │
+│  🤖 Routage intelligent • Claude 3.5 + Mistral        │
+│                                                        │
+└────────────────────────────────────────────────���───────┘
+
+Éléments :
+- 🎤 Bouton micro (reconnaissance vocale)
+  - Gris quand inactif
+  - 🔴 Rouge quand actif (pulse)
+  
+- Input texte
+  - Bordure : Gris (#9CA3AF)
+  - Focus : 🔵 Bleu (#3B82F6)
+  
+- 📤 Bouton envoyer
+  - Gradient : 🟣 Violet → 🟠 Orange
+  - Disabled : Gris (opacity 50%)
+  - Loading : ⏳ Spinner
+```
+
+---
+
+## 🎬 ANIMATIONS
+
+### **1. Ouverture de la fenêtre**
+
+```
+Étape 1 :                Étape 2 :                Étape 3 :
+   [💬]          →      ┌─────┐         →      ┌──────────┐
+                        │     │                 │          │
+                        │     │                 │  CHAT    │
+                        └─────┘                 │          │
+                                                └──────────┘
+   
+   Scale 0              Scale 0.5               Scale 1
+   Opacity 0            Opacity 0.5             Opacity 1
+   
+   (0ms)                (150ms)                 (300ms)
+```
+
+---
+
+### **2. Message en cours de frappe**
+
+```
+┌──────────────────────────────────────┐
+│                                      │
+│  ┌────────────────────────────┐     │
+│  │ ⏳ IA en réflexion...       │     │
+│  │    ●  ●  ●                  │     │
+│  └────────────────────────────┘     │
+│                                      │
+└──────────────────────────────────────┘
+
+Animation des points :
+●  ○  ○  →  ○  ●  ○  →  ○  ○  ●  →  ●  ○  ○
+(0.3s)      (0.6s)      (0.9s)      (1.2s)
+```
+
+---
+
+### **3. Apparition d'un message**
+
+```
+Étape 1 :          Étape 2 :          Étape 3 :
+                   ┌─────┐            ┌──────────┐
+                   │     │            │ Message  │
+                   └─────┘            │ complet  │
+                                      └──────────┘
+
+Opacity 0          Opacity 0.5        Opacity 1
+TranslateY 20px    TranslateY 10px    TranslateY 0
+
+(0ms)              (150ms)            (300ms)
+```
+
+---
+
+## 📱 VERSION MOBILE
+
+### **Bouton flottant :**
+
+```
+┌─────────────────────────────┐
+│                             │
+│  SITE MOBILE                │
+│                             │
+│  ☰ Menu                     │
+│                             ���
+│  ┌───────────────────┐      │
+│  │                   │      │
+│  │   CONTENU         │      │
+│  │                   │      │
+│  └───────────────────┘      │
+│                             │
+│                             │
+│                   ┌────┐    │
+│                   │ 💬 │    │
+│                   │🟢AI│    │
+│                   └────┘    │
+│                             │
+└─────────────────────────────┘
+```
+
+### **Fenêtre de chat (plein écran sur mobile) :**
+
+```
+┌─────────────────────────────┐
+│ ✨ Agent IA Hybride      ❌ │
+│ Claude + Mistral            │
+├─────────────────────────────┤
+│ 🧠 ⚡ 🎯 📊                  │
+├─────────────────────────────┤
+│                             │
+│  ┌───────────────────┐      │
+│  │ Message bot       │      │
+│  └───────────────────┘      │
+│                             │
+│        ��───────────┐        │
+│        │ User msg  │        │
+│        └───────────┘        │
+│                             │
+│  ┌───────────────────┐      │
+│  │ Bot response      │      │
+│  └───────────────────┘      │
+│                             │
+├─────────────────────────────┤
+│ 🎤 [__________] 📤          │
+└─────────────────────────────┘
+
+Largeur : 100vw - 2rem
+Hauteur : 100vh - 4rem
+```
+
+---
+
+## 🎨 PALETTE DE COULEURS COMPLÈTE
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  PRIMAIRES :                                           │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  🟣 Violet   #9333EA  ████████  Claude, Gradient      │
+│  🔵 Bleu     #3B82F6  ████████  Routeur, Liens        │
+│  🟠 Orange   #F97316  ███��████  Mistral, Gradient     │
+│  🟢 Vert     #10B981  ████████  En ligne, Cached      │
+│                                                        │
+│  SECONDAIRES :                                         │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  ⚫ Gris foncé #111827  ████████  Texte principal     │
+│  ⚪ Gris clair #F3F4F6  ████████  Fond messages       │
+│  🔴 Rouge     #EF4444  ████████  Micro actif          │
+│                                                        │
+│  FONDS :                                               │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Blanc       #FFFFFF  ████████  Fenêtre chat          │
+│  Gris 50     #F9FAFB  ████████  Zone messages         │
+│  Violet 50   #F3E8FF  ████████  Message Claude        │
+│  Orange 50   #FED7AA  ████████  Message Mistral       │
+│  Bleu 50     #DBEAFE  ████████  Message user          │
+│                                                        │
+│  BORDURES :                                            │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Gris 300    #D1D5DB  ████████  Bordures normales     │
+│  Bleu 600    #2563EB  ████████  Bordures actives      │
+│  Violet 400  #C084FC  ████████  Message Claude        │
+│  Orange 400  #FB923C  ████████  Message Mistral       │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔤 TYPOGRAPHIE
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  TITRES :                                              │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  H3 (Header) : 14px, Bold, Blanc                       │
+│  H4 (Status)  : 10px, Bold, Gris foncé                 │
+│                                                        │
+│  TEXTE :                                               │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Messages    : 14px, Medium, Gris foncé                │
+│  Timestamp   : 12px, Semibold, Gris                    │
+│  Badges      : 9px, Bold, Couleur IA                   │
+│  Input       : 12px, Medium, Gris foncé                │
+│  Footer      : 10px, Medium, Gris                      │
+│                                                        │
+│  POLICE :                                              │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Système par défaut (sans-serif)                       │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📐 DIMENSIONS
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  BOUTON FLOTTANT :                                     │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Taille : 64px × 64px                                  │
+│  Padding : 16px                                        │
+│  Border-radius : 50% (cercle)                          │
+│  Position : bottom: 24px, right: 24px                  │
+│                                                        │
+│  FENÊTRE DE CHAT :                                     │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Largeur : 500px                                       │
+│  Hauteur : 750px                                       │
+│  Border-radius : 16px                                  │
+│  Position : bottom: 24px, right: 24px                  │
+│                                                        │
+│  SECTIONS :                                            │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Header : 80px                                         │
+│  Status : 48px                                         │
+│  Messages : flex-1 (auto)                              │
+│  Input : 100px                                         │
+│                                                        │
+│  MOBILE :                                              │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  Largeur : calc(100vw - 2rem)                          │
+│  Hauteur : calc(100vh - 4rem)                          │
+│  Position : bottom: 16px, right: 16px                  │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 ÉTATS INTERACTIFS
+
+### **Bouton flottant :**
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  NORMAL :                                              │
+│  ┌────────┐                                            │
+│  │   💬   │  Scale: 1.0                                │
+│  │  🟢AI  │  Shadow: 2xl                               │
+│  └────────┘                                            │
+│                                                        │
+│  HOVER :                                               │
+│  ┌─────────┐                                           │
+│  │    💬   │  Scale: 1.1                               │
+│  │   🟢AI  │  Shadow: 3xl                              │
+│  └─────────┘  Tooltip visible                          │
+│                                                        │
+│  ACTIVE :                                              │
+│  ┌────────┐                                            │
+│  │   💬   │  Scale: 0.95                               │
+│  │  🟢AI  │  Shadow: xl                                │
+│  └────────┘                                            │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
+
+### **Boutons dans le chat :**
+
+```
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  SUGGESTION (Normal) :                                 │
+│  ┌──────────────────────────────────────────────┐     │
+│  │ 🖥️ Quels sont vos micro-agents?              │     │
+│  └──────────────────────────────────────────────┘     │
+│  Fond: Blanc, Bordure: Bleu 2px                        │
+│                                                        │
+│  SUGGESTION (Hover) :                                  │
+│  ┌──────────────────────────────────────────────┐     │
+│  │ 🖥️ Quels sont vos micro-agents?              │     │
+│  └──────────────────────────────────────────────┘     │
+│  Fond: Bleu 50, Scale: 1.05                            │
+│                                                        │
+│  BOUTON ENVOYER (Disabled) :                           │
+│  ┌──┐                                                  │
+│  │📤│  Opacity: 0.5, Cursor: not-allowed               │
+│  └──┘                                                  │
+│                                                        │
+│  BOUTON ENVOYER (Loading) :                            │
+│  ┌──┐                                                  │
+│  │⏳│  Spinner animé                                    │
+│  └──┘                                                  │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎬 SCÉNARIOS D'UTILISATION
+
+### **Scénario 1 : Première ouverture**
+
+```
+1. Utilisateur clique sur le bouton 💬
+   ↓
+2. Fenêtre s'ouvre avec animation (scale + fade)
+   ↓
+3. Message de bienvenue apparaît
+   ↓
+4. Suggestions s'affichent
+   ↓
+5. Utilisateur peut interagir
+```
+
+### **Scénario 2 : Question simple (Mistral)**
+
+```
+1. Utilisateur tape "Combien ça coûte ?"
+   ↓
+2. Message user apparaît (fond bleu)
+   ↓
+3. "IA en réflexion..." s'affiche
+   ↓
+4. Réponse apparaît avec badge ⚡ Mistral | 120ms
+   ↓
+5. Stats mises à jour (Mistral +1)
+```
+
+### **Scénario 3 : Question complexe (Claude)**
+
+```
+1. Utilisateur tape "Expliquez-moi votre architecture IA"
+   ↓
+2. Message user apparaît (fond bleu)
+   ↓
+3. "IA en réflexion..." s'affiche
+   ↓
+4. Réponse apparaît avec badge 🧠 Claude | 850ms
+   ↓
+5. Stats mises à jour (Claude +1)
+```
+
+### **Scénario 4 : Reconnaissance vocale**
+
+```
+1. Utilisateur clique sur 🎤
+   ↓
+2. Bouton devient rouge 🔴 (pulse)
+   ↓
+3. Utilisateur parle
+   ↓
+4. Texte apparaît dans l'input
+   ↓
+5. Bouton redevient gris
+   ↓
+6. Utilisateur peut envoyer
+```
+
+---
+
+## ✅ CHECKLIST VISUELLE
+
+Vérifiez que tous ces éléments sont visibles :
+
+### **Bouton flottant :**
+- [ ] Icône 💬 MessageCircle
+- [ ] Badge 🟢 "AI"
+- [ ] Effet de glow animé
+- [ ] Gradient violet-bleu-orange
+- [ ] Tooltip au survol
+
+### **Header :**
+- [ ] Icône ✨ Sparkles
+- [ ] Titre "Agent IA Hybride"
+- [ ] Sous-titre "Claude + Mistral • En ligne"
+- [ ] Point vert 🟢 "En ligne"
+- [ ] Bouton fermer ❌
+
+### **Status IA :**
+- [ ] Badge 🧠 "Claude 3.5" avec point vert
+- [ ] Badge ⚡ "Mistral" avec point vert
+- [ ] Badge 🎯 "Routeur IA" avec point vert
+- [ ] Badge 📊 avec temps moyen
+
+### **Messages :**
+- [ ] Avatar/icône pour chaque message
+- [ ] Timestamp
+- [ ] Badge IA (Claude/Mistral/Local)
+- [ ] Temps de réponse
+- [ ] Indicateur "Cached" si applicable
+
+### **Suggestions :**
+- [ ] Icônes 🖥️ 💰 🧮 📅
+- [ ] Texte lisible
+- [ ] Bordure bleue
+- [ ] Effet hover (scale + fond bleu clair)
+
+### **Input :**
+- [ ] Bouton micro 🎤
+- [ ] Champ de texte
+- [ ] Bouton envoyer 📤
+- [ ] Texte footer "Routage intelligent..."
+
+---
+
+## 🎉 RÉSULTAT FINAL
+
+Votre chatbot devrait ressembler à ça :
+
+```
+                                    ┌────────────────────┐
+                                    │ ✨ Agent IA    ❌  │
+                                    │ Claude + Mistral   │
+                                    ├────────────────────┤
+                                    │ 🧠 ⚡ 🎯 📊        │
+                                    ├────────────────────┤
+                                    │                    │
+                                    │  👋 Salut !        │
+                                    │                    │
+                                    │  [Suggestions]     │
+                                    │                    │
+                                    │      Bonjour ! 💬  │
+                                    │                    │
+                                    │  Excellent ! 🤖    │
+                                    │                    │
+                                    ├────────────────────┤
+                                    │ 🎤 [______] 📤     │
+                                    └────────────────────┘
+```
+
+**Professionnel • Moderne • Intelligent • Responsive**
 
 ---
 
 ## 📞 SUPPORT
 
-**Email :** ZyatrIA.contact@gmail.com
+Si l'apparence ne correspond pas à ce guide :
 
-**Console Claude :** https://console.anthropic.com/
+1. Vérifiez que `chatbot-isolation.css` est chargé
+2. Vérifiez que `lucide-react` est installé
+3. Videz le cache du navigateur (Ctrl+Shift+R)
+4. Consultez `🔧_CORRECTION_CHATBOT_AFFICHAGE.md`
 
-**Documentation :**
-- 👉_LIRE_EN_PREMIER_CLAUDE.md
-- 🚨_ACTION_IMMEDIATE_CLAUDE.md
-- 📊_DIAGNOSTIC_CHATBOT.md
-- 🎯_SOLUTION_RAPIDE_CHATBOT.md
-
----
-
-**🎯 Suivez le guide visuel et votre chatbot sera opérationnel en 3 minutes !**
+**Bon développement ! 🚀**

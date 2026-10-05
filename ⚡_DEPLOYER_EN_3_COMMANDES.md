@@ -1,69 +1,81 @@
 # ⚡ DÉPLOYER EN 3 COMMANDES
 
-## 🎯 Copier-Coller Ces 3 Lignes
+**Temps:** 5 minutes  
+**Difficulté:** Très facile
 
-```bash
-cd C:\Users\steph\zyatria-global && git add . && git commit -m "✅ Site complet restauré - Prix -30%" && git push origin master
+---
+
+## 🚀 MÉTHODE ULTRA-RAPIDE
+
+### Windows
+
+```powershell
+# 1. Tester
+npm run build
+
+# 2. Commit
+git add . && git commit -m "✅ Production ready"
+
+# 3. Déployer
+.\deploy-github-cloudflare.ps1
 ```
 
-**OU** si vous préférez étape par étape:
+### Linux/Mac
 
-### Étape 1: Naviguer vers le projet
 ```bash
-cd C:\Users\steph\zyatria-global
-```
+# 1. Tester
+npm run build
 
-### Étape 2: Ajouter et commiter
-```bash
-git add . && git commit -m "✅ Site complet restauré - Prix -30%"
-```
+# 2. Commit
+git add . && git commit -m "✅ Production ready"
 
-### Étape 3: Pousser vers GitHub
-```bash
-git push origin master
+# 3. Déployer
+./deploy-github-cloudflare.sh
 ```
 
 ---
 
-## ⏱️ Temps Total: ~3 minutes
+## 🖱️ MÉTHODE ENCORE PLUS SIMPLE
 
-1. **Push vers GitHub:** 10 secondes
-2. **Build Cloudflare:** 2-3 minutes
-3. **Site en ligne:** Immédiatement après le build
+**Windows:**
+Double-cliquez sur `DEPLOYER_MAINTENANT.bat`
 
----
-
-## 🔍 Vérifier le Déploiement
-
-1. Aller sur: https://dash.cloudflare.com
-2. Cliquer sur votre projet
-3. Onglet "Deployments"
-4. Attendre le statut "Success" ✅
+**C'est tout !** 🎉
 
 ---
 
-## ✅ Ce Qui Sera Déployé
+## ⚙️ APRÈS LE DÉPLOIEMENT
 
-### 💰 Tarification
-- Starter: **209 $** (au lieu de 299 $)
-- Professional: **419 $** (au lieu de 599 $)
-- Enterprise: **909 $** (au lieu de 1 299 $)
+Sur Cloudflare Pages, ajoutez ces 5 variables:
 
-### 🎯 Fonctionnalités
-- 40 composants React
-- 22 pages Astro
-- Chatbot Mistral AI
-- Formulaires Formspree
-- Stripe Payment Links
-- Navigation multilingue (FR/EN)
+```
+MISTRAL_API_KEY
+STRIPE_PUBLIC_KEY
+STRIPE_SECRET_KEY
+STRIPE_WEBHOOK_SECRET
+FORMSPREE_FORM_ID
+```
+
+**Les valeurs sont dans `.env`**
 
 ---
 
-## 🎉 C'EST TOUT !
+## ✅ VÉRIFICATION
 
-Après avoir exécuté ces 3 commandes, votre site sera en ligne avec:
-- ✅ Tous les composants restaurés
-- ✅ Prix -30% actifs
-- ✅ Toutes les fonctionnalités opérationnelles
+Votre site sera sur: `https://zyatria-global.pages.dev`
 
-**Prêt ? Copiez-collez la première commande ! 🚀**
+**Tests:**
+- [ ] Page d'accueil s'affiche
+- [ ] Chatbot visible en bas à droite
+- [ ] Boutons Stripe fonctionnent
+- [ ] Formulaires s'envoient
+
+---
+
+## 📖 BESOIN D'AIDE ?
+
+Voir le guide complet: `🚀_DEPLOYER_MAINTENANT_GUIDE_FINAL.md`
+
+---
+
+**C'est tout ! Votre site sera en ligne en 10 minutes.** 🚀

@@ -1,0 +1,62 @@
+═══════════════════════════════════════════════════════════════
+  🌐 ADRESSE DE VOTRE SITE INTERNET
+═══════════════════════════════════════════════════════════════
+
+URL PRINCIPALE (ACTUELLE):
+  https://zyatria-global-cve.pages.dev
+
+URL DE DÉPLOIEMENT SPÉCIFIQUE:
+  https://5748f1fc.zyatria-global-cve.pages.dev
+
+═══════════════════════════════════════════════════════════════
+  📊 INFORMATIONS CLOUDFLARE
+═══════════════════════════════════════════════════════════════
+
+DASHBOARD:
+  https://dash.cloudflare.com/b909407c9d4fcef1c9232d039138b851
+
+ACCOUNT ID:
+  b909407c9d4fcef1c9232d039138b851
+
+NOM DU PROJET:
+  zyatria-global
+
+═══════════════════════════════════════════════════════════════
+  🔗 GITHUB
+═══════════════════════════════════════════════════════════════
+
+REPOSITORY:
+  https://github.com/stephanetako/zyatria-global
+
+═══════════════════════════════════════════════════════════════
+  🎯 APRÈS LE DÉPLOIEMENT
+═══════════════════════════════════════════════════════════════
+
+Votre site sera accessible sur:
+  https://zyatria-global-cve.pages.dev
+
+Pour déployer:
+  git push origin main
+
+Attendez 2-3 minutes, puis testez l'URL ci-dessus.
+
+════════════════════════════════════════════════════��══════════
+  🌐 DOMAINE PERSONNALISÉ (FUTUR)
+═══════════════════════════════════════════════════════════════
+
+Vous pourriez configurer:
+  - https://zyatria.global
+  - https://zyatriaglobal.com
+  - https://zyatria.ca
+
+Pour l'instant, utilisez:
+  https://zyatria-global-cve.pages.dev
+
+═══════════════════════════════════════════════════════════════
+
+RÉSUMÉ:
+  Votre site: https://zyatria-global-cve.pages.dev
+  Dashboard: https://dash.cloudflare.com/b909407c9d4fcef1c9232d039138b851
+  GitHub: https://github.com/stephanetako/zyatria-global
+
+═══════════════════════════════════════════════════════════════

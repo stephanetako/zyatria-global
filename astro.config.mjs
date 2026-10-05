@@ -1,89 +1,67 @@
-
-
-import {defineConfig} from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
+import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import cloudflare from '@astrojs/cloudflare';
 
-function patchViteErrorOverlay() {
-  return {
-    name: 'patch-vite-error-overlay',
-    transform(code, id) {
-      if (id.includes('vite/dist/client/client.mjs')) {
-        return code.replace(
-          /const editorLink = this\.createLink\(`Open in editor\${[^}]*}\`, void 0\);[\s\S]*?codeHeader\.appendChild\(editorLink\);/g,
-          ''
-        );
-      }
-    },
-  };
-}
-
-function injectDevScript(options = {}) {
-  const {scriptPath} = options;
-  if (!scriptPath) {
-    throw new Error('injectDevScript requires a scriptPath');
-  }
-  return {
-    name: 'inject-dev-script',
-    hooks: {
-      'astro:config:setup': ({injectScript, command, logger}) => {
-        if (command === 'dev') {
-          logger.info(`Injecting dev script: ${scriptPath}`);
-          injectScript('page', `import "${scriptPath}";`);
-        }
-      },
-    },
-  };
-}
-
+// https://astro.build/config
 export default defineConfig({
-  base: '',
-  output: 'static',
+  // Mode SERVER pour Cloudflare Pages avec fonctionnalités dynamiques
+  // (chatbot IA, formulaires, API routes)
+  output: 'server',
   adapter: cloudflare({
+    mode: 'directory',
+    functionPerRoute: false,
+    // Force l'utilisation d'ES Modules
     platformProxy: {
       enabled: true,
     },
   }),
+  base: '/',
+
+  site: 'https://zyatriaglobal.com',
+
   devToolbar: {
     enabled: false,
   },
+
   server: {
     port: 3000,
     host: true,
   },
+
   integrations: [
     react(),
-    injectDevScript({scriptPath: '/generated/dev-only.js'}),
   ],
+
+  build: {
+    inlineStylesheets: 'auto',
+  },
+
   vite: {
-    plugins: [tailwindcss(), patchViteErrorOverlay()],
-    server: {
-      watch: {
-        usePolling: true,
-        interval: 1000,
-        ignored: [
-          '**/lost+found/**',
-          '**/dist/**',
-          '**/node_modules/**',
-          '**/src/site-components/**',
-          '**/*.md',
-          /[/\\]webflow\.json$/
-        ],
+    plugins: [tailwindcss()],
+    build: {
+      cssMinify: true,
+      minify: 'esbuild',
+      // Force ES Modules dans le build
+      target: 'esnext',
+      rollupOptions: {
+        external: [],
+        output: {
+          format: 'es',
+        },
       },
     },
-    resolve: {
-      alias: import.meta.env.PROD
-        ? {
-            'react-dom/server': 'react-dom/server.edge',
-          }
-        : undefined,
+    optimizeDeps: {
+      exclude: ['@formspree/react'],
+    },
+    ssr: {
+      noExternal: ['@formspree/react'],
+      external: [],
+      // Force ES Modules pour SSR
+      target: 'webworker',
     },
   },
 });
-
-
-
 
 
 

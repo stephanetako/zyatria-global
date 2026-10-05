@@ -1,0 +1,124 @@
+/**
+ * CHATBOT ISOLATION CSS
+ * 
+ * S'assure que le chatbot est toujours visible et correctement positionné
+ * Isole le chatbot du reste de la page pour éviter les conflits CSS
+ */
+
+/* Container du chatbot - toujours en position fixe */
+[data-chatbot-container],
+[data-chatbot="button"],
+[data-chatbot="window"] {
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+/* Bouton flottant du chatbot */
+[data-chatbot="button"] {
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Fenêtre de chat */
+[data-chatbot="window"] {
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  max-width: calc(100vw - 3rem) !important;
+  max-height: calc(100vh - 6rem) !important;
+}
+
+/* S'assurer que les icônes Lucide sont visibles */
+[data-chatbot] svg {
+  display: inline-block !important;
+  width: 1em !important;
+  height: 1em !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  fill: none !important;
+}
+
+/* Reset des styles qui pourraient interférer */
+[data-chatbot] * {
+  box-sizing: border-box !important;
+}
+
+/* Animations du chatbot */
+@keyframes chatbot-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes chatbot-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Glow effect */
+@keyframes chatbot-glow {
+  0%, 100% {
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+  }
+  50% {
+    box-shadow: 0 15px 50px rgba(102, 126, 234, 0.7);
+  }
+}
+
+/* Classes d'animation */
+.animate-pulse-glow {
+  animation: chatbot-glow 2s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: chatbot-bounce 0.5s ease-in-out infinite;
+}
+
+/* Responsive mobile */
+@media (max-width: 640px) {
+  [data-chatbot="button"] {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+  
+  [data-chatbot="window"] {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    left: 1rem !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    max-height: calc(100vh - 4rem) !important;
+  }
+}
+
+/* Scrollbar personnalisée pour le chatbot */
+[data-chatbot] .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+[data-chatbot] .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* S'assurer que le chatbot ne soit pas affecté par les styles globaux */
+[data-chatbot] {
+  all: initial;
+  * {
+    all: unset;
+  }
+}

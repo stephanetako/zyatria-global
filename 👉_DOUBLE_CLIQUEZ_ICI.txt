@@ -1,86 +1,101 @@
-🚀 PUSH VERS GITHUB - MODE D'EMPLOI
-=====================================
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║          🎯 TESTER LE CHATBOT MAINTENANT                   ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
 
-📁 FICHIER À EXÉCUTER:
-----------------------
-push-to-github.ps1
 
+📋 MÉTHODE 1 : DOUBLE-CLIC (LA PLUS SIMPLE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-⚡ MÉTHODE 1: DOUBLE-CLIC (RECOMMANDÉ)
---------------------------------------
-1. Faites un clic droit sur: push-to-github.ps1
-2. Sélectionnez: "Exécuter avec PowerShell"
+1. Cherchez le fichier : DOUBLE-CLIQUEZ-ICI.bat
+2. Double-cliquez dessus
 3. Suivez les instructions à l'écran
 
-
-⚡ MÉTHODE 2: POWERSHELL MANUEL
--------------------------------
-1. Ouvrez PowerShell dans ce dossier:
-   - Shift + Clic droit dans le dossier
-   - Sélectionnez "Ouvrir PowerShell ici"
-
-2. Exécutez:
-   .\push-to-github.ps1
+✅ Ce script va :
+   - Vérifier que tous les fichiers sont présents
+   - Vous proposer de lancer le serveur
+   - Ouvrir le site automatiquement
 
 
-🔐 SI ERREUR "SCRIPT NON SIGNÉ"
---------------------------------
-Exécutez cette commande UNE SEULE FOIS:
+📋 MÉTHODE 2 : COMMANDES MANUELLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+Dans PowerShell :
 
-Puis relancez le script.
+1. Vérifier les fichiers :
+   .\DIAGNOSTIC-RAPIDE.bat
 
+2. Lancer le serveur :
+   npm run dev
 
-🔑 SI GITHUB DEMANDE UN MOT DE PASSE
--------------------------------------
-1. Créez un Personal Access Token:
-   https://github.com/settings/tokens
-
-2. Cliquez sur "Generate new token (classic)"
-
-3. Cochez "repo" (accès complet)
-
-4. Générez et COPIEZ LE TOKEN
-
-5. Utilisez-le comme mot de passe:
-   - Username: stephanetako
-   - Password: [VOTRE TOKEN]
+3. Ouvrir le navigateur :
+   http://localhost:4321
 
 
-✅ CE QUE LE SCRIPT FAIT
--------------------------
-1. ✅ Vérifie que vous êtes dans le bon dossier
-2. ✅ Affiche le statut Git
-3. ✅ Récupère les derniers changements (pull)
-4. ✅ Push vers GitHub
-5. ✅ Affiche les prochaines étapes
+📋 MÉTHODE 3 : DIAGNOSTIC COMPLET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si les méthodes 1 et 2 ne marchent pas :
+
+1. Ouvrir PowerShell
+2. Taper : cd "C:\Users\steph\OneDrive\Bureau\zyatria-global"
+3. Taper : Get-Content .\verifier-chatbots.ps1 | powershell -
 
 
-📊 APRÈS LE PUSH
------------------
-1. Vérifiez sur GitHub:
-   https://github.com/stephanetako/zyatria-global
+🎯 OÙ CHERCHER LE CHATBOT ?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-2. Cloudflare déploiera automatiquement (3-4 min)
-   https://dash.cloudflare.com
+Une fois le serveur lancé (npm run dev) :
 
-3. Testez votre site:
-   https://zyatria-global.pages.dev
-
-
-🎯 PROCHAINES ÉTAPES
---------------------
-Après le déploiement, configurez Stripe:
-Ouvrez: 🎯_CONFIGURER_STRIPE_MAINTENANT.md
-
-
-💡 BESOIN D'AIDE ?
-------------------
-Si vous avez une erreur, copiez le message
-et je vous aide immédiatement ! 😊
+1. Ouvrez : http://localhost:4321
+2. Regardez en BAS À DROITE de la page
+3. Vous devriez voir :
+   
+   ┌────┐
+   │ 💬 │  ← Bulle de conversation
+   │ ✨ │  ← Badge rouge avec étoile
+   └────┘
+   
+   Bouton rond avec dégradé bleu-violet-rose
+   Animation de pulse
 
 
-🚀 ALLEZ-Y !
-------------
-Double-cliquez sur: push-to-github.ps1
+🔍 SI VOUS NE VOYEZ PAS LE CHATBOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Appuyez sur F12 (ouvre la console)
+2. Collez ce code :
+
+const chatbot = document.querySelector('[aria-label="Ouvrir le chat IA"]');
+console.log('Chatbot:', chatbot ? '✅ TROUVÉ' : '❌ ABSENT');
+
+3. Si "✅ TROUVÉ" : Le chatbot est là, scrollez en bas de la page
+4. Si "❌ ABSENT" : Vérifiez les erreurs rouges dans la console
+
+
+📁 FICHIERS DISPONIBLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ DOUBLE-CLIQUEZ-ICI.bat          → Script automatique
+✅ DIAGNOSTIC-RAPIDE.bat            → Vérification rapide
+✅ verifier-chatbots.ps1            → Script PowerShell complet
+✅ 🎯_TESTER_MAINTENANT.md          → Guide détaillé
+✅ 📊_RESUME_DIAGNOSTIC_CHATBOT.md  → Documentation complète
+
+
+🆘 BESOIN D'AIDE ?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si rien ne fonctionne :
+
+1. Exécutez : DIAGNOSTIC-RAPIDE.bat
+2. Copiez le résultat complet
+3. Partagez-le pour diagnostic approfondi
+
+
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║  👉 COMMENCEZ PAR : DOUBLE-CLIQUEZ-ICI.bat                 ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝

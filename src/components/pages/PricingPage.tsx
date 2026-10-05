@@ -3,7 +3,7 @@ import { LanguageProvider } from '../../lib/language-context';
 import NavigationDesignSystem from '../NavigationDesignSystem';
 import Pricing from '../Pricing';
 import FooterDesignSystem from '../FooterDesignSystem';
-import MistralChatBot from '../MistralChatBot';
+import SuperChatbotFamily from '../SuperChatbotFamily';
 
 const PricingPage: React.FC = () => {
   return (
@@ -14,10 +14,11 @@ const PricingPage: React.FC = () => {
           <Pricing />
         </main>
         <FooterDesignSystem />
-        <MistralChatBot />
+        <SuperChatbotFamily />
       </div>
     </LanguageProvider>
   );
 };
 
 export default PricingPage;
+

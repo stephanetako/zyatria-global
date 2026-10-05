@@ -1,0 +1,97 @@
+---
+import EnhancedClaudeChatBot from '../components/EnhancedClaudeChatBot';
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Test Chatbot Clean</title>
+  
+  <!-- Chatbot Isolation CSS -->
+  <style>
+    /* Isolation du chatbot React/Tailwind */
+    #chatbot-root,
+    [data-chatbot],
+    [id^="chat"],
+    [class*="chatbot"] {
+      all: revert;
+      contain: layout style;
+      isolation: isolate;
+    }
+
+    #chatbot-root *,
+    [data-chatbot] *,
+    [id^="chat"] *,
+    [class*="chatbot"] * {
+      all: revert;
+    }
+
+    /* Force les styles Tailwind pour le chatbot */
+    [data-chatbot] button,
+    [data-chatbot] input,
+    [data-chatbot] div {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    }
+
+    /* Assure que le bouton flottant est toujours visible */
+    button[aria-label*="chat" i],
+    button[aria-label*="Chat" i] {
+      position: fixed !important;
+      bottom: 1.5rem !important;
+      right: 1rem !important;
+      z-index: 9999 !important;
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 40px; font-family: system-ui; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+  
+  <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+    <h1 style="color: #667eea; margin: 0 0 20px 0; font-size: 32px;">🤖 Test Chatbot IA</h1>
+    
+    <div style="background: #f0f4ff; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #667eea;">
+      <h2 style="margin: 0 0 15px 0; color: #333; font-size: 20px;">✅ Regardez en BAS À DROITE !</h2>
+      <p style="margin: 0 0 10px 0; color: #555; line-height: 1.6;">
+        Vous devriez voir un <strong>bouton rond flottant</strong> avec :
+      </p>
+      <ul style="margin: 0; padding-left: 20px; color: #555; line-height: 1.8;">
+        <li>🤖 Icône de robot</li>
+        <li>🎨 Gradient violet/cyan/rose</li>
+        <li>✨ Animation de pulsation</li>
+        <li>🔴 Badge rouge avec étoile</li>
+      </ul>
+    </div>
+
+    <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 4px solid #ffc107;">
+      <h3 style="margin: 0 0 10px 0; color: #856404; font-size: 18px;">🎯 Instructions :</h3>
+      <ol style="margin: 0; padding-left: 20px; color: #856404; line-height: 1.8;">
+        <li><strong>Scrollez tout en bas</strong> de cette page</li>
+        <li><strong>Regardez le coin inférieur droit</strong></li>
+        <li><strong>Cliquez sur le bouton rond</strong></li>
+        <li><strong>Testez le chatbot</strong></li>
+      </ol>
+    </div>
+
+    <p style="text-align: center; color: #667eea; font-size: 48px; margin: 40px 0 0 0;">
+      ↘️
+    </p>
+  </div>
+
+  <EnhancedClaudeChatBot client:only="react" />
+
+  <script>
+    // Vérifier si le chatbot est chargé
+    setTimeout(() => {
+      const chatButton = document.querySelector('button[aria-label="Ouvrir le chat IA"]');
+      if (chatButton) {
+        console.log('✅ CHATBOT DÉTECTÉ !');
+        console.log('Position:', chatButton.getBoundingClientRect());
+      } else {
+        console.error('❌ CHATBOT NON DÉTECTÉ');
+        console.log('Éléments React trouvés:', document.querySelectorAll('[data-astro-cid-*]').length);
+      }
+    }, 2000);
+  </script>
+</body>
+</html>

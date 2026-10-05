@@ -1,10 +1,13 @@
-
-
 # Configuration Cloudflare Pages pour zyatria-global
 name = "zyatria-global"
 compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat_v2"]
+compatibility_flags = ["nodejs_compat", "nodejs_compat_v2"]
 pages_build_output_dir = "dist"
+
+# Cloudflare Pages configuration
+[env.production]
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat", "nodejs_compat_v2"]
 
 # Build configuration
 [build]
@@ -24,4 +27,6 @@ ENVIRONMENT = "production"
 # - STRIPE_SECRET_KEY
 # - STRIPE_WEBHOOK_SECRET
 
-
+# Assets binding (renamed from ASSETS to STATIC_ASSETS to avoid reserved name conflict)
+[assets]
+binding = "STATIC_ASSETS"

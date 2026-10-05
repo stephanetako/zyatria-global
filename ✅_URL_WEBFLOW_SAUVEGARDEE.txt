@@ -1,0 +1,65 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║   ✅ URL WEBFLOW SAUVEGARDÉE                                  ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+🌐 URL WEBFLOW
+──────────────
+
+https://8972843a648f35320d9efb62c844e9de.app.webflow.io
+
+
+✅ SAUVEGARDÉE DANS
+───────────────────
+
+• 🌐_URL_SITE_WEBFLOW.txt
+• 🌐_TOUTES_VOS_URLS.md
+• ✅_URL_WEBFLOW_SAUVEGARDEE.txt (ce fichier)
+
+
+📝 INFORMATIONS
+───────────────
+
+Type : Site Webflow de référence
+Date : 4 octobre 2024
+Statut : ✅ Validé
+Usage : Design et composants
+
+
+🔗 AUTRES URLS
+──────────────
+
+Cloudflare Pages :
+  https://zyatria-global.pages.dev
+
+Domaine personnalisé (à configurer) :
+  https://zyatria.global
+
+
+📚 DOCUMENTATION
+────────────────
+
+Toutes les URLs :
+  🌐_TOUTES_VOS_URLS.md
+
+Guide domaine personnalisé :
+  🌐_GUIDE_DOMAINE_PERSONNALISE.md
+
+Déployer maintenant :
+  START_HERE.txt
+
+
+═══════════════════════════════════════════════════════════════
+
+Date : 4 octobre 2024
+Statut : ✅ SAUVEGARDÉ
+
+═══════════════════════════════════════════════════════════════
+
+
+🎉 URL SAUVEGARDÉE AVEC SUCCÈS !
+
+
+═══════════════════════════════════════════════════════════════

@@ -1,4 +1,17 @@
-# Cloudflare Pages ignore file
-# Ignore wrangler.jsonc to prevent Workers detection
-wrangler.jsonc
-worker-configuration.d.ts
+node_modules/
+.git/
+.env
+*.log
+*.md
+!README.md
+!DEPLOYMENT.md
+test-*.html
+test-*.js
+test-*.sh
+diagnostic-*
+build-*
+deploy-*
+verification-*
+*.ps1
+*.bat
+backup-*

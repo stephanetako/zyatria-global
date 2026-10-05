@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from 'react';
 import { 
   Book, 
@@ -43,12 +46,13 @@ const translations: Record<TranslationKey, any> = {
       title: "Browse by Category",
       items: [
         {
-          icon: Book,
+          icon: Rocket,
           title: "Getting Started",
           description: "Begin your journey with AI agents",
           articles: 12,
           slug: "getting-started",
-          color: "bg-gradient-primary"
+          color: "bg-gradient-to-br from-blue-500 to-blue-600",
+          iconColor: "text-white"
         },
         {
           icon: Code,
@@ -56,7 +60,8 @@ const translations: Record<TranslationKey, any> = {
           description: "API references and code examples",
           articles: 24,
           slug: "technical",
-          color: "bg-gradient-accent"
+          color: "bg-gradient-to-br from-red-500 to-red-600",
+          iconColor: "text-white"
         },
         {
           icon: Zap,
@@ -64,7 +69,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Connect with your favorite tools",
           articles: 18,
           slug: "integrations",
-          color: "bg-gradient-warm"
+          color: "bg-gradient-to-br from-orange-500 to-orange-600",
+          iconColor: "text-white"
         },
         {
           icon: Settings,
@@ -72,7 +78,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Set up and customize your agents",
           articles: 15,
           slug: "configuration",
-          color: "bg-gradient-cool"
+          color: "bg-gradient-to-br from-green-500 to-green-600",
+          iconColor: "text-white"
         },
         {
           icon: HelpCircle,
@@ -80,7 +87,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Common issues and solutions",
           articles: 20,
           slug: "troubleshooting",
-          color: "bg-gradient-sunset"
+          color: "bg-gradient-to-br from-purple-500 to-purple-600",
+          iconColor: "text-white"
         },
         {
           icon: Lightbulb,
@@ -88,7 +96,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Tips from our experts",
           articles: 16,
           slug: "best-practices",
-          color: "bg-gradient-ocean"
+          color: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+          iconColor: "text-white"
         }
       ]
     },
@@ -217,12 +226,13 @@ const translations: Record<TranslationKey, any> = {
       title: "Parcourir par Catégorie",
       items: [
         {
-          icon: Book,
+          icon: Rocket,
           title: "Démarrage",
           description: "Commencez votre parcours avec les agents IA",
           articles: 12,
           slug: "demarrage",
-          color: "bg-gradient-primary"
+          color: "bg-gradient-to-br from-blue-500 to-blue-600",
+          iconColor: "text-white"
         },
         {
           icon: Code,
@@ -230,7 +240,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Références API et exemples de code",
           articles: 24,
           slug: "technique",
-          color: "bg-gradient-accent"
+          color: "bg-gradient-to-br from-red-500 to-red-600",
+          iconColor: "text-white"
         },
         {
           icon: Zap,
@@ -238,7 +249,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Connectez vos outils préférés",
           articles: 18,
           slug: "integrations",
-          color: "bg-gradient-warm"
+          color: "bg-gradient-to-br from-orange-500 to-orange-600",
+          iconColor: "text-white"
         },
         {
           icon: Settings,
@@ -246,7 +258,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Configurez et personnalisez vos agents",
           articles: 15,
           slug: "configuration",
-          color: "bg-gradient-cool"
+          color: "bg-gradient-to-br from-green-500 to-green-600",
+          iconColor: "text-white"
         },
         {
           icon: HelpCircle,
@@ -254,7 +267,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Problèmes courants et solutions",
           articles: 20,
           slug: "depannage",
-          color: "bg-gradient-sunset"
+          color: "bg-gradient-to-br from-purple-500 to-purple-600",
+          iconColor: "text-white"
         },
         {
           icon: Lightbulb,
@@ -262,7 +276,8 @@ const translations: Record<TranslationKey, any> = {
           description: "Conseils de nos experts",
           articles: 16,
           slug: "bonnes-pratiques",
-          color: "bg-gradient-ocean"
+          color: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+          iconColor: "text-white"
         }
       ]
     },
@@ -287,12 +302,54 @@ const translations: Record<TranslationKey, any> = {
     categories: {
       title: "Categorías",
       items: [
-        { icon: Rocket, title: "Primeros Pasos", description: "Comience con ZyatrIA", articles: 12, color: "blue" },
-        { icon: Bot, title: "Agentes IA", description: "Comprenda los agentes IA", articles: 18, color: "purple" },
-        { icon: Zap, title: "Automatización", description: "Automatice sus procesos", articles: 15, color: "orange" },
-        { icon: Settings, title: "Configuración", description: "Configure su cuenta", articles: 10, color: "green" },
-        { icon: CreditCard, title: "Facturación", description: "Gestione su suscripción", articles: 8, color: "pink" },
-        { icon: Shield, title: "Seguridad", description: "Proteja sus datos", articles: 14, color: "red" }
+        { 
+          icon: Rocket, 
+          title: "Primeros Pasos", 
+          description: "Comience con ZyatrIA", 
+          articles: 12, 
+          color: "bg-gradient-to-br from-blue-500 to-blue-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Code, 
+          title: "Documentación Técnica", 
+          description: "Referencias API y ejemplos", 
+          articles: 24, 
+          color: "bg-gradient-to-br from-red-500 to-red-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Zap, 
+          title: "Integraciones", 
+          description: "Conecte sus herramientas", 
+          articles: 18, 
+          color: "bg-gradient-to-br from-orange-500 to-orange-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Settings, 
+          title: "Configuración", 
+          description: "Configure su cuenta", 
+          articles: 15, 
+          color: "bg-gradient-to-br from-green-500 to-green-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: HelpCircle, 
+          title: "Solución de Problemas", 
+          description: "Problemas comunes y soluciones", 
+          articles: 20, 
+          color: "bg-gradient-to-br from-purple-500 to-purple-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Lightbulb, 
+          title: "Mejores Prácticas", 
+          description: "Consejos de expertos", 
+          articles: 16, 
+          color: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+          iconColor: "text-white"
+        }
       ]
     },
     popular: {
@@ -337,12 +394,54 @@ const translations: Record<TranslationKey, any> = {
     categories: {
       title: "Categorias",
       items: [
-        { icon: Rocket, title: "Primeiros Passos", description: "Comece com ZyatrIA", articles: 12, color: "blue" },
-        { icon: Bot, title: "Agentes IA", description: "Entenda os agentes IA", articles: 18, color: "purple" },
-        { icon: Zap, title: "Automação", description: "Automatize seus processos", articles: 15, color: "orange" },
-        { icon: Settings, title: "Configuração", description: "Configure sua conta", articles: 10, color: "green" },
-        { icon: CreditCard, title: "Faturamento", description: "Gerencie sua assinatura", articles: 8, color: "pink" },
-        { icon: Shield, title: "Segurança", description: "Proteja seus dados", articles: 14, color: "red" }
+        { 
+          icon: Rocket, 
+          title: "Primeiros Passos", 
+          description: "Comece com ZyatrIA", 
+          articles: 12, 
+          color: "bg-gradient-to-br from-blue-500 to-blue-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Code, 
+          title: "Documentação Técnica", 
+          description: "Referencias API e exemplos", 
+          articles: 24, 
+          color: "bg-gradient-to-br from-red-500 to-red-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Zap, 
+          title: "Integraciones", 
+          description: "Conecte suas ferramentas", 
+          articles: 18, 
+          color: "bg-gradient-to-br from-orange-500 to-orange-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Settings, 
+          title: "Configuração", 
+          description: "Configure sua conta", 
+          articles: 15, 
+          color: "bg-gradient-to-br from-green-500 to-green-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: HelpCircle, 
+          title: "Solução de Problemas", 
+          description: "Problemas comuns e soluções", 
+          articles: 20, 
+          color: "bg-gradient-to-br from-purple-500 to-purple-600",
+          iconColor: "text-white"
+        },
+        { 
+          icon: Lightbulb, 
+          title: "Melhores Práticas", 
+          description: "Dicas de especialistas", 
+          articles: 16, 
+          color: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+          iconColor: "text-white"
+        }
       ]
     },
     popular: {
@@ -434,8 +533,8 @@ export default function KnowledgeBasePage({ lang = 'en' }: KnowledgeBasePageProp
                   key={idx}
                   className="p-6 hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-105"
                 >
-                  <div className={`w-14 h-14 ${category.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
-                    <Icon className="w-7 h-7 text-white" />
+                  <div className={`w-16 h-16 ${category.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
+                    <Icon className={`w-8 h-8 ${category.iconColor}`} />
                   </div>
                   <h3 className="text-xl font-bold font-heading mb-2 group-hover:text-primary transition-colors">
                     {category.title}
@@ -585,6 +684,11 @@ export default function KnowledgeBasePage({ lang = 'en' }: KnowledgeBasePageProp
     </div>
   );
 }
+
+
+
+
+
 
 
 

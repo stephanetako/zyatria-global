@@ -1,538 +1,558 @@
-
-
-
-
-
-
 import React, { useState } from 'react';
-import { Check, ArrowRight, Sparkles, Zap, Rocket, DollarSign, Gift, CreditCard, Calendar, Home, Briefcase, Bot } from 'lucide-react';
-import { Card } from './ui/card';
-import { Button } from './ui/button';
-import { stripeLinks, getPaymentLink, productDetails } from '../config/stripe-links';
-import { cn } from '../lib/utils';
-import { baseUrl } from '../lib/base-url';
+import { Check, ArrowRight, DollarSign, Sparkles, Users } from 'lucide-react';
 import { useLanguage } from '../lib/language-context';
+import { Card } from './ui/card';
 
-type PlanKey = 'starter' | 'professional' | 'enterprise';
-type BillingType = 'oneTime' | 'monthly';
-
-type TranslationKey = 'en' | 'fr';
-
-const translations: Record<TranslationKey, any> = {
-  en: {
-    nav: {
-      home: "Home",
-      services: "Services",
-      microAgents: "Micro-agents",
-      pricing: "Pricing",
-      resources: "Resources",
-      demo: "Demo"
-    },
-    badge: "Transparent Pricing",
-    title: "Choose Your AI Solution",
-    subtitle: "Flexible pricing. No hidden fees. Choose one-time or monthly.",
-    backHome: "Back to Home",
-    billingToggle: {
-      oneTime: "One-time Payment",
-      monthly: "Monthly Subscription"
-    },
-    cta: {
-      oneTime: "Get Started Now",
-      monthly: "Start Free Trial",
-      enterprise: "Contact Our Team"
-    },
-    services: {
-      title: "Professional Services",
-      subtitle: "Expert consulting to maximize your AI ROI",
-      auditCta: "Order AI Audit",
-      consultationCta: "Book Strategy Call"
-    },
-    note: "All prices in Canadian Dollars (CAD). 30-day money-back guarantee.",
-    paymentSecure: "🔒 Secure payments powered by Stripe",
-    infoNote: "💡 <strong>Note:</strong> Click on a plan to contact us and discuss your specific needs.",
-    savings: "Save"
-  },
+const translations = {
   fr: {
-    nav: {
-      home: "Accueil",
-      services: "Services",
-      microAgents: "Micro-agents",
-      pricing: "Tarifs",
-      resources: "Ressources",
-      demo: "Démo"
+    badge: 'Tarifs Transparents',
+    title: 'Des Prix Simples et Honnêtes',
+    subtitle: 'Choisissez le plan qui correspond à vos besoins. Aucun frais caché.',
+    monthly: 'Mensuel',
+    annual: 'Annuel',
+    perMonth: 'mois',
+    recommended: 'Recommandé',
+    plans: {
+      starter: {
+        name: 'Starter',
+        description: 'Parfait pour tester nos services',
+        price: '297',
+        annualPrice: '247',
+        originalPrice: '497',
+        originalAnnualPrice: '397',
+        discount: '-40%',
+        savings: 'Économisez 600$/an',
+        billing: 'Facturation mensuelle',
+        features: [
+          '1 Agent IA intelligent',
+          'Support par email',
+          'Intégrations de base',
+          'Rapports mensuels',
+          'Formation initiale incluse'
+        ],
+        cta: {
+          text: 'Commencer',
+          link: 'https://buy.stripe.com/test_28o5lA0Hy0Hy0Ug4gg'
+        }
+      },
+      professional: {
+        name: 'Professional',
+        description: 'Pour les entreprises en croissance',
+        price: '697',
+        annualPrice: '597',
+        originalPrice: '997',
+        originalAnnualPrice: '897',
+        discount: '-30%',
+        savings: 'Économisez 1,200$/an',
+        billing: 'Facturation mensuelle',
+        features: [
+          '3 Agents IA intelligents',
+          'Support prioritaire 24/7',
+          'Toutes les intégrations',
+          'Rapports en temps réel',
+          'Formation avancée',
+          'Optimisation mensuelle'
+        ],
+        cta: {
+          text: 'Démarrer maintenant',
+          link: 'https://buy.stripe.com/test_6oE15k0Hy7a0bqM5kl'
+        }
+      },
+      enterprise: {
+        name: 'Enterprise',
+        description: 'Solution sur mesure pour grandes entreprises',
+        price: '1,497',
+        annualPrice: '1,297',
+        originalPrice: '1,997',
+        originalAnnualPrice: '1,797',
+        discount: '-25%',
+        savings: 'Économisez 2,400$/an',
+        billing: 'Facturation mensuelle',
+        features: [
+          'Agents IA illimités',
+          'Support dédié 24/7',
+          'Intégrations personnalisées',
+          'Rapports avancés',
+          'Formation sur mesure',
+          'Optimisation continue',
+          'SLA garanti'
+        ],
+        cta: {
+          text: 'Contactez-nous',
+          link: 'https://buy.stripe.com/test_9AQ6pw0Hy0Hy5aA6oq'
+        }
+      }
     },
-    badge: "Tarification Transparente",
-    title: "Choisissez Votre Solution IA",
-    subtitle: "Tarification flexible. Sans frais cachés. Choisissez paiement unique ou mensuel.",
-    backHome: "Retour à l'accueil",
-    billingToggle: {
-      oneTime: "Paiement Unique",
-      monthly: "Abonnement Mensuel"
-    },
-    cta: {
-      oneTime: "Commencer Maintenant",
-      monthly: "Démarrer Essai Gratuit",
-      enterprise: "Contacter Notre Équipe"
-    },
-    services: {
-      title: "Services Professionnels",
-      subtitle: "Conseil d'expert pour maximiser votre ROI IA",
-      auditCta: "Commander Audit IA",
-      consultationCta: "Réserver Appel Stratégique"
-    },
-    note: "Tous les prix en dollars canadiens (CAD). Garantie satisfait ou remboursé 30 jours.",
-    paymentSecure: "🔒 Paiements sécurisés par Stripe",
-    infoNote: "💡 <strong>Note:</strong> Cliquez sur un plan pour nous contacter et discuter de vos besoins spécifiques.",
-    savings: "Économisez"
+    professionalServices: {
+      title: 'Services Professionnels',
+      subtitle: 'Des services experts pour maximiser votre retour sur investissement',
+      audit: {
+        title: 'Audit IA Complet',
+        subtitle: 'Analyse approfondie',
+        description: 'Analyse complète de vos processus et recommandations personnalisées pour l\'automatisation IA.',
+        price: '497',
+        currency: 'CAD',
+        cta: {
+          text: 'Réserver un audit',
+          link: 'https://buy.stripe.com/test_dR6bJY0Hy0Hy0Ug3cd'
+        }
+      },
+      consultation: {
+        title: 'Consultation Stratégique',
+        subtitle: 'Session de 2 heures',
+        description: 'Session stratégique avec nos experts pour définir votre roadmap d\'automatisation IA.',
+        price: '197',
+        currency: 'CAD',
+        cta: {
+          text: 'Réserver une consultation',
+          link: 'https://buy.stripe.com/test_5kA01g0Hy0Hy0Ug28a'
+        }
+      }
+    }
   },
+  en: {
+    badge: 'Transparent Pricing',
+    title: 'Simple and Honest Pricing',
+    subtitle: 'Choose the plan that fits your needs. No hidden fees.',
+    monthly: 'Monthly',
+    annual: 'Annual',
+    perMonth: 'month',
+    recommended: 'Recommended',
+    plans: {
+      starter: {
+        name: 'Starter',
+        description: 'Perfect to test our services',
+        price: '297',
+        annualPrice: '247',
+        originalPrice: '497',
+        originalAnnualPrice: '397',
+        discount: '-40%',
+        savings: 'Save $600/year',
+        billing: 'Monthly billing',
+        features: [
+          '1 Intelligent AI Agent',
+          'Email support',
+          'Basic integrations',
+          'Monthly reports',
+          'Initial training included'
+        ],
+        cta: {
+          text: 'Get Started',
+          link: 'https://buy.stripe.com/test_28o5lA0Hy0Hy0Ug4gg'
+        }
+      },
+      professional: {
+        name: 'Professional',
+        description: 'For growing businesses',
+        price: '697',
+        annualPrice: '597',
+        originalPrice: '997',
+        originalAnnualPrice: '897',
+        discount: '-30%',
+        savings: 'Save $1,200/year',
+        billing: 'Monthly billing',
+        features: [
+          '3 Intelligent AI Agents',
+          '24/7 priority support',
+          'All integrations',
+          'Real-time reports',
+          'Advanced training',
+          'Monthly optimization'
+        ],
+        cta: {
+          text: 'Start Now',
+          link: 'https://buy.stripe.com/test_6oE15k0Hy7a0bqM5kl'
+        }
+      },
+      enterprise: {
+        name: 'Enterprise',
+        description: 'Custom solution for large businesses',
+        price: '1,497',
+        annualPrice: '1,297',
+        originalPrice: '1,997',
+        originalAnnualPrice: '1,797',
+        discount: '-25%',
+        savings: 'Save $2,400/year',
+        billing: 'Monthly billing',
+        features: [
+          'Unlimited AI Agents',
+          '24/7 dedicated support',
+          'Custom integrations',
+          'Advanced reports',
+          'Custom training',
+          'Continuous optimization',
+          'Guaranteed SLA'
+        ],
+        cta: {
+          text: 'Contact Us',
+          link: 'https://buy.stripe.com/test_9AQ6pw0Hy0Hy5aA6oq'
+        }
+      }
+    },
+    professionalServices: {
+      title: 'Professional Services',
+      subtitle: 'Expert services to maximize your ROI',
+      audit: {
+        title: 'Complete AI Audit',
+        subtitle: 'In-depth analysis',
+        description: 'Complete analysis of your processes and personalized recommendations for AI automation.',
+        price: '497',
+        currency: 'CAD',
+        cta: {
+          text: 'Book an audit',
+          link: 'https://buy.stripe.com/test_dR6bJY0Hy0Hy0Ug3cd'
+        }
+      },
+      consultation: {
+        title: 'Strategic Consultation',
+        subtitle: '2-hour session',
+        description: 'Strategic session with our experts to define your AI automation roadmap.',
+        price: '197',
+        currency: 'CAD',
+        cta: {
+          text: 'Book a consultation',
+          link: 'https://buy.stripe.com/test_5kA01g0Hy0Hy0Ug28a'
+        }
+      }
+    }
+  }
 };
 
-const Pricing: React.FC = () => {
+export default function Pricing() {
   const { language } = useLanguage();
-  // Map all languages to supported translation keys, default to 'fr'
-  const translationKey: TranslationKey = (language === 'en' || language === 'fr') ? language : 'fr';
-  const t = translations[translationKey];
-  const [billingType, setBillingType] = useState<BillingType>('monthly');
+  const supportedLanguage = (language === 'en' || language === 'fr') ? language : 'en';
+  const t = translations[supportedLanguage];
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly');
 
-  const plans: Array<{
-    key: PlanKey;
-    icon: any;
-    popular?: boolean;
-    badge?: string;
-    badgeColor?: string;
-    features: string[];
-  }> = [
-    {
-      key: 'starter',
-      icon: Sparkles,
-      badge: 'Meilleure valeur',
-      badgeColor: 'from-primary to-primary/80',
-      features: [
-        "1 Bot IA spécialisé",
-        "Déploiement en 7-15 jours",
-        "Support email (48h)",
-        "Tableau de bord analytique",
-        "Jusqu'à 1 000 interactions/mois"
-      ]
-    },
-    {
-      key: 'professional',
-      icon: Zap,
-      popular: true,
-      badge: 'Recommandé',
-      badgeColor: 'from-amber-500 to-orange-500',
-      features: [
-        "3 Bots IA spécialisés",
-        "Déploiement en 7-15 jours",
-        "Automatisation avancée",
-        "Intégrations CRM",
-        "Support prioritaire (24h)",
-        "Jusqu'à 5 000 interactions/mois",
-        "Rapports avancés"
-      ]
-    },
-    {
-      key: 'enterprise',
-      icon: Rocket,
-      badge: 'Premium',
-      badgeColor: 'from-purple-500 to-indigo-500',
-      features: [
-        "7 Bots IA - Suite complète",
-        "Déploiement personnalisé",
-        "Automatisation complète",
-        "Gestionnaire dédié",
-        "Support 24/7",
-        "Interactions illimitées",
-        "Formation personnalisée",
-        "SLA 99.9%"
-      ]
-    }
-  ];
+  const planKeys = ['starter', 'professional', 'enterprise'] as const;
 
   return (
-    <section id="pricing" className="py-24 bg-gradient-to-b from-white via-amber-50/30 to-white dark:from-zinc-950 dark:via-amber-950/10 dark:to-zinc-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Info Banner */}
-        <div className="mb-8 max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-secondary to-muted dark:from-muted dark:to-muted border-2 border-border rounded-lg p-6 text-center">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Sparkles className="w-5 h-5 text-foreground" />
-              <span className="text-lg font-bold text-foreground dark:text-foreground">
-                🎁 Offre Pré-Lancement: -30% sur tous les plans
-              </span>
-            </div>
-            <p className="text-sm text-foreground dark:text-foreground">
-              Réservez maintenant et bénéficiez de 30% de réduction + Formation gratuite (valeur 497$)
-            </p>
-          </div>
-        </div>
-
+    <section id="pricing" className="section" style={{ background: 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+        
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full mb-4">
-            <DollarSign className="w-4 h-4 text-amber-600" />
-            <span className="text-sm font-medium text-amber-600">{t.badge}</span>
+        <div style={{ marginBottom: '50px' }}>
+          <div style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '8px', 
+            background: '#EFF6FF', 
+            border: '1px solid #BFDBFE',
+            padding: '8px 16px', 
+            borderRadius: '20px', 
+            marginBottom: '20px' 
+          }}>
+            <DollarSign size={16} style={{ color: '#3B82F6' }} />
+            <span style={{ fontSize: '14px', fontWeight: '600', color: '#3B82F6' }}>{t.badge}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">
-            {t.title}
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 style={{ marginBottom: '15px' }}>{t.title}</h2>
+          <p style={{ fontSize: '18px', maxWidth: '700px', margin: '0 auto', color: '#64748B' }}>
             {t.subtitle}
           </p>
         </div>
 
         {/* Billing Toggle */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-muted p-1 rounded-lg shadow-sm">
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '50px' }}>
+          <div style={{ 
+            display: 'inline-flex', 
+            background: '#EFF6FF', 
+            padding: '6px', 
+            borderRadius: '12px',
+            border: '1px solid #BFDBFE'
+          }}>
             <button
-              onClick={() => setBillingType('oneTime')}
-              className={cn(
-                'px-6 py-3 rounded-md text-sm font-medium transition-all duration-200',
-                billingType === 'oneTime'
-                  ? 'bg-white dark:bg-zinc-800 text-foreground shadow-md'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
+              onClick={() => setBillingPeriod('monthly')}
+              style={{
+                padding: '10px 30px',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                background: billingPeriod === 'monthly' ? '#3B82F6' : 'transparent',
+                color: billingPeriod === 'monthly' ? 'white' : '#64748B'
+              }}
             >
-              <CreditCard className="w-4 h-4 inline-block mr-2" />
-              {t.billingToggle.oneTime}
+              {t.monthly}
             </button>
             <button
-              onClick={() => setBillingType('monthly')}
-              className={cn(
-                'px-6 py-3 rounded-md text-sm font-medium transition-all duration-200',
-                billingType === 'monthly'
-                  ? 'bg-white dark:bg-zinc-800 text-foreground shadow-md'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
+              onClick={() => setBillingPeriod('annual')}
+              style={{
+                padding: '10px 30px',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                background: billingPeriod === 'annual' ? '#3B82F6' : 'transparent',
+                color: billingPeriod === 'annual' ? 'white' : '#64748B'
+              }}
             >
-              <Calendar className="w-4 h-4 inline-block mr-2" />
-              {t.billingToggle.monthly}
+              {t.annual}
             </button>
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {plans.map((plan) => {
-            const Icon = plan.icon;
-            const details = productDetails[plan.key];
-            const pricing = details[billingType];
-            
-            // Safety check
-            if (!pricing) {
-              console.error(`No pricing found for ${plan.key} with billing type ${billingType}`);
-              return null;
-            }
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: '30px',
+          marginBottom: '80px',
+          paddingTop: '20px'
+        }}>
+          {planKeys.map((planKey, index) => {
+            const plan = t.plans[planKey];
+            const isRecommended = planKey === 'professional';
+            const price = billingPeriod === 'monthly' ? plan.price : plan.annualPrice;
+            const originalPrice = billingPeriod === 'monthly' ? plan.originalPrice : plan.originalAnnualPrice;
 
             return (
-              <Card
-                key={plan.key}
-                className={cn(
-                  'relative overflow-hidden transition-all duration-300 hover:shadow-2xl group',
-                  plan.popular
-                    ? 'border-amber-500 border-2 shadow-xl shadow-amber-500/20 scale-105 md:scale-110'
-                    : 'border-border hover:border-amber-400/50'
-                )}
+              <div
+                key={index}
+                className="card"
+                style={{
+                  position: 'relative',
+                  textAlign: 'left',
+                  border: isRecommended ? '2px solid #3B82F6' : '1px solid #E2E8F0',
+                  transform: isRecommended ? 'scale(1.05)' : 'scale(1)',
+                  background: isRecommended ? '#F8FAFC' : 'white',
+                  paddingTop: '35px'
+                }}
               >
-                {/* Badge */}
-                {plan.badge && (
-                  <div className="absolute top-0 left-0 right-0 flex justify-between">
-                    <div className={cn(
-                      "text-white px-4 py-1.5 text-xs font-bold rounded-br-lg shadow-lg",
-                      `bg-gradient-to-r ${plan.badgeColor}`
-                    )}>
-                      {plan.badge}
-                    </div>
-                    <div className="bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-1.5 text-xs font-bold rounded-bl-lg shadow-lg">
-                      -30% 🎁
-                    </div>
+                {/* Discount Badge */}
+                {plan.discount && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '20px',
+                    background: 'linear-gradient(135deg, #3B82F6, #2563EB)',
+                    color: 'white',
+                    padding: '8px 14px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    boxShadow: '0 4px 6px rgba(59, 130, 246, 0.3)',
+                    zIndex: 10
+                  }}>
+                    {plan.discount}
                   </div>
                 )}
 
-                <div className="p-8">
-                  {/* Icon */}
-                  <div className={cn(
-                    "w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110",
-                    plan.popular 
-                      ? 'bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/30' 
-                      : 'bg-amber-50 text-amber-600'
-                  )}>
-                    <Icon className="w-7 h-7" />
+                {/* Recommended Badge */}
+                {isRecommended && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '20px',
+                    background: 'linear-gradient(135deg, #10B981, #059669)',
+                    color: 'white',
+                    padding: '8px 16px',
+                    borderRadius: '20px',
+                    fontSize: '13px',
+                    fontWeight: '700',
+                    boxShadow: '0 4px 6px rgba(16, 185, 129, 0.3)',
+                    zIndex: 10
+                  }}>
+                    ⭐ {t.recommended}
                   </div>
+                )}
 
-                  {/* Plan Name */}
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold font-heading mb-1">{details.name}</h3>
-                    <p className="text-sm text-muted-foreground">{details.subtitle}</p>
-                  </div>
-
-                  {/* Price */}
-                  <div className="mb-6 pb-6 border-b border-border">
-                    <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-3xl font-bold text-muted-foreground line-through">
-                        {pricing.price.toLocaleString('fr-CA')} $
-                      </span>
-                    </div>
-                    <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-5xl font-bold font-heading text-foreground">
-                        {Math.round(pricing.price * 0.7).toLocaleString('fr-CA')} $
-                      </span>
-                      {billingType === 'monthly' && (
-                        <span className="text-muted-foreground text-lg">/mois</span>
-                      )}
-                    </div>
-                    <p className="text-xs text-foreground dark:text-foreground font-bold mb-2">
-                      💰 Économisez {Math.round(pricing.price * 0.3).toLocaleString('fr-CA')} $ avec l'offre pré-lancement
-                    </p>
-                    <p className="text-xs text-muted-foreground font-medium">
-                      {pricing.label}
-                    </p>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-6 font-medium">
-                    {details.description}
-                  </p>
-
-                  {/* Features */}
-                  <ul className="space-y-3.5 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="mt-0.5">
-                          <Check className="w-5 h-5 text-amber-500" />
-                        </div>
-                        <span className="text-sm leading-relaxed">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA Button */}
-                  {(() => {
-                    // Utiliser la fonction helper pour obtenir le lien de paiement
-                    const planKey = plan.key as 'starter' | 'professional' | 'enterprise';
-                    const paymentLink = getPaymentLink(planKey, billingType);
-                    const stripeLink = paymentLink || '';
-                    const isDisabled = !stripeLink;
-                    
-                    // For Starter plan with oneTime billing, show a disabled button with message
-                    if (isDisabled && plan.key === 'starter' && billingType === 'oneTime') {
-                      return (
-                        <div>
-                          <button
-                            disabled
-                            className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium bg-muted text-muted-foreground cursor-not-allowed opacity-60"
-                          >
-                            Non disponible en paiement unique
-                          </button>
-                          <p className="text-xs text-center text-muted-foreground mt-2">
-                            💡 Disponible uniquement en abonnement mensuel
-                          </p>
-                        </div>
-                      );
-                    }
-                    
-                    // Si le lien est vide, rediriger vers contact au lieu de recharger la page
-                    const finalLink = paymentLink || '#contact';
-                    
-                    return (
-                      <a
-                        href={finalLink}
-                        target={paymentLink ? "_blank" : "_self"}
-                        rel={paymentLink ? "noopener noreferrer" : undefined}
-                        className={cn(
-                          "w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5",
-                          plan.popular
-                            ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40"
-                            : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30"
-                        )}
-                      >
-                        {plan.key === 'enterprise' 
-                          ? t.cta.enterprise 
-                          : (billingType === 'oneTime' ? t.cta.oneTime : t.cta.monthly)
-                        }
-                        <ArrowRight className="w-5 h-5" />
-                      </a>
-                    );
-                  })()}
+                {/* Plan Header */}
+                <div style={{ marginBottom: '25px', marginTop: isRecommended ? '10px' : '0' }}>
+                  <h3 style={{ marginBottom: '10px', fontSize: '24px' }}>{plan.name}</h3>
+                  <p style={{ fontSize: '14px', color: '#64748B' }}>{plan.description}</p>
                 </div>
-              </Card>
+
+                {/* Pricing */}
+                <div style={{ marginBottom: '25px' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '10px' }}>
+                    {originalPrice && (
+                      <span style={{ fontSize: '18px', color: '#94A3B8', textDecoration: 'line-through' }}>
+                        {originalPrice} $
+                      </span>
+                    )}
+                    <span style={{ fontSize: '42px', fontWeight: '800', color: '#3B82F6' }}>
+                      {price} $
+                    </span>
+                    <span style={{ fontSize: '14px', color: '#64748B' }}>/{t.perMonth}</span>
+                  </div>
+                  {plan.savings && billingPeriod === 'annual' && (
+                    <div style={{
+                      background: '#FEF3C7',
+                      border: '1px solid #FDE68A',
+                      color: '#92400E',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      marginBottom: '10px'
+                    }}>
+                      💰 {plan.savings}
+                    </div>
+                  )}
+                  <p style={{ fontSize: '13px', color: '#94A3B8' }}>{plan.billing}</p>
+                </div>
+
+                {/* Features */}
+                <ul style={{ listStyle: 'none', padding: 0, marginBottom: '25px' }}>
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '12px' }}>
+                      <Check size={18} style={{ color: '#3B82F6', flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ fontSize: '14px', color: '#374151' }}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA Button */}
+                <a
+                  href={plan.cta.link}
+                  className={isRecommended ? 'btn-primary' : 'btn-secondary'}
+                  style={{
+                    width: '100%',
+                    textAlign: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  {plan.cta.text}
+                  <ArrowRight size={16} />
+                </a>
+              </div>
             );
           })}
         </div>
 
         {/* Professional Services */}
-        <div className="mb-16">
-          <div className="text-center mb-10">
-            <h3 className="text-3xl font-bold font-heading mb-3">
-              {t.services.title}
+        <div style={{ marginTop: '80px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <h3 style={{ marginBottom: '15px', fontSize: '32px' }}>
+              {t.professionalServices.title}
             </h3>
-            <p className="text-muted-foreground text-lg">
-              {t.services.subtitle}
+            <p style={{ fontSize: '18px', color: '#64748B', maxWidth: '700px', margin: '0 auto' }}>
+              {t.professionalServices.subtitle}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Audit IA */}
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 border-amber-200 hover:border-amber-400">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-6 h-6 text-amber-600" />
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+            gap: '30px',
+            maxWidth: '900px',
+            margin: '0 auto'
+          }}>
+            {/* Audit Card */}
+            <div className="card" style={{ textAlign: 'left' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '15px', marginBottom: '20px' }}>
+                <div style={{
+                  width: '50px',
+                  height: '50px',
+                  background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <Sparkles size={24} style={{ color: '#3B82F6' }} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold font-heading mb-1">
-                    {productDetails.audit.name}
+                  <h4 style={{ marginBottom: '5px', fontSize: '20px' }}>
+                    {t.professionalServices.audit.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {productDetails.audit.subtitle}
+                  <p style={{ fontSize: '13px', color: '#3B82F6', fontWeight: '600' }}>
+                    {t.professionalServices.audit.subtitle}
                   </p>
                 </div>
               </div>
-              
-              <p className="text-sm text-muted-foreground mb-6">
-                {productDetails.audit.description}
+              <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '20px' }}>
+                {t.professionalServices.audit.description}
               </p>
-
-              <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-4xl font-bold font-heading">
-                  {productDetails.audit.price.toLocaleString('fr-CA')} $
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px', marginBottom: '20px' }}>
+                <span style={{ fontSize: '36px', fontWeight: '800', color: '#3B82F6' }}>
+                  {t.professionalServices.audit.price}
                 </span>
-                <span className="text-muted-foreground">CAD</span>
+                <span style={{ fontSize: '14px', color: '#64748B' }}>
+                  {t.professionalServices.audit.currency}
+                </span>
               </div>
-
               <a
-                href={stripeLinks.services.audit}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5"
+                href={t.professionalServices.audit.cta.link}
+                className="btn-primary"
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
               >
-                <Sparkles className="w-4 h-4" />
-                {t.services.auditCta}
+                {t.professionalServices.audit.cta.text}
+                <ArrowRight size={16} />
               </a>
-            </Card>
+            </div>
 
-            {/* Consultation */}
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 border-amber-200 hover:border-amber-400">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Rocket className="w-6 h-6 text-amber-600" />
+            {/* Consultation Card */}
+            <div className="card" style={{ textAlign: 'left' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '15px', marginBottom: '20px' }}>
+                <div style={{
+                  width: '50px',
+                  height: '50px',
+                  background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <Users size={24} style={{ color: '#3B82F6' }} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold font-heading mb-1">
-                    {productDetails.consultation.name}
+                  <h4 style={{ marginBottom: '5px', fontSize: '20px' }}>
+                    {t.professionalServices.consultation.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {productDetails.consultation.subtitle}
+                  <p style={{ fontSize: '13px', color: '#3B82F6', fontWeight: '600' }}>
+                    {t.professionalServices.consultation.subtitle}
                   </p>
                 </div>
               </div>
-              
-              <p className="text-sm text-muted-foreground mb-6">
-                {productDetails.consultation.description}
+              <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '20px' }}>
+                {t.professionalServices.consultation.description}
               </p>
-
-              <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-4xl font-bold font-heading">
-                  {productDetails.consultation.price.toLocaleString('fr-CA')} $
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px', marginBottom: '20px' }}>
+                <span style={{ fontSize: '36px', fontWeight: '800', color: '#3B82F6' }}>
+                  {t.professionalServices.consultation.price}
                 </span>
-                <span className="text-muted-foreground">CAD</span>
+                <span style={{ fontSize: '14px', color: '#64748B' }}>
+                  {t.professionalServices.consultation.currency}
+                </span>
               </div>
-
               <a
-                href={stripeLinks.services.consultation}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full font-button text-base h-12 inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5"
+                href={t.professionalServices.consultation.cta.link}
+                className="btn-primary"
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
               >
-                <Rocket className="w-4 h-4" />
-                {t.services.consultationCta}
+                {t.professionalServices.consultation.cta.text}
+                <ArrowRight size={16} />
               </a>
-            </Card>
+            </div>
           </div>
         </div>
 
-        {/* Trust Badges */}
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground mb-4">
-            {t.paymentSecure}
-          </p>
-          <p className="text-xs text-muted-foreground max-w-2xl mx-auto">
-            {t.note}
-          </p>
-        </div>
       </div>
     </section>
   );
-};
-
-export default Pricing;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 

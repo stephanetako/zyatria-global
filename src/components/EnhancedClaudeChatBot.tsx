@@ -3,7 +3,6 @@
 
 
 
-
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Sparkles, Zap, Brain, TrendingUp, Shield, Cpu, Loader2, Calendar, Calculator, Mail, Mic, MicOff } from 'lucide-react';
 import { baseUrl } from '../lib/base-url';
@@ -472,7 +471,7 @@ const EnhancedClaudeChatBot: React.FC = () => {
     if (isOpen && messages.length === 0) {
       const welcomeMessage: Message = {
         id: Date.now().toString(),
-        text: "👋 Bonjour! Je suis votre agent IA ZyatrIA, propulsé par **Claude 3.5 Sonnet** - l'IA la plus avancée du marché.\n\nComment puis-je transformer votre entreprise aujourd'hui?",
+        text: "👋 Salut ! Moi c'est Marc, consultant chez ZyatrIA.\n\nJe suis là pour t'aider à trouver la solution IA parfaite pour ton entreprise. Pas de blabla technique, juste des solutions concrètes qui fonctionnent ! 😊\n\n**Dis-moi, c'est quoi ton plus gros défi en ce moment ?** Qu'est-ce qui te prend le plus de temps ou te frustre le plus dans ton business ?",
         sender: 'bot',
         timestamp: new Date(),
         suggestions: quickSuggestions
@@ -650,6 +649,7 @@ const EnhancedClaudeChatBot: React.FC = () => {
 };
 
 export default EnhancedClaudeChatBot;
+
 
 
 

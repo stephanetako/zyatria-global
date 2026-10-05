@@ -1,3 +1,4 @@
+
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
 import {
@@ -13,7 +14,8 @@ import {
 export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2026-05-27.dahlia',
+  typescript: true,
 });
 
 export const POST: APIRoute = async ({ request }) => {
@@ -119,3 +121,4 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(`Error: ${error.message}`, { status: 500 });
   }
 };
+

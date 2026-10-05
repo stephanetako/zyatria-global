@@ -1,5 +1,9 @@
 
 
+
+
+
+
 import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { baseUrl } from '../lib/base-url';
@@ -128,11 +132,9 @@ export default function Footer() {
           
           {/* Column 1 - Identity */}
           <div className="footer-col space-y-4">
-            <img 
-              src="/zyatria-global-logo.svg" 
-              alt="ZyatrIA Global Logo"
-              style={{ width: '180px', height: 'auto' }}
-            />
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              ZyatrIA Global
+            </h3>
             
             {/* Tagline */}
             <p className="text-blue-600 font-semibold">
@@ -236,6 +238,10 @@ export default function Footer() {
     </footer>
   );
 }
+
+
+
+
 
 
 

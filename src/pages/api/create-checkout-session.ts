@@ -2,8 +2,14 @@ import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const body = await request.json();
-    const { planName, amount, currency = 'CAD', type = 'payment' } = body;
+    const body = await request.json() as {
+      planName?: string;
+      amount?: number;
+      currency?: string;
+      type?: string;
+    };
+    
+    const { planName, amount, currency, type } = body;
 
     console.log('📦 Création de session Stripe:', { planName, amount, currency, type });
 
@@ -45,3 +51,4 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 };
+

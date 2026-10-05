@@ -1,81 +1,109 @@
-# 🌐 GUIDE : CONFIGURER VOTRE DOMAINE PERSONNALISÉ
+# 🌐 Guide Domaine Personnalisé
 
-## 🎯 Objectif : Avoir votre site sur `zyatria.global`
+## 🎯 Objectif
 
-Actuellement, après déploiement, votre site est sur :
-```
-https://zyatria-global.pages.dev
-```
-
-Objectif : Le rendre accessible sur :
-```
-https://zyatria.global
-```
+Configurer votre domaine personnalisé `zyatria.global` pour pointer vers votre site Cloudflare Pages.
 
 ---
 
-## 📋 ÉTAPES COMPLÈTES
+## 📋 Prérequis
 
-### Étape 1 : Acheter le domaine (si pas déjà fait)
+- ✅ Site déployé sur Cloudflare Pages
+- ✅ Compte Cloudflare actif
+- ⏳ Domaine `zyatria.global` (à acheter)
 
-#### Option A : Cloudflare Registrar (Recommandé ⭐)
+---
+
+## 💰 Étape 1 : Acheter le Domaine
+
+### Options Recommandées
+
+#### Option 1 : Cloudflare Registrar (Recommandé)
 
 **Avantages :**
-- Prix au coût (pas de marge)
-- Configuration automatique
-- Pas de frais cachés
-- Protection WHOIS gratuite
+- ✅ Prix au coût (pas de marge)
+- ✅ Configuration automatique
+- ✅ Protection WHOIS gratuite
+- ✅ Pas de frais cachés
+
+**Prix estimé :** ~10-15$/an
 
 **Comment faire :**
-1. Aller sur https://dash.cloudflare.com
-2. Menu "Domain Registration"
-3. Rechercher `zyatria.global`
-4. Vérifier la disponibilité
-5. Acheter (prix : ~10-15€/an)
-
-✅ **Si vous achetez chez Cloudflare, passez directement à l'Étape 3**
+1. Allez sur https://dash.cloudflare.com/
+2. Cliquez sur "Domain Registration"
+3. Recherchez `zyatria.global`
+4. Suivez les instructions d'achat
 
 ---
 
-#### Option B : Autres registrars
+#### Option 2 : Autres Registrars
 
-**Namecheap** (Populaire)
-- Site : https://www.namecheap.com
-- Prix : ~12€/an
-- Protection WHOIS : +5€/an
+**Alternatives :**
+- Namecheap : https://www.namecheap.com/
+- Google Domains : https://domains.google/
+- GoDaddy : https://www.godaddy.com/
 
-**Google Domains**
-- Site : https://domains.google
-- Prix : ~12€/an
-- Protection WHOIS : Incluse
-
-**OVH** (Français)
-- Site : https://www.ovh.com
-- Prix : ~10€/an
-- Support en français
-
-**GoDaddy** (Déconseillé - cher)
-- Prix : ~15-20€/an
-- Beaucoup d'upsells
+**Note :** Vous devrez configurer les DNS manuellement
 
 ---
 
-### Étape 2 : Transférer le domaine vers Cloudflare (Si acheté ailleurs)
+## 🔧 Étape 2 : Ajouter le Domaine dans Cloudflare Pages
 
-#### 2.1 Ajouter le site sur Cloudflare
+### 2.1 Accéder au Dashboard
 
-1. Aller sur https://dash.cloudflare.com
-2. Cliquer "Add a site"
-3. Entrer : `zyatria.global`
-4. Choisir le plan **Free** (gratuit)
-5. Cliquer "Continue"
+1. Allez sur https://dash.cloudflare.com/
+2. Cliquez sur "Pages"
+3. Sélectionnez votre projet "zyatria-global"
+4. Cliquez sur "Custom domains"
 
-#### 2.2 Scanner les DNS existants
+---
 
-Cloudflare va scanner vos DNS actuels.
-- Cliquer "Continue"
+### 2.2 Ajouter le Domaine
 
-#### 2.3 Changer les nameservers
+1. Cliquez sur "Set up a custom domain"
+2. Entrez `zyatria.global`
+3. Cliquez sur "Continue"
+4. Cloudflare va vérifier le domaine
+
+---
+
+### 2.3 Ajouter les Sous-domaines (Optionnel)
+
+**Recommandé :**
+- `www.zyatria.global` → Redirige vers `zyatria.global`
+- `app.zyatria.global` → Pour une application séparée (futur)
+- `blog.zyatria.global` → Pour un blog (futur)
+
+---
+
+## 🌐 Étape 3 : Configurer les DNS
+
+### Si vous avez acheté sur Cloudflare
+
+**Configuration automatique !** ✅
+
+Cloudflare configure automatiquement :
+- Enregistrement A pour `zyatria.global`
+- Enregistrement CNAME pour `www.zyatria.global`
+- SSL/TLS automatique
+
+---
+
+### Si vous avez acheté ailleurs
+
+**Vous devez configurer les DNS manuellement :**
+
+#### 3.1 Ajouter le Domaine à Cloudflare
+
+1. Dans le dashboard Cloudflare
+2. Cliquez sur "Add a Site"
+3. Entrez `zyatria.global`
+4. Choisissez le plan Free
+5. Cloudflare va scanner vos DNS existants
+
+---
+
+#### 3.2 Configurer les Nameservers
 
 Cloudflare vous donnera 2 nameservers, par exemple :
 ```
@@ -83,279 +111,316 @@ ns1.cloudflare.com
 ns2.cloudflare.com
 ```
 
-**Aller chez votre registrar :**
+**Chez votre registrar :**
+1. Allez dans les paramètres DNS
+2. Remplacez les nameservers par ceux de Cloudflare
+3. Sauvegardez
 
-##### Sur Namecheap :
-1. Dashboard → Domain List
-2. Cliquer "Manage" à côté de votre domaine
-3. Section "Nameservers"
-4. Sélectionner "Custom DNS"
-5. Entrer les 2 nameservers de Cloudflare
-6. Sauvegarder
-
-##### Sur Google Domains :
-1. My Domains → Sélectionner votre domaine
-2. DNS → Name servers
-3. Cliquer "Use custom name servers"
-4. Entrer les 2 nameservers de Cloudflare
-5. Sauvegarder
-
-##### Sur OVH :
-1. Espace client → Domaines
-2. Sélectionner votre domaine
-3. Onglet "Serveurs DNS"
-4. Modifier les serveurs DNS
-5. Entrer les 2 nameservers de Cloudflare
-6. Valider
-
-#### 2.4 Attendre la propagation
-
-⏱️ **Temps d'attente : 2-48 heures**
-
-Cloudflare vous enverra un email quand c'est prêt.
-
-Vous pouvez vérifier sur :
-- https://www.whatsmydns.net/#NS/zyatria.global
+**Délai :** 24-48h pour la propagation
 
 ---
 
-### Étape 3 : Connecter le domaine à Cloudflare Pages
+#### 3.3 Ajouter les Enregistrements DNS
 
-#### 3.1 Aller dans votre projet Pages
+Dans Cloudflare DNS :
 
-1. https://dash.cloudflare.com
-2. Menu "Workers & Pages"
-3. Cliquer sur votre projet `zyatria-global`
-
-#### 3.2 Ajouter le domaine personnalisé
-
-1. Onglet "Custom domains"
-2. Cliquer "Set up a custom domain"
-3. Entrer : `zyatria.global`
-4. Cliquer "Continue"
-
-#### 3.3 Configuration automatique
-
-Cloudflare va automatiquement :
-- ✅ Créer les enregistrements DNS
-- ✅ Générer un certificat SSL (HTTPS)
-- ✅ Activer le CDN mondial
-- ✅ Configurer les redirections
-
-**Temps : 2-5 minutes**
-
-#### 3.4 Ajouter www (optionnel)
-
-Pour que `www.zyatria.global` fonctionne aussi :
-
-1. Cliquer "Set up a custom domain" à nouveau
-2. Entrer : `www.zyatria.global`
-3. Cloudflare redirigera automatiquement vers `zyatria.global`
-
----
-
-### Étape 4 : Vérifier que tout fonctionne
-
-#### 4.1 Tester le domaine
-
-Ouvrir dans le navigateur :
+**Enregistrement 1 : Domaine principal**
 ```
-https://zyatria.global
+Type: CNAME
+Name: @
+Target: zyatria-global.pages.dev
+Proxy: Activé (orange)
 ```
 
-✅ **Ça marche ?** Parfait !
-
-❌ **Erreur ?** Voir la section Dépannage ci-dessous
-
-#### 4.2 Vérifier HTTPS
-
-Le cadenas 🔒 doit être vert dans la barre d'adresse.
-
-Si ce n'est pas le cas :
-1. Attendre 5-10 minutes
-2. Vider le cache du navigateur (Ctrl+Shift+R)
-3. Réessayer
-
-#### 4.3 Tester les redirections
-
-Vérifier que ces URLs fonctionnent :
+**Enregistrement 2 : Sous-domaine www**
 ```
-http://zyatria.global → https://zyatria.global ✅
-www.zyatria.global → https://zyatria.global ✅
+Type: CNAME
+Name: www
+Target: zyatria-global.pages.dev
+Proxy: Activé (orange)
 ```
 
 ---
 
-## 🔧 CONFIGURATION AVANCÉE (Optionnel)
+## 🔒 Étape 4 : Configurer SSL/TLS
 
-### Activer le mode "Always Use HTTPS"
+### 4.1 Activer SSL/TLS
 
-1. Cloudflare Dashboard → Votre domaine
-2. SSL/TLS → Edge Certificates
-3. Activer "Always Use HTTPS"
+1. Dans le dashboard Cloudflare
+2. Allez dans "SSL/TLS"
+3. Choisissez "Full (strict)"
 
-### Activer HSTS (Sécurité)
-
-1. SSL/TLS → Edge Certificates
-2. Activer "HTTP Strict Transport Security (HSTS)"
-3. Configuration recommandée :
-   - Max Age: 6 months
-   - Include subdomains: Yes
-   - Preload: Yes
-
-### Optimiser la vitesse
-
-1. Speed → Optimization
-2. Activer :
-   - Auto Minify (HTML, CSS, JS)
-   - Brotli
-   - Early Hints
-   - Rocket Loader
-
-### Configurer le cache
-
-1. Caching → Configuration
-2. Caching Level: Standard
-3. Browser Cache TTL: 4 hours
+**Résultat :** HTTPS automatique ✅
 
 ---
 
-## 🆘 DÉPANNAGE
+### 4.2 Forcer HTTPS
 
-### Problème : "DNS_PROBE_FINISHED_NXDOMAIN"
+1. Dans "SSL/TLS"
+2. Allez dans "Edge Certificates"
+3. Activez "Always Use HTTPS"
 
-**Cause :** Les DNS ne sont pas encore propagés
+**Résultat :** Redirection automatique HTTP → HTTPS ✅
+
+---
+
+### 4.3 Activer HSTS (Optionnel)
+
+1. Dans "SSL/TLS"
+2. Allez dans "Edge Certificates"
+3. Activez "HTTP Strict Transport Security (HSTS)"
+
+**Paramètres recommandés :**
+- Max Age: 6 months
+- Include subdomains: Oui
+- Preload: Oui
+
+---
+
+## ⚡ Étape 5 : Optimisations (Optionnel)
+
+### 5.1 Activer le Cache
+
+1. Dans "Caching"
+2. Choisissez "Standard"
+3. Activez "Always Online"
+
+---
+
+### 5.2 Activer la Compression
+
+1. Dans "Speed"
+2. Activez "Auto Minify" pour HTML, CSS, JS
+3. Activez "Brotli"
+
+---
+
+### 5.3 Configurer les Redirections
+
+**Rediriger www vers apex :**
+
+1. Dans "Rules" → "Page Rules"
+2. Créez une règle :
+   - URL: `www.zyatria.global/*`
+   - Setting: Forwarding URL (301)
+   - Destination: `https://zyatria.global/$1`
+
+---
+
+## ✅ Étape 6 : Vérification
+
+### 6.1 Vérifier le DNS
+
+```bash
+# Vérifier l'enregistrement A
+nslookup zyatria.global
+
+# Vérifier l'enregistrement CNAME
+nslookup www.zyatria.global
+```
+
+---
+
+### 6.2 Vérifier SSL
+
+1. Allez sur https://zyatria.global
+2. Cliquez sur le cadenas dans la barre d'adresse
+3. Vérifiez que le certificat est valide
+
+---
+
+### 6.3 Tester les Redirections
+
+```bash
+# Tester HTTP → HTTPS
+curl -I http://zyatria.global
+
+# Tester www → apex
+curl -I https://www.zyatria.global
+```
+
+---
+
+## 📊 Récapitulatif
+
+### Configuration Complète
+
+| Élément | Statut | Temps |
+|---------|--------|-------|
+| Achat domaine | ⏳ À faire | 5 min |
+| Ajout dans Pages | ⏳ À faire | 2 min |
+| Configuration DNS | ⏳ À faire | 5 min |
+| SSL/TLS | ⏳ Auto | - |
+| Propagation DNS | ⏳ Attente | 24-48h |
+| **Total** | **⏳** | **~12 min + attente** |
+
+---
+
+### URLs Finales
+
+| Type | URL | Statut |
+|------|-----|--------|
+| Principal | `https://zyatria.global` | ⏳ À configurer |
+| WWW | `https://www.zyatria.global` | ⏳ À configurer |
+| Cloudflare | `https://zyatria-global.pages.dev` | ✅ Actif |
+| Webflow | `https://8972843a648f35320d9efb62c844e9de.app.webflow.io` | ✅ Référence |
+
+---
+
+## 🚨 Problèmes Courants
+
+### Le site ne s'affiche pas
+
+**Causes possibles :**
+1. DNS pas encore propagé (attendre 24-48h)
+2. Enregistrements DNS incorrects
+3. SSL pas encore activé
 
 **Solution :**
-1. Attendre 2-48h
-2. Vider le cache DNS :
-   ```bash
-   # Windows
-   ipconfig /flushdns
-   
-   # Mac
-   sudo dscacheutil -flushcache
-   
-   # Linux
-   sudo systemd-resolve --flush-caches
-   ```
+1. Vérifier les enregistrements DNS dans Cloudflare
+2. Attendre la propagation
+3. Vider le cache du navigateur
 
-### Problème : "ERR_SSL_VERSION_OR_CIPHER_MISMATCH"
+---
 
-**Cause :** Le certificat SSL n'est pas encore généré
+### Erreur SSL
+
+**Causes possibles :**
+1. SSL/TLS pas configuré en "Full (strict)"
+2. Certificat pas encore généré
 
 **Solution :**
-1. Attendre 5-10 minutes
-2. Cloudflare Dashboard → SSL/TLS
-3. Vérifier que le mode est "Full" ou "Full (strict)"
+1. Aller dans SSL/TLS
+2. Choisir "Full (strict)"
+3. Attendre 5-10 minutes
 
-### Problème : "Too many redirects"
+---
 
-**Cause :** Conflit de redirection
+### Redirection ne fonctionne pas
+
+**Causes possibles :**
+1. Page Rule mal configurée
+2. Cache du navigateur
 
 **Solution :**
-1. Cloudflare Dashboard → SSL/TLS
-2. Changer le mode SSL/TLS en "Full"
-3. Attendre 5 minutes
-
-### Problème : Le site affiche l'ancienne version
-
-**Cause :** Cache du navigateur ou CDN
-
-**Solution :**
-1. Vider le cache du navigateur (Ctrl+Shift+R)
-2. Cloudflare Dashboard → Caching → Purge Everything
-3. Attendre 2-3 minutes
+1. Vérifier la Page Rule
+2. Vider le cache
+3. Tester en navigation privée
 
 ---
 
-## 📊 VÉRIFICATION COMPLÈTE
+## 💡 Conseils
 
-### Checklist DNS
+### 1. Acheter sur Cloudflare
 
-Vérifier sur https://dnschecker.org :
-- [ ] A record pointe vers Cloudflare
-- [ ] AAAA record (IPv6) configuré
-- [ ] CNAME www configuré
-- [ ] Propagation mondiale (>80%)
+**Avantages :**
+- Configuration automatique
+- Prix au coût
+- Pas de frais cachés
 
-### Checklist SSL
+### 2. Activer le Proxy
 
-Vérifier sur https://www.ssllabs.com/ssltest/ :
-- [ ] Grade A ou A+
-- [ ] Certificat valide
-- [ ] HSTS activé
-- [ ] TLS 1.3 supporté
+**Toujours activer le proxy (orange) pour :**
+- Protection DDoS
+- Cache CDN
+- Optimisations automatiques
 
-### Checklist Performance
+### 3. Configurer les Redirections
 
-Vérifier sur https://pagespeed.web.dev :
-- [ ] Score mobile >90
-- [ ] Score desktop >95
-- [ ] First Contentful Paint <1.8s
-- [ ] Largest Contentful Paint <2.5s
+**Recommandé :**
+- www → apex (sans www)
+- HTTP → HTTPS
+- Anciennes URLs → Nouvelles URLs
 
----
+### 4. Surveiller les Analytics
 
-## 💰 COÛTS ANNUELS
-
-### Domaine
-- **Cloudflare Registrar** : ~10-12€/an
-- **Namecheap** : ~12€/an + 5€ WHOIS
-- **Google Domains** : ~12€/an
-- **OVH** : ~10€/an
-
-### Hébergement
-- **Cloudflare Pages** : GRATUIT ✅
-  - Bande passante illimitée
-  - Builds illimités
-  - SSL gratuit
-  - CDN mondial
-
-### Total
-**~10-17€/an** (juste le domaine !)
+**Dans Cloudflare :**
+- Trafic
+- Requêtes
+- Bande passante
+- Menaces bloquées
 
 ---
 
-## 🎯 RÉSUMÉ RAPIDE
+## 📚 Ressources
 
-### Si domaine chez Cloudflare :
-1. Acheter le domaine
-2. Pages → Custom domains → Add
-3. Entrer `zyatria.global`
-4. **Terminé !** (2 minutes)
+### Documentation Cloudflare
 
-### Si domaine ailleurs :
-1. Acheter le domaine
-2. Ajouter le site sur Cloudflare
-3. Changer les nameservers
-4. Attendre 2-48h
-5. Pages → Custom domains → Add
-6. **Terminé !**
+- **Pages Custom Domains :** https://developers.cloudflare.com/pages/platform/custom-domains/
+- **DNS Records :** https://developers.cloudflare.com/dns/manage-dns-records/
+- **SSL/TLS :** https://developers.cloudflare.com/ssl/
+
+### Outils de Vérification
+
+- **DNS Checker :** https://dnschecker.org/
+- **SSL Checker :** https://www.ssllabs.com/ssltest/
+- **Redirect Checker :** https://httpstatus.io/
 
 ---
 
-## 📧 BONUS : Email professionnel
+## 🎯 Checklist Complète
 
-Pour avoir des emails `contact@zyatria.global` :
+### Avant de Commencer
 
-### Option 1 : Cloudflare Email Routing (Gratuit)
-1. Cloudflare Dashboard → Email → Email Routing
-2. Activer Email Routing
-3. Créer une adresse : `contact@zyatria.global`
-4. Rediriger vers votre email personnel
+- [ ] Site déployé sur Cloudflare Pages
+- [ ] Compte Cloudflare actif
+- [ ] Budget pour le domaine (~10-15$/an)
 
-### Option 2 : Google Workspace (Payant)
-- Prix : 6€/mois/utilisateur
-- Gmail professionnel
-- Drive, Calendar, Meet inclus
+### Achat du Domaine
 
-### Option 3 : Zoho Mail (Gratuit/Payant)
-- Plan gratuit : 1 domaine, 5 utilisateurs
-- Plan payant : 1€/mois/utilisateur
+- [ ] Domaine acheté
+- [ ] Accès au registrar
+- [ ] Informations de contact à jour
+
+### Configuration Cloudflare
+
+- [ ] Domaine ajouté dans Pages
+- [ ] DNS configurés
+- [ ] SSL/TLS activé
+- [ ] Redirections configurées
+
+### Vérification
+
+- [ ] DNS propagé
+- [ ] Site accessible
+- [ ] HTTPS fonctionne
+- [ ] Redirections fonctionnent
+
+### Optimisations
+
+- [ ] Cache activé
+- [ ] Compression activée
+- [ ] Analytics configuré
+- [ ] Page Rules créées
 
 ---
 
-**Votre domaine sera configuré et votre site accessible sur `https://zyatria.global` !** 🎉
+## 🎉 Résultat Final
 
-Des questions ? Consultez la documentation Cloudflare : https://developers.cloudflare.com/pages
+Après avoir suivi ce guide :
+
+- ✅ Domaine personnalisé configuré
+- ✅ HTTPS automatique
+- ✅ Redirections fonctionnelles
+- ✅ Performance optimale
+- ✅ Protection DDoS
+- ✅ Analytics disponible
+
+**Votre site sera accessible sur `https://zyatria.global` !** 🚀
+
+---
+
+**Date** : 4 octobre 2024  
+**Statut** : ✅ GUIDE COMPLET  
+**Temps estimé** : ~12 minutes + 24-48h propagation
+
+---
+
+## 🚀 Prochaines Étapes
+
+1. **Acheter le domaine** `zyatria.global`
+2. **Suivre ce guide** étape par étape
+3. **Attendre la propagation** (24-48h)
+4. **Vérifier** que tout fonctionne
+
+**Votre site professionnel sera en ligne !** 🎉
