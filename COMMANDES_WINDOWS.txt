@@ -1,0 +1,130 @@
+═══════════════════════════════════════════════════════════
+  🎯 COMMANDES RAPIDES WINDOWS - ZyatrIA Global
+═══════════════════════════════════════════════════════════
+
+🚨 PROBLÈME ACTUEL
+─────────────────
+Serveur Astro déjà en cours (PID: 33368)
+Erreur ASSETS réservé dans Cloudflare Pages
+
+✅ SOLUTION RAPIDE (3 COMMANDES)
+─────────────────────────────────
+
+1. Arrêter le serveur :
+   npx astro dev stop
+
+2. Build :
+   npm run build
+
+3. Déployer :
+   wrangler pages deploy dist
+
+═══════════════════════════════════════════════════════════
+
+🔧 SI LE SERVEUR NE S'ARRÊTE PAS
+────────────────────────────────
+
+Arrêter tous les processus Node :
+   Get-Process -Name node | Stop-Process -Force
+
+Attendre 2 secondes puis :
+   npm run dev
+
+═══════════════════════════════════════════════════════════
+
+🧹 NETTOYAGE COMPLET (SI PROBLÈMES)
+───────────────────────────────────
+
+Option 1 - Script PowerShell :
+   .\restart-dev-clean.ps1
+
+Option 2 - Commandes manuelles :
+   npx astro dev stop
+   Get-Process -Name node | Stop-Process -Force
+   Remove-Item -Path ".astro" -Recurse -Force
+   Remove-Item -Path "node_modules\.vite" -Recurse -Force
+   Remove-Item -Path "dist" -Recurse -Force
+   npm run build
+
+═══════════════════════════════════════════════════════════
+
+📊 VÉRIFICATION DU BUILD
+────────────────────────
+
+Build réussi si vous voyez :
+   ✓ built in 555ms
+   ✅ Binding ASSETS renommé en STATIC_ASSETS
+   ✅ Configuration complète mise à jour
+
+Pas d'erreur :
+   ❌ The name 'ASSETS' is reserved
+
+═══════════════════════════════════════════════════════════
+
+🚀 WORKFLOW COMPLET
+───────────────────
+
+1. Arrêter :
+   npx astro dev stop
+
+2. Nettoyer (optionnel) :
+   .\restart-dev-clean.ps1
+
+3. Build :
+   npm run build
+
+4. Tester localement (optionnel) :
+   npm run preview
+
+5. Déployer :
+   wrangler pages deploy dist
+
+═══════════════════════════════════════════════════════════
+
+💡 CONSEILS
+───────────
+
+• Toujours arrêter avec "npx astro dev stop"
+• Ne pas utiliser Ctrl+C directement
+• Nettoyer les caches si problèmes
+• Vérifier qu'aucun processus Node ne tourne
+
+═══════════════════════════════════════════════════════════
+
+🎯 COMMANDES UTILES
+───────────────────
+
+Voir les processus Node :
+   Get-Process -Name node
+
+Voir les ports utilisés :
+   Get-NetTCPConnection -LocalPort 3000
+   Get-NetTCPConnection -LocalPort 4321
+
+Tuer un processus spécifique :
+   Stop-Process -Id 33368 -Force
+
+═══════════════════════════════════════════════════════════
+
+✅ FICHIERS CORRIGÉS
+────────────────────
+
+• fix-wrangler-config.js - Corrige ASSETS automatiquement
+• restart-dev-clean.ps1 - Script de nettoyage Windows
+• wrangler.toml - Configuration correcte
+
+═══════════════════════════════════════════════════════════
+
+🎉 APRÈS CES COMMANDES
+──────────────────────
+
+✅ Serveur arrêté proprement
+✅ Build sans erreur ASSETS
+✅ Déploiement fonctionnel
+✅ Site prêt pour production
+
+═══════════════════════════════════════════════════════════
+
+Date: 4 octobre 2024
+Statut: ✅ SOLUTIONS PRÊTES
+Plateforme: Windows PowerShell

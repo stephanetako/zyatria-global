@@ -23,50 +23,281 @@ import {
   SelectValue,
 } from '../ui/select';
 
-const upcomingBookings = [
-  {
-    id: 1,
-    title: 'Consultation Stratégie IA',
-    date: '2024-02-15',
-    time: '14:00',
-    duration: '60 min',
-    type: 'video',
-    status: 'confirmed',
-    client: 'Acme Corp',
-    consultant: 'Marie Dubois'
+interface BookingsTabProps {
+  lang?: 'en' | 'fr' | 'es' | 'pt';
+}
+
+type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+
+const translations: Record<TranslationKey, any> = {
+  en: {
+    title: 'Bookings',
+    subtitle: 'Manage your consultations and training sessions',
+    newBooking: 'New Booking',
+    calendar: {
+      title: 'Calendar',
+      description: 'Select a date'
+    },
+    upcoming: {
+      title: 'Upcoming Bookings',
+      description: 'Your next appointments'
+    },
+    availableSlots: {
+      title: 'Available Time Slots',
+      description: 'For'
+    },
+    dialog: {
+      title: 'New Booking',
+      description: 'Schedule a consultation or training',
+      serviceType: 'Service Type',
+      selectService: 'Select a service',
+      date: 'Date',
+      time: 'Time',
+      selectSlot: 'Select a time slot',
+      format: 'Format',
+      selectFormat: 'Select format',
+      notes: 'Notes (optional)',
+      notesPlaceholder: 'Additional information...',
+      cancel: 'Cancel',
+      confirm: 'Confirm Booking'
+    },
+    services: {
+      consultation: 'AI Strategy Consultation',
+      training: 'Micro-Agents Training',
+      review: 'Performance Review',
+      demo: 'Product Demo'
+    },
+    formats: {
+      video: 'Video Conference',
+      onsite: 'On-site',
+      phone: 'Phone'
+    },
+    status: {
+      confirmed: 'Confirmed',
+      pending: 'Pending',
+      cancelled: 'Cancelled'
+    },
+    actions: {
+      edit: 'Edit',
+      cancel: 'Cancel',
+      join: 'Join',
+      filter: 'Filter'
+    },
+    consultant: 'Consultant'
   },
-  {
-    id: 2,
-    title: 'Formation Micro-Agents',
-    date: '2024-02-16',
-    time: '10:00',
-    duration: '120 min',
-    type: 'onsite',
-    status: 'confirmed',
-    client: 'TechStart Inc',
-    consultant: 'Jean Martin'
+  fr: {
+    title: 'Réservations',
+    subtitle: 'Gérez vos consultations et formations',
+    newBooking: 'Nouvelle Réservation',
+    calendar: {
+      title: 'Calendrier',
+      description: 'Sélectionnez une date'
+    },
+    upcoming: {
+      title: 'Réservations à Venir',
+      description: 'Vos prochains rendez-vous'
+    },
+    availableSlots: {
+      title: 'Créneaux Disponibles',
+      description: 'Pour le'
+    },
+    dialog: {
+      title: 'Nouvelle Réservation',
+      description: 'Planifiez une consultation ou une formation',
+      serviceType: 'Type de Service',
+      selectService: 'Sélectionner un service',
+      date: 'Date',
+      time: 'Heure',
+      selectSlot: 'Sélectionner un créneau',
+      format: 'Format',
+      selectFormat: 'Sélectionner le format',
+      notes: 'Notes (optionnel)',
+      notesPlaceholder: 'Informations complémentaires...',
+      cancel: 'Annuler',
+      confirm: 'Confirmer la Réservation'
+    },
+    services: {
+      consultation: 'Consultation Stratégie IA',
+      training: 'Formation Micro-Agents',
+      review: 'Revue de Performance',
+      demo: 'Démonstration Produit'
+    },
+    formats: {
+      video: 'Visioconférence',
+      onsite: 'Sur site',
+      phone: 'Téléphone'
+    },
+    status: {
+      confirmed: 'Confirmé',
+      pending: 'En attente',
+      cancelled: 'Annulé'
+    },
+    actions: {
+      edit: 'Modifier',
+      cancel: 'Annuler',
+      join: 'Rejoindre',
+      filter: 'Filtrer'
+    },
+    consultant: 'Consultant'
   },
-  {
-    id: 3,
-    title: 'Revue de Performance',
-    date: '2024-02-17',
-    time: '15:30',
-    duration: '45 min',
-    type: 'video',
-    status: 'pending',
-    client: 'Global Solutions',
-    consultant: 'Sophie Laurent'
+  es: {
+    title: 'Reservas',
+    subtitle: 'Gestione sus consultas y formaciones',
+    newBooking: 'Nueva Reserva',
+    calendar: {
+      title: 'Calendario',
+      description: 'Seleccione una fecha'
+    },
+    upcoming: {
+      title: 'Próximas Reservas',
+      description: 'Sus próximas citas'
+    },
+    availableSlots: {
+      title: 'Horarios Disponibles',
+      description: 'Para el'
+    },
+    dialog: {
+      title: 'Nueva Reserva',
+      description: 'Programe una consulta o formación',
+      serviceType: 'Tipo de Servicio',
+      selectService: 'Seleccionar un servicio',
+      date: 'Fecha',
+      time: 'Hora',
+      selectSlot: 'Seleccionar un horario',
+      format: 'Formato',
+      selectFormat: 'Seleccionar formato',
+      notes: 'Notas (opcional)',
+      notesPlaceholder: 'Información adicional...',
+      cancel: 'Cancelar',
+      confirm: 'Confirmar Reserva'
+    },
+    services: {
+      consultation: 'Consulta Estrategia IA',
+      training: 'Formación Micro-Agentes',
+      review: 'Revisión de Rendimiento',
+      demo: 'Demostración de Producto'
+    },
+    formats: {
+      video: 'Videoconferencia',
+      onsite: 'Presencial',
+      phone: 'Teléfono'
+    },
+    status: {
+      confirmed: 'Confirmado',
+      pending: 'Pendiente',
+      cancelled: 'Cancelado'
+    },
+    actions: {
+      edit: 'Editar',
+      cancel: 'Cancelar',
+      join: 'Unirse',
+      filter: 'Filtrar'
+    },
+    consultant: 'Consultor'
   },
-];
+  pt: {
+    title: 'Reservas',
+    subtitle: 'Gerencie suas consultas e treinamentos',
+    newBooking: 'Nova Reserva',
+    calendar: {
+      title: 'Calendário',
+      description: 'Selecione uma data'
+    },
+    upcoming: {
+      title: 'Próximas Reservas',
+      description: 'Seus próximos compromissos'
+    },
+    availableSlots: {
+      title: 'Horários Disponíveis',
+      description: 'Para'
+    },
+    dialog: {
+      title: 'Nova Reserva',
+      description: 'Agende uma consulta ou treinamento',
+      serviceType: 'Tipo de Serviço',
+      selectService: 'Selecionar um serviço',
+      date: 'Data',
+      time: 'Hora',
+      selectSlot: 'Selecionar um horário',
+      format: 'Formato',
+      selectFormat: 'Selecionar formato',
+      notes: 'Notas (opcional)',
+      notesPlaceholder: 'Informações adicionais...',
+      cancel: 'Cancelar',
+      confirm: 'Confirmar Reserva'
+    },
+    services: {
+      consultation: 'Consulta Estratégia IA',
+      training: 'Treinamento Micro-Agentes',
+      review: 'Revisão de Desempenho',
+      demo: 'Demonstração de Produto'
+    },
+    formats: {
+      video: 'Videoconferência',
+      onsite: 'Presencial',
+      phone: 'Telefone'
+    },
+    status: {
+      confirmed: 'Confirmado',
+      pending: 'Pendente',
+      cancelled: 'Cancelado'
+    },
+    actions: {
+      edit: 'Editar',
+      cancel: 'Cancelar',
+      join: 'Entrar',
+      filter: 'Filtrar'
+    },
+    consultant: 'Consultor'
+  }
+};
 
 const timeSlots = [
   '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'
 ];
 
-export default function BookingsTab() {
+export default function BookingsTab({ lang = 'fr' }: BookingsTabProps) {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState('');
+
+  const t = translations[lang];
+
+  const upcomingBookings = [
+    {
+      id: 1,
+      title: t.services.consultation,
+      date: '2024-02-15',
+      time: '14:00',
+      duration: '60 min',
+      type: 'video',
+      status: 'confirmed',
+      client: 'Acme Corp',
+      consultant: 'Marie Dubois'
+    },
+    {
+      id: 2,
+      title: t.services.training,
+      date: '2024-02-16',
+      time: '10:00',
+      duration: '120 min',
+      type: 'onsite',
+      status: 'confirmed',
+      client: 'TechStart Inc',
+      consultant: 'Jean Martin'
+    },
+    {
+      id: 3,
+      title: t.services.review,
+      date: '2024-02-17',
+      time: '15:30',
+      duration: '45 min',
+      type: 'video',
+      status: 'pending',
+      client: 'Global Solutions',
+      consultant: 'Sophie Laurent'
+    },
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -92,48 +323,63 @@ export default function BookingsTab() {
     }
   };
 
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case 'video':
+        return t.formats.video;
+      case 'onsite':
+        return t.formats.onsite;
+      default:
+        return type;
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    return t.status[status as keyof typeof t.status] || status;
+  };
+
   return (
     <div className="space-y-6 animate-fade-in-up">
       {/* Header with CTA */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-heading font-bold">Réservations</h2>
-          <p className="text-muted-foreground">Gérez vos consultations et formations</p>
+          <h2 className="text-2xl font-heading font-bold">{t.title}</h2>
+          <p className="text-muted-foreground">{t.subtitle}</p>
         </div>
         
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
-              Nouvelle Réservation
+              {t.newBooking}
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>Nouvelle Réservation</DialogTitle>
+              <DialogTitle>{t.dialog.title}</DialogTitle>
               <DialogDescription>
-                Planifiez une consultation ou une formation
+                {t.dialog.description}
               </DialogDescription>
             </DialogHeader>
             
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label htmlFor="service">Type de Service</Label>
+                <Label htmlFor="service">{t.dialog.serviceType}</Label>
                 <Select>
                   <SelectTrigger id="service">
-                    <SelectValue placeholder="Sélectionner un service" />
+                    <SelectValue placeholder={t.dialog.selectService} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="consultation">Consultation Stratégie IA</SelectItem>
-                    <SelectItem value="training">Formation Micro-Agents</SelectItem>
-                    <SelectItem value="review">Revue de Performance</SelectItem>
-                    <SelectItem value="demo">Démonstration Produit</SelectItem>
+                    <SelectItem value="consultation">{t.services.consultation}</SelectItem>
+                    <SelectItem value="training">{t.services.training}</SelectItem>
+                    <SelectItem value="review">{t.services.review}</SelectItem>
+                    <SelectItem value="demo">{t.services.demo}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="date">Date</Label>
+                <Label htmlFor="date">{t.dialog.date}</Label>
                 <Input 
                   id="date" 
                   type="date" 
@@ -142,10 +388,10 @@ export default function BookingsTab() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="time">Heure</Label>
+                <Label htmlFor="time">{t.dialog.time}</Label>
                 <Select value={selectedSlot} onValueChange={setSelectedSlot}>
                   <SelectTrigger id="time">
-                    <SelectValue placeholder="Sélectionner un créneau" />
+                    <SelectValue placeholder={t.dialog.selectSlot} />
                   </SelectTrigger>
                   <SelectContent>
                     {timeSlots.map((slot) => (
@@ -158,24 +404,24 @@ export default function BookingsTab() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="type">Format</Label>
+                <Label htmlFor="type">{t.dialog.format}</Label>
                 <Select>
                   <SelectTrigger id="type">
-                    <SelectValue placeholder="Sélectionner le format" />
+                    <SelectValue placeholder={t.dialog.selectFormat} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="video">Visioconférence</SelectItem>
-                    <SelectItem value="onsite">Sur site</SelectItem>
-                    <SelectItem value="phone">Téléphone</SelectItem>
+                    <SelectItem value="video">{t.formats.video}</SelectItem>
+                    <SelectItem value="onsite">{t.formats.onsite}</SelectItem>
+                    <SelectItem value="phone">{t.formats.phone}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="notes">Notes (optionnel)</Label>
+                <Label htmlFor="notes">{t.dialog.notes}</Label>
                 <Textarea 
                   id="notes" 
-                  placeholder="Informations complémentaires..."
+                  placeholder={t.dialog.notesPlaceholder}
                   rows={3}
                 />
               </div>
@@ -183,10 +429,10 @@ export default function BookingsTab() {
 
             <div className="flex justify-end gap-3">
               <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                Annuler
+                {t.dialog.cancel}
               </Button>
               <Button onClick={() => setIsDialogOpen(false)}>
-                Confirmer la Réservation
+                {t.dialog.confirm}
               </Button>
             </div>
           </DialogContent>
@@ -197,8 +443,8 @@ export default function BookingsTab() {
         {/* Calendar */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle>Calendrier</CardTitle>
-            <CardDescription>Sélectionnez une date</CardDescription>
+            <CardTitle>{t.calendar.title}</CardTitle>
+            <CardDescription>{t.calendar.description}</CardDescription>
           </CardHeader>
           <CardContent>
             <Calendar
@@ -215,12 +461,12 @@ export default function BookingsTab() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle>Réservations à Venir</CardTitle>
-                <CardDescription>Vos prochains rendez-vous</CardDescription>
+                <CardTitle>{t.upcoming.title}</CardTitle>
+                <CardDescription>{t.upcoming.description}</CardDescription>
               </div>
               <Button variant="outline" size="sm" className="gap-2">
                 <Filter className="h-4 w-4" />
-                Filtrer
+                {t.actions.filter}
               </Button>
             </div>
           </CardHeader>
@@ -237,14 +483,14 @@ export default function BookingsTab() {
                       <p className="text-sm text-muted-foreground">{booking.client}</p>
                     </div>
                     <Badge className={getStatusColor(booking.status)}>
-                      {booking.status === 'confirmed' ? 'Confirmé' : 'En attente'}
+                      {getStatusLabel(booking.status)}
                     </Badge>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <CalendarIcon className="h-4 w-4" />
-                      <span>{new Date(booking.date).toLocaleDateString('fr-FR')}</span>
+                      <span>{new Date(booking.date).toLocaleDateString(lang === 'en' ? 'en-US' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : 'pt-PT')}</span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Clock className="h-4 w-4" />
@@ -252,24 +498,24 @@ export default function BookingsTab() {
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       {getTypeIcon(booking.type)}
-                      <span>{booking.type === 'video' ? 'Visio' : 'Sur site'}</span>
+                      <span>{getTypeLabel(booking.type)}</span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
-                      <span className="text-xs">Consultant: {booking.consultant}</span>
+                      <span className="text-xs">{t.consultant}: {booking.consultant}</span>
                     </div>
                   </div>
 
                   <div className="flex gap-2 mt-4">
                     <Button variant="outline" size="sm" className="flex-1">
-                      Modifier
+                      {t.actions.edit}
                     </Button>
                     <Button variant="outline" size="sm" className="flex-1">
-                      Annuler
+                      {t.actions.cancel}
                     </Button>
                     {booking.type === 'video' && (
                       <Button size="sm" className="flex-1 gap-2">
                         <Video className="h-4 w-4" />
-                        Rejoindre
+                        {t.actions.join}
                       </Button>
                     )}
                   </div>
@@ -283,9 +529,9 @@ export default function BookingsTab() {
       {/* Available Time Slots */}
       <Card>
         <CardHeader>
-          <CardTitle>Créneaux Disponibles</CardTitle>
+          <CardTitle>{t.availableSlots.title}</CardTitle>
           <CardDescription>
-            {date ? `Pour le ${date.toLocaleDateString('fr-FR')}` : 'Sélectionnez une date'}
+            {date ? `${t.availableSlots.description} ${date.toLocaleDateString(lang === 'en' ? 'en-US' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : 'pt-PT')}` : t.calendar.description}
           </CardDescription>
         </CardHeader>
         <CardContent>

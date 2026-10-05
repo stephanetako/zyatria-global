@@ -1,0 +1,86 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║   🌐 URL DU SITE WEBFLOW                                      ║
+║   ZyatrIA Global - Site de Référence                          ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+✅ URL WEBFLOW OFFICIELLE
+─────────────────────────
+
+https://8972843a648f35320d9efb62c844e9de.app.webflow.io
+
+
+═════════════════════════���═════════════════════════════════════
+
+
+📝 INFORMATIONS
+───────────────
+
+Type : Site Webflow de référence
+Statut : ✅ Validé
+Date : 4 octobre 2024
+Usage : Design et composants de référence
+
+
+═══════════════════════════════════════════════════════════════
+
+
+💡 UTILISATION
+──────────────
+
+Cette URL contient :
+  • Le design de référence
+  • Les composants Webflow
+  • Les styles et couleurs
+  • La structure du site
+
+
+═══════════════════════════════════════════════════════════════
+
+
+🔗 LIENS IMPORTANTS
+───────────────────
+
+Site Webflow (référence) :
+  https://8972843a648f35320d9efb62c844e9de.app.webflow.io
+
+Site Cloudflare Pages (production) :
+  https://zyatria-global.pages.dev
+
+Site personnalisé (à configurer) :
+  https://zyatria.global
+
+
+═══════════════════════════════════════════════════════════════
+
+
+📚 DOCUMENTATION
+────────────────
+
+Pour déployer votre site :
+  • START_HERE.txt
+  • 🚀_DEPLOYER_MAINTENANT.txt
+
+Pour configurer un domaine personnalisé :
+  • 🌐_GUIDE_DOMAINE_PERSONNALISE.md
+
+
+═══════════════════════════════════════════════════════════════
+
+
+✅ SAUVEGARDÉ
+─────────────
+
+Cette URL a été sauvegardée dans :
+  • 🌐_URL_SITE_WEBFLOW.txt (ce fichier)
+  • 🌐_TOUTES_VOS_URLS.md (liste complète)
+
+
+═══════════════════════════════════════════════════════════════
+
+Date : 4 octobre 2024
+Statut : ✅ SAUVEGARDÉ
+
+═══════════════════════════════════════════════════════════════

@@ -1,5 +1,9 @@
 
 
+
+
+
+
 {
   "name": "zyatria-global",
   "type": "module",
@@ -7,7 +11,8 @@
   "scripts": {
     "predev": "npx kill-port 3000 || true",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' astro build",
+    "postbuild": "node fix-wrangler-config.js",
     "preview": "astro build && wrangler dev",
     "astro": "astro",
     "cf-typegen": "wrangler types"
@@ -79,5 +84,9 @@
     "wrangler": "4.26.1"
   }
 }
+
+
+
+
 
 

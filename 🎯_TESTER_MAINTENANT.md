@@ -1,222 +1,171 @@
-# 🎯 TESTEZ VOTRE SITE MAINTENANT
+# 🎯 TESTER MAINTENANT - 3 ÉTAPES SIMPLES
 
-## ⚡ Test Rapide (2 minutes)
+## ⚡ ÉTAPE 1 : VÉRIFIER LES FICHIERS (30 secondes)
 
-### **1. Démarrer le serveur**
+### Ouvrir PowerShell dans le dossier du projet
+
+**Option A :** Clic droit sur le dossier → "Ouvrir dans le terminal"
+
+**Option B :** 
+1. Ouvrir le dossier dans l'explorateur
+2. Taper `powershell` dans la barre d'adresse
+3. Appuyer sur Entrée
+
+### Exécuter le diagnostic
+
+```powershell
+.\verifier-chatbots.ps1
+```
+
+**Si erreur "script désactivé" :**
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\verifier-chatbots.ps1
+```
+
+### ✅ Résultat attendu
+```
+✅ SimpleChatbot.tsx (12088 bytes)
+✅ Imports trouvés
+✅ Rendus trouvés
+✅ 6 emojis trouvés
+✅ TOUT EST OK !
+```
+
+---
+
+## ⚡ ÉTAPE 2 : LANCER LE SERVEUR (10 secondes)
 
 ```bash
 npm run dev
 ```
 
-Attendez que le serveur démarre, puis ouvrez : **http://localhost:4321**
+**Attendez ce message :**
+```
+🚀 astro v5.x.x started in XXXms
+
+  ┃ Local    http://localhost:4321/
+```
 
 ---
 
-## ✅ CHECKLIST DE TEST
+## ⚡ ÉTAPE 3 : OUVRIR ET TESTER (20 secondes)
 
-### **Test 1 : Hero Section**
-- [ ] Vous voyez le badge "🚀 Pré-Lancement - Réservez Votre Place" ?
-- [ ] Le bouton principal dit "Réserver une Consultation Gratuite" ?
-- [ ] Le bouton secondaire dit "Voir la Roadmap" ?
+### 1. Ouvrir le navigateur
+👉 **http://localhost:4321**
 
-**✅ Si oui, continuez !**
+### 2. Chercher le chatbot
+**Où ?** Coin inférieur droit
 
----
+**À quoi ça ressemble ?**
+```
+     💬  ← Bulle blanche
+    ┌──┐
+    │  │ ← Bouton rond avec dégradé
+    └──┘
+     ✨  ← Badge rouge
+```
 
-### **Test 2 : Cliquez sur "Réserver une Consultation"**
-- [ ] La page scroll automatiquement vers le formulaire de contact ?
-- [ ] Le formulaire est visible ?
-
-**✅ Si oui, continuez !**
-
----
-
-### **Test 3 : Cliquez sur "Voir la Roadmap"**
-- [ ] La page scroll vers la section Roadmap ?
-- [ ] Vous voyez 3 phases (Phase 1, 2, 3) ?
-- [ ] Phase 1 a un badge vert "Disponible Maintenant" ?
-- [ ] Phase 2 a un badge bleu "En Développement" ?
-- [ ] Phase 3 a un badge violet "Lancement Complet" ?
-
-**✅ Si oui, continuez !**
+### 3. Tester
+- [ ] **Survol** → Tooltip "Agent IA ZyatrIA..."
+- [ ] **Clic** → Fenêtre de chat s'ouvre
+- [ ] **Taper** → Zone de texte fonctionne
+- [ ] **Fermer** → Bouton ✕ fonctionne
 
 ---
 
-### **Test 4 : Section "Services Disponibles"**
-- [ ] Vous voyez 3 services (Audit, Consultation, Formation) ?
-- [ ] Les prix sont affichés (497$, 297$, 997$) ?
-- [ ] Chaque service a un bouton "Réserver" ?
+## 🔍 SI VOUS NE VOYEZ PAS LE CHATBOT
 
-**✅ Si oui, continuez !**
+### Diagnostic rapide (F12 → Console)
 
----
+Coller ce code :
+```javascript
+const chatbot = document.querySelector('[aria-label="Ouvrir le chat IA"]');
+console.log('Chatbot:', chatbot ? '✅ TROUVÉ' : '❌ ABSENT');
+```
 
-### **Test 5 : Cliquez sur "Réserver un Audit"**
-- [ ] La page scroll vers le formulaire de contact ?
-- [ ] Le champ "Message" est pré-rempli avec "Je souhaite réserver: Audit Stratégique IA" ?
-
-**✅ Si oui, continuez !**
+**Si ✅ TROUVÉ** → Le chatbot est là, vérifier la position
+**Si ❌ ABSENT** → Vérifier les erreurs dans la console
 
 ---
 
-### **Test 6 : Allez sur la page Pricing**
+## 📸 CAPTURE D'ÉCRAN DU CHATBOT
 
-Scrollez vers le bas ou cliquez sur "Pricing" dans le menu.
+Voici à quoi il devrait ressembler :
 
-- [ ] Vous voyez le banner "Offre Pré-Lancement: -30% sur tous les plans" ?
-- [ ] Chaque plan a un badge "-30% 🎁" ?
-- [ ] Les prix sont barrés avec le nouveau prix affiché ?
-  - Exemple : ~~197$~~ → **138$/mois**
-- [ ] Vous voyez "Économisez XX$" sous chaque prix ?
+```
+┌─────────────────────────────────────┐
+│                                     │
+│                                     │
+│         VOTRE PAGE WEB              │
+│                                     │
+│                                     ��
+│                                     │
+│                                     │
+│                                     │
+│                                     │
+│                                     │
+│                                     │
+│                                     │
+│                                     │
+│                              ┌────┐ │
+│                              │ 💬 │ │ ← ICI !
+│                              │ ✨ │ │
+│                              └────┘ │
+└─────────────────────────────────────┘
+```
 
-**✅ Si oui, continuez !**
-
----
-
-### **Test 7 : Cliquez sur "Commencer" (Plan Starter)**
-- [ ] La page scroll vers le formulaire de contact ?
-- [ ] Le champ "Message" est pré-rempli avec le plan choisi ?
-  - Exemple : "Je suis intéressé par le plan Starter (Abonnement Mensuel) avec l'offre de pré-lancement -30%."
-
-**✅ Si oui, continuez !**
-
----
-
-### **Test 8 : Testez le Toggle "Paiement Unique / Mensuel"**
-- [ ] Cliquez sur le toggle
-- [ ] Les prix changent ?
-- [ ] Le message "Économisez XX% avec le paiement annuel" apparaît ?
-
-**✅ Si oui, continuez !**
-
----
-
-### **Test 9 : Cliquez sur "Commencer" avec "Paiement Unique"**
-- [ ] La page scroll vers le formulaire ?
-- [ ] Le message dit "Paiement Unique" au lieu de "Abonnement Mensuel" ?
-
-**✅ Si oui, continuez !**
+**Position exacte :**
+- 24px du bord droit
+- 24px du bord bas
+- Au-dessus de tout (z-index: 9999)
 
 ---
 
-### **Test 10 : Vérifiez l'Offre Pré-Lancement**
+## ✅ TOUT FONCTIONNE ?
 
-Dans la section Roadmap, scrollez vers le bas.
+**Parfait ! Votre chatbot est opérationnel ! 🎉**
 
-- [ ] Vous voyez la carte "🎁 Offre Pré-Lancement" ?
-- [ ] Les 5 avantages sont listés ?
-  - 30% de réduction
-  - Accès prioritaire
-  - Formation gratuite (497$)
-  - Support VIP à vie
-  - Garantie 60 jours
-- [ ] Le bouton "Profiter de l'Offre" est visible ?
-
-**✅ Si oui, continuez !**
+**Prochaines étapes :**
+1. Tester l'envoi de messages
+2. Vérifier les réponses de l'IA
+3. Déployer sur Cloudflare Pages
 
 ---
 
-### **Test 11 : Vérifiez la Garantie**
+## ❌ PROBLÈME ?
 
-Dans la section "Services Disponibles", scrollez vers le bas.
+**Consultez :**
+- `📊_RESUME_DIAGNOSTIC_CHATBOT.md` → Diagnostic complet
+- `🔍_DIAGNOSTIC_CHATBOT.md` → Script JavaScript détaillé
+- `👉_COMMENCER_ICI_DIAGNOSTIC.md` → Guide pas à pas
 
-- [ ] Vous voyez la carte "💯 Garantie Satisfait ou Remboursé" ?
-- [ ] Le texte explique la garantie ?
-
-**✅ Si oui, PARFAIT !**
-
----
-
-## 🎉 TOUS LES TESTS PASSÉS ?
-
-### **Votre site est prêt ! Voici ce qui fonctionne :**
-
-✅ Badge "Pré-Lancement" visible  
-✅ CTA vers consultation (pas paiement direct)  
-✅ Roadmap avec 3 phases claires  
-✅ Services disponibles immédiatement  
-✅ Offre -30% sur tous les plans  
-✅ Pricing redirige vers contact  
-✅ Formulaire pré-rempli automatiquement  
-✅ Garantie satisfait ou remboursé  
-✅ Transparence totale  
+**Ou partagez :**
+1. Le résultat de `.\verifier-chatbots.ps1`
+2. Les erreurs de la console (F12)
+3. Une capture d'écran de la page
 
 ---
 
-## 🚀 PROCHAINES ÉTAPES
+## 🚀 COMMANDES UTILES
 
-### **1. Vérifiez le formulaire de contact**
-
-Remplissez le formulaire et envoyez un test :
-- Nom : Test
-- Email : votre@email.com
-- Message : (laissez le message pré-rempli)
-
-**Vérifiez que vous recevez l'email !**
-
----
-
-### **2. Testez sur mobile**
-
-Ouvrez le site sur votre téléphone :
-- [ ] Le design est responsive ?
-- [ ] Les boutons sont cliquables ?
-- [ ] Le formulaire fonctionne ?
-
----
-
-### **3. Partagez avec un ami**
-
-Demandez à quelqu'un de tester :
-- "Est-ce que tu comprends que c'est en pré-lancement ?"
-- "Est-ce que c'est clair ce qui est disponible maintenant ?"
-- "Est-ce que tu ferais confiance à ce site ?"
-
----
-
-## ❌ PROBLÈMES COURANTS
-
-### **Le site ne démarre pas ?**
 ```bash
-# Tuez le processus sur le port 3000
-npx kill-port 3000
-
-# Redémarrez
+# Lancer le serveur
 npm run dev
-```
 
-### **Les changements ne s'affichent pas ?**
-```bash
-# Videz le cache du navigateur
-Ctrl + Shift + R (Windows)
-Cmd + Shift + R (Mac)
-```
+# Arrêter le serveur
+Ctrl + C
 
-### **Erreur TypeScript ?**
-```bash
-# Vérifiez les erreurs
-npm run astro check
+# Tuer le port 4321 si bloqué
+npx kill-port 4321
+
+# Rebuild complet
+npm run build
+
+# Vérifier les erreurs TypeScript
+npx astro check
 ```
 
 ---
 
-## 📧 BESOIN D'AIDE ?
-
-Si quelque chose ne fonctionne pas :
-1. Copiez l'erreur exacte
-2. Dites-moi quelle étape ne fonctionne pas
-3. Je vous aiderai à corriger !
-
----
-
-## 🎯 TOUT FONCTIONNE ?
-
-**Félicitations ! Votre site est 100% honnête et prêt à générer des revenus !**
-
-### **Prochaine étape :**
-1. Lisez le fichier `✅_SITE_HONNETE_PRET.md`
-2. Commencez à promouvoir vos consultations
-3. Générez vos premiers revenus
-4. Construisez vos agents IA pendant ce temps
-
-**Vous êtes sur la bonne voie ! 🚀**
+**C'est parti ! Lancez le diagnostic maintenant ! 💪**

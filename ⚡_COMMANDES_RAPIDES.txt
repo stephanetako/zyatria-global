@@ -1,0 +1,115 @@
+═══════════════════════════════════════════════════════════
+  ⚡ COMMANDES RAPIDES - COPIER-COLLER
+═══════════════════════════════════════════════════════════
+
+🎯 SOLUTION ULTRA-RAPIDE (3 COMMANDES)
+───────────────────────────────────────
+
+Ouvrez PowerShell et copiez-collez ces 3 lignes :
+
+npx astro dev stop
+npm run build
+wrangler pages deploy dist
+
+
+═══════════════════════════════════════════════════════════
+
+🔧 SI LE SERVEUR NE S'ARRÊTE PAS
+─────────���──────────────────────
+
+Copiez-collez ceci :
+
+Get-Process -Name node | Stop-Process -Force
+
+
+═══════════════════════════════════════════════════════════
+
+🧹 NETTOYAGE COMPLET
+────────────────────
+
+Copiez-collez ceci :
+
+.\restart-dev-clean.ps1
+
+
+═══════════════════════════════════════════════════════════
+
+📊 VÉRIFIER LES PROCESSUS NODE
+───────────────────────────────
+
+Copiez-collez ceci :
+
+Get-Process -Name node
+
+
+═══════════════════════════════════════════════════════════
+
+🔓 LIBÉRER LE PORT 3000
+───────────────────────
+
+Copiez-collez ceci :
+
+Get-NetTCPConnection -LocalPort 3000 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+
+
+═══════════════════════════════════════════════════════════
+
+🗑️ SUPPRIMER LE DOSSIER DIST
+─────────────────────────────
+
+Copiez-collez ceci :
+
+Remove-Item -Path "dist" -Recurse -Force
+
+
+═══════════════════════════════════════════════════════════
+
+✅ WORKFLOW COMPLET
+───────────────────
+
+Copiez-collez TOUT ceci d'un coup :
+
+npx astro dev stop
+Get-Process -Name node | Stop-Process -Force -ErrorAction SilentlyContinue
+Start-Sleep -Seconds 2
+npm run build
+wrangler pages deploy dist
+
+
+═══════════════════════════════════════════════════════════
+
+🚀 DÉVELOPPEMENT LOCAL
+──────────────────────
+
+Copiez-collez ceci :
+
+npm run dev
+
+
+═══════════════════════════════════════════════════════════
+
+📦 BUILD SEULEMENT
+──────────────────
+
+Copiez-collez ceci :
+
+npm run build
+
+
+═══════════════════════════════════════════════════���═══════
+
+🌐 DÉPLOIEMENT SEULEMENT
+─────────────────────────
+
+Copiez-collez ceci :
+
+wrangler pages deploy dist
+
+
+═══════════════════════════════════════════════════════════
+
+Date : 4 octobre 2024
+Statut : ✅ PRÊT
+Plateforme : Windows PowerShell
+
+═══════════════════════════════════════════════════════════

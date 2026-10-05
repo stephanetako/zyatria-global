@@ -216,7 +216,7 @@ export default function MistralChatBot() {
           setIsOpen(true);
           console.log('✅ setIsOpen(true) appelé - le chat devrait s\'ouvrir');
         }}
-        className="fixed bottom-6 right-6 z-[9999] bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110 animate-pulse-glow"
+        className="fixed bottom-6 right-6 z-[9999] bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white rounded-full p-5 shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-110 group"
         aria-label="Open AI Chat"
         style={{ 
           cursor: 'pointer',
@@ -227,29 +227,36 @@ export default function MistralChatBot() {
           zIndex: 9999
         }}
       >
-        <Sparkles className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-muted rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></span>
+        <Sparkles className="w-7 h-7 group-hover:rotate-12 transition-transform duration-300" />
+        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse shadow-lg"></span>
+        
+        {/* Effet de brillance */}
+        <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        
+        {/* Cercles animés autour du bouton */}
+        <span className="absolute inset-0 rounded-full border-2 border-indigo-400/50 animate-ping"></span>
       </button>
     );
   }
 
   return (
     <div 
-      className={`fixed bottom-6 right-6 z-[9999] bg-card border border-border rounded-2xl shadow-2xl transition-all flex flex-col ${
-        isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
+      className={`fixed bottom-6 right-6 z-[9999] bg-white dark:bg-gray-900 border-2 border-indigo-200 dark:border-indigo-800 rounded-3xl shadow-2xl transition-all flex flex-col overflow-hidden ${
+        isMinimized ? 'w-72 h-16' : 'w-72 h-[450px]'
       } max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)]`}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border bg-primary text-primary-foreground rounded-t-2xl flex-shrink-0">
+      {/* Header avec gradient amélioré */}
+      <div className="flex items-center justify-between p-4 border-b border-indigo-200 dark:border-indigo-800 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white rounded-t-3xl flex-shrink-0 shadow-lg">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Sparkles className="w-6 h-6" />
-            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-muted rounded-full border-2 border-primary"></span>
+            <div className="absolute inset-0 bg-white/20 rounded-full blur-md"></div>
+            <Sparkles className="w-6 h-6 relative z-10 animate-pulse" />
+            <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white shadow-lg animate-pulse"></span>
           </div>
           <div>
-            <h3 className="font-semibold text-sm">{t.title}</h3>
+            <h3 className="font-bold text-base tracking-tight">{t.title}</h3>
             {!isMinimized && (
-              <p className="text-xs opacity-90">{t.subtitle}</p>
+              <p className="text-xs opacity-90 font-medium">{t.subtitle}</p>
             )}
           </div>
         </div>
@@ -258,7 +265,7 @@ export default function MistralChatBot() {
             variant="ghost"
             size="icon"
             onClick={() => setIsMinimized(!isMinimized)}
-            className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+            className="h-8 w-8 text-white hover:bg-white/20 rounded-full transition-all"
           >
             <Minimize2 className="w-4 h-4" />
           </Button>
@@ -266,7 +273,7 @@ export default function MistralChatBot() {
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(false)}
-            className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+            className="h-8 w-8 text-white hover:bg-white/20 rounded-full transition-all"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -275,52 +282,56 @@ export default function MistralChatBot() {
 
       {!isMinimized && (
         <>
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {/* Messages avec fond amélioré */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
             {messages.length === 0 && (
-              <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                {t.startConversation}
+              <div className="flex flex-col items-center justify-center h-full text-center px-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 rounded-full flex items-center justify-center mb-4">
+                  <Sparkles className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <p className="text-muted-foreground text-sm font-medium">{t.startConversation}</p>
+                <p className="text-xs text-muted-foreground/70 mt-2">Propulsé par Mistral AI</p>
               </div>
             )}
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in-up`}
               >
                 {msg.role === 'assistant' && (
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Sparkles className="w-4 h-4 text-primary" />
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 flex items-center justify-center shadow-md">
+                    <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                  className={`max-w-[80%] rounded-2xl px-4 py-3 shadow-md transition-all hover:shadow-lg ${
                     msg.role === 'user'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-100 dark:bg-slate-800 text-foreground'
+                      ? 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white'
+                      : 'bg-white dark:bg-gray-800 text-foreground border border-gray-200 dark:border-gray-700'
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
-                  <span className="text-xs opacity-70 mt-1 block">
+                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                  <span className={`text-xs mt-1 block ${msg.role === 'user' ? 'text-indigo-100' : 'text-muted-foreground'}`}>
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
                 {msg.role === 'user' && (
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
                     <User className="w-4 h-4 text-white" />
                   </div>
                 )}
               </div>
             ))}
             {isLoading && (
-              <div className="flex gap-3 justify-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-primary" />
+              <div className="flex gap-3 justify-start animate-fade-in-up">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 flex items-center justify-center shadow-md">
+                  <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                 </div>
-                <div className="bg-slate-100 dark:bg-slate-800 rounded-2xl px-4 py-2">
+                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-md">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-indigo-600 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-pink-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
@@ -328,25 +339,25 @@ export default function MistralChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Status Indicator */}
-          <div className="px-4 py-2 border-t border-border bg-muted/50 flex-shrink-0">
+          {/* Status Indicator amélioré */}
+          <div className="px-4 py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 flex-shrink-0">
             <div className="flex items-center gap-2 text-xs">
               {status === 'ready' && (
                 <>
-                  <CheckCircle2 className="w-3 h-3 text-foreground" />
-                  <span className="text-muted-foreground">{t.ready}</span>
+                  <CheckCircle2 className="w-3 h-3 text-green-500" />
+                  <span className="text-muted-foreground font-medium">{t.ready}</span>
                 </>
               )}
               {status === 'sending' && (
                 <>
-                  <Loader2 className="w-3 h-3 animate-spin text-primary" />
-                  <span className="text-muted-foreground">{t.sending}</span>
+                  <Loader2 className="w-3 h-3 animate-spin text-indigo-600" />
+                  <span className="text-muted-foreground font-medium">{t.sending}</span>
                 </>
               )}
               {status === 'error' && (
                 <>
                   <AlertCircle className="w-3 h-3 text-destructive" />
-                  <span className="text-destructive">{t.error}</span>
+                  <span className="text-destructive font-medium">{t.error}</span>
                 </>
               )}
             </div>
@@ -362,22 +373,22 @@ export default function MistralChatBot() {
             </div>
           )}
 
-          {/* Input */}
-          <div className="p-4 border-t border-border bg-background flex-shrink-0">
+          {/* Input amélioré */}
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex-shrink-0">
             <form onSubmit={handleSubmit} className="flex gap-2">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t.placeholder}
                 disabled={isLoading}
-                className="flex-1"
+                className="flex-1 rounded-xl border-2 border-gray-200 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-500 transition-colors"
                 onKeyDown={handleKeyPress}
               />
               <Button 
                 type="submit" 
                 size="icon"
                 disabled={!input.trim() || isLoading}
-                className="flex-shrink-0"
+                className="flex-shrink-0 bg-gradient-to-br from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -412,6 +423,10 @@ export default function MistralChatBot() {
     </div>
   );
 }
+
+
+
+
 
 
 

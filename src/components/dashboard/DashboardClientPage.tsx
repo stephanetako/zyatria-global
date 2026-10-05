@@ -6,25 +6,32 @@ import ResourcesTab from './ResourcesTab';
 
 export default function DashboardClientPage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [lang, setLang] = useState<'en' | 'fr' | 'es' | 'pt'>('fr');
 
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':
-        return <OverviewTab />;
+        return <OverviewTab lang={lang} />;
       case 'bookings':
-        return <BookingsTab />;
+        return <BookingsTab lang={lang} />;
       case 'resources':
-        return <ResourcesTab />;
+        return <ResourcesTab lang={lang} />;
       default:
-        return <OverviewTab />;
+        return <OverviewTab lang={lang} />;
     }
   };
 
   return (
-    <DashboardLayout activeTab={activeTab} onTabChange={setActiveTab}>
+    <DashboardLayout 
+      activeTab={activeTab} 
+      onTabChange={setActiveTab}
+      lang={lang}
+      onLangChange={setLang}
+    >
       {renderContent()}
     </DashboardLayout>
   );
 }
+
 
 

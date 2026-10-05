@@ -8,340 +8,799 @@ import {
   Filter,
   Star,
   Clock,
-  Eye
+  Eye,
+  Rocket,
+  Zap,
+  Target,
+  Code,
+  LifeBuoy,
+  BookMarked
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import FooterResourcesSimple from './FooterResourcesSimple';
 
-const resources = {
+interface ResourcesTabProps {
+  lang?: 'en' | 'fr' | 'es' | 'pt';
+}
+
+type TranslationKey = 'en' | 'fr' | 'es' | 'pt';
+
+const translations: Record<TranslationKey, any> = {
+  en: {
+    title: 'Resources',
+    subtitle: 'Documentation, guides and tutorials to master your AI agents',
+    searchPlaceholder: 'Search resources...',
+    filters: 'Filters',
+    tabs: {
+      guides: 'Guides',
+      videos: 'Videos',
+      docs: 'Documentation'
+    },
+    categories: {
+      beginner: 'Beginner',
+      intermediate: 'Intermediate',
+      advanced: 'Advanced',
+      technical: 'Technical',
+      guide: 'Guide',
+      support: 'Support'
+    },
+    actions: {
+      download: 'Download',
+      watch: 'Watch',
+      read: 'Read'
+    },
+    stats: {
+      downloads: 'downloads',
+      views: 'views',
+      pages: 'pages',
+      updated: 'Updated'
+    },
+    popular: {
+      title: 'Popular Resources',
+      subtitle: 'Most viewed this month'
+    }
+  },
+  fr: {
+    title: 'Ressources',
+    subtitle: 'Documentation, guides et tutoriels pour maîtriser vos agents IA',
+    searchPlaceholder: 'Rechercher des ressources...',
+    filters: 'Filtres',
+    tabs: {
+      guides: 'Guides',
+      videos: 'Vidéos',
+      docs: 'Documentation'
+    },
+    categories: {
+      beginner: 'Débutant',
+      intermediate: 'Intermédiaire',
+      advanced: 'Avancé',
+      technical: 'Technique',
+      guide: 'Guide',
+      support: 'Support'
+    },
+    actions: {
+      download: 'Télécharger',
+      watch: 'Regarder',
+      read: 'Lire'
+    },
+    stats: {
+      downloads: 'téléchargements',
+      views: 'vues',
+      pages: 'pages',
+      updated: 'Mis à jour'
+    },
+    popular: {
+      title: 'Ressources Populaires',
+      subtitle: 'Les plus consultées ce mois'
+    }
+  },
+  es: {
+    title: 'Recursos',
+    subtitle: 'Documentación, guías y tutoriales para dominar sus agentes IA',
+    searchPlaceholder: 'Buscar recursos...',
+    filters: 'Filtros',
+    tabs: {
+      guides: 'Guías',
+      videos: 'Videos',
+      docs: 'Documentación'
+    },
+    categories: {
+      beginner: 'Principiante',
+      intermediate: 'Intermedio',
+      advanced: 'Avanzado',
+      technical: 'Técnico',
+      guide: 'Guía',
+      support: 'Soporte'
+    },
+    actions: {
+      download: 'Descargar',
+      watch: 'Ver',
+      read: 'Leer'
+    },
+    stats: {
+      downloads: 'descargas',
+      views: 'vistas',
+      pages: 'páginas',
+      updated: 'Actualizado'
+    },
+    popular: {
+      title: 'Recursos Populares',
+      subtitle: 'Los más vistos este mes'
+    }
+  },
+  pt: {
+    title: 'Recursos',
+    subtitle: 'Documentação, guias e tutoriais para dominar seus agentes IA',
+    searchPlaceholder: 'Pesquisar recursos...',
+    filters: 'Filtros',
+    tabs: {
+      guides: 'Guias',
+      videos: 'Vídeos',
+      docs: 'Documentação'
+    },
+    categories: {
+      beginner: 'Iniciante',
+      intermediate: 'Intermediário',
+      advanced: 'Avançado',
+      technical: 'Técnico',
+      guide: 'Guia',
+      support: 'Suporte'
+    },
+    actions: {
+      download: 'Baixar',
+      watch: 'Assistir',
+      read: 'Ler'
+    },
+    stats: {
+      downloads: 'downloads',
+      views: 'visualizações',
+      pages: 'páginas',
+      updated: 'Atualizado'
+    },
+    popular: {
+      title: 'Recursos Populares',
+      subtitle: 'Mais vistos este mês'
+    }
+  }
+};
+
+const resourcesData = {
   guides: [
     {
       id: 1,
-      title: 'Guide de Démarrage Rapide',
-      description: 'Commencez avec vos premiers agents IA en 15 minutes',
+      titleKey: 'quickStart',
+      descriptionKey: 'quickStartDesc',
       type: 'PDF',
       size: '2.4 MB',
       downloads: 1247,
       rating: 4.8,
-      category: 'Débutant',
+      categoryKey: 'beginner',
       updated: '2024-01-15'
     },
     {
       id: 2,
-      title: 'Configuration Avancée des Micro-Agents',
-      description: 'Optimisez vos agents pour des performances maximales',
+      titleKey: 'advancedConfig',
+      descriptionKey: 'advancedConfigDesc',
       type: 'PDF',
       size: '5.1 MB',
       downloads: 892,
       rating: 4.9,
-      category: 'Avancé',
+      categoryKey: 'advanced',
       updated: '2024-01-20'
     },
     {
       id: 3,
-      title: 'Intégration CRM - Guide Complet',
-      description: 'Connectez vos agents à votre CRM existant',
+      titleKey: 'crmIntegration',
+      descriptionKey: 'crmIntegrationDesc',
       type: 'PDF',
       size: '3.8 MB',
       downloads: 654,
       rating: 4.7,
-      category: 'Intermédiaire',
+      categoryKey: 'intermediate',
       updated: '2024-01-18'
     },
   ],
   videos: [
     {
       id: 1,
-      title: 'Introduction aux Agents IA',
-      description: 'Découvrez le potentiel des agents intelligents',
+      titleKey: 'introAI',
+      descriptionKey: 'introAIDesc',
       duration: '12:34',
       views: 3421,
       rating: 4.9,
-      category: 'Débutant',
+      categoryKey: 'beginner',
       thumbnail: '/video-thumb-1.jpg'
     },
     {
       id: 2,
-      title: 'Automatisation des Workflows',
-      description: 'Créez des workflows automatisés puissants',
+      titleKey: 'workflowAutomation',
+      descriptionKey: 'workflowAutomationDesc',
       duration: '18:45',
       views: 2156,
       rating: 4.8,
-      category: 'Intermédiaire',
+      categoryKey: 'intermediate',
       thumbnail: '/video-thumb-2.jpg'
     },
     {
       id: 3,
-      title: 'Analytics et Reporting',
-      description: 'Analysez les performances de vos agents',
+      titleKey: 'analyticsReporting',
+      descriptionKey: 'analyticsReportingDesc',
       duration: '15:20',
       views: 1834,
       rating: 4.7,
-      category: 'Avancé',
+      categoryKey: 'advanced',
       thumbnail: '/video-thumb-3.jpg'
     },
   ],
   documentation: [
     {
       id: 1,
-      title: 'API Reference',
-      description: 'Documentation complète de l\'API ZyatrIA',
+      titleKey: 'apiReference',
+      descriptionKey: 'apiReferenceDesc',
       pages: 124,
-      category: 'Technique',
+      categoryKey: 'technical',
       updated: '2024-01-22'
     },
     {
       id: 2,
-      title: 'Best Practices',
-      description: 'Meilleures pratiques pour l\'utilisation des agents',
+      titleKey: 'bestPractices',
+      descriptionKey: 'bestPracticesDesc',
       pages: 45,
-      category: 'Guide',
+      categoryKey: 'guide',
       updated: '2024-01-19'
     },
     {
       id: 3,
-      title: 'Troubleshooting',
-      description: 'Solutions aux problèmes courants',
+      titleKey: 'troubleshooting',
+      descriptionKey: 'troubleshootingDesc',
       pages: 67,
-      category: 'Support',
+      categoryKey: 'support',
       updated: '2024-01-21'
     },
   ]
 };
 
-export default function ResourcesTab() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+const contentTranslations: Record<TranslationKey, any> = {
+  en: {
+    quickStart: 'Quick Start Guide',
+    quickStartDesc: 'Get started with your first AI agents in 15 minutes',
+    advancedConfig: 'Advanced Micro-Agent Configuration',
+    advancedConfigDesc: 'Optimize your agents for maximum performance',
+    crmIntegration: 'CRM Integration - Complete Guide',
+    crmIntegrationDesc: 'Connect your agents to your existing CRM',
+    introAI: 'Introduction to AI Agents',
+    introAIDesc: 'Discover the potential of intelligent agents',
+    workflowAutomation: 'Workflow Automation',
+    workflowAutomationDesc: 'Create powerful automated workflows',
+    analyticsReporting: 'Analytics and Reporting',
+    analyticsReportingDesc: 'Analyze your agents\' performance',
+    apiReference: 'API Reference',
+    apiReferenceDesc: 'Complete ZyatrIA API documentation',
+    bestPractices: 'Best Practices',
+    bestPracticesDesc: 'Best practices for using agents',
+    troubleshooting: 'Troubleshooting',
+    troubleshootingDesc: 'Solutions to common problems'
+  },
+  fr: {
+    quickStart: 'Guide de Démarrage Rapide',
+    quickStartDesc: 'Commencez avec vos premiers agents IA en 15 minutes',
+    advancedConfig: 'Configuration Avancée des Micro-Agents',
+    advancedConfigDesc: 'Optimisez vos agents pour des performances maximales',
+    crmIntegration: 'Intégration CRM - Guide Complet',
+    crmIntegrationDesc: 'Connectez vos agents à votre CRM existant',
+    introAI: 'Introduction aux Agents IA',
+    introAIDesc: 'Découvrez le potentiel des agents intelligents',
+    workflowAutomation: 'Automatisation des Workflows',
+    workflowAutomationDesc: 'Créez des workflows automatisés puissants',
+    analyticsReporting: 'Analytics et Reporting',
+    analyticsReportingDesc: 'Analysez les performances de vos agents',
+    apiReference: 'API Reference',
+    apiReferenceDesc: 'Documentation complète de l\'API ZyatrIA',
+    bestPractices: 'Best Practices',
+    bestPracticesDesc: 'Meilleures pratiques pour l\'utilisation des agents',
+    troubleshooting: 'Troubleshooting',
+    troubleshootingDesc: 'Solutions aux problèmes courants'
+  },
+  es: {
+    quickStart: 'Guía de Inicio Rápido',
+    quickStartDesc: 'Comience con sus primeros agentes IA en 15 minutos',
+    advancedConfig: 'Configuración Avanzada de Micro-Agentes',
+    advancedConfigDesc: 'Optimice sus agentes para máximo rendimiento',
+    crmIntegration: 'Integración CRM - Guía Completa',
+    crmIntegrationDesc: 'Conecte sus agentes a su CRM existente',
+    introAI: 'Introducción a los Agentes IA',
+    introAIDesc: 'Descubra el potencial de los agentes inteligentes',
+    workflowAutomation: 'Automatización de Flujos de Trabajo',
+    workflowAutomationDesc: 'Cree flujos de trabajo automatizados potentes',
+    analyticsReporting: 'Análisis e Informes',
+    analyticsReportingDesc: 'Analice el rendimiento de sus agentes',
+    apiReference: 'Referencia API',
+    apiReferenceDesc: 'Documentación completa de la API ZyatrIA',
+    bestPractices: 'Mejores Prácticas',
+    bestPracticesDesc: 'Mejores prácticas para usar agentes',
+    troubleshooting: 'Solución de Problemas',
+    troubleshootingDesc: 'Soluciones a problemas comunes'
+  },
+  pt: {
+    quickStart: 'Guia de Início Rápido',
+    quickStartDesc: 'Comece com seus primeiros agentes IA em 15 minutos',
+    advancedConfig: 'Configuração Avançada de Micro-Agentes',
+    advancedConfigDesc: 'Otimize seus agentes para máximo desempenho',
+    crmIntegration: 'Integração CRM - Guia Completo',
+    crmIntegrationDesc: 'Conecte seus agentes ao seu CRM existente',
+    introAI: 'Introdução aos Agentes IA',
+    introAIDesc: 'Descubra o potencial dos agentes inteligentes',
+    workflowAutomation: 'Automação de Fluxos de Trabalho',
+    workflowAutomationDesc: 'Crie fluxos de trabalho automatizados poderosos',
+    analyticsReporting: 'Análises e Relatórios',
+    analyticsReportingDesc: 'Analise o desempenho de seus agentes',
+    apiReference: 'Referência API',
+    apiReferenceDesc: 'Documentação completa da API ZyatrIA',
+    bestPractices: 'Melhores Práticas',
+    bestPracticesDesc: 'Melhores práticas para usar agentes',
+    troubleshooting: 'Solução de Problemas',
+    troubleshootingDesc: 'Soluções para problemas comuns'
+  }
+};
 
-  const getCategoryColor = (category: string) => {
+export default function ResourcesTab({ lang = 'fr' }: ResourcesTabProps) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState<'guides' | 'videos' | 'docs'>('guides');
+
+  const t = translations[lang];
+  const ct = contentTranslations[lang];
+
+  const getCategoryBadgeStyle = (category: string) => {
     switch (category.toLowerCase()) {
       case 'débutant':
-        return 'bg-muted text-foreground dark:bg-muted dark:text-foreground';
+        return { background: '#DBEAFE', color: '#1E40AF', border: '1px solid #BFDBFE' };
       case 'intermédiaire':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400';
+        return { background: '#E0E7FF', color: '#4338CA', border: '1px solid #C7D2FE' };
       case 'avancé':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400';
+        return { background: '#DBEAFE', color: '#1E40AF', border: '1px solid #BFDBFE' };
+      case 'technique':
+        return { background: '#FEE2E2', color: '#991B1B', border: '1px solid #FECACA' };
+      case 'guide':
+        return { background: '#D1FAE5', color: '#065F46', border: '1px solid #A7F3D0' };
+      case 'support':
+        return { background: '#FEF3C7', color: '#92400E', border: '1px solid #FDE68A' };
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400';
+        return { background: '#F3F4F6', color: '#374151', border: '1px solid #E5E7EB' };
+    }
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'débutant':
+        return { Icon: Rocket, color: '#3B82F6', bgGradient: 'linear-gradient(135deg, #DBEAFE, #93C5FD)' };
+      case 'intermédiaire':
+        return { Icon: Zap, color: '#6366F1', bgGradient: 'linear-gradient(135deg, #E0E7FF, #C7D2FE)' };
+      case 'avancé':
+        return { Icon: Target, color: '#3B82F6', bgGradient: 'linear-gradient(135deg, #DBEAFE, #93C5FD)' };
+      case 'technique':
+        return { Icon: Code, color: '#DC2626', bgGradient: 'linear-gradient(135deg, #FEE2E2, #FECACA)' };
+      case 'guide':
+        return { Icon: BookMarked, color: '#059669', bgGradient: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)' };
+      case 'support':
+        return { Icon: LifeBuoy, color: '#D97706', bgGradient: 'linear-gradient(135deg, #FEF3C7, #FDE68A)' };
+      default:
+        return { Icon: FileText, color: '#64748B', bgGradient: 'linear-gradient(135deg, #F3F4F6, #E5E7EB)' };
     }
   };
 
   return (
-    <div className="space-y-6 animate-fade-in-up">
+    <div style={{ padding: '40px 20px', maxWidth: '1400px', margin: '0 auto' }}>
+      
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="text-2xl font-heading font-bold">Ressources</h2>
-          <p className="text-muted-foreground">Documentation, guides et tutoriels</p>
+      <div style={{ marginBottom: '40px' }}>
+        <h2 style={{ fontSize: '32px', fontWeight: '800', marginBottom: '10px', color: '#1E293B' }}>
+          {t.title}
+        </h2>
+        <p style={{ fontSize: '16px', color: '#64748B' }}>
+          {t.subtitle}
+        </p>
+      </div>
+
+      {/* Search Bar */}
+      <div className="card" style={{ marginBottom: '40px', padding: '20px' }}>
+        <div style={{ display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ position: 'relative', flex: '1', minWidth: '250px' }}>
+            <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
+            <input
+              type="text"
+              placeholder={t.searchPlaceholder}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 12px 12px 40px',
+                border: '1px solid #E2E8F0',
+                borderRadius: '8px',
+                fontSize: '14px',
+                outline: 'none',
+                transition: 'border 0.3s'
+              }}
+              onFocus={(e) => e.target.style.borderColor = '#3B82F6'}
+              onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
+            />
+          </div>
+          <button className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Filter size={16} />
+            {t.filters}
+          </button>
         </div>
       </div>
 
-      {/* Search and Filter */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Rechercher des ressources..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            <Button variant="outline" className="gap-2">
-              <Filter className="h-4 w-4" />
-              Filtres
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Tabs */}
+      <div style={{ marginBottom: '30px' }}>
+        <div style={{ 
+          display: 'inline-flex', 
+          background: '#F8FAFC', 
+          padding: '6px', 
+          borderRadius: '12px',
+          border: '1px solid #E2E8F0',
+          gap: '6px'
+        }}>
+          <button
+            onClick={() => setActiveTab('guides')}
+            style={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              border: 'none',
+              fontWeight: '600',
+              fontSize: '14px',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              background: activeTab === 'guides' ? '#3B82F6' : 'transparent',
+              color: activeTab === 'guides' ? 'white' : '#64748B',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <FileText size={16} />
+            {t.tabs.guides}
+          </button>
+          <button
+            onClick={() => setActiveTab('videos')}
+            style={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              border: 'none',
+              fontWeight: '600',
+              fontSize: '14px',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              background: activeTab === 'videos' ? '#3B82F6' : 'transparent',
+              color: activeTab === 'videos' ? 'white' : '#64748B',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <Video size={16} />
+            {t.tabs.videos}
+          </button>
+          <button
+            onClick={() => setActiveTab('docs')}
+            style={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              border: 'none',
+              fontWeight: '600',
+              fontSize: '14px',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              background: activeTab === 'docs' ? '#3B82F6' : 'transparent',
+              color: activeTab === 'docs' ? 'white' : '#64748B',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <BookOpen size={16} />
+            {t.tabs.docs}
+          </button>
+        </div>
+      </div>
 
-      {/* Resources Tabs */}
-      <Tabs defaultValue="guides" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="guides" className="gap-2">
-            <FileText className="h-4 w-4" />
-            Guides
-          </TabsTrigger>
-          <TabsTrigger value="videos" className="gap-2">
-            <Video className="h-4 w-4" />
-            Vidéos
-          </TabsTrigger>
-          <TabsTrigger value="docs" className="gap-2">
-            <BookOpen className="h-4 w-4" />
-            Documentation
-          </TabsTrigger>
-        </TabsList>
-
-        {/* Guides Tab */}
-        <TabsContent value="guides" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {resources.guides.map((guide) => (
-              <Card key={guide.id} className="hover-lift cursor-pointer">
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <FileText className="h-6 w-6 text-primary" />
-                    </div>
-                    <Badge className={getCategoryColor(guide.category)}>
-                      {guide.category}
-                    </Badge>
+      {/* Guides Tab */}
+      {activeTab === 'guides' && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '25px' }}>
+          {resourcesData.guides.map((guide) => {
+            const { Icon, color, bgGradient } = getCategoryIcon(t.categories[guide.categoryKey]);
+            return (
+              <div key={guide.id} className="card" style={{ position: 'relative' }}>
+                {/* Header with Icon and Badge */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    background: bgGradient,
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                  }}>
+                    <Icon size={24} style={{ color: color }} />
                   </div>
-                  <CardTitle className="text-lg">{guide.title}</CardTitle>
-                  <CardDescription>{guide.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>{guide.type} • {guide.size}</span>
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                        <span>{guide.rating}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Download className="h-4 w-4" />
-                        <span>{guide.downloads} téléchargements</span>
-                      </div>
-                    </div>
+                  <span style={{
+                    ...getCategoryBadgeStyle(t.categories[guide.categoryKey]),
+                    padding: '4px 12px',
+                    borderRadius: '12px',
+                    fontSize: '12px',
+                    fontWeight: '600'
+                  }}>
+                    {t.categories[guide.categoryKey]}
+                  </span>
+                </div>
 
-                    <Button className="w-full gap-2">
-                      <Download className="h-4 w-4" />
-                      Télécharger
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
+                {/* Title and Description */}
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px', color: '#1E293B' }}>
+                  {ct[guide.titleKey]}
+                </h3>
+                <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '20px', lineHeight: '1.5' }}>
+                  {ct[guide.descriptionKey]}
+                </p>
 
-        {/* Videos Tab */}
-        <TabsContent value="videos" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {resources.videos.map((video) => (
-              <Card key={video.id} className="hover-lift cursor-pointer overflow-hidden">
-                <div className="aspect-video bg-muted relative group">
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                      <Video className="h-8 w-8 text-primary-foreground" />
+                {/* Meta Info */}
+                <div style={{ marginBottom: '15px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ fontSize: '13px', color: '#94A3B8' }}>
+                      {guide.type} • {guide.size}
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Star size={14} style={{ color: '#FBBF24', fill: '#FBBF24' }} />
+                      <span style={{ fontSize: '13px', fontWeight: '600', color: '#1E293B' }}>{guide.rating}</span>
                     </div>
                   </div>
-                  <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-xs">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: '#64748B' }}>
+                    <Download size={14} />
+                    <span>{guide.downloads} {t.stats.downloads}</span>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <button className="btn-primary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                  <Download size={16} />
+                  {t.actions.download}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Videos Tab */}
+      {activeTab === 'videos' && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '25px' }}>
+          {resourcesData.videos.map((video) => {
+            const { Icon, color, bgGradient } = getCategoryIcon(t.categories[video.categoryKey]);
+            return (
+              <div key={video.id} className="card" style={{ padding: '0', overflow: 'hidden' }}>
+                {/* Video Thumbnail */}
+                <div style={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  paddingTop: '56.25%', 
+                  background: bgGradient,
+                  cursor: 'pointer'
+                }}>
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    transition: 'background 0.3s'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.5)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.3)'}
+                  >
+                    <div style={{
+                      width: '60px',
+                      height: '60px',
+                      background: '#3B82F6',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <Video size={28} style={{ color: 'white' }} />
+                    </div>
+                  </div>
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    background: 'rgba(0, 0, 0, 0.8)',
+                    color: 'white',
+                    padding: '4px 8px',
+                    borderRadius: '6px',
+                    fontSize: '12px',
+                    fontWeight: '600'
+                  }}>
                     {video.duration}
                   </div>
                 </div>
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <Badge className={getCategoryColor(video.category)}>
-                      {video.category}
-                    </Badge>
-                    <div className="flex items-center gap-1 text-sm">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span>{video.rating}</span>
+
+                {/* Content */}
+                <div style={{ padding: '20px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <span style={{
+                      ...getCategoryBadgeStyle(t.categories[video.categoryKey]),
+                      padding: '4px 12px',
+                      borderRadius: '12px',
+                      fontSize: '12px',
+                      fontWeight: '600'
+                    }}>
+                      {t.categories[video.categoryKey]}
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Star size={14} style={{ color: '#FBBF24', fill: '#FBBF24' }} />
+                      <span style={{ fontSize: '13px', fontWeight: '600', color: '#1E293B' }}>{video.rating}</span>
                     </div>
                   </div>
-                  <CardTitle className="text-lg">{video.title}</CardTitle>
-                  <CardDescription>{video.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                    <div className="flex items-center gap-1">
-                      <Eye className="h-4 w-4" />
-                      <span>{video.views} vues</span>
+
+                  <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px', color: '#1E293B' }}>
+                    {ct[video.titleKey]}
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '15px', lineHeight: '1.5' }}>
+                    {ct[video.descriptionKey]}
+                  </p>
+
+                  <div style={{ display: 'flex', gap: '15px', marginBottom: '15px', fontSize: '13px', color: '#64748B' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <Eye size={14} />
+                      <span>{video.views} {t.stats.views}</span>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <Clock size={14} />
                       <span>{video.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full gap-2">
-                    <Video className="h-4 w-4" />
-                    Regarder
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
 
-        {/* Documentation Tab */}
-        <TabsContent value="docs" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {resources.documentation.map((doc) => (
-              <Card key={doc.id} className="hover-lift cursor-pointer">
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <BookOpen className="h-6 w-6 text-primary" />
-                    </div>
-                    <Badge className={getCategoryColor(doc.category)}>
-                      {doc.category}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-lg">{doc.title}</CardTitle>
-                  <CardDescription>{doc.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>{doc.pages} pages</span>
-                      <span>Mis à jour: {new Date(doc.updated).toLocaleDateString('fr-FR')}</span>
-                    </div>
-                    
-                    <Button className="w-full gap-2">
-                      <BookOpen className="h-4 w-4" />
-                      Lire
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
-      </Tabs>
-
-      {/* Popular Resources */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Ressources Populaires</CardTitle>
-          <CardDescription>Les plus consultées ce mois</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {[
-              { title: 'Guide de Démarrage Rapide', type: 'Guide', views: 1247 },
-              { title: 'Introduction aux Agents IA', type: 'Vidéo', views: 3421 },
-              { title: 'API Reference', type: 'Documentation', views: 892 },
-            ].map((item, index) => (
-              <div 
-                key={index}
-                className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-accent transition-colors cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary font-bold">
-                    {index + 1}
-                  </div>
-                  <div>
-                    <p className="font-medium">{item.title}</p>
-                    <p className="text-sm text-muted-foreground">{item.type}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Eye className="h-4 w-4" />
-                  <span>{item.views}</span>
+                  <button className="btn-primary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <Video size={16} />
+                    {t.actions.watch}
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Documentation Tab */}
+      {activeTab === 'docs' && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '25px' }}>
+          {resourcesData.documentation.map((doc) => {
+            const { Icon, color, bgGradient } = getCategoryIcon(t.categories[doc.categoryKey]);
+            return (
+              <div key={doc.id} className="card">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    background: bgGradient,
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                  }}>
+                    <Icon size={24} style={{ color: color }} />
+                  </div>
+                  <span style={{
+                    ...getCategoryBadgeStyle(t.categories[doc.categoryKey]),
+                    padding: '4px 12px',
+                    borderRadius: '12px',
+                    fontSize: '12px',
+                    fontWeight: '600'
+                  }}>
+                    {t.categories[doc.categoryKey]}
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px', color: '#1E293B' }}>
+                  {ct[doc.titleKey]}
+                </h3>
+                <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '20px', lineHeight: '1.5' }}>
+                  {ct[doc.descriptionKey]}
+                </p>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#94A3B8', marginBottom: '15px' }}>
+                  <span>{doc.pages} {t.stats.pages}</span>
+                  <span>{t.stats.updated}: {new Date(doc.updated).toLocaleDateString(lang === 'en' ? 'en-US' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : 'pt-PT')}</span>
+                </div>
+
+                <button className="btn-primary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                  <BookOpen size={16} />
+                  {t.actions.read}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Popular Resources */}
+      <div className="card" style={{ marginTop: '50px', padding: '30px' }}>
+        <h3 style={{ fontSize: '22px', fontWeight: '700', marginBottom: '8px', color: '#1E293B' }}>
+          {t.popular.title}
+        </h3>
+        <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '25px' }}>
+          {t.popular.subtitle}
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {[
+            { titleKey: 'quickStart', type: t.tabs.guides, views: 1247 },
+            { titleKey: 'introAI', type: t.tabs.videos, views: 3421 },
+            { titleKey: 'apiReference', type: t.tabs.docs, views: 892 },
+          ].map((item, index) => (
+            <div 
+              key={index}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '15px',
+                border: '1px solid #E2E8F0',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                transition: 'all 0.3s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#F8FAFC';
+                e.currentTarget.style.transform = 'translateX(5px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'white';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                <div style={{
+                  width: '36px',
+                  height: '36px',
+                  background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: '#3B82F6'
+                }}>
+                  {index + 1}
+                </div>
+                <div>
+                  <p style={{ fontSize: '15px', fontWeight: '600', color: '#1E293B', marginBottom: '2px' }}>
+                    {ct[item.titleKey]}
+                  </p>
+                  <p style={{ fontSize: '13px', color: '#64748B' }}>
+                    {item.type}
+                  </p>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: '#64748B' }}>
+                <Eye size={14} />
+                <span>{item.views}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <FooterResourcesSimple lang={lang} />
     </div>
   );
 }
+
+

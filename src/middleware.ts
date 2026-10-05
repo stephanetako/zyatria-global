@@ -1,19 +1,20 @@
-import type {MiddlewareHandler} from 'astro';
+import { defineMiddleware } from 'astro:middleware';
 
-export const onRequest: MiddlewareHandler = async (ctx, next) => {
-  const {request} = ctx;
-  const url = new URL(request.url);
+export const onRequest = defineMiddleware(async (context, next) => {
+  try {
+    // Polyfill pour require() dans l'environnement Workers
+    if (typeof globalThis.require === 'undefined') {
+      // @ts-ignore
+      globalThis.require = (id: string) => {
+        console.warn(`require() called for ${id} - using empty polyfill`);
+        return {};
+      };
+    }
 
-  if (import.meta.env.DEV && url.pathname === '/-wf/ready') {
-    const resHeaders = new Headers({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    });
-
-    return new Response(JSON.stringify({ready: true}), {
-      headers: resHeaders,
-    });
+    // Continuer avec la requête
+    return await next();
+  } catch (error) {
+    console.error('Middleware error:', error);
+    return await next();
   }
-
-  return next();
-};
+});

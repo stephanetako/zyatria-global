@@ -1,0 +1,27 @@
+---
+import DemoZXPage from '../components/pages/DemoZXPage';
+
+const seoData = {
+  title: "Démo ZX System | ZyatrIA Global",
+  description: "Démonstration complète du système de design ZX avec chatbot IA intégré",
+  ogImage: "/og-image.png"
+};
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{seoData.title}</title>
+  <meta name="description" content={seoData.description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Import des styles -->
+  <link rel="stylesheet" href="/src/site-components/global.css" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+  <DemoZXPage client:only="react" />
+</body>
+</html>

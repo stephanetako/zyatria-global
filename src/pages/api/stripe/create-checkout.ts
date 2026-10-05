@@ -3,35 +3,59 @@ import Stripe from 'stripe';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    // Récupérer la clé secrète Stripe
-    const stripeSecretKey = 
-      locals?.runtime?.env?.STRIPE_SECRET_KEY || 
+    const stripeSecretKey =
+      locals?.runtime?.env?.STRIPE_SECRET_KEY ||
       import.meta.env.STRIPE_SECRET_KEY;
 
     if (!stripeSecretKey) {
       return new Response(
         JSON.stringify({
-          success: false,
-          error: 'Configuration Stripe manquante'
+          error: 'Stripe configuration missing',
         }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        }
       );
     }
 
     const stripe = new Stripe(stripeSecretKey, {
-      apiVersion: '2024-12-18.acacia',
+      apiVersion: '2026-05-27.dahlia',
+      typescript: true,
     });
 
-    const body = await request.json();
-    const { 
-      planName, 
-      amount, 
-      currency = 'CAD', 
+    const body = await request.json() as {
+      planName?: string;
+      amount?: number;
+      currency?: string;
+      type?: string;
+      customerEmail?: string;
+      successUrl?: string;
+      cancelUrl?: string;
+    };
+    
+    const {
+      planName,
+      amount,
+      currency = 'CAD',
       type = 'payment',
       customerEmail,
       successUrl,
-      cancelUrl 
+      cancelUrl,
     } = body;
+
+    // Validation des champs requis
+    if (!planName || !amount) {
+      return new Response(
+        JSON.stringify({
+          error: 'Plan name and amount are required',
+        }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
 
     console.log('📦 Création de session Stripe avec taxation automatique:', { 
       planName, 
@@ -43,7 +67,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Configuration de base de la session
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       mode: type === 'subscription' ? 'subscription' : 'payment',
-      customer_email: customerEmail,
+      ...(customerEmail && { customer_email: customerEmail }),
       success_url: successUrl || `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: cancelUrl || `${request.headers.get('origin')}/pricing`,
       
@@ -75,8 +99,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
             }),
           },
           quantity: 1,
-          // Code de taxe pour les services SaaS
-          tax_behavior: 'exclusive', // Les taxes sont ajoutées au prix
         },
       ],
       
@@ -135,3 +157,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
   }
 };
+
+
+
+

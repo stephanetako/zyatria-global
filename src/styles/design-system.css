@@ -1,3 +1,5 @@
+
+
 /* ===== DESIGN SYSTEM ZYATRIA GLOBAL ===== */
 /* Police Inter (moderne et lisible) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -251,8 +253,8 @@ a:hover {
 
 /* ===== FOOTER ===== */
 .footer {
-  background: #1E293B;
-  color: white;
+  background: #F5F1EB;
+  color: #373D36;
   padding: 60px 20px 20px;
 }
 
@@ -265,7 +267,7 @@ a:hover {
 }
 
 .footer-column h3 {
-  color: white;
+  color: #373D36;
   margin-bottom: 20px;
   font-size: 18px;
 }
@@ -280,12 +282,12 @@ a:hover {
 }
 
 .footer-column a {
-  color: #CBD5E1;
+  color: #64748B;
   transition: color 0.3s;
 }
 
 .footer-column a:hover {
-  color: white;
+  color: #C98769;
 }
 
 .social-icons {
@@ -295,21 +297,21 @@ a:hover {
 }
 
 .social-icons a {
-  color: white;
+  color: #373D36;
   font-size: 24px;
   transition: color 0.3s;
 }
 
 .social-icons a:hover {
-  color: #3B82F6;
+  color: #C98769;
 }
 
 .copyright {
-  border-top: 1px solid #334155;
+  border-top: 1px solid rgba(55, 61, 54, 0.2);
   margin-top: 40px;
   padding-top: 20px;
   text-align: center;
-  color: #94A3B8;
+  color: #64748B;
   font-size: 14px;
 }
 
@@ -338,3 +340,5 @@ a:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+

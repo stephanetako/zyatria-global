@@ -1,0 +1,45 @@
+
+> zyatria-global@1.0.0 build
+> NODE_OPTIONS='--max-old-space-size=4096' astro build
+
+(node:4985) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+02:29:38 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+02:29:38 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+
+
+[43mWARNING[0m: your worker config (at `wrangler.toml`) contains the following configuration options which are ignored since they are not applicable when using Vite:
+  - `build` which is not relevant in the context of a Vite project
+
+02:29:38 [types] Generated 85ms
+02:29:38 [build] output: "server"
+02:29:38 [build] mode: "server"
+02:29:38 [build] directory: /app/dist/
+02:29:38 [build] adapter: @astrojs/cloudflare
+02:29:38 [build] Collecting build info...
+02:29:38 [build] ✓ Completed in 187ms.
+02:29:38 [build] Building server entrypoints...
+
+
+[43mWARNING[0m: your worker config (at `wrangler.toml`) contains the following configuration options which are ignored since they are not applicable when using Vite:
+  - `build` which is not relevant in the context of a Vite project
+
+Using secrets defined in .env
+02:29:39 [vite] ✓ built in 528ms
+Using secrets defined in .env
+02:29:41 [vite] ✓ built in 1.82s
+02:29:41 [vite] ✓ built in 571ms
+02:29:41 [build] Rearranging server assets...
+02:29:41 [build] ✓ Completed in 3.06s.
+02:29:41 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+02:29:41 [build] Server built in 3.28s
+02:29:41 [build] Complete!
+
+> zyatria-global@1.0.0 postbuild
+> node fix-wrangler-config.js
+
+✅ Champ "connect" supprimé de wrangler.json
+✅ Configuration assets déjà correcte dans wrangler.json
+✅ wrangler.json mis à jour
+✅ Références env.ASSETS remplacées par env.STATIC_ASSETS dans entry.mjs
+✅ Configuration complète mise à jour

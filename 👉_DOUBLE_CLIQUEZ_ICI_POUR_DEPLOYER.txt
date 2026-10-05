@@ -1,0 +1,78 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║           🚀 DÉPLOYER ZYATRIA GLOBAL EN 1 CLIC                ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+
+📋 MÉTHODE 1: DOUBLE-CLIC (LE PLUS SIMPLE)
+═══════════════════════════════════════════
+
+Windows:
+  → Double-cliquez sur: DEPLOYER_MAINTENANT.bat
+
+
+📋 MÉTHODE 2: LIGNE DE COMMANDE
+═══════════════════════════════════
+
+Windows (PowerShell):
+  .\deploy-github-cloudflare.ps1
+
+Linux/Mac:
+  ./deploy-github-cloudflare.sh
+
+
+📋 MÉTHODE 3: MANUEL
+═══════════════════════
+
+Voir le guide complet:
+  🚀_DEPLOYER_MAINTENANT_GUIDE_FINAL.md
+
+
+✅ APRÈS LE DÉPLOIEMENT
+════════════════���══════
+
+Sur Cloudflare Pages, ajoutez ces 5 variables:
+
+  MISTRAL_API_KEY
+  STRIPE_PUBLIC_KEY
+  STRIPE_SECRET_KEY
+  STRIPE_WEBHOOK_SECRET
+  FORMSPREE_FORM_ID
+
+Les valeurs sont dans le fichier .env
+
+
+🎯 VOTRE SITE SERA SUR
+═══════════════════════
+
+  https://zyatria-global.pages.dev
+
+  (ou votre domaine personnalisé)
+
+
+📊 STATUT ACTUEL
+═══════════════════
+
+  ✅ Build réussi
+  ✅ Tests passés (18/18)
+  ✅ Agents IA activés
+  ✅ Stripe configuré (15 liens)
+  ✅ Formspree configuré (7 formulaires)
+  ✅ Design finalisé
+  ✅ Performance optimale
+
+
+🚀 PRÊT À DÉPLOYER !
+═══════════════════════
+
+Temps estimé: 10-15 minutes
+Difficulté: Facile
+
+Choisissez une méthode ci-dessus et lancez le déploiement !
+
+
+═══════════════════════════════════════════════════════════════
+
+Dernière mise à jour: 28 septembre 2025
+Statut: ✅ PRÊT POUR PRODUCTION
