@@ -1,0 +1,66 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║           🚀 POUSSER VERS GITHUB - GUIDE RAPIDE           ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+✅ TOUT EST PRÊT !
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Votre code est nettoyé et commité.
+Il ne reste plus qu'à pousser vers GitHub.
+
+
+📋 MÉTHODE SIMPLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👉 Double-cliquez sur : DOUBLE_CLIQUEZ_PUSH_GITHUB.bat
+
+C'est tout ! 🎉
+
+
+🔐 SI GITHUB DEMANDE UN MOT DE PASSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Allez sur : https://github.com/settings/tokens
+2. Cliquez "Generate new token (classic)"
+3. Cochez : repo
+4. Générez et copiez le token
+5. Utilisez-le comme mot de passe
+
+
+🎯 APRÈS LE PUSH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cloudflare déploiera automatiquement !
+
+1. Allez sur : https://dash.cloudflare.com
+2. Pages > zyatria-global
+3. Attendez 2-3 minutes
+4. ✅ Votre site est en ligne !
+
+
+📊 CE QUI A ÉTÉ NETTOYÉ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Supprimé : astro.config.NEW.mjs (ancien)
+✅ Supprimé : astro.config.STATIC.mjs (ancien)
+✅ Supprimé : wrangler.jsonc (ancien)
+✅ Supprimé : backups volumineux
+✅ Corrigé : page blanche
+✅ Corrigé : conflits de configuration
+
+
+🔗 LIENS IMPORTANTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GitHub    : https://github.com/stephanetako/zyatria-global
+Cloudflare: https://dash.cloudflare.com
+Site      : https://8972843a648f35320d9efb62c844e9de.app.webflow.io
+
+
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║  👉 Double-cliquez sur DOUBLE_CLIQUEZ_PUSH_GITHUB.bat     ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
