@@ -43,6 +43,7 @@ export function Navigation({}) {
           data-easing={"ease"}
           data-easing2={"ease"}
           data-no-scroll={"1"}
+          // @ts-ignore - User-defined custom attribute(s)
           role={"banner"}
           tag={"div"}
         >
@@ -64,7 +65,6 @@ export function Navigation({}) {
                 <DOM
                   height={"100%"}
                   preserveAspectRatio={"xMidYMid meet"}
-                  slot={""}
                   tag={"svg"}
                   viewBox={"0 0 33 33"}
                   width={"100%"}
@@ -74,7 +74,6 @@ export function Navigation({}) {
                       "M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z"
                     }
                     fill={"currentColor"}
-                    slot={""}
                     tag={"path"}
                   />
                 </DOM>
@@ -101,6 +100,7 @@ export function Navigation({}) {
             >
               <List
                 className={"nav_menu-list"}
+                // @ts-ignore - User-defined custom attribute(s)
                 role={"list"}
                 tag={"ul"}
                 unstyled={true}
@@ -137,6 +137,7 @@ export function Navigation({}) {
                           className={
                             "grid_3-col tablet-1-col-1 gap-medium margin-bottom_none"
                           }
+                          // @ts-ignore - User-defined custom attribute(s)
                           role={"list"}
                           tag={"ul"}
                           unstyled={true}
@@ -158,6 +159,7 @@ export function Navigation({}) {
                                 </Block>
                                 <List
                                   className={"mega-nav_list"}
+                                  // @ts-ignore - User-defined custom attribute(s)
                                   role={"list"}
                                   tag={"ul"}
                                   unstyled={true}
@@ -183,7 +185,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -193,8 +194,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -251,7 +251,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -261,8 +260,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -317,7 +315,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -327,8 +324,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -377,6 +373,7 @@ export function Navigation({}) {
                                 </Block>
                                 <List
                                   className={"mega-nav_list"}
+                                  // @ts-ignore - User-defined custom attribute(s)
                                   role={"list"}
                                   tag={"ul"}
                                   unstyled={true}
@@ -402,7 +399,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -412,8 +408,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -468,7 +463,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -478,8 +472,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -534,7 +527,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -544,8 +536,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -595,6 +586,7 @@ export function Navigation({}) {
                                 </Block>
                                 <List
                                   className={"mega-nav_list"}
+                                  // @ts-ignore - User-defined custom attribute(s)
                                   role={"list"}
                                   tag={"ul"}
                                   unstyled={true}
@@ -620,7 +612,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -630,8 +621,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -686,7 +676,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -696,8 +685,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -748,7 +736,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"currentColor"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 32 32"}
                                           width={"100%"}
@@ -758,8 +745,7 @@ export function Navigation({}) {
                                             d={
                                               "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z"
                                             }
-                                            slot={""}
-                                            stroke-linejoin={"round"}
+                                            strokeLinejoin={"round"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -862,7 +848,6 @@ export function Navigation({}) {
                                         <DOM
                                           fill={"none"}
                                           height={"100%"}
-                                          slot={""}
                                           tag={"svg"}
                                           viewBox={"0 0 16 16"}
                                           width={"100%"}
@@ -872,10 +857,9 @@ export function Navigation({}) {
                                             d={
                                               "M2 8H14.5M14.5 8L8.5 2M14.5 8L8.5 14"
                                             }
-                                            slot={""}
                                             stroke={"currentColor"}
-                                            stroke-linejoin={"round"}
-                                            stroke-width={"2"}
+                                            strokeLinejoin={"round"}
+                                            strokeWidth={"2"}
                                             tag={"path"}
                                           />
                                         </DOM>
@@ -945,6 +929,7 @@ export function Navigation({}) {
                       >
                         <List
                           className={"flex_vertical margin-bottom_none"}
+                          // @ts-ignore - User-defined custom attribute(s)
                           role={"list"}
                           tag={"ul"}
                           unstyled={true}
@@ -1005,25 +990,22 @@ export function Navigation({}) {
             <Block className={"icon on-inverse"} tag={"div"}>
               <DOM
                 height={"24"}
-                slot={""}
                 tag={"svg"}
                 viewBox={"0 0 24 24"}
                 width={"24"}
                 xmlns={"http://www.w3.org/2000/svg"}
               >
                 <DOM
-                  class={"nc-icon-wrapper"}
+                  className={"nc-icon-wrapper"}
                   fill={"none"}
-                  slot={""}
                   stroke={"currentColor"}
-                  stroke-linecap={"square"}
-                  stroke-linejoin={"miter"}
-                  stroke-miterlimit={"10"}
-                  stroke-width={"1.5"}
+                  strokeLinecap={"square"}
+                  strokeLinejoin={"miter"}
+                  strokeMiterlimit={"10"}
+                  strokeWidth={"1.5"}
                   tag={"g"}
                 >
                   <DOM
-                    slot={""}
                     stroke={"currentColor"}
                     tag={"line"}
                     x1={"1"}
@@ -1031,22 +1013,8 @@ export function Navigation({}) {
                     y1={"12"}
                     y2={"12"}
                   />
-                  <DOM
-                    slot={""}
-                    tag={"line"}
-                    x1={"1"}
-                    x2={"23"}
-                    y1={"5"}
-                    y2={"5"}
-                  />
-                  <DOM
-                    slot={""}
-                    tag={"line"}
-                    x1={"1"}
-                    x2={"23"}
-                    y1={"19"}
-                    y2={"19"}
-                  />
+                  <DOM tag={"line"} x1={"1"} x2={"23"} y1={"5"} y2={"5"} />
+                  <DOM tag={"line"} x1={"1"} x2={"23"} y1={"19"} y2={"19"} />
                 </DOM>
               </DOM>
             </Block>

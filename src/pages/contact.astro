@@ -1,0 +1,400 @@
+---
+import '../styles/zx-styles.css';
+import { FORMSPREE_CONFIG, getFormspreeEndpoint } from '../config/formspree';
+---
+
+<!DOCTYPE html>
+<html lang="fr" class="zx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - ZyatrIA Global</title>
+  <meta name="description" content="Contactez ZyatrIA Global pour automatiser votre entreprise avec l'IA. Réponse sous 24h.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="zx-header">
+  <nav class="zx-nav">
+    <a href="/" style="display:flex;align-items:center">
+      <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:50px;width:auto" />
+    </a>
+    <div class="zx-nav-links">
+      <a href="/">Accueil</a>
+      <a href="/services">Services</a>
+      <a href="/micro-agents">Micro-agents</a>
+      <a href="/pricing">Tarifs</a>
+      <a href="/knowledge-base">Ressources</a>
+      <a href="/contact" class="active">Contact</a>
+    </div>
+    <div class="zx-nav-right">
+      <button class="zx-lang-toggle" id="langToggle">
+        🇫🇷 FR
+      </button>
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-sm">Démo gratuite</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero Contact -->
+<section class="zx-sec zx-hero">
+  <div class="zx-wrap" style="max-width:800px;margin:0 auto;text-align:center">
+    <div class="zx-kicker">📧 Contactez-nous</div>
+    <h1 class="zx-h1">Parlons de votre projet</h1>
+    <p class="zx-lead">
+      Réponse garantie sous 24h. Consultation gratuite de 30 minutes pour identifier 
+      vos opportunités d'automatisation.
+    </p>
+  </div>
+</section>
+
+<!-- Formulaire de contact -->
+<section class="zx-sec" style="padding-top:0">
+  <div class="zx-wrap" style="max-width:700px;margin:0 auto">
+    
+    <!-- Message de succès (caché par défaut) -->
+    <div id="success-message" style="display:none;background:var(--bg-success);border:2px solid var(--success);border-radius:var(--radius-lg);padding:24px;margin-bottom:32px;text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">✅</div>
+      <h3 style="color:var(--success);margin-bottom:8px">Message envoyé avec succès !</h3>
+      <p style="color:var(--text-secondary);margin:0">Nous vous répondrons sous 24h.</p>
+    </div>
+
+    <!-- Message d'erreur (caché par défaut) -->
+    <div id="error-message" style="display:none;background:var(--bg-error);border:2px solid var(--error);border-radius:var(--radius-lg);padding:24px;margin-bottom:32px;text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">❌</div>
+      <h3 style="color:var(--error);margin-bottom:8px">Erreur d'envoi</h3>
+      <p style="color:var(--text-secondary);margin:0">Veuillez réessayer ou nous contacter par email.</p>
+    </div>
+
+    <!-- Formulaire -->
+    <form 
+      id="contact-form"
+      action={getFormspreeEndpoint(FORMSPREE_CONFIG.contactFormId)}
+      method="POST"
+      style="background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px"
+    >
+      
+      <!-- Nom complet -->
+      <div style="margin-bottom:24px">
+        <label for="name" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Nom complet <span style="color:var(--error)">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          required
+          placeholder="Jean Dupont"
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;transition:all 0.2s"
+        />
+      </div>
+
+      <!-- Email -->
+      <div style="margin-bottom:24px">
+        <label for="email" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Email professionnel <span style="color:var(--error)">*</span>
+        </label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
+          placeholder="jean.dupont@entreprise.com"
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;transition:all 0.2s"
+        />
+      </div>
+
+      <!-- Téléphone -->
+      <div style="margin-bottom:24px">
+        <label for="phone" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Téléphone
+        </label>
+        <input 
+          type="tel" 
+          id="phone" 
+          name="phone"
+          placeholder="+1 (438) 123-4567"
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;transition:all 0.2s"
+        />
+      </div>
+
+      <!-- Entreprise -->
+      <div style="margin-bottom:24px">
+        <label for="company" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Entreprise <span style="color:var(--error)">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="company" 
+          name="company" 
+          required
+          placeholder="Nom de votre entreprise"
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;transition:all 0.2s"
+        />
+      </div>
+
+      <!-- Type de service -->
+      <div style="margin-bottom:24px">
+        <label for="service" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Service souhaité <span style="color:var(--error)">*</span>
+        </label>
+        <select 
+          id="service" 
+          name="service" 
+          required
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;transition:all 0.2s"
+        >
+          <option value="">-- Sélectionnez un service --</option>
+          <option value="micro-agent">Micro-agent IA (297-997$/mois)</option>
+          <option value="custom-agent">Agent IA personnalisé</option>
+          <option value="automation">Automatisation avancée</option>
+          <option value="audit">Audit IA complet (147$)</option>
+          <option value="consultation">Consultation stratégique (149$)</option>
+          <option value="other">Autre / Je ne sais pas</option>
+        </select>
+      </div>
+
+      <!-- Budget -->
+      <div style="margin-bottom:24px">
+        <label for="budget" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Budget mensuel estimé
+        </label>
+        <select 
+          id="budget" 
+          name="budget"
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;transition:all 0.2s"
+        >
+          <option value="">-- Optionnel --</option>
+          <option value="<500">Moins de 500$ CA/mois</option>
+          <option value="500-1000">500$ - 1 000$ CA/mois</option>
+          <option value="1000-2500">1 000$ - 2 500$ CA/mois</option>
+          <option value="2500-5000">2 500$ - 5 000$ CA/mois</option>
+          <option value=">5000">Plus de 5 000$ CA/mois</option>
+        </select>
+      </div>
+
+      <!-- Message -->
+      <div style="margin-bottom:24px">
+        <label for="message" style="display:block;font-weight:600;margin-bottom:8px;color:var(--text-primary)">
+          Décrivez votre projet <span style="color:var(--error)">*</span>
+        </label>
+        <textarea 
+          id="message" 
+          name="message" 
+          required
+          rows="6"
+          placeholder="Décrivez vos besoins, vos objectifs, et ce que vous souhaitez automatiser..."
+          style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-primary);font-size:16px;resize:vertical;transition:all 0.2s"
+        ></textarea>
+      </div>
+
+      <!-- Honeypot (anti-spam) -->
+      <input type="text" name="_gotcha" style="display:none" />
+
+      <!-- Bouton submit -->
+      <button 
+        type="submit" 
+        id="submit-btn"
+        class="zx-btn"
+        style="width:100%;padding:16px;font-size:18px;font-weight:700"
+      >
+        📤 Envoyer ma demande
+      </button>
+
+      <p style="text-align:center;margin-top:16px;font-size:14px;color:var(--text-secondary)">
+        ✓ Réponse sous 24h · ✓ Consultation gratuite · ✓ Sans engagement
+      </p>
+    </form>
+
+  </div>
+</section>
+
+<!-- Informations de contact alternatives -->
+<section class="zx-sec" style="background:var(--bg-secondary)">
+  <div class="zx-wrap">
+    <h2 class="zx-h2" style="text-align:center;margin-bottom:48px">Autres moyens de nous contacter</h2>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;max-width:900px;margin:0 auto">
+      
+      <!-- Email -->
+      <div style="text-align:center;padding:32px;background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-size:48px;margin-bottom:16px">📧</div>
+        <h3 style="margin-bottom:8px">Email</h3>
+        <a href="mailto:ZyatrIA.contact@gmail.com" style="color:var(--primary);font-weight:600">
+          ZyatrIA.contact@gmail.com
+        </a>
+        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary)">
+          Réponse sous 24h en semaine
+        </p>
+      </div>
+
+      <!-- Téléphone -->
+      <div style="text-align:center;padding:32px;background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-size:48px;margin-bottom:16px">📞</div>
+        <h3 style="margin-bottom:8px">Téléphone</h3>
+        <a href="tel:+14388874507" style="color:var(--primary);font-weight:600">
+          +1 (438) 887-4507
+        </a>
+        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary)">
+          Lun-Ven, 9h-17h EST
+        </p>
+      </div>
+
+      <!-- Localisation -->
+      <div style="text-align:center;padding:32px;background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-size:48px;margin-bottom:16px">🇨🇦</div>
+        <h3 style="margin-bottom:8px">Localisation</h3>
+        <p style="color:var(--text-primary);font-weight:600">
+          Québec, Canada
+        </p>
+        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary)">
+          Service mondial en 4 langues
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="zx-footer">
+  <div class="zx-wrap">
+    <div class="zx-footer-grid">
+      <div>
+        <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:40px;width:auto;margin-bottom:1rem" />
+        <p>Entreprise canadienne basée au Québec.<br>Agents IA autonomes pour entreprises.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/micro-agents">Micro-agents</a></li>
+          <li><a href="/pricing">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/knowledge-base">Base de connaissances</a></li>
+          <li><a href="/test-chat">Tester le chatbot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/contact">Formulaire de contact</a></li>
+          <li><a href="mailto:ZyatrIA.contact@gmail.com">Email</a></li>
+          <li><a href="tel:+14388874507">+1 (438) 887-4507</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="zx-copy">
+      © 2025 ZyatrIA Global. Tous droits réservés. 
+      <a href="/privacy">Confidentialité</a> · 
+      <a href="/terms">Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Gestion du formulaire
+const form = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const successMessage = document.getElementById('success-message');
+const errorMessage = document.getElementById('error-message');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Désactiver le bouton
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Envoi en cours...';
+    
+    // Cacher les messages précédents
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+    
+    try {
+      // Envoyer le formulaire
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Succès
+        successMessage.style.display = 'block';
+        form.reset();
+        
+        // Scroll vers le message de succès
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Réactiver le bouton après 3 secondes
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '📤 Envoyer ma demande';
+        }, 3000);
+      } else {
+        // Erreur
+        throw new Error('Erreur serveur');
+      }
+    } catch (error) {
+      // Afficher le message d'erreur
+      errorMessage.style.display = 'block';
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Réactiver le bouton
+      submitBtn.disabled = false;
+      submitBtn.textContent = '📤 Envoyer ma demande';
+    }
+  });
+}
+
+// Language toggle
+const langToggle = document.getElementById('langToggle');
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get('lang') || 'fr';
+
+function updateLangButton() {
+  if (langToggle) {
+    langToggle.textContent = currentLang === 'fr' ? '🇫🇷 FR' : '🇬🇧 EN';
+  }
+}
+
+updateLangButton();
+
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    updateLangButton();
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.location.href = newUrl.toString();
+  });
+}
+
+// Focus styles pour les inputs
+const inputs = document.querySelectorAll('input, textarea, select');
+inputs.forEach(input => {
+  input.addEventListener('focus', function() {
+    this.style.borderColor = 'var(--primary)';
+    this.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)';
+  });
+  
+  input.addEventListener('blur', function() {
+    this.style.borderColor = 'var(--border)';
+    this.style.boxShadow = 'none';
+  });
+});
+</script>
+
+</body>
+</html>

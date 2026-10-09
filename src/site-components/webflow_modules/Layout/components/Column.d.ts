@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Props } from "../../types";
+import type { Props } from "../../types";
 type ColumnProps = Props<
   "div",
   {

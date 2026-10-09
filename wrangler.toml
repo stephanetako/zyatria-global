@@ -1,32 +1,13 @@
-# Configuration Cloudflare Pages pour zyatria-global
-name = "zyatria-global"
-compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat", "nodejs_compat_v2"]
-pages_build_output_dir = "dist"
+name = "zyatria-api"
+main = "worker.js"
+compatibility_date = "2024-10-01"
 
-# Cloudflare Pages configuration
-[env.production]
-compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat", "nodejs_compat_v2"]
+[ai]
+binding = "AI"
 
-# Build configuration
-[build]
-command = "npm run build"
-
-[observability]
-enabled = true
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "zyatria-knowledge"
 
 [vars]
-ENVIRONMENT = "production"
-
-# Les secrets sont configurés via le dashboard Cloudflare:
-# - CLAUDE_API_KEY
-# - FORMSPREE_FORM_ID
-# - MISTRAL_API_KEY
-# - STRIPE_PUBLIC_KEY
-# - STRIPE_SECRET_KEY
-# - STRIPE_WEBHOOK_SECRET
-
-# Assets binding (renamed from ASSETS to STATIC_ASSETS to avoid reserved name conflict)
-[assets]
-binding = "STATIC_ASSETS"
+# Ne mets PAS les clés ici — utilise `wrangler secret put`

@@ -13,7 +13,7 @@ const NavbarMenu = React.forwardRef(function NavbarMenu(
     ...props,
     className: cj(className, "w-nav-menu"),
     ...(isOpen ? { "data-nav-menu-open": "" } : {}),
-    style: animOver ? { height: getBodyHeight() } : {},
+    style: animOver && isOpen ? { height: getBodyHeight() } : {},
     ref: menu,
   });
 });

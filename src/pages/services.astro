@@ -1,18 +1,267 @@
----
-import MainLayout from '../layouts/main.astro';
-import ServicesPage from '../components/pages/ServicesPage';
 
-const seoData = {
-  title: "Services | ZyatrIA Global - AI Solutions & Automation",
-  description: "Discover our AI agent services: intelligent automation, micro-agents, CRM integration, and custom solutions. Available globally.",
-  ogImage: "/og-image.svg"
-};
----
 
-<MainLayout 
-  title={seoData.title}
-  description={seoData.description}
-  ogImage={seoData.ogImage}
->
-  <ServicesPage client:only="react" />
-</MainLayout>
+
+import '../styles/zx-styles.css';
+import { stripeLinks } from '../config/stripe-links';
+
+<!DOCTYPE html>
+<html lang="fr" class="zx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - ZyatrIA Global</title>
+  <meta name="description" content="Agents IA intelligents, automatisation avancée et déploiement rapide pour votre entreprise.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="zx-header">
+  <nav class="zx-nav">
+    <a href="/" style="display:flex;align-items:center">
+      <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:50px;width:auto" />
+    </a>
+    <div class="zx-nav-links">
+      <a href="/">Accueil</a>
+      <a href="/services">Services</a>
+      <a href="/micro-agents">Micro-agents</a>
+      <a href="/pricing">Tarifs</a>
+      <a href="/knowledge-base">Ressources</a>
+    </div>
+    <div class="zx-nav-right">
+      <button class="zx-lang-toggle" id="langToggle">
+        🇫🇷 FR
+      </button>
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-sm">Démo gratuite</a>
+    </div>
+  </nav>
+</header>
+
+<!-- 03 - Entête Services -->
+<section class="zx-sec zx-hero">
+  <div class="zx-wrap">
+    <div class="zx-kicker">Nos services</div>
+    <h1 class="zx-h1">Automatisez votre entreprise <span>avec l'IA</span></h1>
+    <p class="zx-lead">
+      Trois façons de gagner du temps et d'augmenter votre productivité, 
+      quel que soit votre secteur d'activité.
+    </p>
+  </div>
+</section>
+
+<!-- 04 - Solutions -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <div class="zx-cards">
+      <div class="zx-card">
+        <span class="zx-tag">🤖 Intelligence artificielle</span>
+        <h3>Agents IA intelligents</h3>
+        <p class="zx-desc">
+          Des agents autonomes qui analysent, répondent, décident et exécutent 
+          au cœur de votre activité quotidienne.
+        </p>
+        <ul>
+          <li>Réponses automatiques 24/7 en 4 langues</li>
+          <li>Analyse intelligente des besoins clients</li>
+          <li>Adaptation continue à votre entreprise</li>
+          <li>Escalade humaine quand nécessaire</li>
+        </ul>
+        <a href="/micro-agents" class="zx-btn" style="margin-top:16px">Découvrir les micro-agents</a>
+      </div>
+
+      <div class="zx-card">
+        <span class="zx-tag">⚡ Automatisation</span>
+        <h3>Automatisation avancée</h3>
+        <p class="zx-desc">
+          Connectez tous vos outils et éliminez le travail manuel répétitif 
+          qui ralentit votre équipe.
+        </p>
+        <ul>
+          <li>Intégrations CRM natives (HubSpot, Salesforce)</li>
+          <li>Relances automatisées par email, SMS, WhatsApp</li>
+          <li>Données synchronisées en temps réel</li>
+          <li>Workflows personnalisés sans code</li>
+        </ul>
+        <a href="/pricing" class="zx-btn" style="margin-top:16px">Voir les tarifs</a>
+      </div>
+
+      <div class="zx-card">
+        <span class="zx-tag">🚀 Déploiement rapide</span>
+        <h3>Résultats en 7 jours</h3>
+        <p class="zx-desc">
+          Choisissez un micro-agent, nous le configurons selon vos besoins, 
+          et il est en ligne en une semaine.
+        </p>
+        <ul>
+          <li>Déployé en 7 à 15 jours ouvrables</li>
+          <li>Coût 70% inférieur au développement sur-mesure</li>
+          <li>Prêt à l'emploi immédiatement</li>
+          <li>Formation de votre équipe incluse</li>
+        </ul>
+        <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn" style="margin-top:16px">Réserver une consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services additionnels -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Services professionnels</h2>
+    <p class="zx-lead">
+      Accompagnement personnalisé pour maximiser votre retour sur investissement.
+    </p>
+
+    <div class="zx-cards">
+      <div class="zx-card">
+        <h3>🔍 Audit IA complet</h3>
+        <p class="zx-sub">147$ CA</p>
+        <p>
+          Évaluation approfondie de vos processus actuels et recommandations 
+          d'automatisation personnalisées.
+        </p>
+        <ul>
+          <li>Analyse de vos workflows</li>
+          <li>Identification des opportunités</li>
+          <li>Plan d'action détaillé</li>
+          <li>ROI estimé par solution</li>
+        </ul>
+        <a href={stripeLinks.services.audit} target="_blank" rel="noopener" class="zx-link">Commander un audit →</a>
+      </div>
+
+      <div class="zx-card">
+        <h3>💡 Consultation stratégique</h3>
+        <p class="zx-sub">149$ CA</p>
+        <p>
+          60 minutes avec un expert pour définir votre stratégie d'automatisation 
+          et prioriser vos actions.
+        </p>
+        <ul>
+          <li>Session individuelle 1h</li>
+          <li>Analyse de vos besoins</li>
+          <li>Recommandations personnalisées</li>
+          <li>Feuille de route détaillée</li>
+        </ul>
+        <a href={stripeLinks.services.consultation} target="_blank" rel="noopener" class="zx-link">Réserver une consultation →</a>
+      </div>
+
+      <div class="zx-card">
+        <h3>🎓 Formation personnalisée</h3>
+        <p class="zx-sub">Incluse dans tous les plans</p>
+        <p>
+          Formation complète de votre équipe pour utiliser et optimiser 
+          vos agents IA au quotidien.
+        </p>
+        <ul>
+          <li>Sessions de formation en ligne</li>
+          <li>Documentation complète</li>
+          <li>Support continu</li>
+          <li>Mises à jour régulières</li>
+        </ul>
+        <a href="/pricing" class="zx-link">Voir les plans →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="zx-sec zx-cta-final">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Prêt à automatiser votre entreprise ?</h2>
+    <p class="zx-lead">
+      Consultation gratuite de 30 minutes pour identifier vos opportunités d'automatisation.
+    </p>
+    <div class="zx-cta-row">
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn">Réserver ma consultation gratuite</a>
+      <a href="/micro-agents" class="zx-btn zx-btn-ghost">Voir les micro-agents</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="zx-footer">
+  <div class="zx-wrap">
+    <div class="zx-footer-grid">
+      <div>
+        <div class="zx-logo">ZyatrIA <span>Global</span></div>
+        <p>Entreprise canadienne basée au Québec.<br>Agents IA autonomes pour entreprises.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/micro-agents">Micro-agents</a></li>
+          <li><a href="/pricing">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/knowledge-base">Base de connaissances</a></li>
+          <li><a href="/test-chat.html">Tester le chatbot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:ZyatrIA.contact@gmail.com">Email</a></li>
+          <li><a href="tel:+14388874507">+1 (438) 887-4507</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="zx-copy">
+      © 2025 ZyatrIA Global. Tous droits réservés. 
+      <a href="/privacy">Confidentialité</a> · 
+      <a href="/terms">Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle functionality
+const langToggle = document.getElementById('langToggle');
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get('lang') || 'fr';
+
+// Update button display based on current language
+function updateLangButton() {
+  if (langToggle) {
+    if (currentLang === 'fr') {
+      langToggle.textContent = '🇫🇷 FR';
+    } else {
+      langToggle.textContent = '🇬🇧 EN';
+    }
+  }
+}
+
+// Initialize
+updateLangButton();
+
+// Toggle language on click
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    // Switch language
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    
+    // Update button
+    updateLangButton();
+    
+    // Update URL and reload
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.location.href = newUrl.toString();
+  });
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+

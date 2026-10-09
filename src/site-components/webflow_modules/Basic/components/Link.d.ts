@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LinkProps } from "../../types";
+import type { LinkProps } from "../../types";
 export type { LinkProps };
 declare const Link: React.ForwardRefExoticComponent<
   import("../../types").ElementProps<"a"> & {

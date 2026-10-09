@@ -2190,7 +2190,7 @@ textarea.w-select {
   --_apps---sidebar--sidebar-foreground: var(--_colors---text-color--text-primary);
   --_apps---sidebar--sidebar-primary: var(--_colors---core-accent-color--accent-primary);
   --_apps---sidebar--sidebar-primary-foreground: var(--_colors---text-color--text-on-accent-primary);
-  --_colors---core-accent-color--accent-primary: #C98769;
+  --_colors---core-accent-color--accent-primary: #007AFF;
   --_colors---core-accent-color--accent-primary-hover: #d9ab96;
   --_colors---core-accent-color--accent-secondary: transparent;
   --_colors---core-accent-color--accent-secondary-hover: transparent;
@@ -2266,7 +2266,7 @@ textarea.w-select {
   --_colors---text-color--text-on-accent-primary: #FFFFFF;
   --_colors---text-color--text-on-accent-secondary: #474747;
   --_colors---text-color--text-on-accent-tertiary: #474747;
-  --_colors---text-color--text-accent-on-primary: #C98769;
+  --_colors---text-color--text-accent-on-primary: #007AFF;
   --_colors---text-color--text-accent-on-primary-hover: rgba(201, 135, 105, 0.6);
   --_colors---text-color--text-accent-on-inverse: #FFFFFF;
   --_colors---text-color--text-accent-on-inverse-hover: rgba(255, 255, 255, 0.6);

@@ -1,9 +1,11 @@
 "use client";
 import * as React from "react";
 const BREAKPOINTS = {
+  all: Infinity,
   medium: 991,
   small: 767,
   tiny: 479,
+  none: 0,
 };
 export { BREAKPOINTS };
 export const NavbarContext = React.createContext({

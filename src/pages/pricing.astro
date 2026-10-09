@@ -1,18 +1,293 @@
----
-import MainLayout from '../layouts/main.astro';
-import PricingPage from '../components/pages/PricingPage';
 
-const seoData = {
-  title: "Pricing | ZyatrIA Global - AI Agents & Automation",
-  description: "Transparent pricing for AI agents and automation solutions. Choose the plan that fits your business needs. Deploy in 7-15 days.",
-  ogImage: "/og-image.svg"
-};
+
+
+
+
+---
+import '../styles/zx-styles.css';
+import { stripeLinks } from '../config/stripe-links';
 ---
 
-<MainLayout 
-  title={seoData.title}
-  description={seoData.description}
-  ogImage={seoData.ogImage}
->
-  <PricingPage client:only="react" />
-</MainLayout>
+<!DOCTYPE html>
+<html lang="fr" class="zx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs - ZyatrIA Global</title>
+  <meta name="description" content="Plans Starter, Professional et Enterprise. De 102$ à 698$ CA/mois. Garantie 30 jours.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="zx-header">
+  <nav class="zx-nav">
+    <a href="/" style="display:flex;align-items:center">
+      <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:50px;width:auto" />
+    </a>
+    <div class="zx-nav-links">
+      <a href="/">Accueil</a>
+      <a href="/services">Services</a>
+      <a href="/micro-agents">Micro-agents</a>
+      <a href="/pricing">Tarifs</a>
+      <a href="/knowledge-base">Ressources</a>
+    </div>
+    <div class="zx-nav-right">
+      <button class="zx-lang-toggle" id="langToggle">
+        🇫🇷 FR
+      </button>
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-sm">Démo gratuite</a>
+    </div>
+  </nav>
+</header>
+
+<!-- 11 - Entête Tarifs -->
+<section class="zx-sec zx-hero">
+  <div class="zx-wrap">
+    <div class="zx-kicker">Tarifs transparents</div>
+    <h1 class="zx-h1">Un plan pour chaque <span>étape de croissance</span></h1>
+    <p class="zx-lead">
+      Sans frais cachés. Support et maintenance inclus. Garantie satisfait ou remboursé 30 jours.
+    </p>
+  </div>
+</section>
+
+<!-- 05 - Plans -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <div class="zx-cards zx-plans">
+      <!-- Plan Starter -->
+      <div class="zx-card">
+        <span class="zx-tag">🚀 Démarrage</span>
+        <h3>Starter</h3>
+        <p class="zx-price">
+          <s>146$</s> 102$ <small>CA/mois</small>
+        </p>
+        <p class="zx-desc">Parfait pour démarrer avec l'IA</p>
+        <ul>
+          <li>1 bot IA spécialisé au choix</li>
+          <li>Déploiement en 7 à 15 jours</li>
+          <li>Support email (réponse 48h)</li>
+          <li>Tableau de bord analytique</li>
+          <li>1 000 interactions/mois</li>
+          <li>Formation de base incluse</li>
+        </ul>
+        <a href={stripeLinks.plans.starterMonthly} target="_blank" rel="noopener" class="zx-btn">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Plan Professional (Recommandé) -->
+      <div class="zx-card zx-reco">
+        <div class="zx-reco-tag">⭐ LE PLUS POPULAIRE</div>
+        <span class="zx-tag">💼 Professionnel</span>
+        <h3>Professional</h3>
+        <p class="zx-price">
+          <s>208$</s> 146$ <small>CA/mois</small>
+        </p>
+        <p class="zx-desc">Le meilleur rapport qualité-prix</p>
+        <ul>
+          <li>3 bots IA spécialisés au choix</li>
+          <li>Déploiement en 7 à 15 jours</li>
+          <li>Automatisation avancée</li>
+          <li>Intégrations CRM (HubSpot, Salesforce)</li>
+          <li>Support prioritaire (réponse 24h)</li>
+          <li>5 000 interactions/mois</li>
+          <li>Rapports avancés et analytics</li>
+          <li>Formation complète incluse</li>
+        </ul>
+        <a href={stripeLinks.plans.professionalMonthly} target="_blank" rel="noopener" class="zx-btn">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Plan Enterprise -->
+      <div class="zx-card">
+        <span class="zx-tag">🏢 Entreprise</span>
+        <h3>Enterprise</h3>
+        <p class="zx-price">698$ <small>CA/mois</small></p>
+        <p class="zx-desc">Pour les grandes organisations</p>
+        <ul>
+          <li>7 bots IA, suite complète</li>
+          <li>Déploiement personnalisé</li>
+          <li>Gestionnaire de compte dédié</li>
+          <li>Support 24/7 avec SLA 99,9%</li>
+          <li>Interactions illimitées</li>
+          <li>Intégrations sur-mesure</li>
+          <li>Formation personnalisée</li>
+          <li>Rapports exécutifs mensuels</li>
+        </ul>
+        <a href={stripeLinks.plans.enterpriseMonthly} target="_blank" rel="noopener" class="zx-btn">Démarrer l'abonnement</a>
+      </div>
+    </div>
+
+    <p class="zx-note">
+      Prix en dollars canadiens (CA). Tous les plans incluent : hébergement sécurisé, 
+      mises à jour automatiques, support technique et garantie satisfait ou remboursé 30 jours. 
+      Paiements sécurisés par Stripe.
+    </p>
+  </div>
+</section>
+
+<!-- Comparaison -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Comparez les plans</h2>
+    <p class="zx-lead">Trouvez le plan qui correspond à vos besoins</p>
+
+    <div style="overflow-x:auto;margin-top:32px">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden">
+        <thead>
+          <tr style="background:#f8fafc;border-bottom:2px solid #e2e8f0">
+            <th style="padding:16px;text-align:left;font-weight:700;color:#0f172a">Fonctionnalité</th>
+            <th style="padding:16px;text-align:center;font-weight:700;color:#0f172a">Starter</th>
+            <th style="padding:16px;text-align:center;font-weight:700;color:#635bff">Professional</th>
+            <th style="padding:16px;text-align:center;font-weight:700;color:#0f172a">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0">
+            <td style="padding:12px;color:#334155">Nombre de bots IA</td>
+            <td style="padding:12px;text-align:center;color:#64748b">1</td>
+            <td style="padding:12px;text-align:center;color:#635bff;font-weight:600">3</td>
+            <td style="padding:12px;text-align:center;color:#64748b">7</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0">
+            <td style="padding:12px;color:#334155">Interactions/mois</td>
+            <td style="padding:12px;text-align:center;color:#64748b">1 000</td>
+            <td style="padding:12px;text-align:center;color:#635bff;font-weight:600">5 000</td>
+            <td style="padding:12px;text-align:center;color:#64748b">Illimité</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0">
+            <td style="padding:12px;color:#334155">Support</td>
+            <td style="padding:12px;text-align:center;color:#64748b">Email 48h</td>
+            <td style="padding:12px;text-align:center;color:#635bff;font-weight:600">Prioritaire 24h</td>
+            <td style="padding:12px;text-align:center;color:#64748b">24/7 + SLA</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0">
+            <td style="padding:12px;color:#334155">Intégrations CRM</td>
+            <td style="padding:12px;text-align:center;color:#94a3b8">—</td>
+            <td style="padding:12px;text-align:center;color:#635bff">✓</td>
+            <td style="padding:12px;text-align:center;color:#0f766e">✓</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0">
+            <td style="padding:12px;color:#334155">Rapports avancés</td>
+            <td style="padding:12px;text-align:center;color:#94a3b8">—</td>
+            <td style="padding:12px;text-align:center;color:#635bff">✓</td>
+            <td style="padding:12px;text-align:center;color:#0f766e">✓</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;color:#334155">Gestionnaire dédié</td>
+            <td style="padding:12px;text-align:center;color:#94a3b8">—</td>
+            <td style="padding:12px;text-align:center;color:#94a3b8">—</td>
+            <td style="padding:12px;text-align:center;color:#0f766e">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Promo -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <div class="zx-promo">
+      <h3>🎁 Offre de lancement</h3>
+      <p>
+        <strong>-30% sur tous les plans</strong> pour les 50 premiers clients. 
+        Prix réduits déjà appliqués ci-dessus.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="zx-sec zx-cta-final">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Besoin d'aide pour choisir ?</h2>
+    <p class="zx-lead">
+      Consultation gratuite de 30 minutes pour identifier le plan idéal pour votre entreprise.
+    </p>
+    <div class="zx-cta-row">
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn">Parler à un expert</a>
+      <a href="/micro-agents" class="zx-btn zx-btn-ghost">Voir les micro-agents</a>
+    </div>
+    <div class="zx-checks">
+      <span>✓ Sans engagement</span>
+      <span>✓ Garantie 30 jours</span>
+      <span>✓ Annulation à tout moment</span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="zx-footer">
+  <div class="zx-wrap">
+    <div class="zx-footer-grid">
+      <div>
+        <div class="zx-logo">ZyatrIA <span>Global</span></div>
+        <p>Entreprise canadienne basée au Québec.<br>Agents IA autonomes pour entreprises.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/micro-agents">Micro-agents</a></li>
+          <li><a href="/pricing">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/knowledge-base">Base de connaissances</a></li>
+          <li><a href="/test-chat.html">Tester le chatbot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:ZyatrIA.contact@gmail.com">Email</a></li>
+          <li><a href="tel:+14388874507">+1 (438) 887-4507</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="zx-copy">
+      © 2025 ZyatrIA Global. Tous droits réservés. 
+      <a href="/privacy">Confidentialité</a> · 
+      <a href="/terms">Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle functionality
+const langToggle = document.getElementById('langToggle');
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get('lang') || 'fr';
+
+function updateLangButton() {
+  if (langToggle) {
+    langToggle.textContent = currentLang === 'fr' ? '🇫🇷 FR' : '🇬🇧 EN';
+  }
+}
+
+updateLangButton();
+
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    updateLangButton();
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.location.href = newUrl.toString();
+  });
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
