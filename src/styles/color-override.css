@@ -1,44 +1,44 @@
 /**
- * COLOR OVERRIDE - Modern SaaS Design
- * Primaire : #635bff (bleu-violet Stripe)
- * Fond : blanc avec alternance gris très clair
+ * COLOR OVERRIDE - Brand Design System
+ * Primary: #1B4D6E (deep teal blue)
+ * Accent: #D97B45 (warm terracotta)
  */
 
 :root {
-  /* Couleur principale - Bleu-violet */
-  --_apps---colors--primary: #635bff;
-  --_apps---colors--primary-dark: #635bff;
-  --_apps---colors--accent: #635bff;
-  --_apps---charts--chart-1: #635bff;
-  --_apps---sidebar--sidebar-primary: #635bff;
-  
+  /* Couleur principale */
+  --_apps---colors--primary: #1B4D6E;
+  --_apps---colors--primary-dark: #1B4D6E;
+  --_apps---colors--accent: #D97B45;
+  --_apps---charts--chart-1: #1B4D6E;
+  --_apps---sidebar--sidebar-primary: #1B4D6E;
+
   /* Ring (focus) */
-  --_apps---colors--ring: #635bff;
-  --_apps---colors--ring-dark: #635bff;
-  --_apps---sidebar--sidebar-ring: #635bff;
-  --_apps---sidebar--sidebar-ring-dark: #635bff;
-  
-  /* Backgrounds - Blanc et gris très clair */
-  --_apps---colors--background: #ffffff;
-  --_apps---colors--background-dark: #0a0a0a;
-  --_apps---colors--card: #ffffff;
-  --_apps---colors--secondary: #fafafa;
-  --_apps---colors--muted: #fafafa;
-  
-  /* Foreground - Texte noir */
-  --_apps---colors--foreground: #0a0a0a;
-  --_apps---colors--foreground-dark: #ffffff;
-  --_apps---colors--card-foreground: #0a0a0a;
-  
-  /* Secondary text - Gris moyen */
-  --_apps---colors--secondary-foreground: #525252;
-  --_apps---colors--muted-foreground: #a3a3a3;
-  
-  /* Borders - Gris très clair */
-  --_apps---colors--border: #e5e5e5;
-  --_apps---colors--border-dark: #262626;
-  --_apps---colors--input: #e5e5e5;
-  
+  --_apps---colors--ring: #1B4D6E;
+  --_apps---colors--ring-dark: #1B4D6E;
+  --_apps---sidebar--sidebar-ring: #1B4D6E;
+  --_apps---sidebar--sidebar-ring-dark: #1B4D6E;
+
+  /* Backgrounds */
+  --_apps---colors--background: #FFFFFF;
+  --_apps---colors--background-dark: #17232D;
+  --_apps---colors--card: #FFFFFF;
+  --_apps---colors--secondary: #F8F9FA;
+  --_apps---colors--muted: #F8F9FA;
+
+  /* Foreground - Texte */
+  --_apps---colors--foreground: #17232D;
+  --_apps---colors--foreground-dark: #FFFFFF;
+  --_apps---colors--card-foreground: #17232D;
+
+  /* Secondary text */
+  --_apps---colors--secondary-foreground: #44525F;
+  --_apps---colors--muted-foreground: #73828D;
+
+  /* Borders */
+  --_apps---colors--border: #D7DEE3;
+  --_apps---colors--border-dark: #223344;
+  --_apps---colors--input: #D7DEE3;
+
   /* Radius */
   --_apps---sizes--radius: 12px;
 }
@@ -46,54 +46,54 @@
 /* Force primary color on all primary elements */
 .bg-primary,
 [class*="bg-primary"] {
-  background-color: #635bff !important;
+  background-color: #1B4D6E !important;
 }
 
 .text-primary,
 [class*="text-primary"] {
-  color: #635bff !important;
+  color: #1B4D6E !important;
 }
 
 .border-primary,
 [class*="border-primary"] {
-  border-color: #635bff !important;
+  border-color: #1B4D6E !important;
 }
 
 /* Buttons */
 button[class*="primary"],
 a[class*="primary"],
 .zx-btn:not(.zx-btn-ghost) {
-  background-color: #635bff !important;
-  border-color: #635bff !important;
+  background-color: #1B4D6E !important;
+  border-color: #1B4D6E !important;
 }
 
 button[class*="primary"]:hover,
 a[class*="primary"]:hover,
 .zx-btn:not(.zx-btn-ghost):hover {
-  background-color: #5046e5 !important;
+  background-color: #143A54 !important;
 }
 
 /* Links */
 a:not(.zx-btn):not(.zx-nav-links a) {
-  color: #635bff;
+  color: #1B4D6E;
 }
 
 /* Tags and badges */
 .zx-tag,
 [class*="badge"],
 [class*="tag"] {
-  background-color: rgba(99, 91, 255, 0.1) !important;
-  color: #635bff !important;
+  background-color: rgba(27, 77, 110, 0.12) !important;
+  color: #1B4D6E !important;
 }
 
 /* Focus states */
 *:focus-visible {
-  outline-color: #635bff !important;
-  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1) !important;
+  outline-color: #1B4D6E !important;
+  box-shadow: 0 0 0 3px rgba(27, 77, 110, 0.12) !important;
 }
 
 /* Checkmarks and icons */
 .zx-card ul li:before,
 [class*="check"]:before {
-  color: #635bff !important;
+  color: #1B4D6E !important;
 }
