@@ -1,53 +1,79 @@
+
 /* ===================================
    ZX STYLES - Modern SaaS Design
    Style: Stripe/Linear inspired
    ================================== */
 
-/* === ZX DESIGN SYSTEM - MODERN & COLORFUL === */
-/* Inspiré par Stripe, Linear, Vercel, OpenAI */
+/* === ZX DESIGN SYSTEM - BRAND PALETTE === */
 
 :root {
   /* Couleurs principales */
-  --primary: #635bff;
-  --primary-hover: #5046e5;
-  --primary-light: #f0efff;
-  
-  /* Palette de couleurs vives */
-  --violet: #635bff;
-  --blue: #00d4ff;
-  --cyan: #00e5ff;
-  --purple: #a855f7;
-  --pink: #ec4899;
-  --orange: #f97316;
-  --green: #10b981;
-  --yellow: #fbbf24;
-  
+  --primary: #1B4D6E;
+  --primary-hover: #143A54;
+  --primary-muted: rgba(27, 77, 110, 0.12);
+  --primary-light: rgba(27, 77, 110, 0.12);
+
+  /* Secondaire & accent */
+  --secondary: #223344;
+  --secondary-hover: #182530;
+  --accent: #D97B45;
+  --accent-hover: #BE652F;
+
+  /* Statuts */
+  --success: #3A8569;
+  --warning: #C98A3C;
+  --error: #B6473A;
+  --info: #3D7A9E;
+
+  --bg-success: rgba(58, 133, 105, 0.12);
+  --bg-warning: rgba(201, 138, 60, 0.12);
+  --bg-error: rgba(182, 71, 58, 0.12);
+  --bg-info: rgba(61, 122, 158, 0.12);
+
   /* Backgrounds */
-  --bg-primary: #ffffff;
-  --bg-secondary: #fafafa;
-  --bg-tertiary: #f5f5f5;
-  
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-tertiary: #EFF1F3;
+  --bg-elevated: #FFFFFF;
+  --bg-input: #FDFDFE;
+  --bg-dark: #223344;
+
   /* Texte */
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  
+  --text-primary: #17232D;
+  --text-secondary: #44525F;
+  --text-tertiary: #73828D;
+  --text-muted: #73828D;
+  --text-placeholder: #A5B1BA;
+
+  /* Texte sur couleurs */
+  --text-on-primary: #FFFFFF;
+  --text-on-secondary: #FFFFFF;
+  --text-on-accent: #FFFFFF;
+  --text-on-success: #FFFFFF;
+  --text-on-warning: #1A1A1A;
+  --text-on-error: #FFFFFF;
+  --text-on-info: #FFFFFF;
+
   /* Bordures */
-  --border: rgba(0, 0, 0, 0.08);
-  --border-light: rgba(0, 0, 0, 0.04);
-  
+  --border: #D7DEE3;
+  --border-light: #E5E9EC;
+  --border-focus: #1B4D6E;
+
   /* Ombres */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
-  --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.16);
-  
+  --shadow-sm: 0 1px 2px rgba(23, 35, 45, 0.04);
+  --shadow-md: 0 4px 12px rgba(23, 35, 45, 0.08);
+  --shadow-lg: 0 12px 40px rgba(23, 35, 45, 0.12);
+  --shadow-xl: 0 24px 80px rgba(23, 35, 45, 0.16);
+  --shadow: var(--shadow-sm);
+  --shadow-hover: var(--shadow-md);
+
   /* Rayons */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
-  
+  --radius: var(--radius-md);
+
   /* Espacements */
   --space-xs: 8px;
   --space-sm: 16px;
@@ -154,7 +180,7 @@ body {
   justify-content: center;
   padding: 0.75rem 1.5rem;
   background: var(--primary);
-  color: white;
+  color: var(--text-on-primary);
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
@@ -162,13 +188,13 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 1px 2px rgba(99, 91, 255, 0.2);
+  box-shadow: 0 1px 2px rgba(27, 77, 110, 0.2);
 }
 
 .zx-btn:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 91, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(27, 77, 110, 0.3);
 }
 
 .zx-btn-sm {
@@ -331,7 +357,7 @@ body {
 .zx-tag {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: rgba(99, 91, 255, 0.1);
+  background: var(--primary-muted);
   color: var(--primary);
   font-size: 13px;
   font-weight: 600;
@@ -388,7 +414,7 @@ body {
    ================================== */
 
 .zx-stars {
-  color: #fbbf24;
+  color: var(--warning);
   font-size: 1.25rem;
   margin-bottom: 1rem;
 }
@@ -645,61 +671,8 @@ body {
 }
 
 /* ===================================
-   ANIMATIONS
+   ANIMATIONS & DECORATIVE ACCENTS
    ================================== */
-
-/* === ZX DESIGN SYSTEM - MODERN & COLORFUL === */
-/* Inspiré par Stripe, Linear, Vercel, OpenAI */
-
-:root {
-  /* Couleurs principales */
-  --primary: #635bff;
-  --primary-hover: #5046e5;
-  --primary-light: #f0efff;
-  
-  /* Palette de couleurs vives */
-  --violet: #635bff;
-  --blue: #00d4ff;
-  --cyan: #00e5ff;
-  --purple: #a855f7;
-  --pink: #ec4899;
-  --orange: #f97316;
-  --green: #10b981;
-  --yellow: #fbbf24;
-  
-  /* Backgrounds */
-  --bg-primary: #ffffff;
-  --bg-secondary: #fafafa;
-  --bg-tertiary: #f5f5f5;
-  
-  /* Texte */
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  
-  /* Bordures */
-  --border: rgba(0, 0, 0, 0.08);
-  --border-light: rgba(0, 0, 0, 0.04);
-  
-  /* Ombres */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
-  --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.16);
-  
-  /* Rayons */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  
-  /* Espacements */
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 48px;
-  --space-xl: 80px;
-}
 
 /* === FEATURE ICONS COLORÉS === */
 .zx-feature-icon {
@@ -716,19 +689,19 @@ body {
 }
 
 .zx-feature-item:nth-child(1) .zx-feature-icon {
-  background: linear-gradient(135deg, #635bff 0%, #a855f7 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
 }
 
 .zx-feature-item:nth-child(2) .zx-feature-icon {
-  background: linear-gradient(135deg, #00d4ff 0%, #10b981 100%);
+  background: linear-gradient(135deg, var(--info) 0%, var(--success) 100%);
 }
 
 .zx-feature-item:nth-child(3) .zx-feature-icon {
-  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--warning) 100%);
 }
 
 .zx-feature-item:nth-child(4) .zx-feature-icon {
-  background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
 }
 
 .zx-feature-item:hover .zx-feature-icon {
@@ -748,21 +721,21 @@ body {
 }
 
 .zx-card:nth-child(1) .zx-tag {
-  background: linear-gradient(135deg, rgba(99, 91, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-  color: #635bff;
-  border: 1px solid rgba(99, 91, 255, 0.2);
+  background: linear-gradient(135deg, rgba(27, 77, 110, 0.1) 0%, rgba(34, 51, 68, 0.1) 100%);
+  color: var(--primary);
+  border: 1px solid rgba(27, 77, 110, 0.2);
 }
 
 .zx-card:nth-child(2) .zx-tag {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-  color: #00a8cc;
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: linear-gradient(135deg, rgba(61, 122, 158, 0.1) 0%, rgba(58, 133, 105, 0.1) 100%);
+  color: var(--info);
+  border: 1px solid rgba(61, 122, 158, 0.2);
 }
 
 .zx-card:nth-child(3) .zx-tag {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
-  color: #f97316;
-  border: 1px solid rgba(249, 115, 22, 0.2);
+  background: linear-gradient(135deg, rgba(217, 123, 69, 0.1) 0%, rgba(201, 138, 60, 0.1) 100%);
+  color: var(--accent);
+  border: 1px solid rgba(217, 123, 69, 0.2);
 }
 
 /* === STATS AVEC GRADIENTS === */
@@ -778,7 +751,7 @@ body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #635bff 0%, #00d4ff 100%);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -787,12 +760,12 @@ body {
   opacity: 1;
 }
 
-/* === ÉTOILES DORÉES === */
+/* === ÉTOILES === */
 .zx-stars {
-  color: #fbbf24;
+  color: var(--warning);
   font-size: 20px;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+  text-shadow: 0 2px 4px rgba(201, 138, 60, 0.3);
 }
 
 /* === CARTES AVEC HOVER COLORÉ === */
@@ -820,17 +793,17 @@ body {
 }
 
 .zx-card:nth-child(1):hover::before {
-  background: linear-gradient(135deg, #635bff 0%, #a855f7 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   opacity: 1;
 }
 
 .zx-card:nth-child(2):hover::before {
-  background: linear-gradient(135deg, #00d4ff 0%, #10b981 100%);
+  background: linear-gradient(135deg, var(--info) 0%, var(--success) 100%);
   opacity: 1;
 }
 
 .zx-card:nth-child(3):hover::before {
-  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--warning) 100%);
   opacity: 1;
 }
 
@@ -838,19 +811,19 @@ body {
 .zx-kicker {
   display: inline-block;
   padding: 10px 20px;
-  background: linear-gradient(135deg, rgba(99, 91, 255, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
-  border: 1px solid rgba(99, 91, 255, 0.2);
+  background: linear-gradient(135deg, rgba(27, 77, 110, 0.1) 0%, rgba(61, 122, 158, 0.1) 100%);
+  border: 1px solid rgba(27, 77, 110, 0.2);
   border-radius: 24px;
   font-size: 14px;
   font-weight: 600;
-  color: #635bff;
+  color: var(--primary);
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
 /* === LIENS AVEC GRADIENT === */
 .zx-link {
-  background: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -866,7 +839,7 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.3s ease;
@@ -887,7 +860,7 @@ body {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #10b981;
+  color: var(--success);
   font-weight: bold;
 }
 
@@ -901,7 +874,7 @@ body {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #10b981;
+  color: var(--success);
   font-weight: bold;
 }
 
@@ -929,7 +902,7 @@ body {
 
 /* === GRADIENT BACKGROUNDS === */
 .zx-hero {
-  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
   position: relative;
   overflow: hidden;
 }
@@ -941,7 +914,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(99, 91, 255, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27, 77, 110, 0.05) 0%, transparent 70%);
   animation: rotate 30s linear infinite;
 }
 
@@ -951,7 +924,7 @@ body {
 }
 
 .zx-cta-final {
-  background: linear-gradient(135deg, #635bff 0%, #5046e5 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -1017,7 +990,7 @@ opacity: 0.8;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #635bff 0%, #5046e5 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
   color: white;
   border-radius: 50%;
   font-size: 24px;
@@ -1025,6 +998,159 @@ opacity: 0.8;
   font-family: var(--heading-font);
 }
 
+/* ===================================
+   PRICING PLANS
+   ================================== */
+.zx-plans {
+  align-items: start;
+}
 
+.zx-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0.5rem 0 1rem;
+  font-family: var(--heading-font);
+}
 
+.zx-price s {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-right: 0.5rem;
+  opacity: 0.6;
+}
 
+.zx-price small {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.zx-desc {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.zx-card.zx-reco {
+  position: relative;
+  border: 2px solid var(--primary);
+  box-shadow: 0 8px 30px rgba(27, 77, 110, 0.15);
+  transform: scale(1.02);
+}
+
+.zx-reco-tag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(27, 77, 110, 0.35);
+}
+
+/* ===================================
+   MICRO-AGENTS / SERVICE CARDS
+   ================================== */
+.zx-cards.zx-6 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.zx-card-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.zx-card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.zx-card-link:hover {
+  opacity: 0.75;
+}
+
+/* ===================================
+   RESOURCES GRID
+   ================================== */
+.zx-resources .zx-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.zx-resource-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  align-self: flex-start;
+}
+
+.zx-coming-soon {
+  margin-top: auto;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+/* ===================================
+   CONTACT FORM
+   ================================== */
+.zx-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.zx-form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.zx-form-group input,
+.zx-form-group select,
+.zx-form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all 0.2s ease;
+  font-family: var(--body-font);
+}
+
+.zx-form-group input:focus,
+.zx-form-group select:focus,
+.zx-form-group textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--primary-muted);
+}
+
+.zx-form-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}

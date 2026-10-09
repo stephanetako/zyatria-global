@@ -1,3 +1,4 @@
+
 ---
 import '../styles/zx-styles.css';
 import { FORMSPREE_CONFIG, getFormspreeEndpoint } from '../config/formspree';
@@ -386,7 +387,7 @@ const inputs = document.querySelectorAll('input, textarea, select');
 inputs.forEach(input => {
   input.addEventListener('focus', function() {
     this.style.borderColor = 'var(--primary)';
-    this.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)';
+    this.style.boxShadow = '0 0 0 3px rgba(27, 77, 110, 0.12)';
   });
   
   input.addEventListener('blur', function() {
@@ -398,3 +399,4 @@ inputs.forEach(input => {
 
 </body>
 </html>
+
