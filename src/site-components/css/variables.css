@@ -114,6 +114,7 @@
   --_sizes---spacing--1-5x: 1.5rem;
   --_sizes---spacing--1x: 1rem;
   --_sizes---spacing--2x: 2rem;
+  --_sizes---spacing--4x: 4rem;
   --_colors---border-color--border-secondary: var(
     --_colors---core-color-tint--neutral-inverse-a20
   );
@@ -145,7 +146,6 @@
   --_colors---text-link--link-inverse: var(
     --_colors---text-color--text-accent-on-inverse
   );
-  --_sizes---spacing--4x: 4rem;
   --_colors---background-color--bg-accent-secondary: var(
     --_colors---core-accent-color--accent-secondary
   );
@@ -173,9 +173,15 @@
   );
   --_sizes---radius--md-radius: 0.5rem;
   --_interactions---ix--ix-nav-width: 0px;
+  --_colors---current-color--current-a70: color-mix(
+    in srgb,
+    currentColor 70%,
+    transparent
+  );
   --_colors---nav-link--nav-link-primary: var(
     --_colors---text-color--text-primary
   );
+  --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
   --_slider---spacing: 0rem;
   --_apps---typography--heading-font: var(--_typography---font--heading-font);
   --_apps---typography--body-font: var(--_typography---font--body-font);
@@ -241,11 +247,6 @@
   --_colors---current-color--current-a80: color-mix(
     in srgb,
     currentColor 80%,
-    transparent
-  );
-  --_colors---current-color--current-a70: color-mix(
-    in srgb,
-    currentColor 70%,
     transparent
   );
   --_colors---current-color--current-a50: color-mix(
@@ -349,7 +350,6 @@
   --_sizes---spacing--7x: 7rem;
   --_sizes---spacing--8x: 8rem;
   --_sizes---gap--xl-gap: var(--_sizes---spacing--5x);
-  --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
   --_typography---font--button-font: "Instrument Sans", sans-serif;
   --_typography---base-typography--base-font: var(
     --_typography---font--body-font

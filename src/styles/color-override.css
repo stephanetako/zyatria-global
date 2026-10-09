@@ -1,387 +1,99 @@
-
-
 /**
- * COLOR OVERRIDE - PALETTE PREMIUM NOIR PROFOND
- * 
- * Fond : #0F172A (noir profond) pour un look premium
- * Boutons : #1E40AF (bleu nuit) avec survol en #60A5FA
- * Texte : #FFFFFF (blanc) sur fond sombre, #0F172A sur fond clair
- * 
- * Style: Premium, élégant, moderne, professionnel
- * Parfait pour: Tech, IA, services haut de gamme
+ * COLOR OVERRIDE - Modern SaaS Design
+ * Primaire : #635bff (bleu-violet Stripe)
+ * Fond : blanc avec alternance gris très clair
  */
 
 :root {
-  /* === COULEURS PRINCIPALES === */
+  /* Couleur principale - Bleu-violet */
+  --_apps---colors--primary: #635bff;
+  --_apps---colors--primary-dark: #635bff;
+  --_apps---colors--accent: #635bff;
+  --_apps---charts--chart-1: #635bff;
+  --_apps---sidebar--sidebar-primary: #635bff;
   
-  /* Modern Blue/Violet Palette */
-  --_apps---colors--primary: #3B82F6;
-  --_apps---colors--primary-foreground: #FFFFFF;
-  --_apps---colors--secondary: #8B5CF6;
-  --_apps---colors--accent: #3B82F6;
-  --_apps---colors--accent-foreground: #FFFFFF;
+  /* Ring (focus) */
+  --_apps---colors--ring: #635bff;
+  --_apps---colors--ring-dark: #635bff;
+  --_apps---sidebar--sidebar-ring: #635bff;
+  --_apps---sidebar--sidebar-ring-dark: #635bff;
   
-  /* Text Colors */
-  --_apps---colors--foreground: #374151;
-  --_apps---colors--muted-foreground: #64748B;
+  /* Backgrounds - Blanc et gris très clair */
+  --_apps---colors--background: #ffffff;
+  --_apps---colors--background-dark: #0a0a0a;
+  --_apps---colors--card: #ffffff;
+  --_apps---colors--secondary: #fafafa;
+  --_apps---colors--muted: #fafafa;
   
-  /* Background Colors */
-  --_apps---colors--background: #F8FAFC;
-  --_apps---colors--card: #FFFFFF;
+  /* Foreground - Texte noir */
+  --_apps---colors--foreground: #0a0a0a;
+  --_apps---colors--foreground-dark: #ffffff;
+  --_apps---colors--card-foreground: #0a0a0a;
   
-  /* Success Color */
-  --success: #10B981;
+  /* Secondary text - Gris moyen */
+  --_apps---colors--secondary-foreground: #525252;
+  --_apps---colors--muted-foreground: #a3a3a3;
   
-  /* Dark Grays */
-  --heading-dark: #1E293B;
-  --text-dark: #374151;
-  --text-muted: #64748B;
+  /* Borders - Gris très clair */
+  --_apps---colors--border: #e5e5e5;
+  --_apps---colors--border-dark: #262626;
+  --_apps---colors--input: #e5e5e5;
   
-  /* Popover */
-  --_apps---colors--popover: #FFFFFF;
-  --_apps---colors--popover-foreground: #0F172A;
-  
-  /* Borders & Inputs */
-  --_apps---colors--border: #E2E8F0;
-  --_apps---colors--input: #E2E8F0;
-  
-  /* Destructive */
-  --_apps---colors--destructive: #DC2626;
-  
-  /* === CHARTS === */
-  --_apps---charts--chart-1: #1E40AF;
-  --_apps---charts--chart-2: #3B82F6;
-  --_apps---charts--chart-3: #60A5FA;
-  --_apps---charts--chart-4: #93C5FD;
-  --_apps---charts--chart-5: #DBEAFE;
-  
-  /* === SIDEBAR === */
-  --_apps---sidebar--sidebar: #F8FAFC;
-  --_apps---sidebar--sidebar-foreground: #0F172A;
-  --_apps---sidebar--sidebar-primary: #1E40AF;
-  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
-  --_apps---sidebar--sidebar-accent: #F1F5F9;
-  --_apps---sidebar--sidebar-accent-foreground: #0F172A;
-  --_apps---sidebar--sidebar-border: #E2E8F0;
-  --_apps---sidebar--sidebar-ring: #1E40AF;
+  /* Radius */
+  --_apps---sizes--radius: 12px;
 }
 
-.dark {
-  /* Dark mode adjustments */
-  --_apps---colors--background-dark: #1E293B;
-  --_apps---colors--foreground-dark: #F8FAFC;
-  --_apps---colors--primary-dark: #3B82F6;
-  --_apps---colors--secondary-dark: #8B5CF6;
-}
-
-/* === DARK MODE - NOIR PROFOND PREMIUM === */
-.dark {
-  /* Primary - Bleu clair lumineux */
-  --_apps---colors--primary: #60A5FA;
-  --_apps---colors--primary-foreground: #FFFFFF;
-  --_apps---colors--ring: #60A5FA;
-  
-  /* Background & Foreground - Noir profond premium */
-  --_apps---colors--background: #0F172A;
-  --_apps---colors--foreground: #FFFFFF;
-  
-  /* Secondary - Gris foncé élégant */
-  --_apps---colors--secondary: #1E293B;
-  --_apps---colors--secondary-foreground: #F1F5F9;
-  
-  /* Muted - Gris moyen */
-  --_apps---colors--muted: #334155;
-  --_apps---colors--muted-foreground: #CBD5E1;
-  
-  /* Accent - Bleu foncé */
-  --_apps---colors--accent: #1E3A8A;
-  --_apps---colors--accent-foreground: #DBEAFE;
-  
-  /* Cards */
-  --_apps---colors--card: #1E293B;
-  --_apps---colors--card-foreground: #FFFFFF;
-  
-  /* Popover */
-  --_apps---colors--popover: #1E293B;
-  --_apps---colors--popover-foreground: #FFFFFF;
-  
-  /* Borders & Inputs */
-  --_apps---colors--border: #334155;
-  --_apps---colors--input: #334155;
-  
-  /* Destructive */
-  --_apps---colors--destructive: #EF4444;
-  
-  /* Charts Dark */
-  --_apps---charts--chart-1: #60A5FA;
-  --_apps---charts--chart-2: #3B82F6;
-  --_apps---charts--chart-3: #2563EB;
-  --_apps---charts--chart-4: #1D4ED8;
-  --_apps---charts--chart-5: #1E40AF;
-  
-  /* Sidebar Dark */
-  --_apps---sidebar--sidebar: #0F172A;
-  --_apps---sidebar--sidebar-foreground: #FFFFFF;
-  --_apps---sidebar--sidebar-primary: #60A5FA;
-  --_apps---sidebar--sidebar-primary-foreground: #FFFFFF;
-  --_apps---sidebar--sidebar-accent: #1E293B;
-  --_apps---sidebar--sidebar-accent-foreground: #F1F5F9;
-  --_apps---sidebar--sidebar-border: #334155;
-  --_apps---sidebar--sidebar-ring: #60A5FA;
-}
-
-/* === HIGH IMPACT GRADIENTS === */
-.gradient-primary,
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%) !important;
-}
-
-.gradient-tech,
-.bg-gradient-tech {
-  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%) !important;
-}
-
-.gradient-hero {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%) !important;
-}
-
-.gradient-violet,
-.bg-gradient-violet {
-  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
-}
-
-.gradient-cyan {
-  background: linear-gradient(135deg, #60A5FA 0%, #93C5FD 100%) !important;
-}
-
-/* TEXT GRADIENTS - TRÈS VISIBLES */
-.text-gradient-primary {
-  background: linear-gradient(135deg, #1E40AF 0%, #60A5FA 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-.text-gradient-tech {
-  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-.text-gradient-violet {
-  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* BACKGROUND GRADIENTS POUR SECTIONS */
-.bg-gradient-to-br {
-  background: linear-gradient(to bottom right, var(--background), var(--muted), rgba(30, 64, 175, 0.05)) !important;
-}
-
-.from-background {
-  background: var(--background) !important;
-}
-
-/* FORCE PRIMARY COLOR */
-.text-primary,
-.text-primary * {
-  color: #1E40AF !important;
-}
-
-.dark .text-primary,
-.dark .text-primary * {
-  color: #60A5FA !important;
-}
-
+/* Force primary color on all primary elements */
 .bg-primary,
-.bg-primary * {
-  background-color: #1E40AF !important;
+[class*="bg-primary"] {
+  background-color: #635bff !important;
 }
 
-.dark .bg-primary,
-.dark .bg-primary * {
-  background-color: #60A5FA !important;
+.text-primary,
+[class*="text-primary"] {
+  color: #635bff !important;
 }
 
-.border-primary {
-  border-color: #1E40AF !important;
+.border-primary,
+[class*="border-primary"] {
+  border-color: #635bff !important;
 }
 
-.dark .border-primary {
-  border-color: #60A5FA !important;
+/* Buttons */
+button[class*="primary"],
+a[class*="primary"],
+.zx-btn:not(.zx-btn-ghost) {
+  background-color: #635bff !important;
+  border-color: #635bff !important;
 }
 
-/* === GLOWS & EFFECTS === */
-.glow-primary {
-  box-shadow: 0 0 30px rgba(30, 64, 175, 0.4);
+button[class*="primary"]:hover,
+a[class*="primary"]:hover,
+.zx-btn:not(.zx-btn-ghost):hover {
+  background-color: #5046e5 !important;
 }
 
-.dark .glow-primary {
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
+/* Links */
+a:not(.zx-btn):not(.zx-nav-links a) {
+  color: #635bff;
 }
 
-.glow-violet {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+/* Tags and badges */
+.zx-tag,
+[class*="badge"],
+[class*="tag"] {
+  background-color: rgba(99, 91, 255, 0.1) !important;
+  color: #635bff !important;
 }
 
-.glow-cyan {
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
-}
-
-/* === HOVER STATES === */
-.hover-primary:hover {
-  background-color: #60A5FA !important;
-  transition: background-color 0.2s ease;
-}
-
-.hover-violet:hover {
-  background-color: #3B82F6 !important;
-  transition: background-color 0.2s ease;
-}
-
-/* === ANIMATIONS === */
-@keyframes pulse-blue {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(30, 64, 175, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(30, 64, 175, 0.6);
-  }
-}
-
-@keyframes pulse-blue-dark {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(96, 165, 250, 0.6);
-  }
-}
-
-.animate-pulse-blue {
-  animation: pulse-blue 3s ease-in-out infinite;
-}
-
-.dark .animate-pulse-blue {
-  animation: pulse-blue-dark 3s ease-in-out infinite;
-}
-
-/* === BORDERS TECH === */
-.border-gradient {
-  border: 1px solid transparent;
-  background: linear-gradient(var(--_apps---colors--background), var(--_apps---colors--background)) padding-box,
-              linear-gradient(135deg, #1E40AF, #60A5FA) border-box;
-}
-
-/* === BUTTON OVERRIDES === */
-button[class*="bg-primary"],
-a[class*="bg-primary"] {
-  background-color: #1E40AF !important;
-  color: #FFFFFF !important;
-}
-
-button[class*="bg-primary"]:hover,
-a[class*="bg-primary"]:hover {
-  background-color: #60A5FA !important;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
-  transition: all 0.2s ease;
-}
-
-.dark button[class*="bg-primary"],
-.dark a[class*="bg-primary"] {
-  background-color: #60A5FA !important;
-  color: #FFFFFF !important;
-}
-
-.dark button[class*="bg-primary"]:hover,
-.dark a[class*="bg-primary"]:hover {
-  background-color: #3B82F6 !important;
-  box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
-}
-
-/* === CARD SHADOWS === */
-.card-tech {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-
-.card-tech:hover {
-  box-shadow: 0 14px 28px rgba(30, 64, 175, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
-}
-
-.dark .card-tech:hover {
-  box-shadow: 0 14px 28px rgba(96, 165, 250, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
-}
-
-/* === GLASS MORPHISM === */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dark .glass {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(96, 165, 250, 0.2);
-}
-
-/* === ACCESSIBILITY === */
+/* Focus states */
 *:focus-visible {
-  outline: 2px solid var(--_apps---colors--primary);
-  outline-offset: 2px;
+  outline-color: #635bff !important;
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1) !important;
 }
 
-/* Ensure high contrast text */
-p, span, div, li, a {
-  color: inherit;
+/* Checkmarks and icons */
+.zx-card ul li:before,
+[class*="check"]:before {
+  color: #635bff !important;
 }
-
-/* Light mode text */
-.text-muted-foreground {
-  color: #475569 !important;
-}
-
-.text-secondary-foreground {
-  color: #0F172A !important;
-}
-
-.text-accent-foreground {
-  color: #1E40AF !important;
-}
-
-/* Dark mode text */
-.dark .text-muted-foreground {
-  color: #CBD5E1 !important;
-}
-
-.dark .text-secondary-foreground {
-  color: #F1F5F9 !important;
-}
-
-.dark .text-accent-foreground {
-  color: #DBEAFE !important;
-}
-
-/* === PREMIUM EFFECTS === */
-.premium-shadow {
-  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
-}
-
-.dark .premium-shadow {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-}
-
-.premium-glow {
-  box-shadow: 0 0 50px rgba(30, 64, 175, 0.3);
-}
-
-.dark .premium-glow {
-  box-shadow: 0 0 50px rgba(96, 165, 250, 0.3);
-}
-
-

@@ -1,9 +1,11 @@
 import * as React from "react";
 import { EASING_FUNCTIONS } from "../../utils";
 declare const BREAKPOINTS: {
+  all: number;
   medium: number;
   small: number;
   tiny: number;
+  none: number;
 };
 export { BREAKPOINTS };
 export type NavbarConfig = {

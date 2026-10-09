@@ -1,6 +1,6 @@
 import * as React from "react";
 import { EASING_FUNCTIONS } from "../../utils";
-import { Props } from "../../types";
+import type { Props } from "../../types";
 type TabsWrapperProps = Props<
   "div",
   {

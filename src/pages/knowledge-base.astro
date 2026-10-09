@@ -1,27 +1,355 @@
 
----
-import MainLayout from '../layouts/main.astro';
-import Navigation from '../components/Navigation';
-import KnowledgeBasePage from '../components/pages/KnowledgeBasePage';
-import Footer from '../components/Footer';
 
-const seoData = {
-  title: "Base de Connaissances | Guides & Documentation Agents IA | ZyatrIA Global",
-  description: "Accédez à notre base de connaissances complète sur les agents IA : guides de démarrage, documentation technique, meilleures pratiques, FAQ, tutoriels d'intégration. Ressources multilingues pour maximiser vos résultats avec l'IA.",
-  ogImage: "/og-image-knowledge.jpg",
-  keywords: "base de connaissances IA, documentation agents IA, guides IA, tutoriels micro-agents, FAQ IA, ressources IA, formation agents intelligents"
-};
+
+---
+import '../styles/zx-styles.css';
 ---
 
-<MainLayout 
-  title={seoData.title}
-  description={seoData.description}
-  ogImage={seoData.ogImage}
->
-  <div class="relative">
-    <Navigation client:load />
-    <KnowledgeBasePage client:only="react" />
-    <Footer client:only="react" />
+<!DOCTYPE html>
+<html lang="fr" class="zx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base de connaissances - ZyatrIA Global</title>
+  <meta name="description" content="FAQ, guides et ressources pour automatiser votre entreprise avec l'IA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="zx-header">
+  <nav class="zx-nav">
+    <a href="/" style="display:flex;align-items:center">
+      <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:50px;width:auto" />
+    </a>
+    <div class="zx-nav-links">
+      <a href="/">Accueil</a>
+      <a href="/services">Services</a>
+      <a href="/micro-agents">Micro-agents</a>
+      <a href="/pricing">Tarifs</a>
+      <a href="/knowledge-base">Ressources</a>
+    </div>
+    <div class="zx-nav-right">
+      <button class="zx-lang-toggle" id="langToggle">
+        🇫🇷 FR
+      </button>
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-sm">Démo gratuite</a>
+    </div>
+  </nav>
+</header>
+
+<!-- 13 - Entête Ressources -->
+<section class="zx-sec zx-hero">
+  <div class="zx-wrap">
+    <div class="zx-kicker">Base de connaissances</div>
+    <h1 class="zx-h1">Tout savoir sur <span>l'automatisation IA</span></h1>
+    <p class="zx-lead">
+      Guides, FAQ et ressources pour vous aider à automatiser votre entreprise 
+      avec l'intelligence artificielle.
+    </p>
   </div>
-</MainLayout>
+</section>
+
+<!-- 14 - Contenu informatif -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Informations essentielles</h2>
+    <p class="zx-lead">Ce qu'il faut savoir avant de commencer</p>
+
+    <div class="zx-cards">
+      <div class="zx-card">
+        <span class="zx-tag">🚀 Déploiement</span>
+        <h3>Déploiement rapide</h3>
+        <p>
+          ZyatrIA déploie vos agents IA en <strong>7 à 15 jours ouvrables</strong>. 
+          Sans embauche. Sans formation longue. Résultats mesurables dès la première semaine.
+        </p>
+        <ul>
+          <li>Configuration personnalisée</li>
+          <li>Intégration avec vos outils</li>
+          <li>Formation de votre équipe</li>
+          <li>Support continu inclus</li>
+        </ul>
+      </div>
+
+      <div class="zx-card">
+        <span class="zx-tag">🌍 International</span>
+        <h3>Couverture mondiale</h3>
+        <p>
+          ZyatrIA opère en <strong>4 langues</strong> : français, anglais, espagnol, portugais. 
+          Entreprise canadienne basée au Québec.
+        </p>
+        <ul>
+          <li>Amérique du Nord</li>
+          <li>Europe</li>
+          <li>Afrique francophone</li>
+          <li>Amérique latine</li>
+        </ul>
+      </div>
+
+      <div class="zx-card">
+        <span class="zx-tag">✅ Garantie</span>
+        <h3>Sans risque</h3>
+        <p>
+          <strong>Garantie satisfait ou remboursé 30 jours</strong> sur tous les plans. 
+          Sans engagement. Annulation à tout moment.
+        </p>
+        <ul>
+          <li>Essai sans risque</li>
+          <li>Remboursement intégral</li>
+          <li>Sans frais cachés</li>
+          <li>Paiements sécurisés par Stripe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 - FAQ -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Questions fréquentes</h2>
+    <p class="zx-lead">Tout ce qu'il faut savoir avant de commencer</p>
+
+    <div class="zx-faq">
+      <details>
+        <summary>Combien de temps pour déployer un agent IA ?</summary>
+        <p>
+          De <strong>7 à 15 jours ouvrables</strong> après la validation de la configuration. 
+          Le délai dépend de la complexité de vos besoins et des intégrations requises. 
+          Les solutions sur-mesure peuvent demander plus de temps.
+        </p>
+      </details>
+
+      <details>
+        <summary>Puis-je changer de plan à tout moment ?</summary>
+        <p>
+          Oui, absolument. Vous pouvez passer à un plan supérieur ou inférieur à tout moment. 
+          Les ajustements de prix sont calculés au prorata. Contactez-nous pour effectuer le changement.
+        </p>
+      </details>
+
+      <details>
+        <summary>Qu'est-ce qu'un micro-agent exactement ?</summary>
+        <p>
+          Un micro-agent est un <strong>agent IA spécialisé dans une tâche précise</strong>, 
+          comme le support client, la qualification des leads ou la gestion des rendez-vous. 
+          Contrairement à un chatbot générique, il comprend le contexte de votre entreprise 
+          et s'intègre directement à vos outils (CRM, calendrier, etc.).
+        </p>
+      </details>
+
+      <details>
+        <summary>Mes données sont-elles sécurisées ?</summary>
+        <p>
+          Oui, la sécurité est notre priorité :
+        </p>
+        <ul>
+          <li>Chiffrement SSL/TLS pour toutes les communications</li>
+          <li>Conformité RGPD pour les données européennes</li>
+          <li>Serveurs certifiés ISO 27001</li>
+          <li>Aucun partage de données avec des tiers</li>
+          <li>Sauvegardes quotidiennes automatiques</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Faut-il des connaissances techniques ?</summary>
+        <p>
+          Non, aucune connaissance technique n'est requise. Nous nous occupons de tout : 
+          configuration, intégration avec vos outils existants, et formation de votre équipe. 
+          Vous n'avez qu'à utiliser l'agent une fois déployé.
+        </p>
+      </details>
+
+      <details>
+        <summary>Quelles intégrations sont disponibles ?</summary>
+        <p>
+          Nous intégrons avec la plupart des outils populaires :
+        </p>
+        <ul>
+          <li><strong>CRM :</strong> HubSpot, Salesforce, Pipedrive, Zoho</li>
+          <li><strong>Calendriers :</strong> Google Calendar, Outlook, Calendly</li>
+          <li><strong>Communication :</strong> Email, SMS, WhatsApp, Slack</li>
+          <li><strong>E-commerce :</strong> Shopify, WooCommerce, Stripe</li>
+        </ul>
+        <p>Besoin d'une intégration spécifique ? Contactez-nous.</p>
+      </details>
+
+      <details>
+        <summary>Que se passe-t-il si l'agent ne peut pas répondre ?</summary>
+        <p>
+          L'agent est configuré pour <strong>escalader vers un humain</strong> quand il 
+          détecte une question complexe ou une demande urgente. Vous recevez une notification 
+          immédiate et pouvez prendre le relais en temps réel.
+        </p>
+      </details>
+
+      <details>
+        <summary>Puis-je personnaliser le ton et le style de l'agent ?</summary>
+        <p>
+          Oui, complètement. Lors de la configuration, nous définissons ensemble :
+        </p>
+        <ul>
+          <li>Le ton de communication (formel, amical, professionnel)</li>
+          <li>Le vocabulaire spécifique à votre secteur</li>
+          <li>Les réponses types pour les questions courantes</li>
+          <li>Les règles d'escalade vers un humain</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Comment fonctionne la garantie 30 jours ?</summary>
+        <p>
+          Si vous n'êtes pas satisfait dans les <strong>30 premiers jours</strong>, 
+          nous vous remboursons intégralement, sans poser de questions. 
+          Contactez-nous simplement par email ou téléphone.
+        </p>
+      </details>
+
+      <details>
+        <summary>Quel est le support disponible ?</summary>
+        <p>
+          Le support dépend de votre plan :
+        </p>
+        <ul>
+          <li><strong>Starter :</strong> Email avec réponse sous 48h</li>
+          <li><strong>Professional :</strong> Support prioritaire sous 24h</li>
+          <li><strong>Enterprise :</strong> Support 24/7 avec SLA 99,9% et gestionnaire dédié</li>
+        </ul>
+        <p>Tous les plans incluent la documentation complète et les mises à jour automatiques.</p>
+      </details>
+    </div>
+
+    <div class="zx-faq-cta">
+      <p><strong>Vous ne trouvez pas la réponse à votre question ?</strong></p>
+      <a href="mailto:ZyatrIA.contact@gmail.com">Contactez-nous par email</a> ou 
+      <a href="tel:+14388874507">appelez-nous au +1 (438) 887-4507</a>
+    </div>
+  </div>
+</section>
+
+<!-- Fuseaux horaires -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Nous sommes disponibles dans votre fuseau horaire</h2>
+    <p class="zx-lead">Support multilingue et horaires adaptés à votre région</p>
+
+    <div class="zx-tz">
+      <a href="mailto:ZyatrIA.contact@gmail.com?subject=Contact Amérique">
+        <h3>🌎 Amérique du Nord</h3>
+        <p>Lun-Ven : 9h-18h EST<br>Support en français et anglais</p>
+        <em>Réponse sous 24h</em>
+      </a>
+
+      <a href="mailto:ZyatrIA.contact@gmail.com?subject=Contact Europe">
+        <h3>🇪🇺 Europe</h3>
+        <p>Lun-Ven : 9h-18h CET<br>Support en français et anglais</p>
+        <em>Réponse sous 24h</em>
+      </a>
+
+      <a href="mailto:ZyatrIA.contact@gmail.com?subject=Contact Amérique Latine">
+        <h3>🌎 Amérique latine</h3>
+        <p>Lun-Ven : 9h-18h BRT<br>Support en espagnol et portugais</p>
+        <em>Réponse sous 24h</em>
+      </a>
+
+      <a href="mailto:ZyatrIA.contact@gmail.com?subject=Contact Afrique">
+        <h3>🌍 Afrique francophone</h3>
+        <p>Lun-Ven : 9h-18h WAT<br>Support en français</p>
+        <em>Réponse sous 24h</em>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="zx-sec zx-cta-final">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Prêt à automatiser votre entreprise ?</h2>
+    <p class="zx-lead">
+      Consultation gratuite de 30 minutes pour identifier vos opportunités d'automatisation.
+    </p>
+    <div class="zx-cta-row">
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn">Réserver ma consultation gratuite</a>
+      <a href="/test-chat.html" class="zx-btn zx-btn-ghost">Tester un agent</a>
+    </div>
+    <div class="zx-checks">
+      <span>✓ Sans engagement</span>
+      <span>✓ Garantie 30 jours</span>
+      <span>✓ Support en français</span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="zx-footer">
+  <div class="zx-wrap">
+    <div class="zx-footer-grid">
+      <div>
+        <div class="zx-logo">ZyatrIA <span>Global</span></div>
+        <p>Entreprise canadienne basée au Québec.<br>Agents IA autonomes pour entreprises.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/micro-agents">Micro-agents</a></li>
+          <li><a href="/pricing">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/knowledge-base">Base de connaissances</a></li>
+          <li><a href="/test-chat.html">Tester le chatbot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:ZyatrIA.contact@gmail.com">Email</a></li>
+          <li><a href="tel:+14388874507">+1 (438) 887-4507</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="zx-copy">
+      © 2025 ZyatrIA Global. Tous droits réservés. 
+      <a href="/privacy">Confidentialité</a> · 
+      <a href="/terms">Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle functionality
+const langToggle = document.getElementById('langToggle');
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get('lang') || 'fr';
+
+function updateLangButton() {
+  if (langToggle) {
+    langToggle.textContent = currentLang === 'fr' ? '🇫🇷 FR' : '🇬🇧 EN';
+  }
+}
+
+updateLangButton();
+
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    updateLangButton();
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.location.href = newUrl.toString();
+  });
+}
+</script>
+
+</body>
+</html>
+
+
 

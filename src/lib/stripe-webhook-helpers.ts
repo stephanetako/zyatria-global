@@ -192,10 +192,10 @@ export function generateEmailHTML(paymentData: PaymentData): string {
       <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #C98769; color: white; padding: 20px; text-align: center; }
+        .header { background: #007AFF; color: white; padding: 20px; text-align: center; }
         .content { background: #f9f9f9; padding: 20px; }
         .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
-        .amount { font-size: 24px; font-weight: bold; color: #C98769; }
+        .amount { font-size: 24px; font-weight: bold; color: #007AFF; }
       </style>
     </head>
     <body>

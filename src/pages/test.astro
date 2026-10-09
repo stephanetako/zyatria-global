@@ -1,95 +1,325 @@
 ---
-// Test page simple
-const testData = {
-  success: true,
-  message: 'Page de test fonctionne!',
-  timestamp: new Date().toISOString(),
-  routes: [
-    '/api/test-simple',
-    '/api/stripe/test',
-    '/api/stripe/webhook'
-  ]
-};
+import '../styles/zx-styles.css';
 ---
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test ZyatrIA</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h1 { color: #333; }
-    pre {
-      background: #f0f0f0;
-      padding: 15px;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-    .test-btn {
-      background: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 5px;
-    }
-    .test-btn:hover {
-      background: #45a049;
-    }
-    #results {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZyatrIA Global - Solutions IA Avancées</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body>
-  <div class="card">
-    <h1>🧪 Test ZyatrIA - Routes API</h1>
+<body class="zx">
     
-    <h2>📊 Données de test :</h2>
-    <pre>{JSON.stringify(testData, null, 2)}</pre>
+    <!-- Navigation -->
+    <nav class="zx-nav">
+        <div class="zx-logo">ZyatrIA Global</div>
+        <div class="zx-links">
+            <a href="#solutions">Solutions</a>
+            <a href="#tarifs">Tarifs</a>
+            <a href="#temoignages">Témoignages</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#contact" class="zx-btn p">Démarrer</a>
+    </nav>
 
-    <h2>🔗 Tester les routes :</h2>
-    <button class="test-btn" onclick="testRoute('/api/test-simple')">Test Simple</button>
-    <button class="test-btn" onclick="testRoute('/api/stripe/test')">Test Stripe</button>
-    
-    <div id="results"></div>
-  </div>
+    <!-- Hero -->
+    <section class="zx-hero zx-sec">
+        <div class="zx-wrap">
+            <div>
+                <h1 class="zx-h1">
+                    L'IA qui <span>transforme</span> votre business
+                </h1>
+                <p class="s">
+                    Solutions d'intelligence artificielle sur mesure pour automatiser, optimiser et innover. 
+                    Chatbots, analyse de données, vision par ordinateur et plus encore.
+                </p>
+                <div class="zx-cta">
+                    <a href="#contact" class="zx-btn p">Commencer gratuitement</a>
+                    <a href="#solutions" class="zx-btn">Découvrir nos solutions</a>
+                </div>
+            </div>
+            
+            <div class="zx-live">
+                <h3>Activité en temps réel</h3>
+                <div class="zx-ev">
+                    <span>Chatbot déployé</span>
+                    <b>E-commerce Paris</b>
+                </div>
+                <div class="zx-ev">
+                    <span>Analyse terminée</span>
+                    <b>Retail Lyon</b>
+                </div>
+                <div class="zx-ev">
+                    <span>Modèle entraîné</span>
+                    <b>Fintech Marseille</b>
+                </div>
+                <div class="zx-ev">
+                    <span>API intégrée</span>
+                    <b>SaaS Toulouse</b>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    async function testRoute(route) {
-      const resultsDiv = document.getElementById('results');
-      resultsDiv.innerHTML = `<p>⏳ Test de ${route}...</p>`;
-      
-      try {
-        const response = await fetch(route);
-        const data = await response.json();
-        
-        resultsDiv.innerHTML = `
-          <h3>✅ Succès pour ${route}</h3>
-          <pre>${JSON.stringify(data, null, 2)}</pre>
-        `;
-      } catch (error) {
-        resultsDiv.innerHTML = `
-          <h3>❌ Erreur pour ${route}</h3>
-          <pre>${error.message}</pre>
-        `;
-      }
-    }
-  </script>
+    <!-- Stats -->
+    <section class="zx-sec">
+        <div class="zx-wrap">
+            <div class="zx-stats">
+                <div>
+                    <div class="zx-num">500+</div>
+                    <p>Projets IA déployés</p>
+                </div>
+                <div>
+                    <div class="zx-num">98%</div>
+                    <p>Satisfaction client</p>
+                </div>
+                <div>
+                    <div class="zx-num">24/7</div>
+                    <p>Support technique</p>
+                </div>
+                <div>
+                    <div class="zx-num">-60%</div>
+                    <p>Coûts opérationnels</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions -->
+    <section class="zx-sec zx-alt" id="solutions">
+        <div class="zx-wrap">
+            <h2 class="zx-h2">Nos solutions IA</h2>
+            <p class="zx-lead">
+                Des technologies de pointe adaptées à vos besoins métier
+            </p>
+            
+            <div class="zx-sol">
+                <article>
+                    <h3>🤖 Chatbots Intelligents</h3>
+                    <p>Assistants conversationnels alimentés par GPT-4 et Claude</p>
+                    <ul>
+                        <li>Support client 24/7</li>
+                        <li>Qualification de leads</li>
+                        <li>Réservations automatiques</li>
+                        <li>Multilingue</li>
+                    </ul>
+                </article>
+                
+                <article>
+                    <h3>📊 Analyse de Données</h3>
+                    <p>Machine learning et prédictions avancées</p>
+                    <ul>
+                        <li>Prévisions de ventes</li>
+                        <li>Détection d'anomalies</li>
+                        <li>Segmentation clients</li>
+                        <li>Tableaux de bord IA</li>
+                    </ul>
+                </article>
+                
+                <article>
+                    <h3>👁️ Vision par Ordinateur</h3>
+                    <p>Reconnaissance et analyse d'images</p>
+                    <ul>
+                        <li>Contrôle qualité</li>
+                        <li>Reconnaissance faciale</li>
+                        <li>OCR intelligent</li>
+                        <li>Détection d'objets</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section class="zx-sec" id="tarifs">
+        <div class="zx-wrap">
+            <h2 class="zx-h2">Tarifs transparents</h2>
+            <p class="zx-lead">
+                Choisissez la formule adaptée à votre croissance
+            </p>
+            
+            <div class="zx-plans">
+                <div class="zx-plan">
+                    <h3>Starter</h3>
+                    <div class="zx-num">990€<small>/mois</small></div>
+                    <ul>
+                        <li>1 chatbot IA</li>
+                        <li>10 000 messages/mois</li>
+                        <li>Support email</li>
+                        <li>Intégration web</li>
+                        <li>Analytics de base</li>
+                    </ul>
+                    <a href="#contact" class="zx-btn">Choisir Starter</a>
+                </div>
+                
+                <div class="zx-plan hot">
+                    <h3>Business</h3>
+                    <div class="zx-num">2 490€<small>/mois</small></div>
+                    <ul>
+                        <li>3 chatbots IA</li>
+                        <li>50 000 messages/mois</li>
+                        <li>Support prioritaire</li>
+                        <li>API complète</li>
+                        <li>Analytics avancées</li>
+                        <li>Formation équipe</li>
+                    </ul>
+                    <a href="#contact" class="zx-btn p">Choisir Business</a>
+                </div>
+                
+                <div class="zx-plan">
+                    <h3>Enterprise</h3>
+                    <div class="zx-num">Sur mesure</div>
+                    <ul>
+                        <li>Chatbots illimités</li>
+                        <li>Messages illimités</li>
+                        <li>Support dédié 24/7</li>
+                        <li>Infrastructure privée</li>
+                        <li>SLA garanti</li>
+                        <li>Développement custom</li>
+                    </ul>
+                    <a href="#contact" class="zx-btn">Nous contacter</a>
+                </div>
+            </div>
+            
+            <p class="zx-note" style="text-align: center; margin-top: 32px;">
+                💳 Paiement sécurisé par Stripe • 🔒 Données hébergées en France • ✨ Sans engagement
+            </p>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="zx-sec zx-alt" id="temoignages">
+        <div class="zx-wrap">
+            <h2 class="zx-h2">Ils nous font confiance</h2>
+            <p class="zx-lead">
+                Découvrez comment nos clients transforment leur business avec l'IA
+            </p>
+            
+            <div class="zx-tm">
+                <figure class="big">
+                    <blockquote>
+                        "ZyatrIA a révolutionné notre service client. Notre chatbot gère 80% des demandes automatiquement avec une satisfaction de 95%."
+                    </blockquote>
+                    <figcaption>
+                        <b>Marie Dubois</b>
+                        Directrice Digital, E-commerce Fashion
+                    </figcaption>
+                </figure>
+                
+                <figure>
+                    <blockquote>
+                        "L'analyse prédictive nous a permis d'optimiser nos stocks et de réduire nos coûts de 40%."
+                    </blockquote>
+                    <figcaption>
+                        <b>Thomas Martin</b>
+                        CEO, Retail Tech
+                    </figcaption>
+                </figure>
+                
+                <figure>
+                    <blockquote>
+                        "Implémentation rapide, équipe réactive, résultats au-delà de nos attentes."
+                    </blockquote>
+                    <figcaption>
+                        <b>Sophie Laurent</b>
+                        CTO, Fintech
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="zx-sec" id="faq">
+        <div class="zx-wrap">
+            <h2 class="zx-h2">Questions fréquentes</h2>
+            <p class="zx-lead">
+                Tout ce que vous devez savoir sur nos solutions IA
+            </p>
+            
+            <div class="zx-faq">
+                <details>
+                    <summary>Combien de temps prend l'implémentation ?</summary>
+                    <p>
+                        Un chatbot basique peut être déployé en 48h. Les projets complexes (analyse de données, vision par ordinateur) 
+                        prennent généralement 2-4 semaines selon vos besoins.
+                    </p>
+                </details>
+                
+                <details>
+                    <summary>Quelles sont les technologies utilisées ?</summary>
+                    <p>
+                        Nous utilisons les meilleurs modèles du marché : GPT-4, Claude 3, Mistral AI, ainsi que des frameworks 
+                        comme TensorFlow et PyTorch pour les solutions custom.
+                    </p>
+                </details>
+                
+                <details>
+                    <summary>Mes données sont-elles sécurisées ?</summary>
+                    <p>
+                        Absolument. Toutes les données sont chiffrées, hébergées en France (RGPD compliant), et nous ne les 
+                        utilisons jamais pour entraîner nos modèles sans votre accord explicite.
+                    </p>
+                </details>
+                
+                <details>
+                    <summary>Puis-je essayer avant de m'engager ?</summary>
+                    <p>
+                        Oui ! Nous offrons une démo gratuite de 14 jours sur toutes nos solutions. Aucune carte bancaire requise.
+                    </p>
+                </details>
+                
+                <details>
+                    <summary>Quel support proposez-vous ?</summary>
+                    <p>
+                        Support email sous 24h pour Starter, support prioritaire sous 4h pour Business, et support dédié 24/7 
+                        pour Enterprise avec un account manager attitré.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="zx-sec zx-final" id="contact">
+        <div class="zx-wrap">
+            <h2 class="zx-h2">Prêt à transformer votre business ?</h2>
+            <p class="zx-lead">
+                Démarrez votre projet IA dès aujourd'hui. Démo gratuite, sans engagement.
+            </p>
+            <div class="zx-cta" style="justify-content: center;">
+                <a href="mailto:contact@zyatria.com" class="zx-btn p">Demander une démo</a>
+                <a href="/test-chat.html" class="zx-btn">Tester le chatbot</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="zx-foot">
+        <div>
+            <strong style="color: var(--tx);">ZyatrIA Global</strong><br>
+            Solutions d'intelligence artificielle
+        </div>
+        <div>
+            <a href="#solutions">Solutions</a><br>
+            <a href="#tarifs">Tarifs</a><br>
+            <a href="#temoignages">Témoignages</a>
+        </div>
+        <div>
+            <a href="mailto:contact@zyatria.com">contact@zyatria.com</a><br>
+            <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+        </div>
+        <div>
+            © 2024 ZyatrIA Global<br>
+            Tous droits réservés
+        </div>
+    </footer>
+
 </body>
 </html>

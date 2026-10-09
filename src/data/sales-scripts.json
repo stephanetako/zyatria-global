@@ -1,0 +1,98 @@
+{
+  "qualification": {
+    "questions": [
+      {
+        "id": "volume",
+        "question": {
+          "fr": "Combien de demandes clients/prospects recevez-vous par jour environ ?",
+          "en": "How many customer requests/prospects do you receive per day approximately?",
+          "es": "¿Cuántas solicitudes de clientes/prospectos recibe por día aproximadamente?",
+          "pt": "Quantas solicitações de clientes/prospects você recebe por dia aproximadamente?"
+        },
+        "options": ["0-10", "10-50", "50-100", "100+"]
+      },
+      {
+        "id": "budget",
+        "question": {
+          "fr": "Quel est votre budget mensuel pour l'automatisation ?",
+          "en": "What is your monthly budget for automation?",
+          "es": "¿Cuál es su presupuesto mensual para automatización?",
+          "pt": "Qual é o seu or��amento mensal para automação?"
+        },
+        "options": ["< 100$", "100-300$", "300-500$", "500$+"]
+      },
+      {
+        "id": "urgency",
+        "question": {
+          "fr": "Quand souhaitez-vous démarrer ?",
+          "en": "When would you like to start?",
+          "es": "¿Cuándo le gustaría comenzar?",
+          "pt": "Quando você gostaria de começar?"
+        },
+        "options": ["Immédiatement", "Cette semaine", "Ce mois-ci", "Je réfléchis"]
+      }
+    ]
+  },
+  "recommendations": {
+    "starter": {
+      "triggers": ["0-10", "< 100$", "100-300$"],
+      "pitch": {
+        "fr": "🎯 **Plan STARTER** - Parfait pour vous !\n\n💰 **102$/mois** (au lieu de 146$ - ÉCONOMISEZ 44$)\n\n✅ 1 bot IA spécialisé de votre choix\n✅ Déploiement en 7-15 jours\n✅ 1000 interactions/mois\n✅ Support email 48h\n✅ Tableau de bord analytique\n\n🎁 **OFFRE SPÉCIALE AUJOURD'HUI :**\n- 1er mois à 69$ (-32%)\n- Setup gratuit (valeur 200$)\n- Formation vidéo incluse\n\n💡 Nos clients Starter économisent en moyenne **1 200$/mois** en coûts de personnel.\n\n⏰ Plus que **3 places** disponibles ce mois-ci à ce tarif !",
+        "en": "🎯 **STARTER Plan** - Perfect for you!\n\n💰 **$102/month** (instead of $146 - SAVE $44)\n\n✅ 1 specialized AI bot of your choice\n✅ Deployment in 7-15 days\n✅ 1000 interactions/month\n✅ 48h email support\n✅ Analytics dashboard\n\n🎁 **SPECIAL OFFER TODAY:**\n- 1st month at $69 (-32%)\n- Free setup (value $200)\n- Video training included\n\n💡 Our Starter clients save an average of **$1,200/month** in personnel costs.\n\n⏰ Only **3 spots** available this month at this rate!"
+      },
+      "cta": {
+        "fr": "Voulez-vous réserver votre place maintenant ?",
+        "en": "Would you like to reserve your spot now?"
+      },
+      "stripe_link": "https://buy.stripe.com/test_6oE5lq0Hy0Hy5ry6oo"
+    },
+    "professional": {
+      "triggers": ["10-50", "50-100", "300-500$", "500$+"],
+      "pitch": {
+        "fr": "🚀 **Plan PROFESSIONAL** - Le meilleur choix !\n\n💰 **146$/mois** (au lieu de 208$ - ÉCONOMISEZ 62$)\n\n✅ 3 bots IA spécialisés\n✅ Déploiement en 7-15 jours\n✅ 5000 interactions/mois\n✅ Automatisation avancée\n✅ Intégrations CRM\n✅ Support prioritaire 24h\n✅ Rapports avancés\n\n🎁 **OFFRE SPÉCIALE AUJOURD'HUI :**\n- 1er mois à 97$ (-34%)\n- Setup gratuit (valeur 500$)\n- 1h de consultation stratégique offerte\n- Formation personnalisée\n\n💡 Nos clients Pro génèrent en moyenne **3 200$/mois** de CA supplémentaire.\n\n⭐ **PLAN LE PLUS POPULAIRE** - 78% de nos clients choisissent Pro\n\n⏰ Offre valable jusqu'à minuit !",
+        "en": "🚀 **PROFESSIONAL Plan** - Best choice!\n\n💰 **$146/month** (instead of $208 - SAVE $62)\n\n✅ 3 specialized AI bots\n✅ Deployment in 7-15 days\n✅ 5000 interactions/month\n✅ Advanced automation\n✅ CRM integrations\n✅ 24h priority support\n✅ Advanced reports\n\n🎁 **SPECIAL OFFER TODAY:**\n- 1st month at $97 (-34%)\n- Free setup (value $500)\n- 1h strategic consultation included\n- Personalized training\n\n💡 Our Pro clients generate an average of **$3,200/month** in additional revenue.\n\n⭐ **MOST POPULAR PLAN** - 78% of our clients choose Pro\n\n⏰ Offer valid until midnight!"
+      },
+      "cta": {
+        "fr": "Prêt à booster votre entreprise ?",
+        "en": "Ready to boost your business?"
+      },
+      "stripe_link": "https://buy.stripe.com/test_00g15a0Hy0Hy5ry000"
+    },
+    "enterprise": {
+      "triggers": ["100+", "500$+"],
+      "pitch": {
+        "fr": "👑 **Plan ENTERPRISE** - Solution complète !\n\n💰 **Sur devis** (généralement 400-800$/mois)\n\n✅ 7 bots IA - Suite complète\n✅ Déploiement personnalisé\n✅ Gestionnaire dédié\n✅ Support 24/7\n✅ Interactions illimitées\n✅ Formation personnalisée\n✅ SLA 99.9%\n\n🎁 **BONUS EXCLUSIF :**\n- Audit IA complet offert (valeur 500$)\n- 2h de consultation stratégique\n- Intégrations sur-mesure\n- Rapports exécutifs mensuels\n\n💡 Nos clients Enterprise automatisent **80% de leurs processus** et économisent en moyenne **15 000$/mois**.\n\n📅 Je vous propose une **démo personnalisée de 30 min** avec notre expert pour évaluer vos besoins précis.",
+        "en": "👑 **ENTERPRISE Plan** - Complete solution!\n\n💰 **Custom quote** (typically $400-800/month)\n\n✅ 7 AI bots - Complete suite\n✅ Custom deployment\n✅ Dedicated manager\n✅ 24/7 support\n✅ Unlimited interactions\n✅ Personalized training\n✅ 99.9% SLA\n\n🎁 **EXCLUSIVE BONUS:**\n- Complete AI audit included (value $500)\n- 2h strategic consultation\n- Custom integrations\n- Monthly executive reports\n\n💡 Our Enterprise clients automate **80% of their processes** and save an average of **$15,000/month**.\n\n📅 I suggest a **personalized 30-min demo** with our expert to assess your specific needs."
+      },
+      "cta": {
+        "fr": "Réserver ma démo personnalisée",
+        "en": "Book my personalized demo"
+      },
+      "stripe_link": "mailto:ZyatrIA.contact@gmail.com?subject=Démo Enterprise"
+    }
+  },
+  "objections": {
+    "price": {
+      "fr": "Je comprends votre préoccupation sur le prix. 💡\n\nVoici la réalité : Un employé à temps partiel coûte minimum 1 500$/mois. Notre bot IA fait le même travail pour **90% moins cher** et travaille 24/7 sans pause.\n\n📊 ROI moyen de nos clients : **4 mois**\n\nDe plus, avec notre garantie 30 jours, vous ne prenez AUCUN risque. Si ça ne fonctionne pas, vous êtes remboursé à 100%.\n\nQue diriez-vous de commencer avec le plan Starter à 69$ pour le 1er mois ?",
+      "en": "I understand your concern about the price. 💡\n\nHere's the reality: A part-time employee costs at least $1,500/month. Our AI bot does the same work for **90% less** and works 24/7 without breaks.\n\n📊 Average ROI for our clients: **4 months**\n\nPlus, with our 30-day guarantee, you take NO risk. If it doesn't work, you get 100% refunded.\n\nHow about starting with the Starter plan at $69 for the 1st month?"
+    },
+    "timing": {
+      "fr": "Je comprends que le timing soit important. ⏰\n\nMais voici ce qui se passe MAINTENANT :\n- Vos concurrents automatisent déjà\n- Chaque jour sans IA = clients perdus\n- Les prix vont augmenter le mois prochain\n\n💡 Bonne nouvelle : Le déploiement prend seulement 7-15 jours. Vous pourriez avoir votre bot opérationnel **avant la fin du mois**.\n\nEt si vous réservez aujourd'hui, vous bénéficiez de l'offre spéciale (-34%).\n\nQue perdez-vous à essayer avec notre garantie 30 jours ?",
+      "en": "I understand timing is important. ⏰\n\nBut here's what's happening NOW:\n- Your competitors are already automating\n- Every day without AI = lost customers\n- Prices will increase next month\n\n💡 Good news: Deployment takes only 7-15 days. You could have your bot operational **before the end of the month**.\n\nAnd if you book today, you get the special offer (-34%).\n\nWhat do you have to lose with our 30-day guarantee?"
+    },
+    "complexity": {
+      "fr": "Excellente question ! 🎯\n\nC'est justement notre force : **ZÉRO complexité pour vous**.\n\n✅ Nous configurons TOUT\n✅ Formation vidéo incluse\n✅ Support en français 24/7\n✅ Vous n'avez rien à coder\n\nNos clients les moins tech sont opérationnels en 1 journée.\n\n💡 Vous recevez un lien, vous le partagez, le bot travaille. C'est tout.\n\nVoulez-vous voir une démo de 5 minutes pour constater la simplicité ?",
+      "en": "Excellent question! 🎯\n\nThat's exactly our strength: **ZERO complexity for you**.\n\n✅ We configure EVERYTHING\n✅ Video training included\n✅ 24/7 support in English\n✅ No coding required\n\nOur least tech-savvy clients are operational in 1 day.\n\n💡 You get a link, you share it, the bot works. That's it.\n\nWould you like to see a 5-minute demo to see how simple it is?"
+    }
+  },
+  "urgency": {
+    "limited_spots": {
+      "fr": "⚠️ **ATTENTION** : Plus que **{spots}** places disponibles ce mois-ci à ce tarif promotionnel.\n\nAprès ça, retour au prix normal (+{increase}$).",
+      "en": "⚠️ **WARNING**: Only **{spots}** spots available this month at this promotional rate.\n\nAfter that, back to normal price (+${increase})."
+    },
+    "price_increase": {
+      "fr": "📢 **INFO IMPORTANTE** : Nos tarifs augmentent de 30% le 1er du mois prochain.\n\nEn réservant aujourd'hui, vous verrouillez le tarif actuel À VIE.",
+      "en": "📢 **IMPORTANT INFO**: Our prices increase by 30% on the 1st of next month.\n\nBy booking today, you lock in the current rate FOR LIFE."
+    }
+  }
+}

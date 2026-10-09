@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CSSModules } from "./types";
+import type { CSSModules } from "./types";
 type IXData = any;
 export declare const IXContext: React.Context<{
   initEngine: ((data: IXData, styles?: CSSModules) => void) | null;

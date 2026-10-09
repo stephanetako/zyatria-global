@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TagProps } from "../../types";
+import type { TagProps } from "../../types";
 type NavbarContainerProps = TagProps & {
   toggleOpen?: () => void;
   isOpen?: boolean;

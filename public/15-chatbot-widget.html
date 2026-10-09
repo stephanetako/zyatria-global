@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Zyra - ZyatrIA Global</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #F5F1EB 0%, #E6DCD4 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      height: 700px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(55, 61, 54, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #C98769 0%, #A86F53 100%);
+      color: white;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .header-info h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .header-info p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #E6DCD4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .message.user .message-avatar {
+      background: #C98769;
+      color: white;
+    }
+
+    .message-content {
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: #F5F1EB;
+      color: #373D36;
+      line-height: 1.5;
+    }
+
+    .message.user .message-content {
+      background: #C98769;
+      color: white;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      background: #C98769;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.7;
+      }
+      30% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+    }
+
+    .chat-input-container {
+      padding: 20px;
+      background: white;
+      border-top: 1px solid #E6DCD4;
+    }
+
+    .chat-input-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 2px solid #E6DCD4;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input:focus {
+      border-color: #C98769;
+    }
+
+    .send-button {
+      width: 48px;
+      height: 48px;
+      background: #C98769;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .send-button:hover {
+      background: #A86F53;
+      transform: scale(1.05);
+    }
+
+    .send-button:disabled {
+      background: #E6DCD4;
+      cursor: not-allowed;
+      transform: scale(1);
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quick-action {
+      padding: 8px 14px;
+      background: #F5F1EB;
+      border: 1px solid #E6DCD4;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #373D36;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quick-action:hover {
+      background: #C98769;
+      color: white;
+      border-color: #C98769;
+    }
+
+    @media (max-width: 640px) {
+      .chat-container {
+        height: 100vh;
+        border-radius: 0;
+      }
+
+      .message-content {
+        max-width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="avatar">🤖</div>
+      <div class="header-info">
+        <h2>Zyra</h2>
+        <p>Assistante IA • En ligne</p>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="messages">
+      <div class="message">
+        <div class="message-avatar">🤖</div>
+        <div class="message-content">
+          Bonjour ! Je suis Zyra, votre assistante IA chez ZyatrIA Global. Comment puis-je vous aider aujourd'hui ?
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-container">
+      <div class="quick-actions" id="quickActions">
+        <button class="quick-action" onclick="sendQuickMessage('Quels sont vos tarifs ?')">💰 Tarifs</button>
+        <button class="quick-action" onclick="sendQuickMessage('Comment fonctionnent les micro-agents ?')">🤖 Micro-agents</button>
+        <button class="quick-action" onclick="sendQuickMessage('Je veux une démo')">📅 Démo</button>
+      </div>
+      <div class="chat-input-wrapper">
+        <input 
+          type="text" 
+          class="chat-input" 
+          id="userInput" 
+          placeholder="Posez votre question..."
+          onkeypress="handleKeyPress(event)"
+        >
+        <button class="send-button" id="sendBtn" onclick="sendMessage()">
+          ➤
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ⚠️ IMPORTANT : Remplacez par votre URL de worker après déploiement
+    const ENDPOINT = "https://zyatria-api.TON-SOUS-DOMAINE.workers.dev/chat";
+    
+    const messages = [];
+    const messagesContainer = document.getElementById('messages');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function addMessage(role, content) {
+      messages.push({ role, content });
+      
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${role}`;
+      
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.textContent = role === 'user' ? '👤' : '🤖';
+      
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'message-content';
+      contentDiv.textContent = content;
+      
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(contentDiv);
+      messagesContainer.appendChild(messageDiv);
+      
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function showTyping() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message';
+      typingDiv.id = 'typing';
+      typingDiv.innerHTML = `
+        <div class="message-avatar">🤖</div>
+        <div class="message-content typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
+      `;
+      messagesContainer.appendChild(typingDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function hideTyping() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      addMessage('user', text);
+      userInput.value = '';
+      sendBtn.disabled = true;
+      showTyping();
+
+      try {
+        const response = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: messages,
+            lang: 'fr'
+          })
+        });
+
+        const data = await response.json();
+        hideTyping();
+        addMessage('assistant', data.reply);
+      } catch (error) {
+        hideTyping();
+        addMessage('assistant', "Désolée, je rencontre un problème technique. Contactez-nous à ZyatrIA.contact@gmail.com");
+      } finally {
+        sendBtn.disabled = false;
+        userInput.focus();
+      }
+    }
+
+    function sendQuickMessage(text) {
+      userInput.value = text;
+      sendMessage();
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
+
+    // Focus automatique
+    userInput.focus();
+  </script>
+</body>
+</html>

@@ -1,33 +1,292 @@
 
 
+<!DOCTYPE html>
+<html lang="fr" class="zx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro-agents IA - ZyatrIA Global</title>
+  <meta name="description" content="6 micro-agents IA spécialisés pour automatiser votre entreprise. De 68$ à 208$ CA/mois.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
----
-import MainLayout from '../layouts/main.astro';
-import Navigation from '../components/Navigation';
-import MicroAgentsPage from '../components/pages/MicroAgentsPage';
-import Footer from '../components/Footer';
-import FormspreeButton from '../components/FormspreeButton';
+<!-- Navigation -->
+<header class="zx-header">
+  <nav class="zx-nav">
+    <a href="/" style="display:flex;align-items:center">
+      <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:50px;width:auto" />
+    </a>
+    <div class="zx-nav-links">
+      <a href="/">Accueil</a>
+      <a href="/services">Services</a>
+      <a href="/micro-agents">Micro-agents</a>
+      <a href="/pricing">Tarifs</a>
+      <a href="/knowledge-base">Ressources</a>
+    </div>
+    <div class="zx-nav-right">
+      <button class="zx-lang-toggle" id="langToggle">
+        🇫🇷 FR
+      </button>
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-sm">Démo gratuite</a>
+    </div>
+  </nav>
+</header>
 
-const seoData = {
-  title: "Micro-Agents IA Spécialisés | Immobilier, E-commerce, Support, Qualification | ZyatrIA",
-  description: "Déployez des micro-agents IA spécialisés en moins de 7 jours : Agent Immobilier, Agent E-commerce, Agent Support 24/7, Agent Qualification Leads, Agent Rendez-vous, Agent Sur-Mesure. Automatisation intelligente pour votre secteur.",
-  ogImage: "/og-image-micro-agents.jpg",
-  keywords: "micro-agents IA, agent immobilier IA, agent e-commerce IA, support client automatisé, qualification leads IA, prise de rendez-vous automatique, agent sur-mesure"
-};
----
+<!-- 09 - Entête Micro-agents -->
+<section class="zx-sec zx-hero">
+  <div class="zx-wrap">
+    <div class="zx-kicker">Micro-agents IA</div>
+    <h1 class="zx-h1">Des agents spécialisés <span>pour chaque besoin</span></h1>
+    <p class="zx-lead">
+      6 micro-agents IA prêts à l'emploi, déployés en 7 à 15 jours. 
+      Choisissez celui qui correspond à votre besoin immédiat.
+    </p>
+  </div>
+</section>
 
-<MainLayout 
-  title={seoData.title}
-  description={seoData.description}
-  ogImage={seoData.ogImage}
->
-<div class="relative">
-<Navigation client:load />
-<MicroAgentsPage client:only="react" />
-<Footer client:only="react" />
-<FormspreeButton client:only="react" />
-</div>
-</MainLayout>
+<!-- 10 - Micro-agents -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <div class="zx-cards zx-6">
+      <!-- Agent 1 -->
+      <div class="zx-card">
+        <span class="zx-tag">🎯 Qualification</span>
+        <h3>Qualification des leads</h3>
+        <p class="zx-price">69$ <small>CA/mois</small></p>
+        <p class="zx-desc">
+          Scoring automatique des prospects, qualification instantanée, 
+          alertes leads chauds, intégration CRM.
+        </p>
+        <ul>
+          <li>Scoring automatique 0-100</li>
+          <li>Qualification en temps réel</li>
+          <li>Alertes leads prioritaires</li>
+          <li>Intégration CRM native</li>
+        </ul>
+        <p style="margin-top:12px;font-size:.88rem;color:#64748b">
+          <strong>Idéal pour :</strong> Entreprises qui reçoivent beaucoup de prospects 
+          et veulent se concentrer sur les leads sérieux.
+        </p>
+        <a href={stripeLinks.microAgents.leadQualification} target="_blank" rel="noopener" class="zx-btn" style="margin-top:16px;width:100%">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Agent 2 -->
+      <div class="zx-card">
+        <span class="zx-tag">💬 Support</span>
+        <h3>Réponses clients 24/7</h3>
+        <p class="zx-price">69$ <small>CA/mois</small></p>
+        <p class="zx-desc">
+          Réponses instantanées aux questions courantes, jour et nuit, 
+          multilingue, base de connaissances FAQ.
+        </p>
+        <ul>
+          <li>Disponible 24/7 sans interruption</li>
+          <li>Multilingue (FR, EN, ES, PT)</li>
+          <li>Base de connaissances FAQ</li>
+          <li>Escalade humaine possible</li>
+        </ul>
+        <p style="margin-top:12px;font-size:.88rem;color:#64748b">
+          <strong>Idéal pour :</strong> Service client qui veut réduire le temps 
+          de réponse et améliorer la satisfaction.
+        </p>
+        <a href={stripeLinks.microAgents.customerSupport} target="_blank" rel="noopener" class="zx-btn" style="margin-top:16px;width:100%">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Agent 3 -->
+      <div class="zx-card">
+        <span class="zx-tag">📅 Rendez-vous</span>
+        <h3>Gestion des rendez-vous</h3>
+        <p class="zx-price">68$ <small>CA/mois</small></p>
+        <p class="zx-desc">
+          Réservation en ligne, rappels automatiques, synchronisation agenda, 
+          gestion des confirmations.
+        </p>
+        <ul>
+          <li>Réservation en ligne 24/7</li>
+          <li>Rappels automatiques SMS/Email</li>
+          <li>Synchronisation Google/Outlook</li>
+          <li>Gestion des annulations</li>
+        </ul>
+        <p style="margin-top:12px;font-size:.88rem;color:#64748b">
+          <strong>Idéal pour :</strong> Coachs, cliniques, consultants qui veulent 
+          automatiser la prise de rendez-vous.
+        </p>
+        <a href={stripeLinks.microAgents.appointments} target="_blank" rel="noopener" class="zx-btn" style="margin-top:16px;width:100%">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Agent 4 -->
+      <div class="zx-card">
+        <span class="zx-tag">🔄 Suivi</span>
+        <h3>Suivi des prospects</h3>
+        <p class="zx-price">180$ <small>CA/mois</small></p>
+        <p class="zx-desc">
+          Relances automatiques par email, SMS, WhatsApp. Séquences automatisées, 
+          timing intelligent, suivi d'engagement.
+        </p>
+        <ul>
+          <li>Relances multi-canaux</li>
+          <li>Séquences automatisées</li>
+          <li>Timing intelligent</li>
+          <li>Suivi d'engagement détaillé</li>
+        </ul>
+        <p style="margin-top:12px;font-size:.88rem;color:#64748b">
+          <strong>Idéal pour :</strong> Équipes commerciales qui veulent maximiser 
+          la conversion des prospects.
+        </p>
+        <a href={stripeLinks.microAgents.prospectFollowup} target="_blank" rel="noopener" class="zx-btn" style="margin-top:16px;width:100%">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Agent 5 -->
+      <div class="zx-card">
+        <span class="zx-tag">🏠 Immobilier</span>
+        <h3>Agent immobilier</h3>
+        <p class="zx-price">208$ <small>CA/mois</small></p>
+        <p class="zx-desc">
+          Planification des visites, qualification des acheteurs, réponses sur 
+          les biens, gestion des leads immobiliers.
+        </p>
+        <ul>
+          <li>Planification des visites</li>
+          <li>Qualification des acheteurs</li>
+          <li>Réponses sur les propriétés</li>
+          <li>Gestion des leads immobiliers</li>
+        </ul>
+        <p style="margin-top:12px;font-size:.88rem;color:#64748b">
+          <strong>Idéal pour :</strong> Agences immobilières et courtiers qui veulent 
+          automatiser la gestion des visites.
+        </p>
+        <a href={stripeLinks.microAgents.realEstate} target="_blank" rel="noopener" class="zx-btn" style="margin-top:16px;width:100%">Démarrer l'abonnement</a>
+      </div>
+
+      <!-- Agent 6 -->
+      <div class="zx-card">
+        <span class="zx-tag">🛒 E-commerce</span>
+        <h3>Agent commerce</h3>
+        <p class="zx-price">195$ <small>CA/mois</small></p>
+        <p class="zx-desc">
+          Récupération des paniers abandonnés, suivi de commandes, FAQ produits, 
+          recommandations personnalisées.
+        </p>
+        <ul>
+          <li>Récupération paniers abandonnés</li>
+          <li>Suivi de commandes automatique</li>
+          <li>FAQ produits intelligente</li>
+          <li>Recommandations personnalisées</li>
+        </ul>
+        <p style="margin-top:12px;font-size:.88rem;color:#64748b">
+          <strong>Idéal pour :</strong> Boutiques en ligne qui veulent augmenter 
+          leur taux de conversion.
+        </p>
+        <a href={stripeLinks.microAgents.ecommerce} target="_blank" rel="noopener" class="zx-btn" style="margin-top:16px;width:100%">Démarrer l'abonnement</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Promo -->
+<section class="zx-sec">
+  <div class="zx-wrap">
+    <div class="zx-promo">
+      <h3>🎁 Offre de lancement</h3>
+      <p>
+        <strong>-30% sur votre premier mois</strong> avec le code <strong>LAUNCH30</strong>
+      </p>
+    </div>
+    <p class="zx-note">
+      Tous les micro-agents incluent : déploiement en 7-15 jours, formation de l'équipe, 
+      support technique, mises à jour régulières et garantie satisfait ou remboursé 30 jours.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="zx-sec zx-cta-final">
+  <div class="zx-wrap">
+    <h2 class="zx-h2">Besoin de plusieurs agents ?</h2>
+    <p class="zx-lead">
+      Découvrez nos plans qui combinent plusieurs micro-agents pour une automatisation complète.
+    </p>
+    <div class="zx-cta-row">
+      <a href="/pricing" class="zx-btn">Voir les plans</a>
+      <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-ghost">Parler à un expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="zx-footer">
+  <div class="zx-wrap">
+    <div class="zx-footer-grid">
+      <div>
+        <div class="zx-logo">ZyatrIA <span>Global</span></div>
+        <p>Entreprise canadienne basée au Québec.<br>Agents IA autonomes pour entreprises.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/micro-agents">Micro-agents</a></li>
+          <li><a href="/pricing">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/knowledge-base">Base de connaissances</a></li>
+          <li><a href="/test-chat.html">Tester le chatbot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:ZyatrIA.contact@gmail.com">Email</a></li>
+          <li><a href="tel:+14388874507">+1 (438) 887-4507</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="zx-copy">
+      © 2025 ZyatrIA Global. Tous droits réservés. 
+      <a href="/privacy">Confidentialité</a> · 
+      <a href="/terms">Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle functionality
+const langToggle = document.getElementById('langToggle');
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get('lang') || 'fr';
+
+function updateLangButton() {
+  if (langToggle) {
+    langToggle.textContent = currentLang === 'fr' ? '🇫🇷 FR' : '🇬🇧 EN';
+  }
+}
+
+updateLangButton();
+
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    updateLangButton();
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.location.href = newUrl.toString();
+  });
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
 
 
 

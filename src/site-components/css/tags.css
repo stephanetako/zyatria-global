@@ -1,4 +1,4 @@
-@scope (.wf-devlink-1b9f10c99bd74c33acb9ed8feb765e91) {
+@scope (.wf-devlink-fdb69f23002bf933d4a24279330ec60f) {
   body {
     background-color: var(--_colors---background-color--bg-primary);
     font-family: var(--_typography---font--body-font);
@@ -191,13 +191,14 @@
       --_sizes---spacing--1-5x: 1.5rem;
       --_sizes---spacing--1x: 1rem;
       --_sizes---spacing--2x: 2rem;
+      --_sizes---spacing--4x: 4rem;
       --_sizes---card--card-padding: var(--_sizes---spacing--2x);
       --_sizes---gap--xxs-gap: var(--_sizes---spacing--0-5x);
       --_sizes---gap--lg-gap: var(--_sizes---spacing--4x);
       --_sizes---spacing--3x: 3rem;
       --_sizes---spacing--5x: 5rem;
-      --_sizes---spacing--4x: 4rem;
       --_sizes---radius--md-radius: 0.5rem;
+      --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
       --_sizes---radius--sm-radius: 0.25rem;
       --_sizes---radius--lg-radius: 0.75rem;
       --_sizes---radius--xl-radius: 1rem;
@@ -208,7 +209,6 @@
       --_sizes---spacing--7x: 7rem;
       --_sizes---spacing--8x: 8rem;
       --_sizes---gap--xl-gap: var(--_sizes---spacing--5x);
-      --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
       --_sizes---button--button-size: var(
         --_typography---base-typography--base-font-size
       );
@@ -365,13 +365,14 @@
       --_sizes---spacing--1-5x: 1.5rem;
       --_sizes---spacing--1x: 1rem;
       --_sizes---spacing--2x: 2rem;
+      --_sizes---spacing--4x: 4rem;
       --_sizes---card--card-padding: var(--_sizes---spacing--1-5x);
       --_sizes---gap--xxs-gap: var(--_sizes---spacing--0-5x);
       --_sizes---gap--lg-gap: var(--_sizes---spacing--4x);
       --_sizes---spacing--3x: 3rem;
       --_sizes---spacing--5x: 5rem;
-      --_sizes---spacing--4x: 4rem;
       --_sizes---radius--md-radius: 0.5rem;
+      --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
       --_sizes---radius--sm-radius: 0.25rem;
       --_sizes---radius--lg-radius: 0.75rem;
       --_sizes---radius--xl-radius: 1rem;
@@ -382,7 +383,6 @@
       --_sizes---spacing--7x: 7rem;
       --_sizes---spacing--8x: 8rem;
       --_sizes---gap--xl-gap: var(--_sizes---spacing--5x);
-      --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
       --_sizes---button--button-size: var(
         --_typography---base-typography--base-font-size
       );
@@ -539,13 +539,14 @@
       --_sizes---spacing--1-5x: 1.5rem;
       --_sizes---spacing--1x: 1rem;
       --_sizes---spacing--2x: 2rem;
+      --_sizes---spacing--4x: 4rem;
       --_sizes---card--card-padding: var(--_sizes---spacing--1x);
       --_sizes---gap--xxs-gap: var(--_sizes---spacing--0-5x);
       --_sizes---gap--lg-gap: var(--_sizes---spacing--4x);
       --_sizes---spacing--3x: 3rem;
       --_sizes---spacing--5x: 5rem;
-      --_sizes---spacing--4x: 4rem;
       --_sizes---radius--md-radius: 0.5rem;
+      --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
       --_sizes---radius--sm-radius: 0.25rem;
       --_sizes---radius--lg-radius: 0.75rem;
       --_sizes---radius--xl-radius: 1rem;
@@ -556,7 +557,6 @@
       --_sizes---spacing--7x: 7rem;
       --_sizes---spacing--8x: 8rem;
       --_sizes---gap--xl-gap: var(--_sizes---spacing--5x);
-      --_sizes---gap--xxl-gap: var(--_sizes---spacing--6x);
       --_sizes---button--button-size: var(
         --_typography---base-typography--base-font-size
       );

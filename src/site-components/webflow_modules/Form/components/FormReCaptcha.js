@@ -16,6 +16,7 @@ const FormReCaptcha = React.forwardRef(function FormReCaptcha(
     "data-sitekey": siteKey,
     "data-theme": theme,
     "data-size": size,
+    suppressHydrationWarning: true,
   });
 });
 export default FormReCaptcha;

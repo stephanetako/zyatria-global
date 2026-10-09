@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Props } from "../../types";
+import type { Props } from "../../types";
 declare const CodeBlock: React.ForwardRefExoticComponent<
   Omit<Props<"pre">, "code" | "language" | "theme" | "lineNumbers"> & {
     code?: string;

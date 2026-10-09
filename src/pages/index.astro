@@ -3,240 +3,741 @@
 
 
 
----
-import MainLayout from '../layouts/main.astro';
-import AppWrapper from '../components/AppWrapper';
 
-const seoData = {
-  title: "ZyatrIA Global | Agents IA & Automation Sans Frontières - Déploiement en 7-15 jours",
-  description: "Transformez votre entreprise avec des agents IA intelligents et une automatisation avancée. Déploiement rapide en 7-15 jours. Disponible en Amérique du Nord, Europe, Afrique et Amérique Latine. Micro-agents spécialisés pour immobilier, e-commerce, support client.",
-  ogImage: "/og-image.png",
-  keywords: "agents IA, automatisation, micro-agents, IA sans frontières, automation entreprise, agents intelligents, CRM automation, workflow automation, IA multilingue, déploiement rapide IA"
-};
+---
+import '../styles/zx-styles.css';
+import '../styles/color-override.css';
+import ChatbotWidget from '../components/ChatbotWidget.astro';
 ---
 
-<MainLayout 
-  title={seoData.title}
-  description={seoData.description}
-  ogImage={seoData.ogImage}
->
-  <AppWrapper client:only="react" />
-</MainLayout>
-
-<style is:global>
-/* Custom animations */
-@keyframes fade-in {
-from {
-opacity: 0;
+<!DOCTYPE html>
+<html lang="fr" class="zx">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZyatrIA Global - Agents IA Autonomes pour Entreprises</title>
+<meta name="description" content="Déployez des agents IA en 7-15 jours. Automatisez la réception, qualification, rendez-vous et support client. Entreprise canadienne basée au Québec.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Force primary color immediately */
+:root {
+  --primary: #635bff !important;
+  --primary-hover: #5046e5 !important;
 }
-to {
-opacity: 1;
+.zx-btn:not(.zx-btn-ghost) {
+  background: #635bff !important;
 }
+.zx-btn:not(.zx-btn-ghost):hover {
+  background: #5046e5 !important;
 }
-
-@keyframes fade-in-up {
-from {
-opacity: 0;
-transform: translateY(20px);
+.zx-tag {
+  background: rgba(99, 91, 255, 0.1) !important;
+  color: #635bff !important;
 }
-to {
-opacity: 1;
-transform: translateY(0);
+.zx-link {
+  color: #635bff !important;
 }
-}
-
-@keyframes float {
-0%, 100% {
-transform: translateY(0);
-}
-50% {
-transform: translateY(-20px);
-}
-}
-
-@keyframes gradient-shift {
-0%, 100% {
-background-position: 0% 50%;
-}
-50% {
-background-position: 100% 50%;
-}
-}
-
-@keyframes pulse-glow {
-0%, 100% {
-box-shadow: 0 0 20px rgba(201, 135, 105, 0.3);
-}
-50% {
-box-shadow: 0 0 40px rgba(201, 135, 105, 0.6);
-}
-}
-
-.animate-fade-in {
-animation: fade-in 0.6s ease-out forwards;
-}
-
-.animate-fade-in-up {
-animation: fade-in-up 0.8s ease-out forwards;
-opacity: 0;
-}
-
-.animate-float {
-animation: float 3s ease-in-out infinite;
-}
-
-.animate-gradient {
-background-size: 200% 200%;
-animation: gradient-shift 8s ease infinite;
-}
-
-.animate-pulse-glow {
-animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.delay-100 {
-animation-delay: 100ms;
-}
-
-.delay-200 {
-animation-delay: 200ms;
-}
-
-.delay-300 {
-animation-delay: 300ms;
-}
-
-.delay-400 {
-animation-delay: 400ms;
-}
-
-.delay-500 {
-animation-delay: 500ms;
-}
-
-.delay-600 {
-animation-delay: 600ms;
-}
-
-.delay-700 {
-animation-delay: 700ms;
-}
-
-.delay-800 {
-animation-delay: 800ms;
-}
-
-.delay-1000 {
-animation-delay: 1000ms;
-}
-
-/* Smooth scrolling with offset for fixed nav */
-html {
-scroll-behavior: smooth;
-scroll-padding-top: 80px;
-}
-
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-*,
-*::before,
-*::after {
-animation-duration: 0.01ms !important;
-animation-iteration-count: 1 !important;
-transition-duration: 0.01ms !important;
-scroll-behavior: auto !important;
-}
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-width: 10px;
-}
-
-::-webkit-scrollbar-track {
-background: hsl(var(--muted));
-}
-
-::-webkit-scrollbar-thumb {
-background: hsl(var(--primary));
-border-radius: 5px;
-transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-background: hsl(var(--primary) / 0.8);
-}
-
-/* Firefox scrollbar */
-* {
-scrollbar-width: thin;
-scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
-}
-
-/* Loading state optimization */
-.loading-skeleton {
-background: linear-gradient(
-90deg,
-hsl(var(--muted)) 0%,
-hsl(var(--muted-foreground) / 0.1) 50%,
-hsl(var(--muted)) 100%
-);
-background-size: 200% 100%;
-animation: loading-shimmer 1.5s infinite;
-}
-
-@keyframes loading-shimmer {
-0% {
-background-position: 200% 0;
-}
-100% {
-background-position: -200% 0;
-}
-}
-
-/* Enhanced focus styles for accessibility */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-outline: 2px solid hsl(var(--primary));
-outline-offset: 2px;
-}
-
-/* Improve text rendering */
-body {
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-text-rendering: optimizeLegibility;
-}
-
-/* Hide elements during page load to prevent FOUC */
-.astro-route-announcer {
-position: absolute;
-left: -10000px;
-width: 1px;
-height: 1px;
-overflow: hidden;
+.zx-card ul li:before {
+  color: #635bff !important;
 }
 </style>
+</head>
+<body>
 
+<!-- Navigation -->
+<header class="zx-header">
+<nav class="zx-nav">
+<a href="#hero" class="logo">
+<img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:60px;width:auto" />
+</a>
+<div class="zx-nav-links">
+<a href="/" data-i18n="nav.home">Accueil</a>
+<a href="/services" data-i18n="nav.services">Services</a>
+<a href="/micro-agents" data-i18n="nav.microAgents">Micro-agents</a>
+<a href="/pricing" data-i18n="nav.pricing">Tarifs</a>
+<a href="/knowledge-base" data-i18n="nav.resources">Ressources</a>
+<a href="/contact" data-i18n="nav.contact">Contact</a>
+</div>
+<div class="zx-nav-right">
+<button class="zx-lang-toggle" id="langToggle">
+  🇫🇷 FR
+</button>
+<a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-sm" data-i18n="nav.demo">Démo gratuite</a>
+</div>
+</nav>
+</header>
 
+<!-- 01 - Hero -->
+<section class="zx-sec zx-hero">
+<div class="zx-wrap" style="max-width:900px;margin:0 auto;text-align:center">
+<div class="zx-kicker" data-i18n="hero.kicker">🇨🇦 Entreprise Canadienne | Québec — IA sans frontières</div>
+<h1 class="zx-h1" style="background: linear-gradient(135deg, #635bff 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"><span data-i18n="hero.title">Transformez Votre Entreprise</span> <span style="display:block" data-i18n="hero.titleSpan">Avec l'IA Intelligente</span></h1>
+<p class="zx-lead" style="margin-left:auto;margin-right:auto" data-i18n="hero.description">
+Déployez vos agents IA en 7 à 15 jours pour automatiser la réception, qualification, 
+rendez-vous et support client. Sans embauche. Sans formation. Résultats mesurables dès la première semaine.
+</p>
+<div class="zx-cta-row" style="justify-content:center">
+<a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn" data-i18n="hero.cta1">Réserver une consultation gratuite</a>
+<a href="/micro-agents" class="zx-btn zx-btn-ghost" data-i18n="hero.cta2">Voir les micro-agents</a>
+</div>
+</div>
+</section>
 
+<!-- 02 - Stats -->
+<section class="zx-sec" style="padding:80px 0">
+<div class="zx-wrap">
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:800px;margin:0 auto;align-items:center">
+<!-- Stats Row 1 -->
+<div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;text-align:center">
+<b style="display:block;font-size:56px;font-weight:700;color:var(--text-primary);margin-bottom:12px;line-height:1;letter-spacing:-0.03em">150+</b>
+<small style="font-size:15px;color:var(--text-secondary);font-weight:500;line-height:1.4" data-i18n="stats.clients">Clients actifs dans 45 pays</small>
+</div>
 
+<div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;text-align:center">
+<b style="display:block;font-size:56px;font-weight:700;color:var(--text-primary);margin-bottom:12px;line-height:1;letter-spacing:-0.03em">98%</b>
+<small style="font-size:15px;color:var(--text-secondary);font-weight:500;line-height:1.4" data-i18n="stats.satisfaction">Taux de satisfaction client</small>
+</div>
 
+<!-- Image Center -->
+<div style="grid-column:1/-1;display:flex;justify-content:center;margin:20px 0">
+<div style="width:320px;height:320px;border-radius:50%;overflow:hidden;border:4px solid var(--border);box-shadow:var(--shadow-lg)">
+<img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" alt="Équipe ZyatrIA" style="width:100%;height:100%;object-fit:cover" />
+</div>
+</div>
 
+<!-- Stats Row 2 -->
+<div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;text-align:center">
+<b style="display:block;font-size:56px;font-weight:700;color:var(--text-primary);margin-bottom:12px;line-height:1;letter-spacing:-0.03em">7-15j</b>
+<small style="font-size:15px;color:var(--text-secondary);font-weight:500;line-height:1.4" data-i18n="stats.deployment">Déploiement ultra-rapide</small>
+</div>
 
+<div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;text-align:center">
+<b style="display:block;font-size:56px;font-weight:700;color:var(--text-primary);margin-bottom:12px;line-height:1;letter-spacing:-0.03em">2,5M+</b>
+<small style="font-size:15px;color:var(--text-secondary);font-weight:500;line-height:1.4" data-i18n="stats.tasks">Tâches automatisées</small>
+</div>
+</div>
+</div>
+</section>
 
+<!-- 03 - Features Grid -->
+<section class="zx-sec" style="background:var(--bg-secondary)">
+<div class="zx-wrap">
+<div class="zx-kicker" data-i18n="features.kicker">🚀 Pourquoi ZyatrIA</div>
+<h2 class="zx-h2" data-i18n="features.title">La différence ZyatrIA</h2>
+<p class="zx-lead" data-i18n="features.description">
+Une approche unique qui combine rapidité, expertise et résultats mesurables.
+</p>
 
+<div class="zx-feature-grid">
+<div class="zx-feature-item">
+  <div class="zx-feature-icon">⚡</div>
+  <h3 data-i18n="features.feature1Title">Déploiement express</h3>
+  <p data-i18n="features.feature1Desc">Vos agents IA sont opérationnels en 7 à 15 jours, pas en 3-6 mois comme les solutions traditionnelles.</p>
+</div>
 
+<div class="zx-feature-item">
+  <div class="zx-feature-icon">🎯</div>
+  <h3 data-i18n="features.feature2Title">ROI garanti</h3>
+  <p data-i18n="features.feature2Desc">Garantie satisfait ou remboursé 30 jours. Nos clients constatent un ROI moyen en 4 mois.</p>
+</div>
 
+<div class="zx-feature-item">
+  <div class="zx-feature-icon">🇨🇦</div>
+  <h3 data-i18n="features.feature3Title">Support canadien</h3>
+  <p data-i18n="features.feature3Desc">Équipe basée au Québec, support en français, anglais, espagnol et portugais.</p>
+</div>
 
+<div class="zx-feature-item">
+  <div class="zx-feature-icon">🔒</div>
+  <h3 data-i18n="features.feature4Title">Sécurité maximale</h3>
+  <p data-i18n="features.feature4Desc">Conformité RGPD, hébergement sécurisé, chiffrement de bout en bout de vos données.</p>
+</div>
+</div>
+</div>
+</section>
 
+<!-- 04 - Solutions -->
+<section class="zx-sec">
+<div class="zx-wrap">
+<div class="zx-kicker" data-i18n="solutions.kicker">Solutions IA</div>
+<h2 class="zx-h2" data-i18n="solutions.title">Tout pour automatiser votre entreprise</h2>
+<p class="zx-lead" data-i18n="solutions.description">
+Trois façons de gagner du temps, quel que soit votre secteur.
+</p>
 
+<div class="zx-cards">
+<div class="zx-card">
+  <div style="text-align:center;margin-bottom:1.5rem;overflow:hidden;border-radius:12px">
+    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="Agent IA conversationnel" style="width:100%;height:200px;object-fit:cover" />
+  </div>
+  <span class="zx-tag">🤖 Agents IA</span>
+  <h3 data-i18n="solutions.card1Title">Agents IA intelligents</h3>
+  <p data-i18n="solutions.card1Desc">Ils analysent, répondent, décident et exécutent au cœur de votre activité.</p>
+  <ul>
+    <li data-i18n="solutions.card1Item1">Réponses automatiques 24/7</li>
+    <li data-i18n="solutions.card1Item2">Analyse intelligente des besoins</li>
+    <li data-i18n="solutions.card1Item3">Adaptation à votre entreprise</li>
+  </ul>
+  <a href="/micro-agents" class="zx-link" data-i18n="solutions.card1Link">Découvrir les micro-agents →</a>
+</div>
 
+<div class="zx-card">
+  <div style="text-align:center;margin-bottom:1.5rem;overflow:hidden;border-radius:12px">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Automatisation workflow" style="width:100%;height:200px;object-fit:cover" />
+  </div>
+  <span class="zx-tag">⚡ Automatisation</span>
+  <h3 data-i18n="solutions.card2Title">Automatisation avancée</h3>
+  <p data-i18n="solutions.card2Desc">Connectez vos outils et éliminez le travail manuel répétitif.</p>
+  <ul>
+    <li data-i18n="solutions.card2Item1">Intégrations CRM natives</li>
+    <li data-i18n="solutions.card2Item2">Relances automatisées</li>
+    <li data-i18n="solutions.card2Item3">Données synchronisées en temps réel</li>
+  </ul>
+  <a href="/services" class="zx-link" data-i18n="solutions.card2Link">Voir les services →</a>
+</div>
 
+<div class="zx-card">
+  <div style="text-align:center;margin-bottom:1.5rem;overflow:hidden;border-radius:12px">
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="Déploiement rapide" style="width:100%;height:200px;object-fit:cover" />
+  </div>
+  <span class="zx-tag">🚀 Déploiement rapide</span>
+  <h3 data-i18n="solutions.card3Title">Résultats en 7 jours</h3>
+  <p data-i18n="solutions.card3Desc">Choisissez un micro-agent, nous le configurons, il est en ligne en une semaine.</p>
+  <ul>
+    <li data-i18n="solutions.card3Item1">Déployé en 7 à 15 jours</li>
+    <li data-i18n="solutions.card3Item2">Coût inférieur au sur-mesure</li>
+    <li data-i18n="solutions.card3Item3">Prêt à l'emploi immédiatement</li>
+  </ul>
+  <a href="/pricing" class="zx-link" data-i18n="solutions.card3Link">Voir les tarifs →</a>
+</div>
+</div>
+</div>
+</section>
 
+<!-- 05 - Témoignages -->
+<section class="zx-sec" style="background:var(--bg-secondary)">
+<div class="zx-wrap">
+<div class="zx-kicker" data-i18n="testimonials.kicker">Témoignages clients</div>
+<h2 class="zx-h2" data-i18n="testimonials.title">Des résultats mesurés chez nos clients</h2>
+<p class="zx-lead" data-i18n="testimonials.description">
+Résultats communiqués par les entreprises elles-mêmes.
+</p>
+
+<div class="zx-cards">
+<div class="zx-card">
+  <div class="zx-stars">★★★★★</div>
+  <div class="zx-author">
+    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="Sarah Mitchell" class="zx-avatar-img" />
+    <div>
+      <b>Sarah Mitchell</b>
+      <small>CEO, TechStart Inc. (San Francisco)</small>
+    </div>
+  </div>
+  <p class="zx-quote" data-i18n="testimonials.test1Quote">
+    "Le temps de réponse est passé de 4 heures à 2 minutes. Notre équipe peut enfin 
+    se concentrer sur les problèmes complexes."
+  </p>
+  <div class="zx-results">
+    <div data-i18n="testimonials.test1Result1">✓ Temps de réponse réduit de 95%</div>
+    <div data-i18n="testimonials.test1Result2">✓ Satisfaction client +40%</div>
+  </div>
+</div>
+
+<div class="zx-card">
+  <div class="zx-stars">★★★★★</div>
+  <div class="zx-author">
+    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Pierre Dubois" class="zx-avatar-img" />
+    <div>
+      <b>Pierre Dubois</b>
+      <small>Directeur, Commerce Plus (Paris)</small>
+    </div>
+  </div>
+  <p class="zx-quote" data-i18n="testimonials.test2Quote">
+    "80% de nos commandes sont automatisées. Ce qui prenait 3 jours prend maintenant 3 heures."
+  </p>
+  <div class="zx-results">
+    <div data-i18n="testimonials.test2Result1">✓ ROI en 4 mois</div>
+    <div data-i18n="testimonials.test2Result2">✓ 80% d'automatisation</div>
+  </div>
+</div>
+
+<div class="zx-card">
+  <div class="zx-stars">★★★★★</div>
+  <div class="zx-author">
+    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80" alt="Maria González" class="zx-avatar-img" />
+    <div>
+      <b>Maria González</b>
+      <small>Fondatrice, Digital Ventures (Barcelone)</small>
+    </div>
+  </div>
+  <p class="zx-quote" data-i18n="testimonials.test3Quote">
+    "Notre taux de conversion est passé de 20% à 73% grâce à la qualification intelligente des leads."
+  </p>
+  <div class="zx-results">
+    <div data-i18n="testimonials.test3Result1">✓ +230 000$ CA de revenus</div>
+    <div data-i18n="testimonials.test3Result2">✓ Conversion +265%</div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 06 - FAQ -->
+<section class="zx-sec">
+<div class="zx-wrap">
+<div class="zx-kicker" data-i18n="faq.kicker">❓ Questions fréquentes</div>
+<h2 class="zx-h2" data-i18n="faq.title">Tout ce que vous devez savoir</h2>
+<p class="zx-lead" data-i18n="faq.description">
+Réponses aux questions les plus courantes sur nos agents IA.
+</p>
+
+<div class="zx-faq">
+<div class="zx-faq-item">
+<button class="zx-faq-question">
+<span data-i18n="faq.q1">Combien de temps prend le déploiement ?</span>
+<span class="zx-faq-toggle">+</span>
+</button>
+<div class="zx-faq-answer">
+<div class="zx-faq-answer-content" data-i18n="faq.a1">
+Entre 7 et 15 jours selon la complexité. Nous commençons par une consultation gratuite, puis configurons votre agent IA selon vos besoins spécifiques. Vous voyez les résultats dès la première semaine.
+</div>
+</div>
+</div>
+
+<div class="zx-faq-item">
+<button class="zx-faq-question">
+<span data-i18n="faq.q2">Quels sont les coûts mensuels ?</span>
+<span class="zx-faq-toggle">+</span>
+</button>
+<div class="zx-faq-answer">
+<div class="zx-faq-answer-content" data-i18n="faq.a2">
+À partir de 297$/mois pour un micro-agent. Pas de frais cachés, pas de coûts de maintenance supplémentaires. Tout est inclus : hébergement, mises à jour, support technique.
+</div>
+</div>
+</div>
+
+<div class="zx-faq-item">
+<button class="zx-faq-question">
+<span data-i18n="faq.q3">Puis-je annuler à tout moment ?</span>
+<span class="zx-faq-toggle">+</span>
+</button>
+<div class="zx-faq-answer">
+<div class="zx-faq-answer-content" data-i18n="faq.a3">
+Oui, sans pénalité. Nous offrons une garantie satisfait ou remboursé de 30 jours. Si vous n'êtes pas satisfait, vous récupérez 100% de votre investissement.
+</div>
+</div>
+</div>
+
+<div class="zx-faq-item">
+<button class="zx-faq-question">
+<span data-i18n="faq.q4">L'agent IA s'intègre-t-il à mes outils actuels ?</span>
+<span class="zx-faq-toggle">+</span>
+</button>
+<div class="zx-faq-answer">
+<div class="zx-faq-answer-content" data-i18n="faq.a4">
+Oui, nous nous intégrons avec tous les CRM majeurs (HubSpot, Salesforce, Pipedrive), calendriers (Google, Outlook), et outils de communication (Slack, Teams, WhatsApp).
+</div>
+</div>
+</div>
+
+<div class="zx-faq-item">
+<button class="zx-faq-question">
+<span data-i18n="faq.q5">Mes données sont-elles sécurisées ?</span>
+<span class="zx-faq-toggle">+</span>
+</button>
+<div class="zx-faq-answer">
+<div class="zx-faq-answer-content" data-i18n="faq.a5">
+Absolument. Conformité RGPD complète, chiffrement de bout en bout, hébergement sécurisé au Canada. Vos données ne sont jamais partagées avec des tiers.
+</div>
+</div>
+</div>
+
+<div class="zx-faq-item">
+<button class="zx-faq-question">
+<span data-i18n="faq.q6">Quel support recevrai-je ?</span>
+<span class="zx-faq-toggle">+</span>
+</button>
+<div class="zx-faq-answer">
+<div class="zx-faq-answer-content" data-i18n="faq.a6">
+Support en français, anglais, espagnol et portugais. Réponse sous 24h en semaine, accès direct à notre équipe technique basée au Québec.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 07 - CTA Final -->
+<section class="zx-sec zx-cta-final">
+<div class="zx-wrap">
+<h2 class="zx-h2" data-i18n="cta.title">Vos concurrents automatisent déjà</h2>
+<p class="zx-lead" data-i18n="cta.description">
+Consultation gratuite de 30 minutes, sans engagement. Réponse sous 24h.
+</p>
+<div class="zx-cta-row">
+<a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn" data-i18n="cta.cta1">Démarrer ma démo gratuite</a>
+<a href="/test-chat" class="zx-btn zx-btn-ghost" data-i18n="cta.cta2">Tester un agent</a>
+</div>
+<div class="zx-checks">
+<span data-i18n="cta.check1">✓ Sans engagement</span>
+<span data-i18n="cta.check2">✓ Garantie 30 jours</span>
+<span data-i18n="cta.check3">✓ Support en français</span>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="zx-footer">
+<div class="zx-wrap">
+<div class="zx-footer-grid">
+<div>
+  <img src="/zyatria-global-logo.svg" alt="ZyatrIA Global" style="height:40px;width:auto;margin-bottom:1rem" />
+  <p data-i18n="footer.description">Entreprise canadienne basée au Québec.<br>Agents IA autonomes pour entreprises.</p>
+</div>
+<div>
+  <h4 data-i18n="footer.solutions">Solutions</h4>
+  <ul>
+    <li><a href="/services" data-i18n="footer.services">Services</a></li>
+    <li><a href="/micro-agents" data-i18n="footer.microAgents">Micro-agents</a></li>
+    <li><a href="/pricing" data-i18n="footer.pricing">Tarifs</a></li>
+  </ul>
+</div>
+<div>
+  <h4 data-i18n="footer.resources">Ressources</h4>
+  <ul>
+    <li><a href="/knowledge-base" data-i18n="footer.knowledgeBase">Base de connaissances</a></li>
+    <li><a href="/test-chat" data-i18n="footer.testChatbot">Tester le chatbot</a></li>
+  </ul>
+</div>
+<div>
+  <h4 data-i18n="footer.contact">Contact</h4>
+  <ul>
+    <li><a href="mailto:ZyatrIA.contact@gmail.com" data-i18n="footer.email">Email</a></li>
+    <li><a href="tel:+14388874507" data-i18n="footer.phone">+1 (438) 887-4507</a></li>
+  </ul>
+</div>
+</div>
+<div class="zx-copy">
+<span data-i18n="footer.copyright">© 2025 ZyatrIA Global. Tous droits réservés.</span>
+<a href="/privacy" data-i18n="footer.privacy">Confidentialité</a> · 
+<a href="/terms" data-i18n="footer.terms">Conditions</a>
+</div>
+</div>
+</footer>
+
+<ChatbotWidget />
+
+<script>
+// Translations object
+const translations = {
+  fr: {
+    nav: {
+      home: "Accueil",
+      services: "Services",
+      microAgents: "Micro-agents",
+      pricing: "Tarifs",
+      resources: "Ressources",
+      contact: "Contact",
+      demo: "Démo gratuite"
+    },
+    hero: {
+      kicker: "🇨🇦 Entreprise Canadienne | Québec — IA sans frontières",
+      title: "Transformez Votre Entreprise",
+      titleSpan: "Avec l'IA Intelligente",
+      description: "Déployez vos agents IA en 7 à 15 jours pour automatiser la réception, qualification, rendez-vous et support client. Sans embauche. Sans formation. Résultats mesurables dès la première semaine.",
+      cta1: "Réserver une consultation gratuite",
+      cta2: "Voir les micro-agents"
+    },
+    stats: {
+      clients: "Clients actifs dans 45 pays",
+      satisfaction: "Taux de satisfaction client",
+      deployment: "Déploiement ultra-rapide",
+      tasks: "Tâches automatisées"
+    },
+    features: {
+      kicker: "🚀 Pourquoi ZyatrIA",
+      title: "La différence ZyatrIA",
+      description: "Une approche unique qui combine rapidité, expertise et résultats mesurables.",
+      feature1Title: "Déploiement express",
+      feature1Desc: "Vos agents IA sont opérationnels en 7 à 15 jours, pas en 3-6 mois comme les solutions traditionnelles.",
+      feature2Title: "ROI garanti",
+      feature2Desc: "Garantie satisfait ou remboursé 30 jours. Nos clients constatent un ROI moyen en 4 mois.",
+      feature3Title: "Support canadien",
+      feature3Desc: "Équipe basée au Québec, support en français, anglais, espagnol et portugais.",
+      feature4Title: "Sécurité maximale",
+      feature4Desc: "Conformité RGPD, hébergement sécurisé, chiffrement de bout en bout de vos données."
+    },
+    solutions: {
+      kicker: "Solutions IA",
+      title: "Tout pour automatiser votre entreprise",
+      description: "Trois façons de gagner du temps, quel que soit votre secteur.",
+      card1Title: "Agents IA intelligents",
+      card1Desc: "They analyze, respond, decide, and execute at the heart of your business.",
+      card1Item1: "24/7 automatic responses",
+      card1Item2: "Intelligent needs analysis",
+      card1Item3: "Adaptation to your business",
+      card1Link: "Discover micro-agents →",
+      card2Title: "Advanced Automation",
+      card2Desc: "Connect your tools and eliminate repetitive manual work.",
+      card2Item1: "Native CRM integrations",
+      card2Item2: "Automated follow-ups",
+      card2Item3: "Real-time data synchronization",
+      card2Link: "View services →",
+      card3Title: "Results in 7 Days",
+      card3Desc: "Choose a micro-agent, we configure it, it's online in one week.",
+      card3Item1: "Deployed in 7 to 15 days",
+      card3Item2: "Lower cost than custom",
+      card3Item3: "Ready to use immediately",
+      card3Link: "View pricing →"
+    },
+    testimonials: {
+      kicker: "Customer Testimonials",
+      title: "Measured results from our clients",
+      description: "Results reported by the companies themselves.",
+      test1Quote: "Response time went from 4 hours to 2 minutes. Our team can finally focus on complex problems.",
+      test1Result1: "✓ Response time reduced by 95%",
+      test1Result2: "✓ Customer satisfaction +40%",
+      test2Quote: "80% of our orders are automated. What took 3 days now takes 3 hours.",
+      test2Result1: "✓ ROI in 4 months",
+      test2Result2: "✓ 80% automation",
+      test3Quote: "Our conversion rate went from 20% to 73% thanks to intelligent lead qualification.",
+      test3Result1: "✓ +$230,000 in revenue",
+      test3Result2: "✓ Conversion +265%"
+    },
+    cta: {
+      title: "Your competitors are already automating",
+      description: "Free 30-minute consultation, no commitment. Response within 24 hours.",
+      cta1: "Start my free demo",
+      cta2: "Test an agent",
+      check1: "✓ No commitment",
+      check2: "✓ 30-day guarantee",
+      check3: "✓ Support in English"
+    },
+    footer: {
+      description: "Canadian company based in Quebec.<br>Autonomous AI agents for businesses.",
+      solutions: "Solutions",
+      services: "Services",
+      microAgents: "Micro-agents",
+      pricing: "Pricing",
+      resources: "Resources",
+      knowledgeBase: "Knowledge Base",
+      testChatbot: "Test the chatbot",
+      contact: "Contact",
+      email: "Email",
+      phone: "+1 (438) 887-4507",
+      copyright: "© 2025 ZyatrIA Global. All rights reserved.",
+      privacy: "Privacy",
+      terms: "Terms"
+    }
+  },
+  en: {
+    nav: {
+      home: "Home",
+      services: "Services",
+      microAgents: "Micro-agents",
+      pricing: "Pricing",
+      resources: "Resources",
+      contact: "Contact",
+      demo: "Free Demo"
+    },
+    hero: {
+      kicker: "🇨🇦 Canadian Company | Quebec — AI Without Borders",
+      title: "Transform Your Business",
+      titleSpan: "With Intelligent AI",
+      description: "Deploy your AI agents in 7 to 15 days to automate reception, qualification, appointments, and customer support. No hiring. No training. Measurable results from the first week.",
+      cta1: "Book a free consultation",
+      cta2: "View micro-agents"
+    },
+    stats: {
+      clients: "Active clients in 45 countries",
+      satisfaction: "Customer satisfaction rate",
+      deployment: "Ultra-fast deployment",
+      tasks: "Automated tasks"
+    },
+    features: {
+      kicker: "🚀 Why ZyatrIA",
+      title: "The ZyatrIA Difference",
+      description: "A unique approach that combines speed, expertise, and measurable results.",
+      feature1Title: "Express Deployment",
+      feature1Desc: "Your AI agents are operational in 7 to 15 days, not 3-6 months like traditional solutions.",
+      feature2Title: "Guaranteed ROI",
+      feature2Desc: "30-day money-back guarantee. Our clients see an average ROI in 4 months.",
+      feature3Title: "Canadian Support",
+      feature3Desc: "Team based in Quebec, support in French, English, Spanish, and Portuguese.",
+      feature4Title: "Maximum Security",
+      feature4Desc: "GDPR compliance, secure hosting, end-to-end encryption of your data."
+    },
+    solutions: {
+      kicker: "AI Solutions",
+      title: "Everything to automate your business",
+      description: "Three ways to save time, regardless of your industry.",
+      card1Title: "Intelligent AI Agents",
+      card1Desc: "They analyze, respond, decide, and execute at the heart of your business.",
+      card1Item1: "24/7 automatic responses",
+      card1Item2: "Intelligent needs analysis",
+      card1Item3: "Adaptation to your business",
+      card1Link: "Discover micro-agents →",
+      card2Title: "Advanced Automation",
+      card2Desc: "Connect your tools and eliminate repetitive manual work.",
+      card2Item1: "Native CRM integrations",
+      card2Item2: "Automated follow-ups",
+      card2Item3: "Real-time data synchronization",
+      card2Link: "View services →",
+      card3Title: "Results in 7 Days",
+      card3Desc: "Choose a micro-agent, we configure it, it's online in one week.",
+      card3Item1: "Deployed in 7 to 15 days",
+      card3Item2: "Lower cost than custom",
+      card3Item3: "Ready to use immediately",
+      card3Link: "View pricing →"
+    },
+    testimonials: {
+      kicker: "Customer Testimonials",
+      title: "Measured results from our clients",
+      description: "Results reported by the companies themselves.",
+      test1Quote: "Response time went from 4 hours to 2 minutes. Our team can finally focus on complex problems.",
+      test1Result1: "✓ Response time reduced by 95%",
+      test1Result2: "✓ Customer satisfaction +40%",
+      test2Quote: "80% of our orders are automated. What took 3 days now takes 3 hours.",
+      test2Result1: "✓ ROI in 4 months",
+      test2Result2: "✓ 80% automation",
+      test3Quote: "Our conversion rate went from 20% to 73% thanks to intelligent lead qualification.",
+      test3Result1: "✓ +$230,000 in revenue",
+      test3Result2: "✓ Conversion +265%"
+    },
+    cta: {
+      title: "Your competitors are already automating",
+      description: "Free 30-minute consultation, no commitment. Response within 24 hours.",
+      cta1: "Start my free demo",
+      cta2: "Test an agent",
+      check1: "✓ No commitment",
+      check2: "✓ 30-day guarantee",
+      check3: "✓ Support in English"
+    },
+    footer: {
+      description: "Canadian company based in Quebec.<br>Autonomous AI agents for businesses.",
+      solutions: "Solutions",
+      services: "Services",
+      microAgents: "Micro-agents",
+      pricing: "Pricing",
+      resources: "Resources",
+      knowledgeBase: "Knowledge Base",
+      testChatbot: "Test the chatbot",
+      contact: "Contact",
+      email: "Email",
+      phone: "+1 (438) 887-4507",
+      copyright: "© 2025 ZyatrIA Global. All rights reserved.",
+      privacy: "Privacy",
+      terms: "Terms"
+    }
+  }
+};
+
+// Get nested translation value
+function getTranslation(lang, key) {
+  const keys = key.split('.');
+  let value = translations[lang];
+  for (const k of keys) {
+    value = value?.[k];
+  }
+  return value || key;
+}
+
+// Apply translations to page
+function applyTranslations(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = getTranslation(lang, key);
+    if (translation) {
+      el.innerHTML = translation;
+    }
+  });
+  
+  // Update HTML lang attribute
+  document.documentElement.lang = lang;
+}
+
+// Header scroll effect
+const header = document.querySelector('.zx-header');
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 50) {
+    header?.classList.add('scrolled');
+  } else {
+    header?.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Language toggle functionality
+const langToggle = document.getElementById('langToggle');
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get('lang') || 'fr';
+
+// Update button display based on current language
+function updateLangButton() {
+  if (langToggle) {
+    if (currentLang === 'fr') {
+      langToggle.textContent = '🇫🇷 FR';
+    } else {
+      langToggle.textContent = '🇬🇧 EN';
+    }
+  }
+}
+
+// Initialize
+updateLangButton();
+applyTranslations(currentLang);
+
+// Toggle language on click
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    // Switch language
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    
+    // Apply translations immediately
+    applyTranslations(currentLang);
+    updateLangButton();
+    
+    // Update URL without reload
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.history.pushState({}, '', newUrl);
+  });
+}
+
+// FAQ Accordion functionality
+document.querySelectorAll('.zx-faq-item').forEach(item => {
+const question = item.querySelector('.zx-faq-question');
+question?.addEventListener('click', () => {
+// Close all other items
+document.querySelectorAll('.zx-faq-item').forEach(otherItem => {
+if (otherItem !== item) {
+otherItem.classList.remove('active');
+}
+});
+// Toggle current item
+item.classList.toggle('active');
+});
+});
+</script>
+
+</body>
+</html>
 
 
 
