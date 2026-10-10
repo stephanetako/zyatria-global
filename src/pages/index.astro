@@ -5,7 +5,7 @@ import '../styles/zx-styles.css';
 import '../styles/color-override.css';
 import ChatbotWidget from '../components/ChatbotWidget.astro';
 import { stripeLinks } from '../config/stripe-links';
-import { FORMSPREE_CONFIG, getFormspreeEndpoint } from '../config/formspree';
+import { baseUrl } from '../lib/base-url';
 ---
 
 <!DOCTYPE html>
@@ -608,7 +608,7 @@ Remplissez le formulaire et notre équipe vous contactera sous 24 heures.
 <p style="color:var(--text-secondary);margin:0">Veuillez réessayer ou nous contacter par email.</p>
 </div>
 
-<form id="contact-form" action={getFormspreeEndpoint(FORMSPREE_CONFIG.contactFormId)} method="POST" class="zx-form-card">
+<form id="contact-form" action={`${baseUrl}/api/contact`} method="POST" class="zx-form-card">
 
 <div class="zx-form-group">
 <label for="name">Nom complet <span style="color:var(--error)">*</span></label>
