@@ -6,7 +6,7 @@
 
 ---
 import '../styles/zx-styles.css';
-import { stripeLinks } from '../config/stripe-links';
+import { stripeLinks, getPaymentLink } from '../config/stripe-links';
 ---
 
 <!DOCTYPE html>
@@ -76,6 +76,7 @@ import { stripeLinks } from '../config/stripe-links';
           <li>Formation de base incluse</li>
         </ul>
         <a href={stripeLinks.plans.starterMonthly} target="_blank" rel="noopener" class="zx-btn">Démarrer l'abonnement</a>
+        <a href={getPaymentLink(stripeLinks.setupFees.starter, 'Frais de déploiement initial - Plan Starter (495$)')} target="_blank" rel="noopener" class="zx-link" style="display:block;text-align:center;margin-top:12px;font-size:.9rem">+ Frais de déploiement initial : 495$</a>
       </div>
 
       <!-- Plan Professional (Recommandé) -->
@@ -98,6 +99,7 @@ import { stripeLinks } from '../config/stripe-links';
           <li>Formation complète incluse</li>
         </ul>
         <a href={stripeLinks.plans.professionalMonthly} target="_blank" rel="noopener" class="zx-btn">Démarrer l'abonnement</a>
+        <a href={getPaymentLink(stripeLinks.setupFees.professional, 'Frais de déploiement initial - Plan Professionnel (697$)')} target="_blank" rel="noopener" class="zx-link" style="display:block;text-align:center;margin-top:12px;font-size:.9rem">+ Frais de déploiement initial : 697$</a>
       </div>
 
       <!-- Plan Enterprise -->
@@ -117,12 +119,14 @@ import { stripeLinks } from '../config/stripe-links';
           <li>Rapports exécutifs mensuels</li>
         </ul>
         <a href={stripeLinks.plans.enterpriseMonthly} target="_blank" rel="noopener" class="zx-btn">Démarrer l'abonnement</a>
+        <a href={getPaymentLink(stripeLinks.setupFees.enterprise, 'Frais de déploiement initial - Plan Entreprise (997$)')} target="_blank" rel="noopener" class="zx-link" style="display:block;text-align:center;margin-top:12px;font-size:.9rem">+ Frais de déploiement initial : 997$</a>
       </div>
     </div>
 
     <p class="zx-note">
       Prix en dollars canadiens (CA). Tous les plans incluent : hébergement sécurisé, 
       mises à jour automatiques, support technique et garantie satisfait ou remboursé 30 jours. 
+      Des frais de déploiement initial uniques s'appliquent selon le plan choisi. 
       Paiements sécurisés par Stripe.
     </p>
   </div>
@@ -285,6 +289,8 @@ if (langToggle) {
 
 </body>
 </html>
+
+
 
 
 

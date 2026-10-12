@@ -1,11 +1,13 @@
 
 
+
+
+
 ---
 import '../styles/zx-styles.css';
 import '../styles/color-override.css';
 import ChatbotWidget from '../components/ChatbotWidget.astro';
-import { stripeLinks } from '../config/stripe-links';
-import { FORMSPREE_CONFIG, getFormspreeEndpoint } from '../config/formspree';
+import { stripeLinks, getPaymentLink } from '../config/stripe-links';
 ---
 
 <!DOCTYPE html>
@@ -356,7 +358,7 @@ Entre 7 et 15 jours selon la complexité. Nous commençons par une consultation 
 </button>
 <div class="zx-faq-answer">
 <div class="zx-faq-answer-content">
-Nos plans débutent à 497$/mois pour un agent IA. Pas de frais cachés, pas de coûts de maintenance supplémentaires. Tout est inclus : hébergement, mises à jour, support technique.
+Nos plans débutent à 102$/mois pour un agent IA. Pas de frais cachés, pas de coûts de maintenance supplémentaires. Tout est inclus : hébergement, mises à jour, support technique.
 </div>
 </div>
 </div>
@@ -425,46 +427,49 @@ Pas de frais cachés. Annulez à tout moment.
 <div class="zx-card">
 <span class="zx-tag">🚀 Démarrage</span>
 <h3>Starter</h3>
-<p class="zx-price">497$ <small>par mois</small></p>
+<p class="zx-price">102$ <small>CA/mois</small></p>
 <p class="zx-desc">Idéal pour les petites équipes qui veulent automatiser leur premier point de contact client.</p>
 <ul>
-<li>1 agent IA inclus</li>
-<li>Jusqu'à 500 interactions/mois</li>
-<li>Intégration à 1 outil</li>
-<li>Support par courriel</li>
+<li>1 bot IA spécialisé au choix</li>
+<li>Jusqu'à 1 000 interactions/mois</li>
+<li>Déploiement en 7 à 15 jours</li>
+<li>Support par courriel (réponse 48h)</li>
 </ul>
-<a href={stripeLinks.plans.starterMonthly} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Réserver une consultation</a>
+<a href={stripeLinks.plans.starterMonthly} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Démarrer l'abonnement</a>
+<a href={getPaymentLink(stripeLinks.setupFees.starter, 'Frais de déploiement initial - Plan Starter (495$)')} target="_blank" rel="noopener" class="zx-link" style="display:block;text-align:center;margin-top:12px;font-size:.9rem">+ Frais de déploiement initial : 495$</a>
 </div>
 
 <div class="zx-card zx-reco">
 <div class="zx-reco-tag">⭐ LE PLUS POPULAIRE</div>
 <span class="zx-tag">💼 Professionnel</span>
 <h3>Professionnel</h3>
-<p class="zx-price">1 297$ <small>par mois</small></p>
+<p class="zx-price">146$ <small>CA/mois</small></p>
 <p class="zx-desc">Pour les entreprises en croissance qui veulent automatiser plusieurs flux de travail clés.</p>
 <ul>
-<li>3 agents IA inclus</li>
-<li>Jusqu'à 2 500 interactions/mois</li>
-<li>Intégrations illimitées</li>
-<li>Support prioritaire</li>
+<li>3 bots IA spécialisés au choix</li>
+<li>Jusqu'à 5 000 interactions/mois</li>
+<li>Intégrations CRM illimitées</li>
+<li>Support prioritaire (réponse 24h)</li>
 <li>Tableau de bord analytique</li>
 </ul>
-<a href={stripeLinks.plans.professionalMonthly} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Réserver une consultation</a>
+<a href={stripeLinks.plans.professionalMonthly} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Démarrer l'abonnement</a>
+<a href={getPaymentLink(stripeLinks.setupFees.professional, 'Frais de déploiement initial - Plan Professionnel (697$)')} target="_blank" rel="noopener" class="zx-link" style="display:block;text-align:center;margin-top:12px;font-size:.9rem">+ Frais de déploiement initial : 697$</a>
 </div>
 
 <div class="zx-card">
 <span class="zx-tag">🏢 Entreprise</span>
 <h3>Entreprise</h3>
-<p class="zx-price">Sur mesure</p>
+<p class="zx-price">698$ <small>CA/mois</small></p>
 <p class="zx-desc">Solution complète et personnalisée pour les grandes organisations avec besoins avancés.</p>
 <ul>
-<li>Agents IA illimités</li>
-<li>Volume d'interactions illimité</li>
+<li>7 bots IA, suite complète</li>
+<li>Interactions illimitées</li>
 <li>Intégrations sur mesure</li>
 <li>Gestionnaire de compte dédié</li>
-<li>SLA garanti</li>
+<li>Support 24/7 avec SLA garanti</li>
 </ul>
-<a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn zx-btn-ghost" style="width:100%;text-align:center;display:block">Contacter les ventes</a>
+<a href={stripeLinks.plans.enterpriseMonthly} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Démarrer l'abonnement</a>
+<a href={getPaymentLink(stripeLinks.setupFees.enterprise, 'Frais de déploiement initial - Plan Entreprise (997$)')} target="_blank" rel="noopener" class="zx-link" style="display:block;text-align:center;margin-top:12px;font-size:.9rem">+ Frais de déploiement initial : 997$</a>
 </div>
 </div>
 </div>
@@ -483,25 +488,25 @@ Consultation, audit ou formation — réservez et payez en ligne en quelques min
 <div class="zx-card" style="display:flex;flex-direction:column">
 <div class="zx-card-icon">🧭</div>
 <h3>Consultation stratégique</h3>
-<p>Une session d'une heure avec notre équipe pour évaluer vos besoins d'automatisation et identifier les meilleures opportunités pour votre entreprise.</p>
-<p class="zx-price" style="font-size:1.75rem">150$ <small>paiement unique</small></p>
-<span class="zx-coming-soon">Bientôt disponible</span>
+<p>Une session de 60 minutes avec notre équipe pour évaluer vos besoins d'automatisation et identifier les meilleures opportunités pour votre entreprise.</p>
+<p class="zx-price" style="font-size:1.75rem">147$ <small>paiement unique</small></p>
+<a href={stripeLinks.services.consultation} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Réserver une consultation</a>
 </div>
 
 <div class="zx-card" style="display:flex;flex-direction:column">
 <div class="zx-card-icon">🔍</div>
-<h3>Audit d'automatisation</h3>
+<h3>Audit IA Complet + Plan d'Action 90 jours</h3>
 <p>Analyse complète de vos processus actuels avec un rapport détaillé des opportunités d'automatisation et un plan d'implémentation chiffré.</p>
-<p class="zx-price" style="font-size:1.75rem">750$ <small>paiement unique</small></p>
-<span class="zx-coming-soon">Bientôt disponible</span>
+<p class="zx-price" style="font-size:1.75rem">497$ <small>paiement unique</small></p>
+<a href={stripeLinks.services.audit} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Commander un audit</a>
 </div>
 
 <div class="zx-card" style="display:flex;flex-direction:column">
 <div class="zx-card-icon">🎓</div>
-<h3>Formation personnalisée</h3>
-<p>Formation sur mesure pour votre équipe sur l'utilisation et la gestion de vos agents IA, adaptée à votre secteur et vos outils existants.</p>
-<p class="zx-price" style="font-size:1.75rem">1 200$ <small>par session</small></p>
-<span class="zx-coming-soon">Bientôt disponible</span>
+<h3>Formation IA pour Équipes</h3>
+<p>Formation complète pour votre équipe sur l'utilisation, la gestion et l'optimisation de vos agents IA, adaptée à votre secteur et vos outils existants.</p>
+<p class="zx-price" style="font-size:1.75rem">995$ <small>paiement unique</small></p>
+<a href={getPaymentLink(stripeLinks.services.formation, 'Formation IA pour Équipes (995$)')} target="_blank" rel="noopener" class="zx-btn" style="width:100%;text-align:center;display:block">Réserver une formation</a>
 </div>
 </div>
 </div>
@@ -608,7 +613,7 @@ Remplissez le formulaire et notre équipe vous contactera sous 24 heures.
 <p style="color:var(--text-secondary);margin:0">Veuillez réessayer ou nous contacter par email.</p>
 </div>
 
-<form id="contact-form" action={getFormspreeEndpoint(FORMSPREE_CONFIG.contactFormId)} method="POST" class="zx-form-card">
+<form id="contact-form" action="https://zyatria.app.n8n.cloud/webhook/zyatria-contact" method="POST" class="zx-form-card">
 
 <div class="zx-form-group">
 <label for="name">Nom complet <span style="color:var(--error)">*</span></label>
@@ -632,12 +637,12 @@ Remplissez le formulaire et notre équipe vous contactera sous 24 heures.
 
 <div class="zx-form-group">
 <label for="lang">Langue préférée</label>
-<select id="lang" name="lang">
+<select id="lang" name="language">
 <option value="">-- Select an option --</option>
-<option value="fr" selected>Français</option>
-<option value="en">English</option>
-<option value="es">Español</option>
-<option value="pt">Português</option>
+<option value="Français" selected>Français</option>
+<option value="English">English</option>
+<option value="Español">Español</option>
+<option value="Português">Português</option>
 </select>
 </div>
 
@@ -766,9 +771,18 @@ const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | n
 const successMessage = document.getElementById('success-message');
 const errorMessage = document.getElementById('error-message');
 
+const N8N_WEBHOOK_URL = 'https://zyatria.app.n8n.cloud/webhook/zyatria-contact';
+
 if (form && submitBtn) {
 form.addEventListener('submit', async (e) => {
 e.preventDefault();
+
+// Honeypot spam check - silently pretend success
+const honeypot = form.querySelector('[name="_gotcha"]') as HTMLInputElement | null;
+if (honeypot && honeypot.value) {
+form.reset();
+return;
+}
 
 submitBtn.disabled = true;
 submitBtn.textContent = '⏳ Envoi en cours...';
@@ -778,32 +792,28 @@ if (errorMessage) errorMessage.style.display = 'none';
 
 try {
 const formData = new FormData(form);
-const response = await fetch(form.action, {
-  method: 'POST',
-  body: formData,
-  headers: {
-    'Accept': 'application/json'
-  }
+formData.delete('_gotcha');
+
+await fetch(N8N_WEBHOOK_URL, {
+method: 'POST',
+mode: 'no-cors',
+body: new URLSearchParams(formData as any)
 });
 
-if (response.ok) {
-  if (successMessage) {
-    successMessage.style.display = 'block';
-    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  form.reset();
-
-  setTimeout(() => {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Envoyer ma demande';
-  }, 3000);
-} else {
-  throw new Error('Erreur serveur');
+if (successMessage) {
+successMessage.style.display = 'block';
+successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+form.reset();
+
+setTimeout(() => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Envoyer ma demande';
+}, 3000);
 } catch (error) {
 if (errorMessage) {
-  errorMessage.style.display = 'block';
-  errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+errorMessage.style.display = 'block';
+errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 submitBtn.disabled = false;
 submitBtn.textContent = 'Envoyer ma demande';
@@ -814,5 +824,12 @@ submitBtn.textContent = 'Envoyer ma demande';
 
 </body>
 </html>
+
+
+
+
+
+
+
 
 

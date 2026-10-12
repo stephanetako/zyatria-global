@@ -1,8 +1,11 @@
 
 
 
+
+---
 import '../styles/zx-styles.css';
-import { stripeLinks } from '../config/stripe-links';
+import { stripeLinks, getPaymentLink } from '../config/stripe-links';
+---
 
 <!DOCTYPE html>
 <html lang="fr" class="zx">
@@ -98,7 +101,7 @@ import { stripeLinks } from '../config/stripe-links';
           <li>Déployé en 7 à 15 jours ouvrables</li>
           <li>Coût 70% inférieur au développement sur-mesure</li>
           <li>Prêt à l'emploi immédiatement</li>
-          <li>Formation de votre équipe incluse</li>
+          <li>Onboarding et documentation inclus</li>
         </ul>
         <a href="mailto:ZyatrIA.contact@gmail.com" class="zx-btn" style="margin-top:16px">Réserver une consultation</a>
       </div>
@@ -116,8 +119,8 @@ import { stripeLinks } from '../config/stripe-links';
 
     <div class="zx-cards">
       <div class="zx-card">
-        <h3>🔍 Audit IA complet</h3>
-        <p class="zx-sub">147$ CA</p>
+        <h3>🔍 Audit IA Complet + Plan d'Action 90 jours</h3>
+        <p class="zx-sub">497$ CA</p>
         <p>
           Évaluation approfondie de vos processus actuels et recommandations 
           d'automatisation personnalisées.
@@ -133,7 +136,7 @@ import { stripeLinks } from '../config/stripe-links';
 
       <div class="zx-card">
         <h3>💡 Consultation stratégique</h3>
-        <p class="zx-sub">149$ CA</p>
+        <p class="zx-sub">147$ CA</p>
         <p>
           60 minutes avec un expert pour définir votre stratégie d'automatisation 
           et prioriser vos actions.
@@ -148,8 +151,8 @@ import { stripeLinks } from '../config/stripe-links';
       </div>
 
       <div class="zx-card">
-        <h3>🎓 Formation personnalisée</h3>
-        <p class="zx-sub">Incluse dans tous les plans</p>
+        <h3>🎓 Formation IA pour Équipes</h3>
+        <p class="zx-sub">995$ CA</p>
         <p>
           Formation complète de votre équipe pour utiliser et optimiser 
           vos agents IA au quotidien.
@@ -160,7 +163,7 @@ import { stripeLinks } from '../config/stripe-links';
           <li>Support continu</li>
           <li>Mises à jour régulières</li>
         </ul>
-        <a href="/pricing" class="zx-link">Voir les plans →</a>
+        <a href={getPaymentLink(stripeLinks.services.formation, 'Formation IA pour Équipes (995$)')} target="_blank" rel="noopener" class="zx-link">Réserver une formation →</a>
       </div>
     </div>
   </div>
@@ -258,6 +261,11 @@ if (langToggle) {
 
 </body>
 </html>
+
+
+
+
+
 
 
 
