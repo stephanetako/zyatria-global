@@ -30,3 +30,6 @@ pnpm-debug.log*
 # backup env file with secrets - never track
 .env.backup
 lost+found/
+
+# astro cache
+.astro-cache/
